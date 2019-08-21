@@ -14,8 +14,13 @@
 		isajetlijs
 		
 		qewwtqet
+<<<<<<< HEAD
 		sjetiqjtliesjtilejeaslitjeliajtl
 		
+=======
+		asetqtqteqetqteafeaet
+		qsetqte
+>>>>>>> refs/heads/ksm
 	 --%>
 </body>
 </html>
