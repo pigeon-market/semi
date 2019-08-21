@@ -41,17 +41,6 @@
 			4) project 오른쪽 버튼 클릭 - Properties 클릭
 			   project facets 설정 확인하기 -> sever 선택 안할 시 index.jsp의 상단 부분 오류날 수 있음
 		
-<<<<<<< HEAD
-		qewwtqet
-<<<<<<< HEAD
-		sjetiqjtliesjtilejeaslitjeliajtl
-		
-=======
-		asetqtqteqetqteafeaet
-		qsetqte
->>>>>>> refs/heads/ksm
-	 --%>
-=======
 		4. 내가 앞으로 작성할 jsp 파일이 java 파일로 볼 수 있도록 저장되는 폴더가 필요함
 			1) Servers/프로젝트명-config/context.xml 파일
 		   	   ==> 내가 만들 프로젝트의 META-INF 안으로 복사 
@@ -70,6 +59,6 @@
 		2. new Jsp file을 했을 때 불필요한 부분 제거하는 방법
 			- Windows - Preferences - Web - JSP Files - Editor - Templates
 			    들어가서 new JSP File(html) 부분 더블클릭해서 템플릿 수정하기
->>>>>>> refs/heads/ksm
+
 </body>
 </html>
