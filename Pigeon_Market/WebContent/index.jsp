@@ -10,16 +10,7 @@
 	<%@ include file="views/common/menubar.jsp" %>
 	
 	<%-- 
-		* 제일 먼저 셋팅 할 것들 
-		1. Window - Preferences
-			1) 인코딩 관련 한 것들 UTF-8로 바꿔주기
-				>> Window - Preferences - General - Wokspace 선택
-				- 아래쪽 Text file encoding > Other (UTF-8)
-				>> General - Editors - Text Editors - Spelling 선택  - UTF-8 설정
-				>> JSON - JSON Files - Encoding: 부분 UTF-8로 설정
-				>> Web - CSS Files, HTML Files, JSP Files 모두 UTF-8로 설정
-				>> XML - XML Files도 UFT-8 되어있는지 확인
-			2) Server - Runtime Environment - Add  톰캣 올려주기
+		
 			
 			
 		2. Dynamic Web Project 생성
