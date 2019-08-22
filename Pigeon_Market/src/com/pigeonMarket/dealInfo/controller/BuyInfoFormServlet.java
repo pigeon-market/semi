@@ -39,6 +39,8 @@ public class BuyInfoFormServlet extends HttpServlet {
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
 		
+		
+		
 		ArrayList<Deal> dealList = new DealInfoService().selectBuyList(userId);
 		
 		
