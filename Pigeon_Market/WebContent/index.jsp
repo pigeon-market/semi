@@ -11,7 +11,7 @@
 	
 	<%-- 
 		
-			setqsetqsqetqsetsqteqtesqqsefqfes
+			
 			
 		2. Dynamic Web Project 생성
 			1) New -> Dynamic Web Project 생성
@@ -65,7 +65,7 @@
 		2. new Jsp file을 했을 때 불필요한 부분 제거하는 방법
 			- Windows - Preferences - Web - JSP Files - Editor - Templates
 			    들어가서 new JSP File(html) 부분 더블클릭해서 템플릿 수정하기
-			 
+
 		
 	 --%>
 </body>
