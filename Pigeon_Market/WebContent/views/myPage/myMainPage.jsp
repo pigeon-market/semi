@@ -11,8 +11,8 @@
 
 	<div class="mainform">
 
-		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/myBuyInfo.me'">구매정보</div>
-		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/mySellInfo.me'">판매정보</div>
+		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/buyInfoForm.deal'">구매정보</div>
+		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/sellInfoForm.deal;">판매정보</div>
 		<!--  <div class="btndiv" id="배송정보" onclick="delivinfo();">배송정보</div>  -->
 		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/checkMyPwdForm.me'">회원정보 수정</div>
 
