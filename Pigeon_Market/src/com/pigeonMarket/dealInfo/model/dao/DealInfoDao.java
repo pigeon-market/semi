@@ -34,7 +34,7 @@ public class DealInfoDao {
 	
 	
 	
-	/** 1. ±¸¸Å ¸ñ·Ï Á¶È¸
+	/** 1. êµ¬ë§¤ ëª©ë¡ ê°€ì§€ê³ ì˜¤ëŠ” ë©”ì†Œë“œ
 	 * @param conn
 	 * @param userId
 	 * @return
