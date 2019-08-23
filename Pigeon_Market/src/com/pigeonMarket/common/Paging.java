@@ -89,6 +89,7 @@ public class Paging {
 		pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 		
 		return pi;
+		
 	}
 
 }
