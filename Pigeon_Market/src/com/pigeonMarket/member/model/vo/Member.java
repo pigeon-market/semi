@@ -19,6 +19,14 @@ public class Member {
 	public Member() {
 		
 	}
+	
+	public Member(String userId, String userPwd, String address, String email) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.address = address;
+		this.email = email;
+	}
 
 	public Member(String userId, String userPwd, String userName, Date birthDate, String gender, String email,
 			String phone, String address, Date joinDate, String withdrawal, String blackCode) {
@@ -130,7 +138,5 @@ public class Member {
 				+ birthDate + ", gender=" + gender + ", email=" + email + ", phone=" + phone + ", address=" + address
 				+ ", joinDate=" + joinDate + ", withdrawal=" + withdrawal + ", blackCode=" + blackCode + "]";
 	}
-	
-	
 
 }
