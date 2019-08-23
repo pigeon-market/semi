@@ -43,14 +43,14 @@ public class DealInfoDao {
 	 * @param conn
 	 * @return
 	 */
-	public int getListCount(Connection conn) {
+	public int buyListCount(Connection conn, String userId) {
 		
 		int listCount = 0;
 
 		Statement stmt = null; // sql구문이 완성물일때
 		ResultSet rset = null;
 
-		String sql = prop.getProperty("");
+		String sql = prop.getProperty("buyListCount");
 
 		try {
 			stmt = conn.createStatement();
@@ -72,10 +72,6 @@ public class DealInfoDao {
 		return listCount;
 
 	}
-	
-	
-	
-	
 	
 	
 	
