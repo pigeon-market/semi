@@ -154,13 +154,16 @@
 			<div class="menu">HOME</div>
 			<div class="menu" onclick="goNotice();">공지사항</div>
 			<div class="menu">게시판</div>
-			<div class="menu">사진게시판</div>
+			<div class="menu" onclick="goProduct();" >상품구입</div>
 		</div>
 	</div>
 	
 	<script>
 		function goNotice(){
 			location.href="<%= request.getContextPath() %>/list.no";
+		}
+		function goProduct(){
+			location.href="<%= contextPath%>/list.pr";		
 		}
 		
 

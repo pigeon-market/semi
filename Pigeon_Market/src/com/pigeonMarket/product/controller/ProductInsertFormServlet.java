@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class testServlet
+ * Servlet implementation class ProductInsertFormServlet
  */
-@WebServlet("/testServlet")
-public class testServlet extends HttpServlet {
+@WebServlet("/insertForm.pr")
+public class ProductInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public testServlet() {
+    public ProductInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,9 @@ public class testServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		request.getRequestDispatcher("views/product/productInsertForm.jsp").forward(request, response);
+
 	}
 
 	/**
