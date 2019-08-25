@@ -18,7 +18,7 @@ public class JDBCTemplate {
 		Connection conn = null;
 		Properties prop = new Properties();
 		
-		String fileName = JDBCTemplate.class.getResource("/sql/driver.properties").getPath();
+		String fileName = JDBCTemplate.class.getResource("/com/pigeonMarket/sql/driver.properties").getPath();
 
 		
 		try {

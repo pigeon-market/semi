@@ -47,5 +47,19 @@ public class DealInfoService {
 		return dealList;
 		
 	}
+	
+	public Deal selectDeal(int no) {
+		
+		Connection conn = getConnection();
+		
+		Deal d = new DealInfoDao().selectDeal(conn, no);
+		
+		close(conn);
+		
+		return d;
+		
+	}
+	
+
 
 }

@@ -33,14 +33,14 @@ public class DetailInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-int bId = Integer.parseInt(request.getParameter("bId"));
+		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		
 		// 1. 해당 게시판 정보 조회!
 		
-		Deal d = new DealInfoService().selectDeal(bId);
+		Deal d = new DealInfoService().selectDeal(productNo);
 		
 		// 2. 해당 게시판의 사진들 리스트 조회!
-		ArrayList<Attachment> fileList = new DealInfoService().selectAttachment(bId);
+		ArrayList<Attachment> fileList = new DealInfoService().selectAttachment(productNo);
 		
 		if(d!=null) {
 			request.setAttribute("d", d);

@@ -4,24 +4,36 @@ import java.sql.Date;
 
 public class Deal {
 	
-	private int productNo;				// »óÇ°¹øÈ£
-	private int price;					// °¡°İ
-	private String pId;					// ÆÇ¸ÅÀÚ ¾ÆÀÌµğ
-	private String bId;					// ±¸¸ÅÀÚ ¾ÆÀÌµğ
-	private String categoryName;		// Ä«Å×ÄÚ¸® ÀÌ¸§
-	private String title;				// °Ô½Ã¹É Á¦¸ñ
-	private Date regDate; 				// µî·Ï³¯Â¥
-	private Date approvalDate;			// ½ÂÀÎ³¯Â¥
-	private Date dealDate;				// ÆÇ¸Å³¯Â¥
-	private String state;				// ÆÇ¸Å¿Ï·á »óÅÂ
+	private String productOkNo;			// ë“±ë¡ ì œí’ˆ ë„˜ë²„
+	private String productNo;			// íŒë§¤ì ë“±ë¡ ë„˜ë²„
+	private int price;					// ê°€ê²©
+	private String pId;					// íŒë§¤ì ì•„ì´ë””
+	private String bId;					// êµ¬ë§¤ì ì•„ì´ë””
+	private String categoryName;		// ì¹´í…Œê³ ë¦¬ ì´ë¦„
+	private String title;				// ê²Œì‹œê¸€ ì œëª©
+	private Date regDate; 				// ë“±ë¡ ë‚ ì§œ
+	private Date approvalDate;			// ìŠ¹ì¸ ë‚ ì§œ
+	private Date dealDate;				// êµ¬ë§¤ ë‚ ì§œ
+	private String state;				// íŒë§¤ ìƒíƒœ
 	
 	public Deal() {
 		
 	}
 
-	public Deal(int productNo, int price, String pId, String bId, String categoryName, String title, Date regDate,
-			Date approvalDate, Date dealDate, String state) {
+	public Deal(String productOkNo, String bId, Date dealDate) {
 		super();
+		this.productOkNo = productOkNo;
+
+		this.bId = bId;
+		this.dealDate = dealDate;
+	}
+
+
+
+	public Deal(String productOkNo, String productNo, int price, String pId, String bId, String categoryName,
+			String title, Date regDate, Date approvalDate, Date dealDate, String state) {
+		super();
+		this.productOkNo = productOkNo;
 		this.productNo = productNo;
 		this.price = price;
 		this.pId = pId;
@@ -33,12 +45,20 @@ public class Deal {
 		this.dealDate = dealDate;
 		this.state = state;
 	}
+	
+	public String getProductOkNo() {
+		return productOkNo;
+	}
 
-	public int getProductNo() {
+	public void setProductOkNo(String productOkNo) {
+		this.productOkNo = productOkNo;
+	}
+
+	public String getProductNo() {
 		return productNo;
 	}
 
-	public void setProductNo(int productNo) {
+	public void setProductNo(String productNo) {
 		this.productNo = productNo;
 	}
 
@@ -116,10 +136,11 @@ public class Deal {
 
 	@Override
 	public String toString() {
-		return "Deal [productNo=" + productNo + ", price=" + price + ", pId=" + pId + ", bId=" + bId + ", categoryName="
-				+ categoryName + ", title=" + title + ", regDate=" + regDate + ", approvalDate=" + approvalDate
-				+ ", dealDate=" + dealDate + ", state=" + state + "]";
+		return "Deal [productOkNo=" + productOkNo + ", productNo=" + productNo + ", price=" + price + ", pId=" + pId
+				+ ", bId=" + bId + ", categoryName=" + categoryName + ", title=" + title + ", regDate=" + regDate
+				+ ", approvalDate=" + approvalDate + ", dealDate=" + dealDate + ", state=" + state + "]";
 	}
-
+	
+	
 	
 }

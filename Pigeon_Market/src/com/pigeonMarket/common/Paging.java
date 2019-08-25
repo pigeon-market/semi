@@ -18,7 +18,7 @@ public class Paging {
 	 * 
 	 * 1. int listCount = new 해당게사판Service().getListCount(); 									// 해당게시판의 리스트 갯수 불러오기
 	 * 
-	 * 2. PageInfo pi = pagingBar(listCount);													// 리스트 갯수와 boardLimit 갯수를 담아서 PageInfo 객체에 받아서 보내기
+	 * 2. PageInfo pi = pagingBar(listCount, 10);												// 리스트 갯수와 boardLimit 갯수를 담아서 PageInfo 객체에 받아서 보내기
 	 * 
 	 * 3. if (request.getParameter("currentPage") != null)
 	 * 		 { pi.setCurrentPage(Integer.parseInt(request.getParameter("currentPage"))); } 		// CurrentPage 변경(복붙가능)
