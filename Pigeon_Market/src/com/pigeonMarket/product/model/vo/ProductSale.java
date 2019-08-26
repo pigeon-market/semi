@@ -2,48 +2,48 @@ package com.pigeonMarket.product.model.vo;
 
 import java.sql.Date;
 
-public class Product {
+public class ProductSale {
 	
-	private int productNo;					// 판매대기번호
+	private int productOkNo;					// 판매승인번호
 	private String pId;						// 판매자아이디
 	private int price;						// 판매가격
 	private String categoryCode;			// 카테고리코드
-	private String approval;				// 상품승인 상태 (N= 미승인  , Y= 승인)
 	private String productTitle;			// 상품제목
 	private String productContents;			// 상품내용
 	private Date regDate;					// 등록날짜
+	private Date approvalDate;					// 등록날짜
 	private String productState;			// 판매완료상태 ( N: 아직 판매중 , Y: 판매완료)
 	private String status;					// 판매 글 상태( Y:등록중  N: 삭제)
 	
 	
-	public Product() {
+	public ProductSale() {
 		
 	}
 
 
-	public Product(int productNo, String pId, int price, String categoryCode, String approval, String productTitle,
-			String productContents, Date regDate, String productState, String status) {
+	public ProductSale(int productOkNo, String pId, int price, String categoryCode, String productTitle,
+			String productContents, Date regDate, Date approvalDate, String productState, String status) {
 		super();
-		this.productNo = productNo;
+		this.productOkNo = productOkNo;
 		this.pId = pId;
 		this.price = price;
 		this.categoryCode = categoryCode;
-		this.approval = approval;
 		this.productTitle = productTitle;
 		this.productContents = productContents;
 		this.regDate = regDate;
+		this.approvalDate = approvalDate;
 		this.productState = productState;
 		this.status = status;
 	}
 
 
-	public int getProductNo() {
-		return productNo;
+	public int getProductOkNo() {
+		return productOkNo;
 	}
 
 
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
+	public void setProductOkNo(int productOkNo) {
+		this.productOkNo = productOkNo;
 	}
 
 
@@ -77,16 +77,6 @@ public class Product {
 	}
 
 
-	public String getApproval() {
-		return approval;
-	}
-
-
-	public void setApproval(String approval) {
-		this.approval = approval;
-	}
-
-
 	public String getProductTitle() {
 		return productTitle;
 	}
@@ -117,6 +107,16 @@ public class Product {
 	}
 
 
+	public Date getApprovalDate() {
+		return approvalDate;
+	}
+
+
+	public void setApprovalDate(Date approvalDate) {
+		this.approvalDate = approvalDate;
+	}
+
+
 	public String getProductState() {
 		return productState;
 	}
@@ -139,12 +139,11 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [productNo=" + productNo + ", pId=" + pId + ", price=" + price + ", categoryCode="
-				+ categoryCode + ", approval=" + approval + ", productTitle=" + productTitle + ", productContents="
-				+ productContents + ", regDate=" + regDate + ", productState=" + productState + ", status=" + status
-				+ "]";
+		return "ProductSale [productOkNo=" + productOkNo + ", pId=" + pId + ", price=" + price + ", categoryCode="
+				+ categoryCode + ", productTitle=" + productTitle + ", productContents=" + productContents
+				+ ", regDate=" + regDate + ", approvalDate=" + approvalDate + ", productState=" + productState
+				+ ", status=" + status + "]";
 	}
-	
 	
 	
 	
