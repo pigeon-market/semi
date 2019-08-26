@@ -12,8 +12,8 @@
 	
 	
 	<div class="btns">
-					<input type="submit" value="¼öÁ¤ÇÏ±â" onclick="location.href='<%= contextPath %>/updateMyInfo.me'"> 
-					<input type="button" value="Ãë¼ÒÇÏ±â" onclick="goMyPage();">
+					<input type="submit" value="ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½" onclick="location.href='<%= contextPath %>/updateMyInfo.me'"> 
+					<input type="button" value="ï¿½ï¿½ï¿½ï¿½Ï±ï¿½" onclick="goMyPage();">
 				</div>
 				
 				

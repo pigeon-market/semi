@@ -19,7 +19,7 @@ public class MemberDao {
 	public MemberDao() {
 		
 		String fileName = MemberDao.class.getResource("/sql/member/member-query.properties").getPath();
-		// ÀÏÄ¡¹®Á¦ ½ÇÇà
+		// ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
 		try {
 			prop.load(new FileReader(fileName));

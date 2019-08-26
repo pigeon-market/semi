@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class Deal {
 	
-	private int productNo;				// »óÇ°¹øÈ£
-	private int price;					// °¡°Ý
-	private String pId;					// ÆÇ¸ÅÀÚ ¾ÆÀÌµð
-	private String bId;					// ±¸¸ÅÀÚ ¾ÆÀÌµð
-	private String categoryName;		// Ä«Å×ÄÚ¸® ÀÌ¸§
-	private String title;				// °Ô½Ã¹É Á¦¸ñ
-	private Date regDate; 				// µî·Ï³¯Â¥
-	private Date approvalDate;			// ½ÂÀÎ³¯Â¥
-	private Date dealDate;				// ÆÇ¸Å³¯Â¥
-	private String state;				// ÆÇ¸Å¿Ï·á »óÅÂ
+	private int productNo;				// ï¿½ï¿½Ç°ï¿½ï¿½È£
+	private int price;					// ï¿½ï¿½ï¿½ï¿½
+	private String pId;					// ï¿½Ç¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	private String bId;					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	private String categoryName;		// Ä«ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ì¸ï¿½
+	private String title;				// ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private Date regDate; 				// ï¿½ï¿½Ï³ï¿½Â¥
+	private Date approvalDate;			// ï¿½ï¿½ï¿½Î³ï¿½Â¥
+	private Date dealDate;				// ï¿½Ç¸Å³ï¿½Â¥
+	private String state;				// ï¿½Ç¸Å¿Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	public Deal() {
 		
