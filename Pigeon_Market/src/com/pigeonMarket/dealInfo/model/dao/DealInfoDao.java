@@ -136,8 +136,7 @@ public class DealInfoDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				
-				d = new Deal()
+
 				
 				
 			}
