@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+<%----<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -132,7 +132,7 @@
 			    들어가서 new JSP File(html) 부분 더블클릭해서 템플릿 수정하기
 
 		
-	 --%>
 </body>
 >>>>>>> refs/heads/ksm
 </html>
+	 --%>

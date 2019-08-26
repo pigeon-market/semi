@@ -1,0 +1,117 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.pigeonMarket.notice.model.vo.Notice" %>
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.outer{
+		width:800px;
+		height:500px;
+		background:black;
+		color:white;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:50px;
+	}
+	.tableArea{
+		width:650px;
+		height:350px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	#listArea{
+		border:1px solid white;
+		text-align:center;
+	}
+	.searchArea{
+		width:650px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+</style>
+</head>
+<body>
+
+<%@ include file="../common/menubar.jsp" %>
+	
+	<div class="outer">
+		
+		<br>
+		<h2 align="center">공지사항</h2>
+		
+		<div class="tableArea">
+			
+			<table id="listArea">
+				<tr>
+					<th>글번호</th>
+					<th width="100">제목</th>
+					<th width="300">내용</th>
+					<th width="100">작성일</th>
+					<th>조회수</th>
+				</tr>
+				<%if(list.isEmpty()){ %>
+					<tr>
+						<td colspan="5">존재하는 공지사항이 없습니다.</td>
+					</tr>
+					
+				<%}else{ %>
+					<%for(Notice n : list){ %>
+						<tr>
+							<td><%= n.getNoticeNo() %></td>
+							<td><%= n.getNoticetitle() %></td>
+							<td><%= n.getNoticeContent() %></td>
+							<td><%= n.getNoticeDate() %></td>
+							<td><%= n.getNoticeReadcount()%></td>
+							
+						</tr>
+					<%} %>
+				<%} %>
+			</table>
+		</div>
+		
+		<div class="searchArea" align="center">
+			<select id="searchCondition" name="searchCondition">
+				<option>-----</option>
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			</select>
+			<input type="search" name="search">
+			<button type="submit">검색하기</button>
+		</div>
+		
+		<!-- 관리자만 볼 수 있는 작성하기 버튼 -->
+		<%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+		<button onclick="location.href='<%= contextPath %>/insertForm.no';">작성하기</button>
+		<%} %>
+		
+	</div>
+	
+	<script>
+		// 공지사항 상세보기 기능 
+		$(function(){
+			
+			$("#listArea td").mouseenter(function(){
+				$(this).parent().css({"background":"darkgrey", "cursor":"pointer"});
+				
+			}).mouseout(function(){
+				$(this).parent().css("background", "black");
+				
+			}).click(function(){
+				var num = $(this).parent().children().eq(0).text();
+				
+				// 쿼리스트링을 이용하여 get방식으로 글번호를 server로 전달
+				location.href="<%= contextPath %>/detail.no?nno="+num;
+			});
+			
+		});
+	</script>
+
+</body>
+</html>
