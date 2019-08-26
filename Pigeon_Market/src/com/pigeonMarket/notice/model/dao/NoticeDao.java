@@ -76,8 +76,8 @@ public class NoticeDao {
 			// currentPage = 1		--> startRow : 1 ~ endRow : 10
 			// currentPage = 2		--> startRow : 11~ endRow : 20
 			
-			int startRow = (pi.getCurrentPage - 1) * boardLimit + 1;
-			int endRow = startRow + boardLimit - 1;
+			int startRow = (page.getCurrentPage() - 1) * page.getBoardLimit()+ 1;
+			int endRow = startRow + page.getBoardLimit() - 1;
 			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
