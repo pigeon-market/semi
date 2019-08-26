@@ -82,11 +82,14 @@ public class DealInfoDao {
 	 */
 	public ArrayList<Deal> selectBuyList(Connection conn, PageInfo pi, String userId) {
 		
-		ArrayList<Deal> dealList = new ArrayList<>();
+		ArrayList<Deal> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		
 		ResultSet rset = null;
+		
+		int start = pi.getCurrentPage()*pi.getPageLimit();
+		int end = start+pi.getPageLimit()-1;
 		
 		String sql = prop.getProperty("selectBuyList");
 		
@@ -94,10 +97,13 @@ public class DealInfoDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
+				list.add(new Deal(rset.getString("product_OK_NO"), rset.getInt("price"), rset.getString("p_Id"), rset.getString("title"), rset.getDate("deal_date"), rset.getString("state")));
 				
 			}
 			
@@ -109,7 +115,7 @@ public class DealInfoDao {
 			close(pstmt);
 		}
 		
-		return dealList;
+		return list;
 		
 	}
 	

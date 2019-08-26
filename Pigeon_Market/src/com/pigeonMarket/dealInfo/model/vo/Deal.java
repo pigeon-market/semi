@@ -20,15 +20,15 @@ public class Deal {
 		
 	}
 
-	public Deal(String productOkNo, String bId, Date dealDate) {
+	public Deal(String productOkNo, int price, String pId, String title, Date dealDate, String state) {
 		super();
 		this.productOkNo = productOkNo;
-
-		this.bId = bId;
+		this.price = price;
+		this.pId = pId;
+		this.title = title;
 		this.dealDate = dealDate;
+		this.state = state;
 	}
-
-
 
 	public Deal(String productOkNo, String productNo, int price, String pId, String bId, String categoryName,
 			String title, Date regDate, Date approvalDate, Date dealDate, String state) {

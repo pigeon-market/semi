@@ -1,6 +1,9 @@
 package com.pigeonMarket.dealInfo.controller;
 
+import static com.pigeonMarket.common.Paging.pagingBar;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.common.Paging;
 import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.dealInfo.model.service.DealInfoService;
+import com.pigeonMarket.dealInfo.model.vo.Deal;
 import com.pigeonMarket.member.model.vo.Member;
 
 /**
@@ -39,11 +42,13 @@ public class MyBuyListView extends HttpServlet {
 		
 		int listCount = new DealInfoService().buyListCount(userId);
 		
-		PageInfo pi = new Paging().pagingBar(listCount, 10);
+		PageInfo pi = pagingBar(listCount, 10);
 		
 		if (request.getParameter("currentPage") != null) {
 			pi.setCurrentPage(Integer.parseInt(request.getParameter("currentPage")));
 		}
+		
+		ArrayList<Deal> list = new DealInfoService().selectBuyList(pi, userId);
 		
 		
 		
