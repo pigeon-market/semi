@@ -34,4 +34,40 @@ public class NoticeService {
 		return list;
 	}
 
+	public int insertNotice(Notice n) {
+		
+		Connection conn = getConnection();
+		
+		int result = new NoticeDao().insertBoard(conn, n);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
