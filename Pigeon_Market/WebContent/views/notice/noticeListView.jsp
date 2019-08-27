@@ -1,10 +1,19 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.pigeonMarket.notice.model.vo.Notice" %>
+<%@ page import="java.util.ArrayList, com.pigeonMarket.notice.model.vo.Notice, com.pigeonMarket.common.model.vo.PageInfo" %>
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+	 PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +85,45 @@
 			</table>
 		</div>
 		
+		<!-- 페이징바 만들기 -->
+		<div class="pagingArea" align="center">
+		
+			<!-- 맨처음으로 (<<) -->
+			<button onclick="location.href='<%= contextPath %>/list.bo?currentPage=1'"> &lt;&lt; </button>
+			
+			<!-- 이전페이지로(<) -->
+			<%if(currentPage == 1){ %>
+			<button disabled> &lt; </button>
+			<%}else{ %>
+			<button onclick="location.href='<%= contextPath %>/list.bo?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<%} %>
+			
+			
+			<!-- 10개의 페이지 목록 -->
+			<%for(int p=startPage; p<=endPage; p++){ %>
+				
+				<%if(p == currentPage){ %>
+				<button disabled> <%= p %> </button>
+				<%}else{ %>
+				<button onclick="location.href='<%=contextPath %>/list.bo?currentPage=<%= p %>'"> <%= p %> </button>
+				<%} %>
+				
+			<%} %>
+			
+			
+			<!-- 다음페이지로(>) -->
+			<%if(currentPage == maxPage){ %>
+			<button disabled> &gt; </button>
+			<%}else { %>
+			<button onclick="location.href='<%= contextPath %>/list.bo?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<%} %>
+			
+			<!-- 맨끝으로(>>) -->
+			<button onclick="location.href='<%= contextPath %>/list.bo?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
+			
+		</div>
+		
+		
 		<div class="searchArea" align="center">
 			<select id="searchCondition" name="searchCondition">
 				<option>-----</option>
@@ -84,12 +132,14 @@
 			</select>
 			<input type="search" name="search">
 			<button type="submit">검색하기</button>
+			<button onclick="location.href='<%= contextPath %>/insertForm.no';">작성하기</button>
 		</div>
 		
 		<!-- 관리자만 볼 수 있는 작성하기 버튼 -->
-		<%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+	<!--  <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
 		<button onclick="location.href='<%= contextPath %>/insertForm.no';">작성하기</button>
 		<%} %>
+		-->
 		
 	</div>
 	

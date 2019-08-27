@@ -24,7 +24,7 @@ public class NoticeDao {
 	private Properties prop = new Properties();
 	
 	public NoticeDao() {
-		String fileName = NoticeDao.class.getResource("/sql/board/board-query.properties").getPath();
+		String fileName = NoticeDao.class.getResource("/com/pigeonMarket/sql/notice/notice-query.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(fileName));
@@ -85,13 +85,13 @@ public class NoticeDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Notice(rset.getInt(1),
-								   rset.getInt(2),
-								   rset.getString(3),
-								   rset.getString(4),
-								   rset.getDate(5),
-								   rset.getInt(6),
-								   rset.getString(7)));
+				list.add(new Notice(rset.getInt("RNUM"),
+								   rset.getInt("NOTICE_TYPE"),
+								   rset.getString("NOTICE_TITLE"),
+								   rset.getString("NOTICE_CONTENT"),
+								   rset.getDate("NOTICE_DATE"),
+								   rset.getInt("NOTICE_READCOUNT"),
+								   rset.getString("STATUS")));
 			}
 			
 		} catch (SQLException e) {
