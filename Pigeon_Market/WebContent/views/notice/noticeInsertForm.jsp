@@ -38,12 +38,13 @@
 </head>
 <body>
 
+<%@ include file="../common/menubar.jsp" %>
 <div class="outer">
 		<br>
 		<h2 align="center">공지사항 작성</h2>
 		
 		<div class="tableArea">
-			<form action="location.href='<%= contextPath %>/insert.no';" method="post">
+			<form action="<%= contextPath %>/insert.no" method="post">
 				<table>
 					<tr>
 						<td>제목</td>
