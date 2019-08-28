@@ -41,7 +41,7 @@
 								<a href="#" class="icon solid fa-angle-down">메뉴</a>
 								<ul>
 									<li><a href="generic.html">소개</a></li>
-									<li><a href="contact.html">문의</a></li>
+									<li><a href="<%= request.getContextPath() %>/list.no">문의</a></li>
 									<li><a href="mypage.html">mypage</a></li>
 									<li>
 										<a href="#">Submenu</a>

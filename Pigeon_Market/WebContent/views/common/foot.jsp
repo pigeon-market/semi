@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +10,6 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath()%>/resources/assets/css/main.css" />	
-
-<link rel="shortcut icon" href="dulgi.ico">
-<link rel="icon" href="dulgi.ico">
 
 
 </head>
