@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
   <runtime name="Apache Tomcat v8.5"/>
@@ -10,6 +11,8 @@
   <installed facet="wst.jsdt.web" version="1.0"/>
 </faceted-project>
 =======
+=======
+>>>>>>> 38a8f8e1c3c9cf0ad744c30463c1907a47d1d678
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
   <runtime name="Apache Tomcat v8.5"/>
@@ -20,4 +23,7 @@
   <installed facet="jst.web" version="3.1"/>
   <installed facet="wst.jsdt.web" version="1.0"/>
 </faceted-project>
+<<<<<<< HEAD
 >>>>>>> parent of d05a9a5... 수정본
+=======
+>>>>>>> 38a8f8e1c3c9cf0ad744c30463c1907a47d1d678
