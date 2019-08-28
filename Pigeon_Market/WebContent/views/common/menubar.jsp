@@ -59,6 +59,8 @@
 					</nav>
 				</header>
 				
+				
+				
 	
 		<!-- Scripts -->
 			<script src="<%= request.getContextPath()%>/resources/assets/js/jquery.min.js"></script>
