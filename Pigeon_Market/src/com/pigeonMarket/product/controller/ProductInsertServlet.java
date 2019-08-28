@@ -19,6 +19,8 @@ import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.product.model.service.ProductService;
 import com.pigeonMarket.product.model.vo.Attachment;
 import com.pigeonMarket.product.model.vo.Product;
+import com.pigeonMarket.member.model.*;
+import com.pigeonMarket.member.model.vo.Member;
 
 /**
  * Servlet implementation class ProductInsertServlet
