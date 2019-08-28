@@ -47,7 +47,7 @@
 				<table>
 					<tr>
 						<td>제목</td>
-						<td colspan="3"><input type="text" size="50" name="title"></td>
+						<td colspan="3"><input type="text" size="50" name="noticetitle"></td>
 					</tr>
 					<tr>
 						<td>작성일</td>
@@ -58,7 +58,7 @@
 					</tr>
 					<tr>
 						<td colspan="4">
-							<textarea name="content" cols="60" rows="15" style="resize:none;"></textarea>
+							<textarea name="noticeContent" cols="60" rows="15" style="resize:none;"></textarea>
 						</td>
 					</tr>
 				</table>

@@ -22,7 +22,7 @@
 <style>
 	.outer{
 		width:800px;
-		height:600px;
+		height:800px;
 		color: #646464;
 		margin-left:auto;
 		margin-right:auto;
@@ -30,7 +30,7 @@
 	}
 	.tableArea{
 		width:650px;
-		height:350px;
+		height:600px;
 		margin-left:auto;
 		margin-right:auto;
 		text-align:center;
@@ -98,13 +98,13 @@
 		<div class="pagingArea" align="center">
 		
 			<!-- 맨처음으로 (<<) -->
-			<button onclick="location.href='<%= contextPath %>/list.bo?currentPage=1'"> &lt;&lt; </button>
+			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=1'"> &lt;&lt; </button>
 			
 			<!-- 이전페이지로(<) -->
 			<%if(currentPage == 1){ %>
 			<button disabled> &lt; </button>
 			<%}else{ %>
-			<button onclick="location.href='<%= contextPath %>/list.bo?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= currentPage-1 %>'"> &lt; </button>
 			<%} %>
 			
 			
@@ -114,7 +114,7 @@
 				<%if(p == currentPage){ %>
 				<button disabled> <%= p %> </button>
 				<%}else{ %>
-				<button onclick="location.href='<%=contextPath %>/list.bo?currentPage=<%= p %>'"> <%= p %> </button>
+				<button onclick="location.href='<%=contextPath %>/list.no?currentPage=<%= p %>'"> <%= p %> </button>
 				<%} %>
 				
 			<%} %>
@@ -124,11 +124,11 @@
 			<%if(currentPage == maxPage){ %>
 			<button disabled> &gt; </button>
 			<%}else { %>
-			<button onclick="location.href='<%= contextPath %>/list.bo?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= currentPage+1 %>'"> &gt; </button>
 			<%} %>
 			
 			<!-- 맨끝으로(>>) -->
-			<button onclick="location.href='<%= contextPath %>/list.bo?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
+			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
 			
 		</div>
 		
@@ -159,10 +159,10 @@
 		$(function(){
 			
 			$("#listArea td").mouseenter(function(){
-				$(this).parent().css({"background":"darkgrey", "cursor":"pointer"});
+				$(this).parent().css({"cursor":"pointer"});
 				
 			}).mouseout(function(){
-				$(this).parent().css("background", "black");
+				//$(this).parent().css("background", "black");
 				
 			}).click(function(){
 				var num = $(this).parent().children().eq(0).text();

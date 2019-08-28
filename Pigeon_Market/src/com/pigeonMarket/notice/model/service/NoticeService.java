@@ -51,6 +51,27 @@ public class NoticeService {
 		return result;
 	}
 
+	public Notice selectNotice(int noticeNo) {
+		Connection conn = getConnection();
+		
+		// 1. 조회수 증가시키는 dao 호출 
+		int result = new NoticeDao().increaseCount(conn, noticeNo);
+		
+		// 2. 1번의 결과에 따라 게시글 조회하는 dao 호출
+		Notice n = null;
+		if(result > 0) {
+			commit(conn);
+			n = new NoticeDao().selectNotice(conn, noticeNo);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return n;
+		
+	}
+
 	
 	
 	

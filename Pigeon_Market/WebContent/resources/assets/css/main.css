@@ -2677,20 +2677,14 @@
 	table {
 		margin: 0 0 2em 0;
 		width: 100%;
-			border-top-left-radius: 30px;
-		border-top-right-radius: 30px;
-		border-bottom-left-radius: 30px;
-		border-bottom-right-radius: 30px;
+		
 	}
 
 		table tbody tr {
 			border: solid 1px #e5e5e5;
 			border-left: 0;
 			border-right: 0;
-				border-top-left-radius: 30px;
-		border-top-right-radius: 30px;
-		border-bottom-left-radius: 30px;
-		border-bottom-right-radius: 30px;
+		
 		}
 
 			table tbody tr:nth-child(2n + 1) {
@@ -2725,10 +2719,7 @@
 				border: solid 1px #e5e5e5;
 				border-left-width: 0;
 				border-top-width: 0;
-					border-top-left-radius: 30px;
-		border-top-right-radius: 30px;
-		border-bottom-left-radius: 30px;
-		border-bottom-right-radius: 30px;
+					
 			}
 
 				table.alt tbody tr td:first-child {
