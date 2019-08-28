@@ -74,7 +74,7 @@
 	</div>
 	
 	<form action="" id="detailForm" method="post">
-		<input type="hidden" name="bId" value="<%= n.getNoticeNo() %>">
+		<input type="hidden" name="noticeNo" value="<%= n.getNoticeNo() %>">
 	</form>
 	
 	<script>

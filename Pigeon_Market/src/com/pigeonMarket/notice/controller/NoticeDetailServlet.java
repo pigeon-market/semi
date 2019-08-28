@@ -39,7 +39,8 @@ public class NoticeDetailServlet extends HttpServlet {
 		}else {
 			
 			request.setAttribute("msg", "게시판 상세조회 실패!!");
-			request.getRequestDispatcher("views/notice/noticeListView.jsp").forward(request, response);
+			
+			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
 		}
 	}
 
