@@ -15,6 +15,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.pigeonMarket.common.MyFileRenamePolicy;
+import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.product.model.service.ProductService;
 import com.pigeonMarket.product.model.vo.Attachment;
 import com.pigeonMarket.product.model.vo.Product;
@@ -120,7 +121,7 @@ public class ProductInsertServlet extends HttpServlet {
 			}
 			
 			// 3_1. 파일 외에 게시판 제목, 내용, 작성자 회원번호 받아오기 --> Board 객체 생성
-			String pId = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getUserNo());
+			String pId = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getUserId());
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			String categoryCode = multiRequest.getParameter("categoryCode");
 			String productTitle = multiRequest.getParameter("productTitle");
