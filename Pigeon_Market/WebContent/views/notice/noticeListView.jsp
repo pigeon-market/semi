@@ -22,9 +22,8 @@
 <style>
 	.outer{
 		width:800px;
-		height:500px;
-		background:black;
-		color:white;
+		height:600px;
+		color: #646464;
 		margin-left:auto;
 		margin-right:auto;
 		margin-top:50px;
@@ -34,15 +33,25 @@
 		height:350px;
 		margin-left:auto;
 		margin-right:auto;
+		text-align:center;
 	}
 	#listArea{
 		border:1px solid white;
 		text-align:center;
+		border-top-left-radius: 30px;
+		border-top-right-radius: 30px;
+		border-bottom-left-radius: 30px;
+		border-bottom-right-radius: 30px;
 	}
 	.searchArea{
 		width:650px;
 		margin-left:auto;
 		margin-right:auto;
+
+		
+	}
+	th{
+	align:center;
 	}
 </style>
 </head>
@@ -59,7 +68,7 @@
 			
 			<table id="listArea">
 				<tr>
-					<th>글번호</th>
+					<th >글번호</th>
 					<th width="100">제목</th>
 					<th width="300">내용</th>
 					<th width="100">작성일</th>
@@ -142,6 +151,8 @@
 		-->
 		
 	</div>
+	
+	<%@ include file="../common/foot.jsp" %>
 	
 	<script>
 		// 공지사항 상세보기 기능 

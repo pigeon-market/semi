@@ -18,9 +18,8 @@
 <style>
 	.outer{
 		width:800px;
-		height:500px;
-		background:black;
-		color:white;
+		height:750px;
+		color:black;
 		margin-left:auto;
 		margin-right:auto;
 		margin-top:50px;
@@ -72,6 +71,8 @@
 			</form>
 		</div>
 	</div>
-
+	
+	
+	<%@ include file="../common/foot.jsp" %>
 </body>
 </html>

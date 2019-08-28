@@ -59,7 +59,7 @@
 					</nav>
 				</header>
 				
-				<%@ include file="../common/foot.jsp" %>
+				
 				
 	
 		<!-- Scripts -->

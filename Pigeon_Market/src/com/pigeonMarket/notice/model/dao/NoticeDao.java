@@ -126,7 +126,7 @@ public class NoticeDao {
 		} finally {
 			close(pstmt);
 		}
-		
+		System.out.print(n.getNoticetitle());
 		return result;
 
 	}
