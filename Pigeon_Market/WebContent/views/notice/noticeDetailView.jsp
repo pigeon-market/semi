@@ -73,7 +73,7 @@
 		</div>
 	</div>
 	
-	<form action="" id="detailForm" method="post">
+	<form action="<%=request.getContextPath() %>/detail.no" id="detailForm" method="post">
 		<input type="hidden" name="noticeNo" value="<%= n.getNoticeNo() %>">
 	</form>
 	
