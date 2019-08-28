@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿
 -- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
 
@@ -733,3 +734,739 @@ INSERT INTO INQUIRY VALUES(INQUIRY_SEQ.NEXTVAL, '세번째 문의', '세번째 �
 
 
 
+=======
+﻿
+-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+DROP TABLE BLACK_LIST;
+DROP TABLE INQUIRY;
+DROP TABLE NOTICE;
+DROP TABLE PAYMENT;
+DROP TABLE REVIEW;
+DROP TABLE SHOPPING_BASKET;
+DROP TABLE PRODUCT_OK;
+DROP TABLE ATTACHMENT;
+DROP TABLE PRODUCT;
+DROP TABLE PRODUCT_ENROLLMENT;
+DROP TABLE CATEGORY;
+DROP TABLE MEMBER;
+DROP SEQUENCE BLACK_LIST_SEQ;
+DROP SEQUENCE INQUIRY_SEQ;
+DROP SEQUENCE NOTICE_SEQ;
+DROP SEQUENCE PAYMENT_SEQ;
+DROP SEQUENCE PRODUCT_SEQ;
+DROP SEQUENCE PRODUCT_OK_SEQ;
+DROP SEQUENCE REVIEW_SEQ;
+DROP SEQUENCE ATTACHMENT_SEQ;
+
+
+
+
+-- 사용자 테이블
+CREATE TABLE Member
+(
+    user_id       VARCHAR2(20)    NOT NULL, 
+    user_pwd      VARCHAR2(45)    NOT NULL, 
+    user_name     VARCHAR2(30)    NOT NULL, 
+    birth_date    VARCHAR2(20)    NOT NULL, 
+    gender        VARCHAR2(1)     NOT NULL, 
+    email         VARCHAR2(45)    NOT NULL, 
+    phone         VARCHAR2(20)    NOT NULL, 
+    address       VARCHAR2(50)    NOT NULL, 
+    join_date     DATE            DEFAULT SYSDATE NOT NULL, 
+    Withdrawal    VARCHAR2(1)     DEFAULT 'N' NOT NULL, 
+    black_code    VARCHAR2(1)     DEFAULT 'N' NOT NULL, 
+    CONSTRAINT MEMBER_PK PRIMARY KEY (user_id)
+)
+/
+
+COMMENT ON TABLE Member IS '회원가입'
+/
+
+COMMENT ON COLUMN Member.user_id IS '아이디'
+/
+
+COMMENT ON COLUMN Member.user_pwd IS '비밀번호'
+/
+
+COMMENT ON COLUMN Member.user_name IS '이름'
+/
+
+COMMENT ON COLUMN Member.birth_date IS '생년월일'
+/
+
+COMMENT ON COLUMN Member.gender IS '성별'
+/
+
+COMMENT ON COLUMN Member.email IS '이메일'
+/
+
+COMMENT ON COLUMN Member.phone IS '전화번호'
+/
+
+COMMENT ON COLUMN Member.address IS '주소'
+/
+
+COMMENT ON COLUMN Member.join_date IS '가입일'
+/
+
+COMMENT ON COLUMN Member.Withdrawal IS '탈퇴여부'
+/
+
+COMMENT ON COLUMN Member.black_code IS '구분'
+/
+
+INSERT INTO MEMBER VALUES('user01', 'pass01', '김가가', '000101', 'M', 'euser01@naver.com', '01011111111', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user02', 'pass02', '김가나', '000102', 'F', 'euser02@naver.com', '01011111112', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user03', 'pass03', '김가다', '000103', 'M', 'euser03@naver.com', '01011111113', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user04', 'pass04', '김가라', '000104', 'F', 'euser04@naver.com', '01011111114', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user05', 'pass05', '김가마', '000105', 'M', 'euser05@naver.com', '01011111115', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user06', 'pass06', '김가바', '000106', 'F', 'euser06@naver.com', '01011111116', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user07', 'pass07', '김가사', '000107', 'M', 'euser07@naver.com', '01011111117', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user08', 'pass08', '김가아', '000108', 'F', 'euser08@naver.com', '01011111118', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user09', 'pass09', '김가자', '000109', 'M', 'euser09@naver.com', '01011111119', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user10', 'pass10', '김가차', '000110', 'F', 'euser10@naver.com', '01011111120', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user11', 'pass11', '김가카', '000111', 'M', 'euser11@naver.com', '01011111121', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user12', 'pass12', '김가타', '000112', 'F', 'euser12@naver.com', '01011111122', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user13', 'pass13', '김가파', '000113', 'M', 'euser13@naver.com', '01011111123', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user14', 'pass14', '김가하', '000114', 'F', 'euser14@naver.com', '01011111124', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user15', 'pass15', '김나가', '000115', 'M', 'euser15@naver.com', '01011111125', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user16', 'pass16', '김나나', '000116', 'F', 'euser16@naver.com', '01011111126', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user17', 'pass17', '김나다', '000117', 'M', 'euser17@naver.com', '01011111127', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user18', 'pass18', '김나라', '000118', 'F', 'euser18@naver.com', '01011111128', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user19', 'pass19', '김나마', '000119', 'M', 'euser19@naver.com', '01011111129', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('user20', 'pass20', '김나바', '000120', 'F', 'euser20@naver.com', '01011111130', '서울시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('ben01', 'ben01', '김하하', '001001', 'M', 'guser01@gmail.com', '01022221111', '서우시', SYSDATE, 'N', 'N');
+INSERT INTO MEMBER VALUES('ben02', 'ben02', '김하파', '001002', 'F', 'guser02@gmail.com', '01022221112', '서우시', SYSDATE, 'N', 'N');
+
+
+-- 블랙리스트  테이블
+CREATE TABLE Black_list
+(
+    report_no          NUMBER           NOT NULL, 
+    black_id           VARCHAR2(20)     NOT NULL, 
+    reporter_id        VARCHAR2(20)     NOT NULL, 
+    reporter_date      DATE             NOT NULL, 
+    reporter_reason    VARCHAR2(100)    NOT NULL, 
+    CONSTRAINT BLACK_LIST_PK PRIMARY KEY (report_no)
+)
+/
+
+CREATE SEQUENCE Black_list_SEQ
+
+/
+
+COMMENT ON TABLE Black_list IS '블랙리스트'
+/
+
+COMMENT ON COLUMN Black_list.report_no IS '신고번호'
+/
+
+COMMENT ON COLUMN Black_list.black_id IS '블랙자'
+/
+
+COMMENT ON COLUMN Black_list.reporter_id IS '신고자'
+/
+
+COMMENT ON COLUMN Black_list.reporter_date IS '신고일자'
+/
+
+COMMENT ON COLUMN Black_list.reporter_reason IS '신고사유'
+/
+
+ALTER TABLE Black_list
+    ADD CONSTRAINT FK_Black_list_reporter_id_Memb FOREIGN KEY (reporter_id)
+        REFERENCES Member (user_id)
+/
+
+ALTER TABLE Black_list
+    ADD CONSTRAINT FK_Black_list_black_id_Member_ FOREIGN KEY (black_id)
+        REFERENCES Member (user_id)
+/
+
+-- 블랙리스트 추가시 회원테이블 상태 변경
+CREATE OR REPLACE TRIGGER BLACK_CODE_UPDATE
+AFTER INSERT
+ON BLACK_LIST
+FOR EACH ROW
+BEGIN
+    UPDATE MEMBER
+    SET BLACK_CODE = 'Y'
+    WHERE USER_ID = :NEW.BLACK_ID;
+END;
+/
+
+INSERT INTO BLACK_LIST VALUES(BLACK_LIST_SEQ.NEXTVAL, 'ben01', 'user01', SYSDATE, '호날두');
+INSERT INTO BLACK_LIST VALUES(BLACK_LIST_SEQ.NEXTVAL, 'ben02', 'user02', SYSDATE, '이시국에');
+
+
+
+
+
+-- 카테고리 테이블
+CREATE TABLE Category
+(
+    category_code    VARCHAR2(20)    NOT NULL, 
+    category_name    VARCHAR2(30)    NOT NULL, 
+    CONSTRAINT CATEGORY_PK PRIMARY KEY (category_code)
+)
+/
+
+COMMENT ON TABLE Category IS '제품카테고리'
+/
+
+COMMENT ON COLUMN Category.category_code IS '카테고리코드'
+/
+
+COMMENT ON COLUMN Category.category_name IS '카테고리이름'
+/
+
+INSERT INTO CATEGORY VALUES(99, 'ETC');
+INSERT INTO CATEGORY VALUES(01, '남성의류');
+INSERT INTO CATEGORY VALUES(02, '여성의류');
+INSERT INTO CATEGORY VALUES(03, '귀금속');
+INSERT INTO CATEGORY VALUES(04, '기타의류잡화');
+INSERT INTO CATEGORY VALUES(05, '미용');
+INSERT INTO CATEGORY VALUES(06, '출산/육아');
+INSERT INTO CATEGORY VALUES(07, '모바일');
+INSERT INTO CATEGORY VALUES(08, '상품권/티켓/쿠폰');
+INSERT INTO CATEGORY VALUES(09, '영화/연극/공연');
+INSERT INTO CATEGORY VALUES(10, '스타 굿즈');
+INSERT INTO CATEGORY VALUES(11, '여행/여가');
+INSERT INTO CATEGORY VALUES(12, '컴퓨터');
+INSERT INTO CATEGORY VALUES(13, '카메라');
+INSERT INTO CATEGORY VALUES(14, '음악/음향/악기');
+INSERT INTO CATEGORY VALUES(15, '게임용품');
+INSERT INTO CATEGORY VALUES(16, '골프');
+INSERT INTO CATEGORY VALUES(17, '스포츠레저');
+INSERT INTO CATEGORY VALUES(18, '자전거');
+INSERT INTO CATEGORY VALUES(19, '생활용품');
+INSERT INTO CATEGORY VALUES(20, '가구');
+INSERT INTO CATEGORY VALUES(21, '예술/미술/취미');
+INSERT INTO CATEGORY VALUES(22, '키덜트');
+INSERT INTO CATEGORY VALUES(23, '도서관련');
+
+
+-- 상품테이블
+CREATE TABLE Product
+(
+    product_no          NUMBER            NOT NULL, 
+    p_id                VARCHAR2(20)      NOT NULL, 
+    price               NUMBER            NOT NULL, 
+    category_code       VARCHAR2(20)      NOT NULL, 
+    Approval            VARCHAR2(1)       DEFAULT 'N' NOT NULL, 
+    product_title       VARCHAR2(1000)    NOT NULL,  
+    product_Contents    VARCHAR2(1000)    NOT NULL, 
+    reg_date            DATE              DEFAULT SYSDATE NOT NULL, 
+    product_state       VARCHAR2(1)       DEFAULT 'N' NULL,
+    status	       VARCHAR2(1)	  DEFAULT 'Y' NOT NULL,
+    CONSTRAINT PRODUCT_PK PRIMARY KEY (product_no)
+)
+/
+
+CREATE SEQUENCE Product_SEQ
+
+/
+
+COMMENT ON TABLE Product IS '상품등록'
+/
+
+COMMENT ON COLUMN Product.product_no IS '판매대기번호'
+/
+
+COMMENT ON COLUMN Product.p_id IS '판매자아이디'
+/
+
+COMMENT ON COLUMN Product.price IS '판매가격'
+/
+
+COMMENT ON COLUMN Product.category_code IS '카테고리코드'
+/
+
+COMMENT ON COLUMN Product.Approval IS '상품승인'
+/
+
+COMMENT ON COLUMN Product.product_title IS '상품제목'
+/
+
+COMMENT ON COLUMN Product.product_Contents IS '상품내용'
+/
+
+COMMENT ON COLUMN Product.reg_date IS '등록 날짜'
+/
+
+COMMENT ON COLUMN Product.product_state IS '판매완료상태'
+/
+
+COMMENT ON COLUMN Product.status IS '판매 글 상태'
+/
+
+
+ALTER TABLE Product
+    ADD CONSTRAINT FK_Product_p_id_Mem FOREIGN KEY (p_id)
+        REFERENCES Member (user_id)
+/
+
+ALTER TABLE Product
+    ADD CONSTRAINT FK_Product_category FOREIGN KEY (category_code)
+        REFERENCES Category (category_code)
+/
+
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user10', 1000, 01, DEFAULT, '더미1', '더미내용1', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user11', 2000, 01, DEFAULT, '더미2', '더미내용2',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user12', 3000, 01, DEFAULT, '더미3',  '더미내용3',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user13', 4000, 01, DEFAULT, '더미4',  '더미내용4',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user14', 5000, 01, DEFAULT, '더미5',  '더미내용5',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user15', 6000, 01, DEFAULT, '더미6',  '더미내용6',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user16', 7000, 02, DEFAULT, '더미7',  '더미내용7',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user17', 8000, 02, DEFAULT, '더미8',  '더미내용8',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user10', 9000, 02, DEFAULT, '더미9',  '더미내용9',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user11', 10000, 02, DEFAULT, '더미10', '더미내용10', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user12', 11000, 02, DEFAULT, '더미11', '더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11더미내용11',  DEFAULT, 'Y', DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user13', 12000, 02, DEFAULT, '더미12', '더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12더미내용12',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user14', 13000, 02, DEFAULT, '더미13', '더미내용13',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user15', 14000, 03, DEFAULT, '더미14',  '더미내용14', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user16', 15000, 03, DEFAULT, '더미15',  '더미내용15',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user17', 16000, 03, DEFAULT, '더미16',  '더미내용16',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user10', 17000, 03, DEFAULT, '더미17',  '더미내용17', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user11', 18000, 03, DEFAULT, '더미18',  '더미내용18',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user12', 19000, 03, DEFAULT, '더미19',  '더미내용19',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user13', 20000, 04, DEFAULT, '더미20',  '더미내용20',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user14', 21000, 04, DEFAULT, '더미21',  '더미내용21',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user15', 22000, 04, DEFAULT, '더미22',  '더미내용22',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user16', 23000, 04, DEFAULT, '더미23',  '더미내용23',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user17', 24000, 04, DEFAULT, '더미24',  '더미내용24',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user10', 25000, 05, DEFAULT, '더미25',  '더미내용25',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user11', 26000, 05, DEFAULT, '더미26',  '더미내용26',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user12', 27000, 05, DEFAULT, '더미27',  '더미내용27',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user13', 28000, 05, DEFAULT, '더미28',  '더미내용28',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user14', 29000, 05, DEFAULT, '더미29',  '더미내용29',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user15', 30000, 05, DEFAULT, '더미30',  '더미내용30',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user16', 31000, 06, DEFAULT, '더미31',  '더미내용31',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user17', 32000, 06, DEFAULT, '더미32',  '더미내용32',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user10', 33000, 06, DEFAULT, '더미33',  '더미내용33',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user11', 34000, 06, DEFAULT, '더미34',  '더미내용34',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user12', 35000, 06, DEFAULT, '더미35',  '더미내용35',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user13', 36000, 06, DEFAULT, '더미36',  '더미내용36',  DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, 'user14', 37000, 06, DEFAULT, '더미37',  '더미내용37',  DEFAULT, DEFAULT, DEFAULT);
+
+-- 사진테이블
+CREATE TABLE ATTACHMENT
+(
+    f_ID           NUMBER            NOT NULL, 
+    product_no           NUMBER            NOT NULL, 
+    ORIGIN_NAME    VARCHAR2(255)     NOT NULL, 
+    CHANGE_NAME    VARCHAR2(255)     NOT NULL, 
+    FILE_PATH      VARCHAR2(1000)    NOT NULL, 
+    FILE_LEVEL     NUMBER            NOT NULL, 
+    CONSTRAINT ATTACHMENT_PK PRIMARY KEY (F_ID)
+)
+/
+
+CREATE SEQUENCE ATTACHMENT_SEQ
+
+/
+
+COMMENT ON TABLE ATTACHMENT IS '사진등록'
+/
+
+COMMENT ON COLUMN ATTACHMENT.F_ID IS '사진등록번호'
+/
+
+COMMENT ON COLUMN ATTACHMENT.P_ID IS '판매대기번호'
+/
+
+COMMENT ON COLUMN ATTACHMENT.ORIGIN_NAME IS '사진원본이름'
+/
+
+COMMENT ON COLUMN ATTACHMENT.CHANGE_NAME IS '사진저장이름'
+/
+
+COMMENT ON COLUMN ATTACHMENT.FILE_PATH IS '사진저장위치'
+/
+
+COMMENT ON COLUMN ATTACHMENT.FILE_LEVEL IS '사진레벨'
+/
+
+ALTER TABLE ATTACHMENT
+    ADD CONSTRAINT FK_ATTACHMENT_P_ID_Product FOREIGN KEY (P_ID)
+        REFERENCES Product (product_no)
+/
+
+-- 상품승인 테이블
+CREATE TABLE product_ok
+(
+    product_ok_no    NUMBER          NOT NULL, 
+    product_no       NUMBER          NOT NULL, 
+    Approval_date    DATE            NOT NULL, 
+    p_id             VARCHAR2(20)    NOT NULL, 
+    CONSTRAINT PRODUCT_OK_PK PRIMARY KEY (product_ok_no)
+)
+/
+
+CREATE SEQUENCE product_ok_SEQ
+/
+
+COMMENT ON TABLE product_ok IS '상품 승인 리시트'
+/
+
+COMMENT ON COLUMN product_ok.product_ok_no IS '판매상품번호'
+/
+
+COMMENT ON COLUMN product_ok.product_no IS '판매대기번호'
+
+/
+
+COMMENT ON COLUMN product_ok.Approval_date IS '승인날짜'
+/
+
+COMMENT ON COLUMN product_ok.p_id IS '판매자아이디'
+/
+
+ALTER TABLE product_ok
+    ADD CONSTRAINT FK_product_ok_p_id_Member_user FOREIGN KEY (p_id)
+        REFERENCES Member (user_id)
+/
+-- 상품승인테이블 추가 시 상품테이블 승인상태 Y로 변경
+CREATE OR REPLACE TRIGGER APPROVAL_UPDATE
+AFTER INSERT
+ON PRODUCT_OK 
+FOR EACH ROW
+BEGIN
+    UPDATE Product
+    SET APPROVAL = 'Y'
+    WHERE PRODUCT_NO = :NEW.PRODUCT_NO;
+END;
+/
+
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 1, SYSDATE, 'user10');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 2, SYSDATE, 'user11');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 3, SYSDATE, 'user12');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 4, SYSDATE, 'user13');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 5, SYSDATE, 'user14');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 6, SYSDATE, 'user15');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 7, SYSDATE, 'user16');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 8, SYSDATE, 'user17');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 9, SYSDATE, 'user10');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 10, SYSDATE, 'user11');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 11, SYSDATE, 'user12');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 12, SYSDATE, 'user13');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 13, SYSDATE, 'user14');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 14, SYSDATE, 'user15');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 15, SYSDATE, 'user16');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 16, SYSDATE, 'user17');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 17, SYSDATE, 'user10');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 18, SYSDATE, 'user11');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 19, SYSDATE, 'user12');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 20, SYSDATE, 'user13');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 21, SYSDATE, 'user14');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 22, SYSDATE, 'user15');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 23, SYSDATE, 'user16');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 24, SYSDATE, 'user17');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 25, SYSDATE, 'user10');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 26, SYSDATE, 'user11');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 27, SYSDATE, 'user12');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 28, SYSDATE, 'user13');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 29, SYSDATE, 'user14');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 30, SYSDATE, 'user15');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 31, SYSDATE, 'user16');
+INSERT INTO PRODUCT_OK VALUES(PRODUCT_OK_SEQ.NEXTVAL, 32, SYSDATE, 'user17');
+
+
+-- 장바구니테이블
+CREATE TABLE shopping_basket
+(
+    product_ok_no    NUMBER          NOT NULL, 
+    b_id             VARCHAR2(20)    NOT NULL
+)
+/
+
+COMMENT ON TABLE shopping_basket IS '장바구니리스트'
+/
+
+COMMENT ON COLUMN shopping_basket.product_ok_no IS '판매상품번호'
+/
+
+COMMENT ON COLUMN shopping_basket.b_id IS '접속자아이디'
+/
+
+ALTER TABLE shopping_basket
+    ADD CONSTRAINT FK_shopping_basket_product_ok_ FOREIGN KEY (product_ok_no)
+        REFERENCES product_ok (product_ok_no)
+/
+
+ALTER TABLE shopping_basket
+    ADD CONSTRAINT FK_shopping_basket_b_id_Member FOREIGN KEY (b_id)
+        REFERENCES Member (user_id)
+/
+
+-- 결제 테이블
+CREATE TABLE Payment
+(
+    Payment_no       NUMBER          NOT NULL, 
+    b_id             VARCHAR2(20)    NOT NULL, 
+    product_ok_no    NUMBER          NOT NULL, 
+    price            NUMBER          NOT NULL, 
+    product_state    VARCHAR2(1)     NOT NULL, 
+    user_state       VARCHAR2(1)     NOT NULL,
+    deal_date	     Date	     NULL,
+    CONSTRAINT PAYMENT_PK PRIMARY KEY (Payment_no)
+)
+/
+
+CREATE SEQUENCE Payment_SEQ
+
+/
+
+COMMENT ON TABLE Payment IS '결제리스트'
+/
+
+COMMENT ON COLUMN Payment.Payment_no IS '결제번호'
+/
+
+COMMENT ON COLUMN Payment.b_id IS '결제아이디'
+/
+
+COMMENT ON COLUMN Payment.product_ok_no IS '판매상품번호'
+/
+
+COMMENT ON COLUMN Payment.price IS '판매가격'
+/
+
+COMMENT ON COLUMN Payment.product_state IS '판매완료'
+/
+
+COMMENT ON COLUMN Payment.user_state IS '결제 상태'
+/
+
+COMMENT ON COLUMN Payment.deal_date IS '구매 날짜'
+/
+
+ALTER TABLE Payment
+    ADD CONSTRAINT FK_Payment_b_id_Member_user_id FOREIGN KEY (b_id)
+        REFERENCES Member (user_id)
+/
+
+ALTER TABLE Payment
+    ADD CONSTRAINT FK_Payment_product_ok_no_produ FOREIGN KEY (product_ok_no)
+        REFERENCES product_ok (product_ok_no)
+/
+
+-- 상품 판매 완료시 상품테이블 판매상태 변경
+CREATE OR REPLACE TRIGGER PRODUCT_STATE_UPDATE
+AFTER UPDATE
+ON PAYMENT
+FOR EACH ROW
+BEGIN
+    IF :NEW.PRODUCT_STATE='Y'
+    THEN
+        UPDATE Product P
+        SET P.PRODUCT_STATE = 'Y'
+         WHERE P.PRODUCT_NO =(SELECT PRODUCT_NO
+                        FROM PRODUCT_OK
+                        JOIN Product USING(PRODUCT_NO)
+                        WHERE PRODUCT_OK_NO = :NEW.PRODUCT_OK_NO);
+        END IF;
+END;
+/
+
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 1, 10000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 2, 20000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 3, 30000, 'N', 'Y', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 4, 40000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 5, 50000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 6, 60000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 7, 70000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 8, 80000, 'N', 'Y', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user01', 9, 90000, 'N', 'Y', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 10, 100000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 11, 110000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 12, 120000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 13, 130000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 14, 140000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 15, 150000, 'N', 'Y', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 16, 160000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 17, 170000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user02', 18, 180000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 19, 190000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 20, 200000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 21, 210000, 'N', 'Y', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 22, 220000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 23, 230000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 24, 240000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 25, 250000, 'N', 'Y', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 26, 260000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 27, 270000, 'N', 'Y', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user03', 28, 280000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user04', 29, 290000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user04', 30, 300000, 'Y', 'Y', SYSDATE);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user04', 31, 310000, 'N', 'N', NULL);
+INSERT INTO PAYMENT VALUES(PAYMENT_SEQ.NEXTVAL, 'user04', 32, 320000, 'Y', 'Y', SYSDATE);
+
+
+-- 공지사항 / 이벤트 테이블
+CREATE TABLE Notice
+(
+    Notice_no           NUMBER          NOT NULL,
+    Notice_type		NUMBER		NOT NULL, 
+    Notice_title        VARCHAR2(20)    NOT NULL, 
+    Notice_content      VARCHAR2(1000)  NOT NULL, 
+    Notice_date         Date		DEFAULT SYSDATE NOT NULL, 
+    Notice_readcount    NUMBER          DEFAULT 0 NULL, 
+    Status		VARCHAR2(1)	DEFAULT 'Y' NOT NULL,
+    CONSTRAINT NOTICE_PK PRIMARY KEY (Notice_no)
+)
+/
+
+CREATE SEQUENCE Notice_SEQ
+
+/
+
+COMMENT ON TABLE Notice IS '공지사항'
+/
+
+COMMENT ON COLUMN Notice.Notice_no IS '공지사항글번호'
+/
+
+COMMENT ON COLUMN Notice.Notice_type IS '공지사항 타입'
+/
+
+COMMENT ON COLUMN Notice.Notice_title IS '공지사항제목'
+/
+
+COMMENT ON COLUMN Notice.Notice_content IS '공지사항내용'
+/
+
+COMMENT ON COLUMN Notice.Notice_date IS '공지사항등록일'
+/
+
+COMMENT ON COLUMN Notice.Notice_readcount IS '공지사항조회수'
+/
+
+COMMENT ON COLUMN Notice.status IS '공지사항 상태'
+/
+
+INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL, 1, '첫번째 공지', '첫번째 공지입니다.', SYSDATE, '0', DEFAULT);
+INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL, 1, '두번째 공지', '두번째 공지입니다.', SYSDATE, '0', DEFAULT);
+INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL, 2, '첫번째 이벤트', '첫번째 이벤트입니다.', SYSDATE, '0', DEFAULT);
+INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL, 2, '두번째 이벤트', '두번째 이벤트입니다.', SYSDATE, '0', DEFAULT);
+
+
+-- 리뷰테이블
+CREATE TABLE review
+(
+    review_no           NUMBER          NOT NULL, 
+    review_title        VARCHAR2(20)    NOT NULL, 
+    review_content      VARCHAR2(1000)  NOT NULL, 
+    review_date         Date		    DEFAULT SYSDATE NOT NULL, 
+    review_readcount    NUMBER          DEFAULT 0 NULL, 
+    user_id             VARCHAR2(20)    NOT NULL,
+    status	       	VARCHAR2(1)	 DEFAULT 'Y' NOT NULL,	
+    CONSTRAINT REVIEW_PK PRIMARY KEY (review_no)
+)
+/
+
+CREATE SEQUENCE review_SEQ
+
+/
+
+COMMENT ON TABLE review IS '리뷰'
+/
+
+COMMENT ON COLUMN review.review_no IS '리뷰글번호'
+/
+
+COMMENT ON COLUMN review.review_title IS '리뷰제목'
+/
+
+COMMENT ON COLUMN review.review_content IS '리뷰내용'
+/
+
+COMMENT ON COLUMN review.review_date IS '리뷰등록일'
+/
+
+COMMENT ON COLUMN review.review_readcount IS '리뷰조회수'
+/
+
+COMMENT ON COLUMN review.user_id IS '등록아이디'
+/
+
+COMMENT ON COLUMN review.status IS '리뷰 상태'
+/
+
+ALTER TABLE review
+    ADD CONSTRAINT FK_review_user_id_Member_user_ FOREIGN KEY (user_id)
+        REFERENCES Member (user_id)
+/
+
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.NEXTVAL, '첫번째 리뷰', '첫번째 리뷰입니다.', SYSDATE, 0, 'user01', DEFAULT);
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.NEXTVAL, '두번째 리뷰', '두번째 리뷰입니다.', SYSDATE, 0, 'user02', DEFAULT);
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.NEXTVAL, '세번째 리뷰', '세번째 리뷰입니다.', SYSDATE, 0, 'user03', DEFAULT);
+
+-- 문의 테이블
+CREATE TABLE inquiry
+(
+    inquiry_no         NUMBER            NOT NULL, 
+    inquiry_title      VARCHAR2(1000)    NOT NULL, 
+    inquiry_content    VARCHAR2(1000)    NOT NULL, 
+    inquiry_date       DATE              DEFAULT SYSDATE NOT NULL, 
+    user_id            VARCHAR2(20)      NOT NULL, 
+    inquiry_answer     VARCHAR2(1000)    NULL, 
+    answer_date        DATE              NULL, 
+    answer_state       VARCHAR2(1)       DEFAULT 'N' NOT NULL,
+    user_lock	       VARCHAR2(1)	 DEFAULT 'N' NOT NULL,
+    status	       VARCHAR2(1)	 DEFAULT 'Y' NOT NULL,
+    CONSTRAINT INQUIRY_PK PRIMARY KEY (inquiry_no)
+)
+/
+
+CREATE SEQUENCE inquiry_SEQ
+
+/
+
+
+COMMENT ON TABLE inquiry IS '문의'
+/
+
+COMMENT ON COLUMN inquiry.inquiry_no IS '문의번호'
+/
+
+COMMENT ON COLUMN inquiry.inquiry_title IS '문의제목'
+/
+
+COMMENT ON COLUMN inquiry.inquiry_content IS '문의내용'
+/
+
+COMMENT ON COLUMN inquiry.inquiry_date IS '문의 등록일'
+/
+
+COMMENT ON COLUMN inquiry.user_id IS '문의자아아디'
+/
+
+COMMENT ON COLUMN inquiry.inquiry_answer IS '문의답변'
+/
+
+COMMENT ON COLUMN inquiry.answer_date IS '답변일'
+/
+
+COMMENT ON COLUMN inquiry.answer_state IS '답변상태'
+/
+
+COMMENT ON COLUMN inquiry.user_lock IS '공개여부'
+/
+
+COMMENT ON COLUMN inquiry.status IS '리뷰 상태'
+/
+
+ALTER TABLE inquiry
+    ADD CONSTRAINT FK_inquiry_user_id_Member_user FOREIGN KEY (user_id)
+        REFERENCES Member (user_id)
+/
+
+
+INSERT INTO INQUIRY VALUES(INQUIRY_SEQ.NEXTVAL, '첫번째 문의', '첫번째 문의입니다.', SYSDATE, 'user01', '첫번째 문의 답변입니다.', SYSDATE, 'Y', DEFAULT, DEFAULT);
+INSERT INTO INQUIRY VALUES(INQUIRY_SEQ.NEXTVAL, '두번째 문의', '두번째 문의입니다.', SYSDATE, 'user02', '두번째 문의 답변입니다.', SYSDATE, 'Y', DEFAULT, DEFAULT);
+INSERT INTO INQUIRY VALUES(INQUIRY_SEQ.NEXTVAL, '세번째 문의', '세번째 문의입니다.', SYSDATE, 'user10', NULL, NULL, 'N', DEFAULT, DEFAULT);
+
+
+>>>>>>> parent of d05a9a5... 수정본
