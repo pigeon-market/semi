@@ -1,4 +1,4 @@
-package com.pigeonMarket.product.controller;
+package com.pigeonMarket.notice.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ProductInsertFormServlet
+ * Servlet implementation class NoticeInsertFormServlet
  */
-@WebServlet("/insertForm.pr")
-public class ProductInsertFormServlet extends HttpServlet {
+@WebServlet("/insertForm.no")
+public class NoticeInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductInsertFormServlet() {
+    public NoticeInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +26,7 @@ public class ProductInsertFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("views/product/productInsertForm.jsp").forward(request, response);
-
+		request.getRequestDispatcher("views/notice/noticeInsertForm.jsp").forward(request, response);
 	}
 
 	/**
