@@ -1,4 +1,4 @@
-package com.pigeonMarket.member.controller;
+package com.pigeonMarket.dealInfo.controller;
 
 import java.io.IOException;
 
@@ -8,19 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pigeonMarket.common.Paging;
+import com.pigeonMarket.common.model.vo.PageInfo;
+import com.pigeonMarket.dealInfo.model.service.DealInfoService;
 import com.pigeonMarket.member.model.vo.Member;
 
 /**
- * Servlet implementation class CheckMyPwdServlet
+ * Servlet implementation class MyBuyListView
  */
-@WebServlet("/CheckPwd.me")
-public class CheckMyPwdServlet extends HttpServlet {
+@WebServlet("/buyList.deal")
+public class MyBuyListView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckMyPwdServlet() {
+    public MyBuyListView() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +33,19 @@ public class CheckMyPwdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 테스트를 해봐야함 //
+		int page = Integer.parseInt(request.getParameter("page"));
 		
-		request.setCharacterEncoding("UTF-8");
+		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		String checkPwd = request.getParameter("checkPwd");
+		int listCount = new DealInfoService().buyListCount(userId);
 		
-		String sessionPwd = ((Member)request.getSession().getAttribute("loginUser")).getUserPwd();
+		PageInfo pi = new Paging().pagingBar(listCount, 10);
 		
-		if(checkPwd.equals(sessionPwd)) {
-			request.getRequestDispatcher("views/myPage/myInfoPage.jsp").forward(request, response);
-		}else {
-			request.getSession().setAttribute("msg", "비밀번호가 틀렸습니다.");
-			request.getRequestDispatcher("views/myPage/myMainPage.jsp").forward(request, response);
+		if (request.getParameter("currentPage") != null) {
+			pi.setCurrentPage(Integer.parseInt(request.getParameter("currentPage")));
 		}
+		
+		
 		
 		
 		

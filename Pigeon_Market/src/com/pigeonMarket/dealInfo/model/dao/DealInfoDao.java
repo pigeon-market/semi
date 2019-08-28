@@ -25,7 +25,7 @@ public class DealInfoDao {
 	 */
 	public DealInfoDao() {
 		
-		String fileName = DealInfoDao.class.getResource("/sql/dealInfo/dealInfo-query.properties").getPath();
+		String fileName = DealInfoDao.class.getResource("/com/pigeonMarket/sql/dealInfo/dealInfo-query.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(fileName));
@@ -43,14 +43,14 @@ public class DealInfoDao {
 	 * @param conn
 	 * @return
 	 */
-	public int getListCount(Connection conn) {
+	public int buyListCount(Connection conn, String userId) {
 		
 		int listCount = 0;
 
 		Statement stmt = null; // sql구문이 완성물일때
 		ResultSet rset = null;
 
-		String sql = prop.getProperty("");
+		String sql = prop.getProperty("buyListCount");
 
 		try {
 			stmt = conn.createStatement();
@@ -72,10 +72,6 @@ public class DealInfoDao {
 		return listCount;
 
 	}
-	
-	
-	
-	
 	
 	
 	
@@ -102,7 +98,6 @@ public class DealInfoDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-
 				
 			}
 			
@@ -117,5 +112,42 @@ public class DealInfoDao {
 		return dealList;
 		
 	}
+	
+	/** 상세조회 메소드
+	 * @param conn
+	 * @param no
+	 * @return
+	 */
+	public Deal selectDeal(Connection conn, int no) {
+		
+		Deal d = null;
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectDeal");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	
 }

@@ -36,10 +36,10 @@ public class DeleteMyInfoServlet extends HttpServlet {
 		
 		if(result > 0) {
 			request.getSession().removeAttribute("loginUser");
-			request.getSession().setAttribute("msg", "È¸ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
+			request.getSession().setAttribute("msg", "È¸¿øÀÌ Å»ÅðµÇ¾ú½À´Ï´Ù. È¸¿øº¹±¸´Â ¹®ÀÇ¸¦ ÅëÇØ ÇØÁÖ¼¼¿ä.");
 			response.sendRedirect(request.getContextPath());
 		}else {
-			request.setAttribute("msg", "È¸ï¿½ï¿½ Å»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+			request.setAttribute("msg", "È¸¿ø Å»Åð¿¡ ½ÇÆÐÇß½À´Ï´Ù.");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 	
 		}

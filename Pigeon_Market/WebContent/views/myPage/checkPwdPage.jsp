@@ -11,7 +11,7 @@
 	
 	<div>
 		<input type="password" name="checkPwd">
-		<button type="submit" onclick="location.href='<%= contextPath %>/checkPwd.me'">х╝О©╫О©╫О©╫о╠О©╫</button>
+		<button type="submit" onclick="location.href='<%= contextPath %>/checkPwd.me'">х╝юнго╠Б</button>
 	
 	</div>
 </body>

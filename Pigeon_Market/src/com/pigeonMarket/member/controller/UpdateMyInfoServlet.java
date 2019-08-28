@@ -32,13 +32,13 @@ public class UpdateMyInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½??
+		// ¹¹¹¹ Á¤º¸°¡ ÇÊ¿äÇÏÁö??
 
 		/*
 		 * 
-		 * ï¿½ï¿½Ð¹ï¿½È£
-		 * ï¿½Ö¼ï¿½
-		 * ï¿½Ì¸ï¿½ï¿½ï¿½
+		 * ºñ¹Ð¹øÈ£
+		 * ÁÖ¼Ò
+		 * ÀÌ¸ÞÀÏ
 		 * 
 		 */
 		
@@ -53,10 +53,10 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		
 		if(result > 0 ) {
 			request.getSession().removeAttribute("loginUser");
-			request.getSession().setAttribute("msg", "È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
+			request.getSession().setAttribute("msg", "È¸¿øÁ¤º¸¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù. ´Ù½Ã ·Î±×ÀÎÇØÁÖ¼¼¿ä");
 			response.sendRedirect(request.getContextPath());
 		} else {
-			request.setAttribute("msg", "È¸ï¿½ï¿½ Å»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+			request.setAttribute("msg", "È¸¿ø Å»Åð¿¡ ½ÇÆÐÇß½À´Ï´Ù.");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		
