@@ -73,24 +73,30 @@ public class MemberDao {
 		return list;
 	}
 	
-	public void rangeList(Connection conn, ArrayList<Activity> aList) {
+	public ArrayList<String> rangeList(ArrayList<Activity> aList) {
 		
-		List list = new ArrayList();
+		ArrayList<String> list = new ArrayList<>();
 		
 		int groupNum = 0;
 		
-		while(groupNum==aList.size()) {
+		int num = 0;
+		
+		while(num<aList.size()) {
 			
-			for(int i = groupNum ; groupNum < aList.size() ; i++) {
-				if((aList.get(groupNum).getaDate()).equals(aList.get(i).getaDate())) {
-					list.add(aList.get(i));
+			for(num = groupNum ; num < aList.size() ; num++) {
+				if(!((aList.get(num).getaDate()).equals(aList.get(groupNum).getaDate()))) {
+					list.add(String.valueOf(num));
+					groupNum=num;
+					break;
 				}
 			
 			}
 		}
 		
+		return list;
 		
 	}
+	
 	
 	
 	public int updateMyInfo(Connection conn, Member m) {

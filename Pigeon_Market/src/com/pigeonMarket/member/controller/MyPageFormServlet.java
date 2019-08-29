@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pigeonMarket.member.model.dao.MemberDao;
 import com.pigeonMarket.member.model.service.MemberService;
 import com.pigeonMarket.member.model.vo.Activity;
 import com.pigeonMarket.member.model.vo.Member;
@@ -41,10 +42,11 @@ public class MyPageFormServlet extends HttpServlet {
 		
 		Activity a = new Activity(userId, perious, limitCount);
 		
-		ArrayList<ArrayList> list = new MemberService().activityList(a);
+		ArrayList<Activity> list = new MemberService().activityList(a);
 		
 		
 		
+		request.setAttribute("list", list);
 		
 		
 		request.getRequestDispatcher("views/myPage/myMainPage.jsp").forward(request, response);

@@ -19,17 +19,19 @@ public class MemberService {
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<ArrayList> activityList(Activity a) {
+	public ArrayList<Activity> activityList(Activity a) {
 		
 		Connection conn = getConnection();
 		
 		ArrayList<Activity> aList = new MemberDao().activityList(conn, a);
 		
-		new MemberDao().rangeList(conn, aList);
+		ArrayList<String> rangeList = new MemberDao().rangeList(aList);
+		
+		
 		
 		close(conn);
 		
-		return list;
+		return aList;
 		
 	}
 	
