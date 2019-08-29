@@ -12,7 +12,7 @@ public class Review {
 	private String userId;
 	private String status;
 	
-	public Review(String title, String userId, String content) {
+	public Review(String reviewTitle, String userId, String reviewContent) {
 		super();
 		this.reviewTitle = reviewTitle;
 		this.userId = userId;

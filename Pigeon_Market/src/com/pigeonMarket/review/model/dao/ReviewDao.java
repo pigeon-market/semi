@@ -2,6 +2,7 @@ package com.pigeonMarket.review.model.dao;
 
 import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.notice.model.dao.NoticeDao;
+import com.pigeonMarket.notice.model.vo.Notice;
 import com.pigeonMarket.review.model.vo.Review;
 
 import static com.pigeonMarket.common.JDBCTemplate.close;
@@ -126,6 +127,60 @@ public class ReviewDao {
 		
 		return result;
 		
+	}
+	public int increaseCount(Connection conn, int reviewNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public Review selectReview(Connection conn, int reviewNo) {
+		Review r = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = new Review(rset.getInt("RNUM"),
+							  rset.getString("REVIEW_TITLE"),
+							  rset.getString("REVIEW_CONTENT"),
+							  rset.getDate("REVIEW_DATE"),
+							  rset.getInt("REVIEW_READCOUNT"),
+							  rset.getString("USER_ID"),
+							  rset.getString("STATUS"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return r;
 	}
 
 }

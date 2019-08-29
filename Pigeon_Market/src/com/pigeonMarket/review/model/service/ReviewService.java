@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.pigeonMarket.common.model.vo.PageInfo;
+import com.pigeonMarket.notice.model.dao.NoticeDao;
+import com.pigeonMarket.notice.model.vo.Notice;
 import com.pigeonMarket.review.model.dao.ReviewDao;
 import com.pigeonMarket.review.model.vo.Review;
 
@@ -47,6 +49,27 @@ public class ReviewService {
 		close(conn);
 		
 		return result;
+	}
+
+	public Review selectReview(int reviewNo) {
+		Connection conn = getConnection();
+		
+		// 1. 조회수 증가시키는 dao 호출 
+		int result = new ReviewDao().increaseCount(conn, reviewNo);
+		
+		// 2. 1번의 결과에 따라 게시글 조회하는 dao 호출
+		Review r = null;
+		if(result > 0) {
+			commit(conn);
+			r = new ReviewDao().selectReview(conn, reviewNo);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return r;
+		
 	}
 
 }

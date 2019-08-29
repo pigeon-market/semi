@@ -49,7 +49,7 @@
 				<table>
 					<tr>
 						<td>제목</td>
-						<td colspan="3"><input type="text" size="50" name="reviewtitle"></td>
+				<td colspan="3"><input type="text" size="50" name="reviewtitle"></td>
 					</tr>
 					<tr>
 						<td>작성자</td>

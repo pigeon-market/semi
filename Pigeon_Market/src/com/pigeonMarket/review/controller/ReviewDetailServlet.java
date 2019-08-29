@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pigeonMarket.notice.model.service.NoticeService;
+import com.pigeonMarket.notice.model.vo.Notice;
+import com.pigeonMarket.review.model.service.ReviewService;
+import com.pigeonMarket.review.model.vo.Review;
+
 /**
  * Servlet implementation class ReviewDetailServlet
  */
@@ -26,8 +31,18 @@ public class ReviewDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int reviewNo = Integer.parseInt(request.getParameter("nno"));
+		
+		Review r = new ReviewService().selectReview(reviewNo);
+		
+		if(r != null) {
+			request.setAttribute("r", r);
+			request.getRequestDispatcher("views/review/reviewDetailView.jsp").forward(request, response);
+		}else {
+			
+			
+			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
+		}
 	}
 
 	/**
