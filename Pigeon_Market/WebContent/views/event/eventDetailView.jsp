@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.pigeonMarket.notice.model.vo.Notice" %>
+<%@ page import="com.pigeonMarket.event.model.vo.Event" %>
 <%
-	Notice n = (Notice)request.getAttribute("n");
+	Event e = (Event)request.getAttribute("e");
 %>
 <!DOCTYPE html>
 <html>
@@ -49,18 +49,18 @@
 				
 				<tr>
 					<td>제목</td>
-					<td><%= n.getNoticetitle() %></td>
+					<td><%= e.getNoticetitle() %></td>
 					<td>조회수</td>
-					<td><%= n.getNoticeReadcount() %></td>
+					<td><%= e.getNoticeReadcount() %></td>
 					<td>작성일</td>
-					<td><%= n.getNoticeDate() %></td>
+					<td><%= e.getNoticeDate() %></td>
 				</tr>
 				<tr>
 					<td colspan="6">내용</td>
 				</tr>
 				<tr>
 					<td colspan="6">
-						<p id="content"><%= n.getNoticeContent() %></p>
+						<p id="content"><%= e.getNoticeContent() %></p>
 					</td>
 				</tr>
 			</table>
@@ -74,12 +74,12 @@
 		</div>
 	</div>
 	<form action="" id="detailForm" method="post">
-		<input type="hidden" name="nno" value="<%= n.getNoticeNo() %>">
+		<input type="hidden" name="nno" value="<%= e.getNoticeNo() %>">
 	</form>
 	<%@ include file="../common/foot.jsp" %>
 	<script>
 		function updateForm(){
-			//location.href="<%=contextPath%>/updateForm.no" + <%= n.getNoticeNo() %>;
+			//location.href="<%=contextPath%>/updateForm.no" + <%= e.getNoticeNo() %>;
 			// 위의 방식대로 하면 url에 그대로 노출.. --> 직접 url창에 타고 들어갈수있다!!!
 			
 			$("#detailForm").attr("action", "<%=contextPath%>/updateForm.no");
@@ -87,7 +87,7 @@
 			
 		}
 		function deleteBoard(){
-			console.log(<%= n.getNoticeNo() %>);
+			console.log(<%= e.getNoticeNo() %>);
 			$("#detailForm").attr("action", "<%=contextPath%>/delete.no");
 			$("#detailForm").submit();
 		}

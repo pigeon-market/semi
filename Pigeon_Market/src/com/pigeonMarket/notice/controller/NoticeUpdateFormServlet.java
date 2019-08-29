@@ -11,16 +11,16 @@ import com.pigeonMarket.notice.model.service.NoticeService;
 import com.pigeonMarket.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDetailServlet
+ * Servlet implementation class NoticeUpdateFormServlet
  */
-@WebServlet("/detail.no")
-public class NoticeDetailServlet extends HttpServlet {
+@WebServlet("/updateForm.no")
+public class NoticeUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailServlet() {
+    public NoticeUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +31,14 @@ public class NoticeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("nno"));
 		
-		Notice n = new NoticeService().selectNotice(noticeNo);
+		Notice notice = new NoticeService().selectNotice(noticeNo);
 		
-		if(n != null) {
-			request.setAttribute("n", n);
-			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
-		}else {
-			
+		System.out.println("실행1");
+		
+		if(notice != null) {
+			request.setAttribute("notice", notice);
+			request.getRequestDispatcher("views/notice/noticeUpdateForm.jsp").forward(request, response);
+		} else {
 			
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
 		}

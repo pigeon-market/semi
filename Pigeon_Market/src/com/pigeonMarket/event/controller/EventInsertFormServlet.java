@@ -1,4 +1,4 @@
-package com.pigeonMarket.notice.controller;
+package com.pigeonMarket.event.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.notice.model.service.NoticeService;
-import com.pigeonMarket.notice.model.vo.Notice;
-
 /**
- * Servlet implementation class NoticeDetailServlet
+ * Servlet implementation class EventInsertFormServlet
  */
-@WebServlet("/detail.no")
-public class NoticeDetailServlet extends HttpServlet {
+@WebServlet("/insertForm.eo")
+public class EventInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailServlet() {
+    public EventInsertFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,18 +26,7 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
-		
-		Notice n = new NoticeService().selectNotice(noticeNo);
-		
-		if(n != null) {
-			request.setAttribute("n", n);
-			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
-		}else {
-			
-			
-			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("views/event/eventInsertForm.jsp").forward(request, response);
 	}
 
 	/**

@@ -1,26 +1,33 @@
-package com.pigeonMarket.notice.controller;
+package com.pigeonMarket.event.controller;
+
+import static com.pigeonMarket.common.Paging.pagingBar;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pigeonMarket.common.model.vo.PageInfo;
+import com.pigeonMarket.event.model.service.EventService;
+import com.pigeonMarket.event.model.vo.Event;
 import com.pigeonMarket.notice.model.service.NoticeService;
 import com.pigeonMarket.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDetailServlet
+ * Servlet implementation class EventListServlet
  */
-@WebServlet("/detail.no")
-public class NoticeDetailServlet extends HttpServlet {
+@WebServlet("/event.eo")
+public class EventListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailServlet() {
+    public EventListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,18 +36,25 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		int listCount = new NoticeService().getListCount(); 	
 		
-		Notice n = new NoticeService().selectNotice(noticeNo);
+		PageInfo pi = pagingBar(listCount,10);
 		
-		if(n != null) {
-			request.setAttribute("n", n);
-			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
-		}else {
-			
-			
-			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
-		}
+		if (request.getParameter("currentPage") != null)
+			 { pi.setCurrentPage(Integer.parseInt(request.getParameter("currentPage"))); } 	
+		
+		 PageInfo page = new PageInfo(pi.getCurrentPage(), pi.getBoardLimit());
+		 
+		 ArrayList<Event> list = new EventService().selectList(page); 	
+
+		// request에 전달값 담기
+		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
+		
+	
+		
+		request.getRequestDispatcher("views/event/eventListView.jsp").forward(request, response);
+		
 	}
 
 	/**

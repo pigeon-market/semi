@@ -11,16 +11,16 @@ import com.pigeonMarket.notice.model.service.NoticeService;
 import com.pigeonMarket.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDetailServlet
+ * Servlet implementation class NoticeUpdateServlet
  */
-@WebServlet("/detail.no")
-public class NoticeDetailServlet extends HttpServlet {
+@WebServlet("/update.no")
+public class NoticeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailServlet() {
+    public NoticeUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,18 +29,27 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+request.setCharacterEncoding("UTF-8");
+		
 		int noticeNo = Integer.parseInt(request.getParameter("nno"));
 		
-		Notice n = new NoticeService().selectNotice(noticeNo);
+		Notice notice = new Notice();
+		notice.setNoticetitle(request.getParameter("noticetitle"));
+		notice.setNoticeContent(request.getParameter("noticeContent"));
+		notice.setNoticeNo(noticeNo);
 		
-		if(n != null) {
-			request.setAttribute("n", n);
-			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
-		}else {
-			
+		NoticeService service = new NoticeService();
+		
+		int result = service.updateNotice(notice);
+		
+		if(result > 0) {
+			request.setAttribute("noticeNo", noticeNo);
+			request.getRequestDispatcher("detail.no").forward(request, response);
+		} else {
 			
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
 		}
+		
 	}
 
 	/**

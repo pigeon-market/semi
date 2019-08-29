@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pigeonMarket.notice.model.service.NoticeService;
-import com.pigeonMarket.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDetailServlet
+ * Servlet implementation class NoticeDeleteServlet
  */
-@WebServlet("/detail.no")
-public class NoticeDetailServlet extends HttpServlet {
+@WebServlet("/delete.no")
+public class NoticeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailServlet() {
+    public NoticeDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +29,13 @@ public class NoticeDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		int result = new NoticeService().deleteNotice(noticeNo);
 		
-		Notice n = new NoticeService().selectNotice(noticeNo);
-		
-		if(n != null) {
-			request.setAttribute("n", n);
-			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
-		}else {
-			
-			
+		if(result > 0) {
+			response.sendRedirect("list.no");
+		} else {
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
+			
 		}
 	}
 

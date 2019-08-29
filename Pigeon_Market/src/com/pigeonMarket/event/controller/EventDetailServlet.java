@@ -1,4 +1,4 @@
-package com.pigeonMarket.notice.controller;
+package com.pigeonMarket.event.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pigeonMarket.event.model.service.EventService;
+import com.pigeonMarket.event.model.vo.Event;
 import com.pigeonMarket.notice.model.service.NoticeService;
 import com.pigeonMarket.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDetailServlet
+ * Servlet implementation class EventDetailServlet
  */
-@WebServlet("/detail.no")
-public class NoticeDetailServlet extends HttpServlet {
+@WebServlet("/detail.eo")
+public class EventDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailServlet() {
+    public EventDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,13 +31,13 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		int EventNo = Integer.parseInt(request.getParameter("nno"));
 		
-		Notice n = new NoticeService().selectNotice(noticeNo);
+		Event e = new EventService().selectEvent(EventNo);
 		
-		if(n != null) {
-			request.setAttribute("n", n);
-			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
+		if(e != null) {
+			request.setAttribute("e", e);
+			request.getRequestDispatcher("views/event/eventDetailView.jsp").forward(request, response);
 		}else {
 			
 			

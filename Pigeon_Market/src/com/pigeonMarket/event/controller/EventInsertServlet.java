@@ -1,4 +1,4 @@
-package com.pigeonMarket.notice.controller;
+package com.pigeonMarket.event.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.notice.model.service.NoticeService;
-import com.pigeonMarket.notice.model.vo.Notice;
+import com.pigeonMarket.event.model.service.EventService;
+import com.pigeonMarket.event.model.vo.Event;
+
 
 /**
- * Servlet implementation class NoticeDetailServlet
+ * Servlet implementation class EventInsertServlet
  */
-@WebServlet("/detail.no")
-public class NoticeDetailServlet extends HttpServlet {
+@WebServlet("/insert.eo")
+public class EventInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailServlet() {
+    public EventInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,13 +30,23 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		request.setCharacterEncoding("utf-8");
 		
-		Notice n = new NoticeService().selectNotice(noticeNo);
+		String title = request.getParameter("noticetitle");
+		String content = request.getParameter("noticeContent");
 		
-		if(n != null) {
-			request.setAttribute("n", n);
-			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
+		Event e = new Event(title, content);
+		
+		int result = new EventService().insertEvent(e);
+		
+		if(result > 0) {
+			
+			// 바로 페이지로 포워딩 하면 NullPointerException 발생할 것
+			//request.getRequestDispatcher("views/notice/noticeListView.jsp").forward(request, response);
+			
+			response.sendRedirect("event.eo"); // 공지사항 리스트 출력하는 서블릿 호출
+			
+			
 		}else {
 			
 			
