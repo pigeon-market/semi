@@ -72,4 +72,38 @@ public class EventService {
 		return e;
 	}
 
+	public int updateEvent(Event event) {
+		Connection conn = getConnection();
+		
+		int result = new EventDao().updateEvent(conn, event);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int deleteEvent(int eventNo) {
+		Connection conn = getConnection();
+		
+		int result = new EventDao().deleteEvent(conn, eventNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	
+
 }

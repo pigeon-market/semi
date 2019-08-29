@@ -188,4 +188,50 @@ public class EventDao {
 		return e;
 	}
 
+
+	public int updateEvent(Connection conn, Event event) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateEvent");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, event.getNoticetitle());
+			pstmt.setString(2, event.getNoticeContent());
+			pstmt.setInt(3, event.getNoticeNo());
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int deleteEvent(Connection conn, int eventNo) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteEvent");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, eventNo);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

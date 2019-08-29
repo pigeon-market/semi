@@ -1,4 +1,4 @@
-package com.pigeonMarket.notice.controller;
+package com.pigeonMarket.review.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.notice.model.service.NoticeService;
-import com.pigeonMarket.notice.model.vo.Notice;
+import com.pigeonMarket.review.model.service.ReviewService;
+import com.pigeonMarket.review.model.vo.Review;
 
 /**
- * Servlet implementation class NoticeUpdateServlet
+ * Servlet implementation class ReviewInsertServlet
  */
-@WebServlet("/update.no")
-public class NoticeUpdateServlet extends HttpServlet {
+@WebServlet("/insert.re")
+public class ReviewInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateServlet() {
+    public ReviewInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,27 +29,29 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
 		
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		String title = request.getParameter("reviewtitle");
+		String userId = request.getParameter("userId");
+		String content = request.getParameter("reviewContent");
 		
-		Notice notice = new Notice();
-		notice.setNoticetitle(request.getParameter("noticetitle"));
-		notice.setNoticeContent(request.getParameter("noticeContent"));
-		notice.setNoticeNo(noticeNo);
+		Review r = new Review(title, userId, content);
 		
-		NoticeService service = new NoticeService();
-		
-		int result = service.updateNotice(notice);
+		int result = new ReviewService().insertReview(r);
 		
 		if(result > 0) {
-			request.setAttribute("noticeNo", noticeNo);
-			request.getRequestDispatcher("detail.no").forward(request, response);
-		} else {
+			
+			// 바로 페이지로 포워딩 하면 NullPointerException 발생할 것
+			//request.getRequestDispatcher("views/notice/noticeListView.jsp").forward(request, response);
+			
+			response.sendRedirect("review.re"); // 공지사항 리스트 출력하는 서블릿 호출
+			
+			
+		}else {
+		
 			
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
 		}
-		
 	}
 
 	/**

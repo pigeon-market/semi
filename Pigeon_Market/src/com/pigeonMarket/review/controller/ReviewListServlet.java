@@ -1,4 +1,4 @@
-package com.pigeonMarket.event.controller;
+package com.pigeonMarket.review.controller;
 
 import static com.pigeonMarket.common.Paging.pagingBar;
 
@@ -12,22 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pigeonMarket.common.model.vo.PageInfo;
-import com.pigeonMarket.event.model.service.EventService;
-import com.pigeonMarket.event.model.vo.Event;
 import com.pigeonMarket.notice.model.service.NoticeService;
 import com.pigeonMarket.notice.model.vo.Notice;
+import com.pigeonMarket.review.model.service.ReviewService;
+import com.pigeonMarket.review.model.vo.Review;
 
 /**
- * Servlet implementation class EventListServlet
+ * Servlet implementation class ReviewListServlet
  */
-@WebServlet("/event.eo")
-public class EventListServlet extends HttpServlet {
+@WebServlet("/review.re")
+public class ReviewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EventListServlet() {
+    public ReviewListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,7 @@ public class EventListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int listCount = new EventService().getListCount(); 	
+		int listCount = new ReviewService().getListCount(); 	
 		
 		PageInfo pi = pagingBar(listCount,10);
 		
@@ -45,7 +45,7 @@ public class EventListServlet extends HttpServlet {
 		
 		 PageInfo page = new PageInfo(pi.getCurrentPage(), pi.getBoardLimit());
 		 
-		 ArrayList<Event> list = new EventService().selectList(page); 	
+		 ArrayList<Review> list = new ReviewService().selectList(page); 	
 
 		// request에 전달값 담기
 		request.setAttribute("list", list);
@@ -53,7 +53,7 @@ public class EventListServlet extends HttpServlet {
 		
 	
 		
-		request.getRequestDispatcher("views/event/eventListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/review/reviewListView.jsp").forward(request, response);
 		
 	}
 

@@ -41,8 +41,10 @@
 								<a href="#" class="icon solid fa-angle-down">메뉴</a>
 								<ul>
 									<li><a href="generic.html">소개</a></li>
-									<li><a href="<%= request.getContextPath() %>/list.no">문의사항</a></li>
+									<li><a href="<%= request.getContextPath() %>/list.no">공지사항</a></li>
 									<li><a href="<%= request.getContextPath() %>/event.eo">이벤트</a></li>
+									<li><a href="<%= request.getContextPath() %>/">문의사항</a></li>//문의사항 관리자에게 문의하는거 FAQ
+									<li><a href="<%= request.getContextPath() %>/review.re">리뷰</a></li>//리뷰 전체적으로 
 									<li><a href="mypage.html">mypage</a></li>
 									<li>
 										<a href="#">Submenu</a>
