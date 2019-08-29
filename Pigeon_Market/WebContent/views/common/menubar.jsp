@@ -26,7 +26,7 @@
 <link rel="icon" href="dulgi.ico">
 
 
-<script language="javascript">
+<script>
   		function showPopup() { window.open("login.html", "a", "width=350, height=450, left=600, top=50"); }
  </script>
 
@@ -42,7 +42,7 @@
 								<ul>
 									<li><a href="generic.html">소개</a></li>
 									<li><a href="<%= request.getContextPath() %>/list.no">문의</a></li>
-									<li><a href="mypage.html">mypage</a></li>
+									<li><a href="<%= request.getContextPath() %>/myPage.me">MyPage</a></li>
 									<li>
 										<a href="#">Submenu</a>
 										<ul>

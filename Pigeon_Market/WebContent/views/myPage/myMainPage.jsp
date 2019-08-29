@@ -1,52 +1,95 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.pigeonMarket.member.model.vo.Member" %>
+<%
+	String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+	
+	
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>³» ¸ÞÀÎÆäÀÌÁö</title>
+<title>ìˆ˜ì •ì¤‘</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<style>
+.col-3 {
+	text-align: center;
+}
+
+hr {
+	border: 1px solid rgba(79, 106, 228, 0.685);
+}
+</style>
+
 </head>
-<body>
-	<%@ include file="../common/menubar.jsp" %>
 
-	<div class="mainform">
+<%@ include file="../common/menubar.jsp"%>
+<body class="is-preload">
+	<div id="page-wrapper">
 
-		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/buyList.deal'">±¸¸ÅÁ¤º¸</div>
-		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/sellInfoForm.deal">ÆÇ¸ÅÁ¤º¸</div>
-		<!--  <div class="btndiv" id="¹è¼ÛÁ¤º¸" onclick="delivinfo();">¹è¼ÛÁ¤º¸</div>  -->
-		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/checkMyPwdForm.me'">È¸¿øÁ¤º¸ ¼öÁ¤</div>
+
+		<!-- Main -->
+		<section id="main" class="container"> <header>
+		<h2>MyPage</h2>
+		
+
+		</header>
+		<div class="row">
+			<div class="col-12">
+				<section>
+				<div class="box alt">
+					<div class="row gtr-50 gtr-uniform">
+						<div class="col-12" style="text-align: center">
+							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>ê°œì¸ì •ë³´ìˆ˜ì •
+						</div>
+
+						
+						<div class="col-3">
+							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>í™œë™ì¡°íšŒ
+						</div>
+						<div class="col-3">
+							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>íŒë§¤ì¡°íšŒ
+						</div>
+						<div class="col-3">
+							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>êµ¬ë§¤ì¡°íšŒ
+						</div>
+						<div class="col-3">
+							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>ê±°ëž˜ì¡°íšŒ
+						</div>
+
+					</div>
+				</div>
+
+				</section>
+
+				<!-- Text -->
+				<section class="box">
+				<form>
+					<h2>ìµœê·¼ í™œë™ ê¸°ë¡</h2>
+					<h3>ë‚ ì§œ ê°€ì§€ê³  ì˜¬êº¼ìž„</h3>
+					<p>íŒë§¤, êµ¬ë§¤, í™œë™ ë“±ë“±</p>
+
+					<hr>
+
+					IF íŒë§¤ìžì¼ë•Œ í…Œì´ë¸”ì´ëž‘ IF êµ¬ë§¤ìžì¼ë•Œ í…Œì´ë¸”ì´ëž‘ IF ë¡œê·¸ì¸í• ë•Œëž‘ ë‚˜ë‰˜ì–´ì•¼í•¨
+
+				</form>
+				</section>
+
+			</div>
+		</div>
+
+		</section>
+
+
 
 	</div>
-	<script>
 
-	
-	</script>
+<%@ include file="../common/foot.jsp"%>
+
 </body>
-=======
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>³» ¸ÞÀÎÆäÀÌÁö</title>
-</head>
-<body>
-	<%@ include file="../common/menubar.jsp" %>
-
-	<div class="mainform">
-
-		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/buyList.deal'">±¸¸ÅÁ¤º¸</div>
-		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/sellInfoForm.deal">ÆÇ¸ÅÁ¤º¸</div>
-		<!--  <div class="btndiv" id="¹è¼ÛÁ¤º¸" onclick="delivinfo();">¹è¼ÛÁ¤º¸</div>  -->
-		<div class="btndiv" id="" onclick="location.href='<%= contextPath %>/checkMyPwdForm.me'">È¸¿øÁ¤º¸ ¼öÁ¤</div>
-
-	</div>
-	<script>
-
-	
-	</script>
-</body>
->>>>>>> parent of d05a9a5... ìˆ˜ì •ë³¸
 </html>
