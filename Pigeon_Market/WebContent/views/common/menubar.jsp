@@ -8,6 +8,7 @@
 	String msg = (String)session.getAttribute("msg");
 	
 	String contextPath = request.getContextPath();
+	
 %>
 
 
@@ -54,7 +55,7 @@
 									</li>
 								</ul>
 							</li>
-							<li><input type="button" value="Login" onclick="showPopup();" /></li>
+							<li><input type="button" value="Login" onclick="location.href='<%= request.getContextPath() %>/test.us'" /></li>
 						</ul>
 					</nav>
 				</header>
@@ -70,6 +71,8 @@
 			<script src="<%= request.getContextPath()%>/resources/assets/js/breakpoints.min.js"></script>
 			<script src="<%= request.getContextPath()%>/resources/assets/js/util.js"></script>
 			<script src="<%= request.getContextPath()%>/resources/assets/js/main.js"></script>
+			
+
 	
 </body>
 </html>

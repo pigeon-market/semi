@@ -4,9 +4,13 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		int maxPage = (int) Math.ceil((double) 8 / 10);
+		String s = "12345_6";
 		
-		System.out.println(maxPage);
+		int i = s.indexOf("_");
+		
+		System.out.println(i);
+		
+		
 		
 	}
 

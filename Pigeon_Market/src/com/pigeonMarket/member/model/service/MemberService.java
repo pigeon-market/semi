@@ -25,15 +25,54 @@ public class MemberService {
 		
 		ArrayList<Activity> aList = new MemberDao().activityList(conn, a);
 		
-		ArrayList<String> rangeList = new MemberDao().rangeList(aList);
-		
-		
-		
 		close(conn);
 		
 		return aList;
 		
 	}
+//	
+//	
+//	public ArrayList detailActivityList(ArrayList<Activity> aList) {
+//		
+//		Connection conn = getConnection();
+//		
+//		ArrayList list = new ArrayList();
+//		
+//		String status = "";
+//		
+//		String num = "";
+//		
+//		for(int i = 0 ; i < aList.size(); i++) {
+//			
+//			status = aList.get(i).getStatus();
+//			
+//			num = status.indexOf("_");
+//			
+//			if(num != -1) {
+//				status = status.substring(0, num);
+//			}
+//			
+//			switch(status) {
+//			case "SIGNIN" :
+//				ArrayList<String> signIn = new ArrayList<>();
+//				signIn.add(aList.get(i).getStatus());
+//				signIn.add("회원가입이 되셨습니다.");
+//				break;
+//			case "REVIEW" :
+//				
+//			}
+//			
+//			
+//		}
+//		
+//		
+//		close(conn);
+//		
+//		return list;
+//		
+//	}
+	
+	
 	
 	public int updateMyInfo(Member m) {
 		
@@ -68,6 +107,18 @@ public class MemberService {
 		close(conn);
 		
 		return result;
+	}
+	
+	
+	public Member loginUser(String userId) {
+		Connection conn = getConnection();
+		
+		Member loginUser = new MemberDao().loginUser(conn, userId);
+		
+		close(conn);
+		
+		return loginUser;
+		
 	}
 
 

@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.pigeonMarket.member.model.vo.Member" %>
+<%@ page import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.member.model.vo.Activity" %>
 <%
-	String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+	Member m = (Member)session.getAttribute("loginUser");
+
+	ArrayList<Activity> aList = (ArrayList<Activity>)request.getAttribute("aList");
+	ArrayList<String> range = (ArrayList<String>)request.getAttribute("range");
+
 	
 	
 %>
@@ -27,8 +31,9 @@ hr {
 
 </head>
 
-<%@ include file="../common/menubar.jsp"%>
+
 <body class="is-preload">
+<%@ include file="../common/menubar.jsp"%>
 	<div id="page-wrapper">
 
 
@@ -69,6 +74,8 @@ hr {
 				<!-- Text -->
 				<section class="box">
 				<form>
+				
+				<% %>
 					<h2>최근 활동 기록</h2>
 					<h3>날짜 가지고 올꺼임</h3>
 					<p>판매, 구매, 활동 등등</p>

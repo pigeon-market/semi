@@ -42,16 +42,13 @@ public class MyPageFormServlet extends HttpServlet {
 		
 		Activity a = new Activity(userId, perious, limitCount);
 		
-		ArrayList<Activity> list = new MemberService().activityList(a);
+		ArrayList<Activity> aList = new MemberService().activityList(a);
 		
-		ArrayList<String> range = new MemberDao().rangeList(list);
+		ArrayList<String> range = new MemberDao().rangeList(aList);
+
 		
-		ArrayList<>
-		
-		
-		
-		request.setAttribute("list", list);
-		
+		request.setAttribute("range", range);
+		request.setAttribute("list", aList);
 		
 		request.getRequestDispatcher("views/myPage/myMainPage.jsp").forward(request, response);
 	}

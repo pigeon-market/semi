@@ -23,7 +23,7 @@ public class MemberDao {
 	
 	public MemberDao() {
 		
-		String fileName = MemberDao.class.getResource("/sql/member/member-query.properties").getPath();
+		String fileName = MemberDao.class.getResource("/com/pigeonMarket/sql/member/member-query.properties").getPath();
 		// ��ġ���� ����
 		
 		try {
@@ -60,7 +60,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Activity(rset.getString("ID"), rset.getString("DATE"), rset.getString("STATUS")));
+				list.add(new Activity(rset.getString("ID"), rset.getString("DATE"), rset.getString("STATUS"), rset.getString("title")));
 			}
 			
 			
@@ -96,6 +96,13 @@ public class MemberDao {
 		return list;
 		
 	}
+	
+
+	
+	
+	
+	
+	
 	
 	
 	
@@ -150,6 +157,40 @@ public class MemberDao {
 		}
 		
 		return result;
+		
+		
+	}
+	
+	public Member loginUser(Connection conn, String userId) {
+		
+		Member loginUser = null;
+		
+		PreparedStatement pstmt = null;
+		
+
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("loginUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				loginUser=new Member(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getString(7), rset.getString(8), rset.getDate(9), rset.getString(10), rset.getString(11));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return loginUser;
 		
 		
 	}

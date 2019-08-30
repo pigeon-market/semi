@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
+
 .category_tab {
 	display: block;
 	box-sizing: border-box;
@@ -41,6 +42,17 @@
 
 .overflow li a:hover {
 	color: orange;
+}
+
+
+.intes{
+	position:fixed;
+	top: 10%;
+	right: 5%;
+	float:right;
+	width:100px;
+	height:200px;
+	border: 1px solid red;
 }
 </style>
 </head>
@@ -122,9 +134,23 @@
 		</table>
 		</div>
 	</section>
+	
+	
+	<aside>
+	
+		<div class="intes">
+				
+		
+		가나다
+		
+		</div>
+	
+	</aside>
+	
+
 
 	<%@ include file="views/common/foot.jsp"%>
 
-
 </body>
+
 </html>
