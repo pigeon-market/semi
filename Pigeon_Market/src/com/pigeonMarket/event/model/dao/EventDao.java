@@ -124,7 +124,6 @@ public class EventDao {
 		} finally {
 			close(pstmt);
 		}
-		System.out.print(e.getNoticetitle());
 		return result;
 
 	}

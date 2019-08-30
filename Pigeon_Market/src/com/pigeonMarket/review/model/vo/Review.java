@@ -12,12 +12,23 @@ public class Review {
 	private String userId;
 	private String status;
 	
+	public Review() {
+		
+	}
+	
 	public Review(String reviewTitle, String userId, String reviewContent) {
 		super();
 		this.reviewTitle = reviewTitle;
 		this.userId = userId;
 		this.reviewContent = reviewContent;
 	}
+	
+	public Review(String noticetitle, String noticeContent) {
+		super();
+		this.reviewTitle = noticetitle;
+		this.reviewContent = noticeContent;
+	}
+
 
 	public Review(int reviewNo, String reviewTitle, String reviewContent, Date reviewDate, int reviewReadcount,
 			String userId, String status) {
@@ -30,6 +41,9 @@ public class Review {
 		this.userId = userId;
 		this.status = status;
 	}
+
+
+
 
 	public int getReviewNo() {
 		return reviewNo;

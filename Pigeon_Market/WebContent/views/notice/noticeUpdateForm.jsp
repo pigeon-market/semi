@@ -11,7 +11,7 @@
 <style>
 	.outer{
 		width:900px;
-		height:500px;
+		height:700px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -23,7 +23,7 @@
 
 	.tableArea {
 		width:500px;
-		height:350px;
+		height:500px;
 		margin-left:auto;
 		margin-right:auto;
 	}
@@ -65,5 +65,6 @@
 			</form>
 		</div>
 	</div>
+	<%@ include file="../common/foot.jsp" %>
 </body>
 </html>

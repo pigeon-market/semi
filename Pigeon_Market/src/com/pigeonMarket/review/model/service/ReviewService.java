@@ -72,4 +72,36 @@ public class ReviewService {
 		
 	}
 
+	public int updateReview(Review review) {
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().updateReview(conn, review);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int deleteReview(int reviewNo) {
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().deleteReview(conn, reviewNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
 }

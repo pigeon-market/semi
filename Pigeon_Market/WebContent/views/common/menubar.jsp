@@ -43,8 +43,9 @@
 									<li><a href="generic.html">소개</a></li>
 									<li><a href="<%= request.getContextPath() %>/list.no">공지사항</a></li>
 									<li><a href="<%= request.getContextPath() %>/event.eo">이벤트</a></li>
-									<li><a href="<%= request.getContextPath() %>/">문의사항</a></li>//문의사항 관리자에게 문의하는거 FAQ
-									<li><a href="<%= request.getContextPath() %>/review.re">리뷰</a></li>//리뷰 전체적으로 
+									<li><a href="<%= request.getContextPath() %>/inquiry.in">문의사항</a></li>
+									<li><a href="<%= request.getContextPath() %>/inquirylist.in">관리자 문의사항</a></li>
+									<li><a href="<%= request.getContextPath() %>/review.re">리뷰</a></li> 
 									<li><a href="mypage.html">mypage</a></li>
 									<li>
 										<a href="#">Submenu</a>
@@ -57,7 +58,7 @@
 									</li>
 								</ul>
 							</li>
-							<li><input type="button" value="Login" onclick="showPopup();" /></li>
+							<li><input type="button" value="Login" onclick="location.href='<%= request.getContextPath() %>/test.us'"></li>
 						</ul>
 					</nav>
 				</header>
