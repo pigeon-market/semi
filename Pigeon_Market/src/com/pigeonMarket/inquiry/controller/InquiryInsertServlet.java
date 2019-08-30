@@ -47,7 +47,7 @@ public class InquiryInsertServlet extends HttpServlet {
 		
 		
 		if(result > 0) {
-			mm
+			
 			response.setContentType("text/html; charset=UTF-8");
 			  PrintWriter out = response.getWriter();
 			  out.println("<script>alert('전송이 완료되었습니다!!!'); location.href='/Pigeon_Market/inquiry.in';</script>");
