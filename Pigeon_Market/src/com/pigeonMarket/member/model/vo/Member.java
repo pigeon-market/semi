@@ -7,7 +7,7 @@ public class Member {
 	private String userId;
 	private String userPwd;
 	private String userName;
-	private Date birthDate;
+	private String birthDate;
 	private String gender;
 	private String email;
 	private String phone;
@@ -28,7 +28,7 @@ public class Member {
 		this.email = email;
 	}
 
-	public Member(String userId, String userPwd, String userName, Date birthDate, String gender, String email,
+	public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
 			String phone, String address, Date joinDate, String withdrawal, String blackCode) {
 		super();
 		this.userId = userId;
@@ -68,11 +68,11 @@ public class Member {
 		this.userName = userName;
 	}
 
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

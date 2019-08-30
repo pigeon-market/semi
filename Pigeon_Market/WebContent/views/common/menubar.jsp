@@ -41,7 +41,11 @@
 								<a href="#" class="icon solid fa-angle-down">메뉴</a>
 								<ul>
 									<li><a href="generic.html">소개</a></li>
-									<li><a href="<%= request.getContextPath() %>/list.no">문의</a></li>
+									<li><a href="<%= request.getContextPath() %>/list.no">공지사항</a></li>
+									<li><a href="<%= request.getContextPath() %>/event.eo">이벤트</a></li>
+									<li><a href="<%= request.getContextPath() %>/inquiry.in">문의사항</a></li>
+									<li><a href="<%= request.getContextPath() %>/inquirylist.in">관리자 문의사항</a></li>
+									<li><a href="<%= request.getContextPath() %>/review.re">리뷰</a></li> 
 									<li><a href="mypage.html">mypage</a></li>
 									<li>
 										<a href="#">Submenu</a>
@@ -54,11 +58,16 @@
 									</li>
 								</ul>
 							</li>
-							<li><input type="button" value="Login" onclick="showPopup();" /></li>
+							<li><input type="button" value="Login" onclick="location.href='<%= request.getContextPath() %>/test.us'"></li>
 						</ul>
 					</nav>
 				</header>
 				
+<<<<<<< HEAD
+=======
+				
+				
+>>>>>>> origin/seungeun
 	
 		<!-- Scripts -->
 			<script src="<%= request.getContextPath()%>/resources/assets/js/jquery.min.js"></script>
