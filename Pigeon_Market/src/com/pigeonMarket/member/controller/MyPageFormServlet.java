@@ -44,6 +44,10 @@ public class MyPageFormServlet extends HttpServlet {
 		
 		ArrayList<Activity> list = new MemberService().activityList(a);
 		
+		ArrayList<String> range = new MemberDao().rangeList(list);
+		
+		ArrayList<>
+		
 		
 		
 		request.setAttribute("list", list);
