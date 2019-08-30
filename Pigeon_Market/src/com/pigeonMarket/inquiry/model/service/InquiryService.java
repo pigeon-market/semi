@@ -6,8 +6,11 @@ import static com.pigeonMarket.common.JDBCTemplate.getConnection;
 import static com.pigeonMarket.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
+import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.event.model.dao.EventDao;
+import com.pigeonMarket.event.model.vo.Event;
 import com.pigeonMarket.inquiry.model.dao.InquiryDao;
 import com.pigeonMarket.inquiry.model.vo.Inquiry;
 
@@ -30,8 +33,22 @@ public class InquiryService {
 	}
 
 	public int getListCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection conn = getConnection();
+		
+		int listCount = new InquiryDao().getListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+
+	public ArrayList<Inquiry> selectList(PageInfo page) {
+		Connection conn = getConnection();
+		ArrayList<Inquiry> list = new InquiryDao().selectList(conn, page);
+		
+		close(conn);
+		
+		return list;
 	}
 
 

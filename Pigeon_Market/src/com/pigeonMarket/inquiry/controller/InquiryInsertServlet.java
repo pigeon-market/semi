@@ -1,6 +1,8 @@
 package com.pigeonMarket.inquiry.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,18 +37,22 @@ public class InquiryInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
+		String id = request.getParameter("userId");
 		String title = request.getParameter("inquiryTitle");
 		String content = request.getParameter("inquiryContent");
-		String id = request.getParameter("userId");
 		
 		Inquiry i = new Inquiry(id, title, content);
 		
 		int result = new InquiryService().insertInquiry(i);
 		
+		
 		if(result > 0) {
-
-			response.sendRedirect("/inquirylist.in"); // 공지사항 리스트 출력하는 서블릿 호출
-
+			
+			response.setContentType("text/html; charset=UTF-8");
+			  PrintWriter out = response.getWriter();
+			  out.println("<script>alert('전송이 완료되었습니다!!!'); location.href='/Pigeon_Market/inquiry.in';</script>");
+			// response.sendRedirect("inquiry.in"); // 공지사항 리스트 출력하는 서블릿 호출
+			  
 		}else {
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
 		}

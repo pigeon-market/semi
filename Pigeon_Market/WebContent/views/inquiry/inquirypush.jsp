@@ -28,20 +28,19 @@
 						<p>육하 원칙에 의거하여 문의 주세요</p>
 					</header>
 					<div class="box">
-						<form action="<%= request.getContextPath() %>/update.in" method="post">
-						<input type="hidden" name="nno" value="<%= i.getInquiryNo() %>">
+						<form action="<%= contextPath %>/insert.in" method="post">
 							<table>
 						<div class="row gtr-50 gtr-uniform">
 							<tr>
 								<div class="col-6 col-12-mobilep">
 									<td>아이디</td>
-									<td colspan="3"><input type="text" style="background-color:white" name="userId" id="userId" value="<%= i.getUserId() %>" placeholder="아이디" /></td>
+									<td colspan="3"><input type="text" style="background-color:white" name="userId" id="userId" value="<%= loginUser.getUserId() %>" placeholder="아이디" readonly /></td>
 								</div>
 							</tr>
 							<tr>
 								<div class="col-12">
 									<td>제목</td>
-									<td colspan="3"><input type="text"  style="background-color:white" name="inquiryTitle" id="inquiryTitle" value="<%= i.getInquiryTitle() %>" placeholder="제목" /></td>
+									<td colspan="3"><input type="text"  style="background-color:white" name="inquiryTitle" id="inquiryTitle" placeholder="제목" /></td>
 								</div>
 							</tr>
 							<tr>
@@ -49,12 +48,12 @@
 									<td>내용</td>
 									<td>&nbsp;</td>
 									<td>   작성일</td>
-									<td><%= i.getInquiryDate() %></td>
+									<td><%= today %></td>
 							
 							</tr>
 							<tr>
 								
-									<td colspan="4"><textarea name="inquiryContent" style="background-color:white; resize: none;" id="inquiryContent" placeholder="내용" rows="6"><%= i.getInquiryContent() %></textarea></td>
+									<td colspan="4"><textarea name="inquiryContent" style="background-color:white; resize: none;" id="inquiryContent" placeholder="내용" rows="6"></textarea></td>
 								
 							</tr>
 								</div>

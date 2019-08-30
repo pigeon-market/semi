@@ -15,6 +15,7 @@ import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.event.model.service.EventService;
 import com.pigeonMarket.event.model.vo.Event;
 import com.pigeonMarket.inquiry.model.service.InquiryService;
+import com.pigeonMarket.inquiry.model.vo.Inquiry;
 
 /**
  * Servlet implementation class InquiryListServlet
@@ -44,7 +45,7 @@ public class InquiryListServlet extends HttpServlet {
 		
 		 PageInfo page = new PageInfo(pi.getCurrentPage(), pi.getBoardLimit());
 		 
-		 ArrayList<Event> list = new EventService().selectList(page); 	
+		 ArrayList<Inquiry> list = new InquiryService().selectList(page); 	
 
 		// request에 전달값 담기
 		request.setAttribute("list", list);
@@ -52,7 +53,7 @@ public class InquiryListServlet extends HttpServlet {
 		
 	
 		
-		request.getRequestDispatcher("views/event/eventListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/inquiry/inquiryListView.jsp").forward(request, response);
 		
 	
 	}
