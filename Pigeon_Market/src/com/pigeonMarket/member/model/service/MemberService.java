@@ -91,7 +91,7 @@ public class MemberService {
 		return m;
 	}
 
-	public int deleteMember(int memberNo) {
+	public int deleteMember(String memberNo) {
 		Connection conn = getConnection();
 		
 		int result = new MemberDao().deleteMember(conn, memberNo);

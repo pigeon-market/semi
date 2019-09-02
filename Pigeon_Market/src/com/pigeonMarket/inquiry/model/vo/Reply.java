@@ -1,20 +1,20 @@
-package com.pigeonMarket.blackList.model.vo;
+package com.pigeonMarket.inquiry.model.vo;
 
 import java.sql.Date;
 
-public class BlackList {
-
+public class Reply {
+	
 	private int reportNo;
 	private String blackId;
 	private String reporterId;
 	private Date reproterDate;
 	private String reporterReason;
 	
-	public BlackList() {
+	public Reply() {
 		
 	}
 
-	public BlackList(int reportNo, String blackId, String reporterId, Date reproterDate, String reporterReason) {
+	public Reply(int reportNo, String blackId, String reporterId, Date reproterDate, String reporterReason) {
 		super();
 		this.reportNo = reportNo;
 		this.blackId = blackId;
@@ -65,10 +65,10 @@ public class BlackList {
 
 	@Override
 	public String toString() {
-		return "BlackList [reportNo=" + reportNo + ", blackId=" + blackId + ", reporterId=" + reporterId
-				+ ", reproterDate=" + reproterDate + ", reporterReason=" + reporterReason + "]";
+		return "Reply [reportNo=" + reportNo + ", blackId=" + blackId + ", reporterId=" + reporterId + ", reproterDate="
+				+ reproterDate + ", reporterReason=" + reporterReason + "]";
 	}
 	
 	
-	
+
 }

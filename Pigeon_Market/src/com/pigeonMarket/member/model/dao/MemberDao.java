@@ -241,7 +241,7 @@ public Member selectMember(Connection conn, int memberNo) {
 	return m;
 }
 
-public int deleteMember(Connection conn, int memberNo) {
+public int deleteMember(Connection conn, String memberNo) {
 	PreparedStatement pstmt = null;
 	int result = 0;
 	
@@ -249,7 +249,7 @@ public int deleteMember(Connection conn, int memberNo) {
 	
 	try {
 		pstmt = conn.prepareStatement(query);
-		pstmt.setInt(1, memberNo);
+		pstmt.setString(1, memberNo);
 		
 		result = pstmt.executeUpdate();
 	}catch(SQLException e) {

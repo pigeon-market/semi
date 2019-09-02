@@ -97,7 +97,7 @@
 		</div>
 	</div>
 	<form action="" id="detailForm" method="post">
-		<input type="hidden" name="nno" value="<%= m.getRnum() %>">
+		<input type="hidden" name="userId" value="<%= m.getUserId() %>">
 	</form>
 	<%@ include file="../common/foot.jsp" %>
 	<script>
