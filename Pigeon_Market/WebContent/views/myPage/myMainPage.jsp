@@ -7,6 +7,8 @@
 	ArrayList<Activity> aList = (ArrayList<Activity>)request.getAttribute("aList");
 	ArrayList<String> range = (ArrayList<String>)request.getAttribute("range");
 	
+	
+	
 	int maxNum = 0;
 	int viewNum = 0;
 	String status = "";
@@ -28,6 +30,20 @@
 
 hr {
 	border: 1px solid rgba(79, 106, 228, 0.685);
+}
+
+.listTable{
+
+	width:100%;
+	padding-left:5%;
+	padding-right:5%;
+}
+.imgDiv, .statusDiv, .titleDiv{
+	
+	display:inline-block;
+
+	
+	
 }
 </style>
 
@@ -111,22 +127,35 @@ hr {
 
 								}%>
 
-			
-								<%= status %>     
-								
+								<div class="listTable">
+									<input type="hidden" value="<%= aList.get(i).getbNo() %>_<%= aList.get(i).getStatus()%>">
+									<div class="statusDiv">
+										<%= status %>     
+									</div>
+									<div class="imgDiv">
 								<% if(aList.get(i).getChangeName() != null ) {%>
 									<img src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName() %>" width="200px" height="150px"> 
 					
 							
 								<% } %>
-									
+									</div>
+									<div class="titleDiv">		
 								<%= aList.get(i).getTitle() %>
+									</div>
+										<hr>
+								</div>
+							
+									
+											<br>
 									
 								<%} %>
 								<hr>
-					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; } %>
-
-				</form>
+					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; %>
+					
+							
+					<%} %>
+					
+					</form>
 				</section>
 
 			</div>
@@ -139,6 +168,23 @@ hr {
 	</div>
 
 <%@ include file="../common/foot.jsp"%>
+
+<script>
+	$(function() {
+		$(".listTable div").mouseenter(function() {
+			$(this).parent().css({"cursor": "pointer"});
+			$(this).parent().children().css({"background":"yellow"});
+		}).click(function() {
+			var bId = 
+		}).mouseout(function() {
+			$(this).parent().children().css({"background":"white"});
+		});
+		
+	});
+
+
+</script>
+
 
 </body>
 </html>
