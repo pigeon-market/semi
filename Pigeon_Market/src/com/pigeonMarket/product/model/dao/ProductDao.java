@@ -22,11 +22,12 @@ public class ProductDao {
 	
 	public ProductDao() {
 		
-		String fileName = ProductDao.class.getResource("/sql/board/board-query.properties").getPath();
+		String fileName = ProductDao.class.getResource("/com/pigeonMarket/sql/product/product-query.properties").getPath();
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("파일로드 불가");
 		}
 
 		
@@ -257,6 +258,42 @@ public class ProductDao {
 			close(pstmt);
 		}		
 		return file;
+	}
+
+	public ArrayList<ProductSale> selectcgPrList(Connection conn, String categoryCode) {
+		ArrayList<ProductSale> prList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectcgPrList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, categoryCode);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				prList.add(new ProductSale(rset.getInt("PRODUCT_OK_NO"),
+										   rset.getString("P_ID"),
+										   rset.getInt("PRICE"),
+										   rset.getString("CATEGORY_CODE"),
+										   rset.getString("PRODUCT_TITLE"),
+										   rset.getString("PRODUCT_CONTENTS"),
+										   rset.getDate("REG_DATE"),
+										   rset.getDate("APPROVAL_DATE"),
+										   rset.getString("PRODUCT_STATE"),
+										   rset.getString("STATUS")	));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return prList;
 	}		
 	
 

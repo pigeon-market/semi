@@ -35,6 +35,10 @@ public class ProductService {
 	}
 
 
+	/** 
+	 * 판매 리스트 정보 불러오기
+	 * @return
+	 */
 	public ArrayList<ProductSale> selectprList() {
 		
 		Connection conn = getConnection();
@@ -43,9 +47,14 @@ public class ProductService {
 		
 		close(conn);
 		return prList;
+
 	}
 
 
+	/**
+	 *  판매 리스트 사진 불러오기
+	 * @return
+	 */
 	public ArrayList<Attachment> selectAtList() {
 		Connection conn = getConnection();
 
@@ -75,6 +84,25 @@ public class ProductService {
 		return file;
 		
 	}
+
+
+	/**
+	 * 선택된 카테고리의 상품리스트
+	 * @param categoryCode
+	 * @return
+	 */
+	public ArrayList<ProductSale> selectcgPrList(String categoryCode) {
+		
+		Connection conn = getConnection();
+
+		ArrayList<ProductSale> prList = new ProductDao().selectcgPrList(conn, categoryCode);
+		
+		close(conn);
+		return prList;
+
+	}
+
+
 	
 	
 

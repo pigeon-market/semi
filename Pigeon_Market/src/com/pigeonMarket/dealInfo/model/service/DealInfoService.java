@@ -48,7 +48,7 @@ public class DealInfoService {
 		
 	}
 	
-	public Deal selectDeal(int no) {
+/*	public Deal selectDeal(int no) {
 		
 		Connection conn = getConnection();
 		
@@ -58,7 +58,7 @@ public class DealInfoService {
 		
 		return d;
 		
-	}
+	}*/
 	
 
 
