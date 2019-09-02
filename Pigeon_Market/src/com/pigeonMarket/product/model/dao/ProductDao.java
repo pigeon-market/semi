@@ -147,7 +147,7 @@ public class ProductDao {
 	/**
 	 *  상품사진 썸네일 리스트
 	 * @param conn
-	 * @return 사진 리스트  fileLever = 0
+	 * @return 사진 리스트  fileLever = 1
 	 */
 	public ArrayList<Attachment> selectAtList(Connection conn) {
 		
@@ -223,7 +223,7 @@ public class ProductDao {
 	}
 
 	/** 
-	 * 상품 상세사진 리스트    FILE_LEVER 1  빼고 가져오기 1인 인증용으로만 사용함 
+	 * 상품 상세사진 리스트    FILE_LEVER 1  빼고 가져오기 2인 인증용으로만 사용함 
 	 * @param conn
 	 * @param productOkNo
 	 * @return

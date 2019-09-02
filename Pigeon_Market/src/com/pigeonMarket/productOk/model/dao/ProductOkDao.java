@@ -8,10 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.eclipse.jdt.internal.compiler.ast.Statement;
 
 import com.pigeonMarket.productOk.model.vo.ProductOk;
 
@@ -33,6 +33,7 @@ public class ProductOkDao {
 	
 	
 	public int getListCount(Connection conn) {
+		
 		int listCount = 0;
 		
 		Statement stmt = null;
@@ -84,16 +85,11 @@ public class ProductOkDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Board(rset.getInt(2),
-								   rset.getInt(3),
-								   rset.getString(4),
-								   rset.getString(5),
-								   rset.getString(6),
-								   rset.getString(7),
-								   rset.getInt(8),
-								   rset.getDate(9),
-								   rset.getDate(10),
-								   rset.getString(11)));
+				list.add(new ProductOk(rset.getInt(1),
+									   rset.getInt(2),
+									   rset.getString(3),
+									   rset.getDate(4),
+									   rset.getString(5)));
 			}
 			
 		} catch (SQLException e) {
