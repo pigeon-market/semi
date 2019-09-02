@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.pigeonMarket.inquiry.model.vo.Inquiry;
+import com.pigeonMarket.notice.model.vo.Notice;
 import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.event.model.vo.Event;
 import com.pigeonMarket.inquiry.model.dao.InquiryDao;
@@ -128,6 +129,43 @@ public class InquiryDao {
 		}
 		
 		return list;
+	}
+
+	public Inquiry selectInquiry(Connection conn, int inquiryNo) {
+		Inquiry i = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectInquiry");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, inquiryNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				i = new Inquiry(rset.getInt("RNUM"),
+							  rset.getString("INQUIRY_TITLE"),
+							  rset.getString("INQUIRY_CONTENT"),
+							  rset.getDate("INQUIRY_DATE"),
+							  rset.getString("USER_ID"),
+							  rset.getString("INQUIRY_ANSWER"),
+							  rset.getDate("ANSWER_DATE"),
+							  rset.getString("ANSWER_STATE"),
+							  rset.getString("USER_LOCK"),
+							  rset.getString("STATUS"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return i;
 	}
 
 

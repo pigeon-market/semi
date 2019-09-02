@@ -1,4 +1,4 @@
-package com.pigeonMarket.inquiry.controller;
+package com.pigeonMarket.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,22 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.inquiry.model.service.InquiryService;
-import com.pigeonMarket.inquiry.model.vo.Inquiry;
+import com.pigeonMarket.member.model.service.MemberService;
+import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.notice.model.service.NoticeService;
 import com.pigeonMarket.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class InquiryDetailServlet
+ * Servlet implementation class MimDetailServlet
  */
-@WebServlet("/detail.in")
-public class InquiryDetailServlet extends HttpServlet {
+@WebServlet("/detail.mim")
+public class MimDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InquiryDetailServlet() {
+    public MimDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +31,19 @@ public class InquiryDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int inquiryNo = Integer.parseInt(request.getParameter("nno"));
+		int MemberNo = Integer.parseInt(request.getParameter("nno"));
 		
-		Inquiry i = new InquiryService().selectInquiry(inquiryNo);
+		Member m = new MemberService().selectMember(MemberNo);
 		
-		if(i != null) {
-			request.setAttribute("i", i);
-			request.getRequestDispatcher("views/inquiry/inquiryDetailView.jsp").forward(request, response);
+		if(m != null) {
+			request.setAttribute("m", m);
+			request.getRequestDispatcher("views/manager/minDetailView.jsp").forward(request, response);
 		}else {
 			
 			
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
-		}	}
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

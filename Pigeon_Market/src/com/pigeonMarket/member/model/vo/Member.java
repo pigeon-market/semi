@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Member {
 	
+	private int rnum;
 	private String userId;
 	private String userPwd;
 	private String userName;
@@ -42,6 +43,36 @@ public class Member {
 		this.joinDate = joinDate;
 		this.withdrawal = withdrawal;
 		this.blackCode = blackCode;
+	}
+	
+	
+	
+
+	public Member(int rnum, String userId, String userPwd, String userName, String birthDate, String gender,
+			String email, String phone, String address, Date joinDate, String withdrawal, String blackCode) {
+		super();
+		this.rnum = rnum;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.joinDate = joinDate;
+		this.withdrawal = withdrawal;
+		this.blackCode = blackCode;
+	}
+	
+	
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public String getUserId() {
@@ -132,11 +163,14 @@ public class Member {
 		this.blackCode = blackCode;
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", birthDate="
-				+ birthDate + ", gender=" + gender + ", email=" + email + ", phone=" + phone + ", address=" + address
-				+ ", joinDate=" + joinDate + ", withdrawal=" + withdrawal + ", blackCode=" + blackCode + "]";
+		return "Member [rnum=" + rnum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
+				+ ", birthDate=" + birthDate + ", gender=" + gender + ", email=" + email + ", phone=" + phone
+				+ ", address=" + address + ", joinDate=" + joinDate + ", withdrawal=" + withdrawal + ", blackCode="
+				+ blackCode + "]";
 	}
 
 }

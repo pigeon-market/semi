@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@ page import="java.util.ArrayList, com.pigeonMarket.inquiry.model.vo.Inquiry, com.pigeonMarket.common.model.vo.PageInfo" %>
+    <%@ page import="java.util.ArrayList, com.pigeonMarket.member.model.vo.Member, com.pigeonMarket.common.model.vo.PageInfo" %>
 <%
-	ArrayList<Inquiry> list = (ArrayList<Inquiry>)request.getAttribute("list");
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	 PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
 	int listCount = pi.getListCount();
@@ -13,9 +13,6 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 %>
-
-
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,12 +41,8 @@
 	}
 </style>
 
-
 </head>
-
 <body>
-
-
 <%@ include file="../common/menubar.jsp" %>
 	
 	<div class="outer">
@@ -62,26 +55,26 @@
 			<table id="listArea">
 				<tr>
 					<th>글번호</th>
-					<th width="100">제목</th>
-					<th width="200">내용</th>
-					<th width="100">작성자</th>
-					<th width="100">작성일</th>
-					<th width="100">답변상태</th>
+					<th width="200">회원이름</th>
+					<th width="100">회원아이디</th>
+					<th width="100">가입일</th>
+					<th width="100">탈퇴여부</th>
+					<th width="100">블랙자여부</th>
 				</tr>
 				<%if(list.isEmpty()){ %>
 					<tr>
-						<td colspan="6">존재하는 공지사항이 없습니다.</td>
+						<td colspan="6">존재하는 회원이 없습니다.</td>
 					</tr>
 					
 				<%}else{ %>
-					<%for(Inquiry i : list){ %>
+					<%for(Member m : list){ %>
 						<tr>
-							<td><%= i.getInquiryNo() %></td>
-							<td><%= i.getInquiryTitle() %></td>
-							<td><%= i.getInquiryContent() %></td>
-							<td><%= loginUser.getUserId() %></td>
-							<td><%= i.getInquiryDate() %></td>
-							<td><%= i.getAnswerState() %></td>
+							<td><%= m.getRnum() %></td>
+							<td><%= m.getUserName() %></td>
+							<td><%= m.getUserId() %></td>
+							<td><%= m.getJoinDate() %></td>
+							<td><%= m.getWithdrawal() %></td>
+							<td><%= m.getBlackCode() %></td>
 							
 						</tr>
 					<%} %>
@@ -93,13 +86,13 @@
 		<div class="pagingArea" align="center">
 		
 			<!-- 맨처음으로 (<<) -->
-			<button onclick="location.href='<%= contextPath %>/inquirylist.in?currentPage=1'"> &lt;&lt; </button>
+			<button onclick="location.href='<%= contextPath %>/member.mim?currentPage=1'"> &lt;&lt; </button>
 			
 			<!-- 이전페이지로(<) -->
 			<%if(currentPage == 1){ %>
 			<button disabled> &lt; </button>
 			<%}else{ %>
-			<button onclick="location.href='<%= contextPath %>/inquirylist.in?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<button onclick="location.href='<%= contextPath %>/member.mim?currentPage=<%= currentPage-1 %>'"> &lt; </button>
 			<%} %>
 			
 			
@@ -109,7 +102,7 @@
 				<%if(p == currentPage){ %>
 				<button disabled> <%= p %> </button>
 				<%}else{ %>
-				<button onclick="location.href='<%=contextPath %>/inquirylist.in?currentPage=<%= p %>'"> <%= p %> </button>
+				<button onclick="location.href='<%=contextPath %>/member.mim?currentPage=<%= p %>'"> <%= p %> </button>
 				<%} %>
 				
 			<%} %>
@@ -119,11 +112,11 @@
 			<%if(currentPage == maxPage){ %>
 			<button disabled> &gt; </button>
 			<%}else { %>
-			<button onclick="location.href='<%= contextPath %>/inquirylist.in?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<button onclick="location.href='<%= contextPath %>/member.mim?currentPage=<%= currentPage+1 %>'"> &gt; </button>
 			<%} %>
 			
 			<!-- 맨끝으로(>>) -->
-			<button onclick="location.href='<%= contextPath %>/inquirylist.in?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
+			<button onclick="location.href='<%= contextPath %>/member.mim?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
 			
 		</div>
 		
@@ -158,7 +151,7 @@
 				var num = $(this).parent().children().eq(0).text();
 				
 				// 쿼리스트링을 이용하여 get방식으로 글번호를 server로 전달
-				location.href="<%= contextPath %>/detail.in?nno="+num;
+				location.href="<%= contextPath %>/detail.mim?nno="+num;
 			});
 			
 		});

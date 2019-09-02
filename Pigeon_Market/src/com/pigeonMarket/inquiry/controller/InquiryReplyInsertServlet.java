@@ -7,22 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.inquiry.model.service.InquiryService;
-import com.pigeonMarket.inquiry.model.vo.Inquiry;
-import com.pigeonMarket.notice.model.service.NoticeService;
-import com.pigeonMarket.notice.model.vo.Notice;
-
 /**
- * Servlet implementation class InquiryDetailServlet
+ * Servlet implementation class InquiryReplyInsertServlet
  */
-@WebServlet("/detail.in")
-public class InquiryDetailServlet extends HttpServlet {
+@WebServlet("/rinsert.in")
+public class InquiryReplyInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InquiryDetailServlet() {
+    public InquiryReplyInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +26,14 @@ public class InquiryDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int inquiryNo = Integer.parseInt(request.getParameter("nno"));
+		request.setCharacterEncoding("UTF-8");
 		
-		Inquiry i = new InquiryService().selectInquiry(inquiryNo);
+		String content = request.getParameter("content");
+		int nno = Integer.parseInt(request.getParameter("nno"));
+		String writer=request.getParameter("writer");
 		
-		if(i != null) {
-			request.setAttribute("i", i);
-			request.getRequestDispatcher("views/inquiry/inquiryDetailView.jsp").forward(request, response);
-		}else {
-			
-			
-			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
-		}	}
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

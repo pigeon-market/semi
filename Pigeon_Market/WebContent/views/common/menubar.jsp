@@ -48,10 +48,10 @@
 									<li><a href="<%= request.getContextPath() %>/review.re">리뷰</a></li> 
 									<li><a href="mypage.html">mypage</a></li>
 									<li>
-										<a href="#">Submenu</a>
+										<a href="#">관리자메뉴</a>
 										<ul>
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
+											<li><a href="<%= request.getContextPath() %>/member.mim">회원 정보 관리</a></li>
+											<li><a href="<%= request.getContextPath() %>/black.min">블랙리스트 관리</a></li>
 											<li><a href="#">Option Three</a></li>
 											<li><a href="#">Option Four</a></li>
 										</ul>

@@ -1,28 +1,33 @@
-package com.pigeonMarket.inquiry.controller;
+package com.pigeonMarket.member.controller;
+
+import static com.pigeonMarket.common.Paging.pagingBar;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.inquiry.model.service.InquiryService;
-import com.pigeonMarket.inquiry.model.vo.Inquiry;
+import com.pigeonMarket.common.model.vo.PageInfo;
+import com.pigeonMarket.member.model.service.MemberService;
+import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.notice.model.service.NoticeService;
 import com.pigeonMarket.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class InquiryDetailServlet
+ * Servlet implementation class MemberInformationManagementServlet
  */
-@WebServlet("/detail.in")
-public class InquiryDetailServlet extends HttpServlet {
+@WebServlet("/member.mim")
+public class MimListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InquiryDetailServlet() {
+    public MimListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +36,26 @@ public class InquiryDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int inquiryNo = Integer.parseInt(request.getParameter("nno"));
+		int listCount = new MemberService().getListCount(); 	
 		
-		Inquiry i = new InquiryService().selectInquiry(inquiryNo);
+		PageInfo pi = pagingBar(listCount,10);
 		
-		if(i != null) {
-			request.setAttribute("i", i);
-			request.getRequestDispatcher("views/inquiry/inquiryDetailView.jsp").forward(request, response);
-		}else {
-			
-			
-			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
-		}	}
+		if (request.getParameter("currentPage") != null)
+			 { pi.setCurrentPage(Integer.parseInt(request.getParameter("currentPage"))); } 	
+		
+		 PageInfo page = new PageInfo(pi.getCurrentPage(), pi.getBoardLimit());
+		 
+		 ArrayList<Member> list = new MemberService().selectList(page); 	
+
+		// request에 전달값 담기
+		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
+		
+	
+		
+		request.getRequestDispatcher("views/manager/mimListView.jsp").forward(request, response);
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
