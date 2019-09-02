@@ -65,6 +65,11 @@ public class ProductService {
 	}
 
 
+	/**
+	 * 선택된 상품 내용디테일 뷰
+	 * @param productOkNo
+	 * @return
+	 */
 	public ProductSale selectProduct(int productOkNo) {
 		Connection conn = getConnection();
 		
@@ -74,6 +79,11 @@ public class ProductService {
 	}
 
 
+	/**
+	 * 선택된 상품 사진 디테일 뷰 
+	 * @param productOkNo
+	 * @return
+	 */
 	public ArrayList<Attachment> selectAttachment(int productOkNo) {
 		
 		Connection conn = getConnection();

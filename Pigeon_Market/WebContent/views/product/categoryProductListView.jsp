@@ -98,6 +98,7 @@
 				 	<%for(Attachment at : atList){%>	<!-- 사진리스트 불러오기  -->
 						<%if(at.getProductNo() == prList.get(i).getProductOkNo()){ %> <!-- 사진상품번호 와 상품번호가 같을 경우 -->
 							<td width="25%" height="300px" >
+							<a href="<%= contextPath%>/detail.pr?pNo=<%= prList.get(i).getProductOkNo()%>" >
 							<img src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%= at.getChangeName()%>" width="100%" height="100%">
 							<p><%= prList.get(i).getProductTitle() %></p>
 							<p><%= prList.get(i).getPrice() %>원</p>
