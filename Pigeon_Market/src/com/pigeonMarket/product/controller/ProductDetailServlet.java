@@ -33,25 +33,16 @@ public class ProductDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int ProductOkNo = Integer.parseInt(request.getParameter("ProductOkNo"));
+		int pNo = Integer.parseInt(request.getParameter("pNo"));
 		
-		// 1. 해당 게시판 정보 조회!
+		ProductSale p = new ProductService().selectProduct(pNo);	
 		
-		ProductSale p = new ProductService().selectProduct(ProductOkNo);		
-		
-		// 2. 해당 게시판의 사진들 리스트 조회	
-		
-		ArrayList<Attachment> fileList  = new ProductService().selectAttachment(ProductOkNo);
+		ArrayList<Attachment> fileList  = new ProductService().selectAttachment(pNo);
 		
 		if(p != null) {
 			request.setAttribute("p", p);
 			request.setAttribute("fileList", fileList);
 			request.getRequestDispatcher("views/product/productDetailView.jsp").forward(request, response);
-			
-		}else {
-			
-			request.setAttribute("msg", "상품 상세보기 실패!!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);			
 			
 		}
 		

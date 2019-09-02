@@ -93,13 +93,12 @@
 						<%for(Attachment at : atList){%>	<!-- 사진리스트 불러오기  -->
 								<%if(at.getProductNo() == ps.getProductOkNo()){ %> <!-- 사진상품번호 와 상품번호가 같을 경우 -->
 									<td width="25%" height="300px">
-										<input type="hidden" id ="pNo" value="<%= ps.getProductOkNo() %>">
-										</td>
-										<td>
+									<a href="<%= contextPath%>/detail.pr?pNo=<%= ps.getProductOkNo()%>" >
 										<img src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%= at.getChangeName()%>" width="100%" height="100%">
 										<p><%= ps.getProductTitle() %></p>
 										<P><%= ps.getPrice() %>원</p>
-										</td>
+									</a>
+									</td>
 									
 								<%} %>
 							<% } %>
@@ -119,31 +118,7 @@
 	</section>
 
 	<%@ include file="../common/foot.jsp"%>
-	<script>
 	
-	/* 	$(function() {
-			
-			$("#detail td").click(function() {
-				var bId = $(this).parent().children().eq(0).val();
-				
-			}).css("background", "black");
-			
-		}); */
-		
-		$(function(){
-			$("#detail td").mouseenter(function(){
-				$(this).parent().css({"background":"darkgray","cursor":"pointer"});
-			}).mouseout(function(){
-				$(this).parent().css("background", "black");
-			}).click(function(){
-				var bId = $(this).parent().children().eq(0).val();
-				
-				
-			});
-		});
-		
-	
-	</script>
 
 
 </body>
