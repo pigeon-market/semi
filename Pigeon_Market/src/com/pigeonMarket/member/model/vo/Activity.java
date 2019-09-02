@@ -10,8 +10,11 @@ public class Activity implements java.io.Serializable{
 	private String aDate;
 	private int period;
 	private int limitCount;
+	private int bNo;
 	private String status;
 	private String title;
+	private String changeName;
+	
 	
 	public Activity() {
 		
@@ -19,12 +22,14 @@ public class Activity implements java.io.Serializable{
 	
 	
 
-	public Activity(String userId, String aDate, String status, String title) {
+	public Activity(String userId, String aDate, String status, int bNo, String title, String changeName) {
 		super();
 		this.userId = userId;
 		this.aDate = aDate;
 		this.status = status;
+		this.bNo = bNo;
 		this.title = title;
+		this.changeName = changeName;
 	}
 
 
@@ -120,19 +125,31 @@ public class Activity implements java.io.Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public String getChangeName() {
+		return changeName;
+	}
+	
+	public void setChangeName(String changeName) {
+		this.changeName = changeName;
+	}
+	
+	public void setbNo(int bNo) {
+		this.bNo = bNo;
+	}
+	
+	public int getbNo() {
+		return bNo;
+	}
 
 
 
 	@Override
 	public String toString() {
 		return "Activity [userId=" + userId + ", aDate=" + aDate + ", period=" + period + ", limitCount=" + limitCount
-				+ ", status=" + status + ", title=" + title + "]";
+				+ ", status=" + status + ", title=" + title + ", changeName=" + changeName + "]";
 	}
 
-	
-	
 
-	
-	
 
 }

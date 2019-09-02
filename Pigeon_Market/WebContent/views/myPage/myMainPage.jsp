@@ -6,7 +6,10 @@
 
 	ArrayList<Activity> aList = (ArrayList<Activity>)request.getAttribute("aList");
 	ArrayList<String> range = (ArrayList<String>)request.getAttribute("range");
-
+	
+	int maxNum = 0;
+	int viewNum = 0;
+	String status = "";
 	
 	
 %>
@@ -18,7 +21,6 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="assets/css/main.css" />
 <style>
 .col-3 {
 	text-align: center;
@@ -33,7 +35,7 @@ hr {
 
 
 <body class="is-preload">
-<%@ include file="../common/menubar.jsp"%>
+		<%@ include file="../common/menubar.jsp" %>
 	<div id="page-wrapper">
 
 
@@ -49,21 +51,21 @@ hr {
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
 						<div class="col-12" style="text-align: center">
-							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>개인정보수정
+						<!-- 	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>개인정보수정 -->
 						</div>
 
 						
 						<div class="col-3">
-							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>활동조회
+						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>활동조회  -->
 						</div>
 						<div class="col-3">
-							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>판매조회
+						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>판매조회 -->
 						</div>
 						<div class="col-3">
-							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>구매조회
+						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>구매조회 -->
 						</div>
 						<div class="col-3">
-							<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회
+						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
 						</div>
 
 					</div>
@@ -74,15 +76,55 @@ hr {
 				<!-- Text -->
 				<section class="box">
 				<form>
-				
-				<% %>
 					<h2>최근 활동 기록</h2>
-					<h3>날짜 가지고 올꺼임</h3>
-					<p>판매, 구매, 활동 등등</p>
+					
+					
+					<% while(maxNum < aList.size()) { %>
+					
+							<h3><%= aList.get(maxNum).getaDate() %></h3>
+							
+							<% for(int i = maxNum ; i< Integer.parseInt(range.get(viewNum)) ; i++) { %>
 
-					<hr>
 
-					IF 판매자일때 테이블이랑 IF 구매자일때 테이블이랑 IF 로그인할때랑 나뉘어야함
+								<% switch(aList.get(i).getStatus()) { 
+										case "SIGNIN" : 
+											status = "회원가입";
+											break;
+										case "INQUIRY_Q" : 
+											status = "문의등록";
+											break;
+										case "INQUIRY_A" : 
+											status = "문의답변";
+											break;
+										case "PRODUCT_R" : 
+											status = "판매등록";
+											break;
+										case "PRODUCT_E" : 
+											status = "판매완료";
+											break;
+										case "PRODUCT_A" : 
+											status = "판매승인";
+											break;
+										case "REVIEW" : 
+											status = "리뷰작성";
+											break;
+
+								}%>
+
+			
+								<%= status %>     
+								
+								<% if(aList.get(i).getChangeName() != null ) {%>
+									<img src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName() %>" width="200px" height="150px"> 
+					
+							
+								<% } %>
+									
+								<%= aList.get(i).getTitle() %>
+									
+								<%} %>
+								<hr>
+					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; } %>
 
 				</form>
 				</section>

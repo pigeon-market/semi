@@ -24,7 +24,7 @@ public class MemberDao {
 	public MemberDao() {
 		
 		String fileName = MemberDao.class.getResource("/com/pigeonMarket/sql/member/member-query.properties").getPath();
-		// ��ġ���� ����
+
 		
 		try {
 			prop.load(new FileReader(fileName));
@@ -46,7 +46,7 @@ public class MemberDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("activiyCount");
+		String sql = prop.getProperty("activityList");
 		
 		ResultSet rset = null;
 		
@@ -60,7 +60,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Activity(rset.getString("ID"), rset.getString("DATE"), rset.getString("STATUS"), rset.getString("title")));
+				list.add(new Activity(rset.getString("ID"), rset.getString("DATE"), rset.getString("DO"), rset.getInt("NO"), rset.getString("title"), rset.getString("TNAME")));
 			}
 			
 			
@@ -81,17 +81,30 @@ public class MemberDao {
 		
 		int num = 0;
 		
+		
+		
 		while(num<aList.size()) {
-			
+		
 			for(num = groupNum ; num < aList.size() ; num++) {
+				
 				if(!((aList.get(num).getaDate()).equals(aList.get(groupNum).getaDate()))) {
-					list.add(String.valueOf(num));
+					
+					
+					String listAdd = String.valueOf(num);
+					
+					list.add(listAdd);
 					groupNum=num;
 					break;
 				}
 			
 			}
+
 		}
+		
+		if(list.isEmpty()) {
+			list.add(String.valueOf(aList.size()));
+		}
+
 		
 		return list;
 		

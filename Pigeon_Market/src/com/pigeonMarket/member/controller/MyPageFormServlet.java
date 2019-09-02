@@ -45,10 +45,10 @@ public class MyPageFormServlet extends HttpServlet {
 		ArrayList<Activity> aList = new MemberService().activityList(a);
 		
 		ArrayList<String> range = new MemberDao().rangeList(aList);
-
 		
 		request.setAttribute("range", range);
-		request.setAttribute("list", aList);
+		request.setAttribute("aList", aList);
+
 		
 		request.getRequestDispatcher("views/myPage/myMainPage.jsp").forward(request, response);
 	}
