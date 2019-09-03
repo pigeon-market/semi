@@ -5,7 +5,6 @@
 	ArrayList<ProductSale> prList = (ArrayList<ProductSale>)request.getAttribute("prList");
 	ArrayList<Attachment> atList = (ArrayList<Attachment>)request.getAttribute("atList");
 	ArrayList<Category> cgList = (ArrayList<Category>)request.getAttribute("cgList");
-	
 %>
 <!DOCTYPE html>
 <html>
