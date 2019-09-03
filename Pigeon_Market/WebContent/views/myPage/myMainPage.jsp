@@ -13,7 +13,6 @@
 	int viewNum = 0;
 	String status = "";
 	
-	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -32,18 +31,23 @@ hr {
 	border: 1px solid rgba(79, 106, 228, 0.685);
 }
 
-.listTable{
-
-	width:100%;
-	padding-left:5%;
-	padding-right:5%;
+.listTable {
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
 }
-.imgDiv, .statusDiv, .titleDiv{
-	
-	display:inline-block;
 
-	
-	
+.imgDiv, .statusDiv, .titleDiv {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#info {
+	text-align: center;
+}
+
+#infoImg{
+	height:50px;
 }
 </style>
 
@@ -51,14 +55,14 @@ hr {
 
 
 <body class="is-preload">
-		<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="../common/menubar.jsp"%>
 	<div id="page-wrapper">
 
 
 		<!-- Main -->
 		<section id="main" class="container"> <header>
 		<h2>MyPage</h2>
-		
+
 
 		</header>
 		<div class="row">
@@ -66,20 +70,28 @@ hr {
 				<section>
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
-						<div class="col-12" style="text-align: center" >
-						<span class="image fit" onclick="location.href='<%= contextPath %>/Activity.me?status=all&page=1&group=15&period=&date='"><img src="<%= contextPath %>/resources/images/pic04.jpg">개인정보수정</span>
+						<div class="col-12" id="info">
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+								<img id="infoImg" src="<%=contextPath%>/resources/images/pic04.jpg">개인정보수정</span>
 						</div>
 						<div class="col-3">
-						<span class="image fit" onclick="location.href='<%= contextPath %>/Activity.me?status=all&page=1&group=15&period=&date='"><img src="<%= contextPath %>/resources/images/pic04.jpg">활동조회</span>
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">활동조회</span>
 						</div>
 						<div class="col-3">
-						<span class="image fit" onclick="location.href='<%= contextPath %>/Activity.me?status=sell&page=1&group=15&period=&date='"><img src="<%= contextPath %>/resources/images/pic04.jpg">판매조회</span>
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">판매조회</span>
 						</div>
 						<div class="col-3">
-						<span class="image fit" onclick="location.href='<%= contextPath %>/Activity.me?status=buy&page=1&group=15&period=&date='"><img src="<%= contextPath %>/resources/images/pic04.jpg">구매조회</span>
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
 						</div>
 						<div class="col-3">
-						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
+							<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
 						</div>
 
 					</div>
@@ -101,33 +113,39 @@ hr {
 
 
 								<% switch(aList.get(i).getStatus()) { 
-										case "SIGNIN" : 
-											status = "회원가입";
-											break;
-										case "INQUIRY_Q" : 
-											status = "문의등록";
-											break;
-										case "INQUIRY_A" : 
-											status = "문의답변";
-											break;
-										case "PRODUCT_R" : 
-											status = "판매등록";
-											break;
-										case "PRODUCT_E" : 
-											status = "판매완료";
-											break;
-										case "PRODUCT_A" : 
-											status = "판매승인";
-											break;
-										case "REVIEW" : 
-											status = "리뷰작성";
-											break;
+								case "signin" : 
+									status = "회원가입";
+									break;
+								case "inq_q" : 
+									status = "문의등록";
+									break;
+								case "inq_a" : 
+									status = "문의답변";
+									break;
+								case "sell_r" : 
+									status = "판매등록";
+									break;
+								case "sell_e" : 
+									status = "판매완료";
+									break;
+								case "buy" :
+									status = "구매완료";
+									break;
+								case "sell_a" : 
+									status = "판매승인";
+									break;
+								case "review" : 
+									status = "리뷰작성";
+									break;
 
 								}%>
 
 								<div class="listTable">
+									<input type="hidden" value="<%= aList.get(i).getStatus()%>">
+									<input type="hidden" value="<%= aList.get(i).getrNo()%>">
+									
 									<div class="statusDiv">
-										<%= status %>     
+										<%= status %> 
 									</div>
 									<div class="imgDiv">
 								<% if(aList.get(i).getChangeName() != null ) {%>
@@ -171,7 +189,10 @@ hr {
 			$(this).parent().css({"cursor": "pointer"});
 			$(this).parent().children().css({"background":"yellow"});
 		}).click(function() {
-
+			var st = $(this).parent().children().eq(0).val();
+			var no = $(this).parent().children().eq(1).val();
+		
+			location.href="<%= contextPath %>/detail.deal?status="+st+"&no="no;
 			
 		}).mouseout(function() {
 			$(this).parent().children().css({"background":"white"});

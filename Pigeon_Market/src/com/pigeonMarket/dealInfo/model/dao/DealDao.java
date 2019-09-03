@@ -86,26 +86,30 @@ public class DealDao {
 
 		ResultSet rset = null;
 
-		String status = a.getStatus();
+		if(a.getStatus().equals("all")) {
+			a.setStatus("");
+		}
 		
-		int i = status.indexOf("_");
-		
-		if(i >= 0) {
-			status = status.substring(0, i);
+		if(a.getaDate().equals("SYSDATE")) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			Date currentTime = new Date();
+			a.setaDate(sdf.format(currentTime));
 		}
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, a.getUserId());
-			pstmt.setString(2, status + "%");
-			pstmt.setString(3, "TO_DATE(" + a.getaDate() + ")+" + a.getPeriod());
-
+			pstmt.setString(2, a.getStatus() + "%");
+			pstmt.setString(3, a.getaDate());
+			pstmt.setInt(4, a.getPeriod());
+			
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
 				listCount = rset.getInt(1);
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,7 +117,7 @@ public class DealDao {
 			close(rset);
 			close(pstmt);
 		}
-
+		
 		return listCount;
 
 	}
@@ -173,12 +177,8 @@ public class DealDao {
 			a.setaDate(sdf.format(currentTime));
 		}
 		
-		System.out.println(a.getaDate());
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
-			a.setaDate("20190903");
 
 			pstmt.setString(1, a.getUserId());
 			pstmt.setString(2, a.getStatus() + "%");
@@ -198,44 +198,8 @@ public class DealDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.println(list.size());
 
 		return list;
-	}
-	
-	
-
-
-
-	public int buyListCount(Connection conn, String userId) {
-
-		int listCount = 0;
-
-		Statement stmt = null; // sql구문이 완성물일때
-		ResultSet rset = null;
-
-		String sql = prop.getProperty("buyListCount");
-
-		try {
-			stmt = conn.createStatement();
-
-			rset = stmt.executeQuery(sql);
-
-			if (rset.next()) {
-				listCount = rset.getInt(1);
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(stmt);
-		}
-
-		return listCount;
-
 	}
 
 }

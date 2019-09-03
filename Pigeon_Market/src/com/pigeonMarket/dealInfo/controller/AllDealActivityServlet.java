@@ -47,12 +47,6 @@ public class AllDealActivityServlet extends HttpServlet {
 			period = Integer.parseInt(request.getParameter("period"));
 		}
 		
-		System.out.println(period);
-		
-		if(request.getParameter("group") != null) {
-			Integer.parseInt(request.getParameter("group"));
-		}
-		
 		String date = "SYSDATE";
 		
 		if(request.getParameter("date") != "") {
@@ -61,10 +55,10 @@ public class AllDealActivityServlet extends HttpServlet {
 		
 		Activity a = new Activity(userId, status, period, date);
 		
-		int limitCount = 15;
+		int limitCount = 9999;
 		
-		if(request.getParameter("limitCount") != null) {
-			limitCount = Integer.parseInt(request.getParameter("limitCount"));
+		if(request.getParameter("group") != "") {
+			limitCount = Integer.parseInt(request.getParameter("group"));
 		}
 		
 		int listCount = new DealService().getListCount(a); 	
@@ -75,8 +69,6 @@ public class AllDealActivityServlet extends HttpServlet {
 			 { pi.setCurrentPage(Integer.parseInt(request.getParameter("page"))); }
 		
 		PageInfo page = new PageInfo(pi.getCurrentPage(), pi.getBoardLimit());
-		
-		System.out.println(pi.getBoardLimit());
 		
 		ArrayList<Activity> aList = new DealService().activityList(a, page);
 		
