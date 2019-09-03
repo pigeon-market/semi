@@ -102,6 +102,40 @@ public class ProductOkDao {
 		return list;
 	}
 	
+
+	
+	
+	public ProductOk selectProductOkDetail(Connection conn, int productOkNo) {
+		
+		ProductOk p = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductOk");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productOkNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new ProductOk(rset.getInt("product_ok_no"),
+							  	  rset.getInt("product_no"),
+							  	  rset.getDate("approval_date"),
+							  	  rset.getInt("p_id"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return p;
+	}
 	
 	
 	
