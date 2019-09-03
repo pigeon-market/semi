@@ -18,9 +18,8 @@
 <style>
 	.outer{
 		width:800px;
-		height:500px;
-		background:black;
-		color:white;
+		height:750px;
+		color:black;
 		margin-left:auto;
 		margin-right:auto;
 		margin-top:50px;
@@ -48,7 +47,7 @@
 				<table>
 					<tr>
 						<td>제목</td>
-						<td colspan="3"><input type="text" size="50" name="title"></td>
+						<td colspan="3"><input type="text" size="50" name="noticetitle"></td>
 					</tr>
 					<tr>
 						<td>작성일</td>
@@ -59,7 +58,7 @@
 					</tr>
 					<tr>
 						<td colspan="4">
-							<textarea name="content" cols="60" rows="15" style="resize:none;"></textarea>
+							<textarea name="noticeContent" cols="60" rows="15" style="resize:none;"></textarea>
 						</td>
 					</tr>
 				</table>
@@ -72,6 +71,8 @@
 			</form>
 		</div>
 	</div>
-
+	
+	
+	<%@ include file="../common/foot.jsp" %>
 </body>
 </html>
