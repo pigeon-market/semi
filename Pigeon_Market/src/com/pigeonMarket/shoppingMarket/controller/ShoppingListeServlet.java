@@ -28,7 +28,7 @@ public class ShoppingListeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
-		String userId= request.getSession().getAttribute("logInUser")
+		String userId= request.getSession().getAttribute("logInUser").;
 				
 		
 	
