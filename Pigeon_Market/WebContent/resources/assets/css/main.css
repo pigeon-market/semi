@@ -2095,9 +2095,6 @@
 		text-decoration: none;
 		width: 100%;
 	}
-	select{
-	width :20%;
-	}
 
 		input[type="text"]:invalid,
 		input[type="password"]:invalid,
@@ -2677,14 +2674,13 @@
 	table {
 		margin: 0 0 2em 0;
 		width: 100%;
-		
 	}
 
 		table tbody tr {
 			border: solid 1px #e5e5e5;
 			border-left: 0;
 			border-right: 0;
-		
+
 		}
 
 			table tbody tr:nth-child(2n + 1) {
@@ -2719,7 +2715,6 @@
 				border: solid 1px #e5e5e5;
 				border-left-width: 0;
 				border-top-width: 0;
-					
 			}
 
 				table.alt tbody tr td:first-child {

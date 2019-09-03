@@ -10,7 +10,7 @@
 	Date date = new Date();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 	String today = sdf.format(date); // 2019-08-14
 %>
 <!DOCTYPE html>
@@ -45,17 +45,17 @@
 								</div>
 							</tr>
 							<tr>
-								
+
 									<td>내용</td>
 									<td>&nbsp;</td>
 									<td>   작성일</td>
 									<td><%= i.getInquiryDate() %></td>
-							
+
 							</tr>
 							<tr>
-								
+
 									<td colspan="4"><textarea name="inquiryContent" style="background-color:white; resize: none;" id="inquiryContent" placeholder="내용" rows="6"><%= i.getInquiryContent() %></textarea></td>
-								
+
 							</tr>
 								</div>
 							</table>
@@ -82,6 +82,6 @@
 				$("#detailForm").submit();
 			}
 			</script>
-	
+
 </body>
 </html>

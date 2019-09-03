@@ -33,7 +33,7 @@ public class DetailInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int productNo = Integer.parseInt(request.getParameter("productNo"));
+/*		int productNo = Integer.parseInt(request.getParameter("productNo"));
 		
 		// 1. 해당 게시판 정보 조회!
 		
@@ -49,7 +49,7 @@ public class DetailInfoServlet extends HttpServlet {
 		} else {
 			request.setAttribute("msg", "사진게시판 상세보기 실패");
 			request.getRequestDispatcher("views/common/errorPage.js").forward(request, response);
-		}
+		}*/
 		
 	}
 

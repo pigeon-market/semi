@@ -3,10 +3,10 @@
 <%@ page import = "com.pigeonMarket.member.model.vo.Member" %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
-	
+
 	// 세션에 담겨있는 메세지 받기
 	String msg = (String)session.getAttribute("msg");
-	
+
 	String contextPath = request.getContextPath();
 %>
 
@@ -20,7 +20,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="<%= request.getContextPath()%>/resources/assets/css/main.css" />	
+<link rel="stylesheet" href="<%= request.getContextPath()%>/resources/assets/css/main.css" />
 
 <link rel="shortcut icon" href="dulgi.ico">
 <link rel="icon" href="dulgi.ico">
@@ -45,13 +45,13 @@
 									<li><a href="<%= request.getContextPath() %>/event.eo">이벤트</a></li>
 									<li><a href="<%= request.getContextPath() %>/inquiry.in">문의사항</a></li>
 									<li><a href="<%= request.getContextPath() %>/inquirylist.in">관리자 문의사항</a></li>
-									<li><a href="<%= request.getContextPath() %>/review.re">리뷰</a></li> 
+									<li><a href="<%= request.getContextPath() %>/review.re">리뷰</a></li>
 									<li><a href="mypage.html">mypage</a></li>
 									<li>
-										<a href="#">Submenu</a>
+										<a href="#">관리자메뉴</a>
 										<ul>
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
+											<li><a href="<%= request.getContextPath() %>/member.mim">회원 정보 관리</a></li>
+											<li><a href="<%= request.getContextPath() %>/black.bl">블랙리스트 관리</a></li>
 											<li><a href="#">Option Three</a></li>
 											<li><a href="#">Option Four</a></li>
 										</ul>
@@ -62,13 +62,8 @@
 						</ul>
 					</nav>
 				</header>
-				
-<<<<<<< HEAD
-=======
-				
-				
->>>>>>> origin/seungeun
-	
+
+
 		<!-- Scripts -->
 			<script src="<%= request.getContextPath()%>/resources/assets/js/jquery.min.js"></script>
 			<script src="<%= request.getContextPath()%>/resources/assets/js/jquery.dropotron.min.js"></script>
@@ -77,10 +72,6 @@
 			<script src="<%= request.getContextPath()%>/resources/assets/js/breakpoints.min.js"></script>
 			<script src="<%= request.getContextPath()%>/resources/assets/js/util.js"></script>
 			<script src="<%= request.getContextPath()%>/resources/assets/js/main.js"></script>
-	
+
 </body>
 </html>
-
-
-
-

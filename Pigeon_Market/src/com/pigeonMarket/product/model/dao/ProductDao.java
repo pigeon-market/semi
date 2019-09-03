@@ -22,11 +22,12 @@ public class ProductDao {
 	
 	public ProductDao() {
 		
-		String fileName = ProductDao.class.getResource("/sql/board/board-query.properties").getPath();
+		String fileName = ProductDao.class.getResource("/com/pigeonMarket/sql/product/product-query.properties").getPath();
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("파일로드 불가");
 		}
 
 		
@@ -146,7 +147,7 @@ public class ProductDao {
 	/**
 	 *  상품사진 썸네일 리스트
 	 * @param conn
-	 * @return 사진 리스트  fileLever = 0
+	 * @return 사진 리스트  fileLever = 1
 	 */
 	public ArrayList<Attachment> selectAtList(Connection conn) {
 		
@@ -207,7 +208,7 @@ public class ProductDao {
 										   rset.getDate("REG_DATE"),
 										   rset.getDate("APPROVAL_DATE"),
 										   rset.getString("PRODUCT_STATE"),
-										   rset.getString("STATUS")	);
+										   rset.getString("STATUS"));
 			}
 			
 		} catch (SQLException e) {
@@ -222,7 +223,7 @@ public class ProductDao {
 	}
 
 	/** 
-	 * 상품 상세사진 리스트    FILE_LEVER 1  빼고 가져오기 1인 인증용으로만 사용함 
+	 * 상품 상세사진 리스트    FILE_LEVER 2  빼고 가져오기 2인 인증용으로만 사용함 
 	 * @param conn
 	 * @param productOkNo
 	 * @return
@@ -232,7 +233,7 @@ public class ProductDao {
 		ArrayList<Attachment> file = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectAtList");
+		String sql = prop.getProperty("selectAttachment");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -246,7 +247,6 @@ public class ProductDao {
 									  rset.getString("CHANGE_NAME"),
 									  rset.getString("FILE_PATH"),
 									  rset.getInt("FILE_LEVEL")));
-				
 			}
 			
 			
@@ -257,6 +257,42 @@ public class ProductDao {
 			close(pstmt);
 		}		
 		return file;
+	}
+
+	public ArrayList<ProductSale> selectcgPrList(Connection conn, String categoryCode) {
+		ArrayList<ProductSale> prList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectcgPrList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, categoryCode);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				prList.add(new ProductSale(rset.getInt("PRODUCT_OK_NO"),
+										   rset.getString("P_ID"),
+										   rset.getInt("PRICE"),
+										   rset.getString("CATEGORY_CODE"),
+										   rset.getString("PRODUCT_TITLE"),
+										   rset.getString("PRODUCT_CONTENTS"),
+										   rset.getDate("REG_DATE"),
+										   rset.getDate("APPROVAL_DATE"),
+										   rset.getString("PRODUCT_STATE"),
+										   rset.getString("STATUS")	));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return prList;
 	}		
 	
 

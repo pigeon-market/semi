@@ -118,7 +118,7 @@ public class DealInfoDao {
 	 * @param no
 	 * @return
 	 */
-	public Deal selectDeal(Connection conn, int no) {
+/*	public Deal selectDeal(Connection conn, int no) {
 		
 		Deal d = null;
 		
@@ -147,7 +147,7 @@ public class DealInfoDao {
 		}
 		
 		
-	}
+	}*/
 	
 	
 }
