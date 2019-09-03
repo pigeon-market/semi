@@ -34,8 +34,8 @@ public class ProductDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
+		ProductSale p = new ProductService().selectProduct(pNo);
 		
-		ProductSale p = new ProductService().selectProduct(pNo);	
 		
 		ArrayList<Attachment> fileList  = new ProductService().selectAttachment(pNo);
 		

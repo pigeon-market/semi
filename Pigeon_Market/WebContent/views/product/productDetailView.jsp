@@ -102,7 +102,7 @@
 			<tr>
 				<th>판매자ID</th>	
 				<th colspan="2"><%= pr.getpId() %></th>
-				<th id="diaArea"><a><div id ="black">신고하기</div></a></th>					
+				<th id="diaArea"><div id ="black" onclick="blackUSer();">신고하기</div></th>					
 			</tr>
 			<tr>
 				<th>판매가격</th>	
@@ -115,7 +115,7 @@
 				<th></th>							
 			</tr>
 			<tr>
-				<td colspan="2" class="diaArea"><a href="<%= contextPath%>/list.sm?pNo=<%= pr.getProductOkNo()%>"><div id = "basket">장바구니</div></a></td>
+				<td colspan="2" class="diaArea"><a href="<%= contextPath%>/insert.sm?pNo=<%= pr.getProductOkNo()%>"><div id = "basket">장바구니</div></a></td>
 				<td colspan="2" class="diaArea"><a><div id = "purchase">구매</div></a></td>			
 			</tr>
 			<tr>
@@ -154,6 +154,14 @@
 			</tr>
 		</table>						
 	</div>
+	<script>
+		function blackUser(){
+			var reason = window.prompt("신고사유를 적어주세요");
+			var pId = <%= pr.getpId() %>;
+			
+			location.href="<%= contextPath %>/Insert.bl?reason=" + reason + "&pId="+pId;
+		}
+	</script>
 	
 		<%@ include file="../common/foot.jsp"%>
 
