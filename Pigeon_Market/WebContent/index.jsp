@@ -140,8 +140,7 @@
 	
 		<div class="intes">
 				
-		
-		가나다
+
 		
 		</div>
 	

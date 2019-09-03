@@ -1,13 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.dealInfo.model.vo.Activity" %>
+<%@ page import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.dealInfo.model.vo.Activity, com.pigeonMarket.common.model.vo.PageInfo" %>
 <%
 	Member m = (Member)session.getAttribute("loginUser");
 
 	ArrayList<Activity> aList = (ArrayList<Activity>)request.getAttribute("aList");
 	ArrayList<String> range = (ArrayList<String>)request.getAttribute("range");
 	
+	// 상태 처리 변수 선언
 	
+	Activity a = (Activity)request.getAttribute("a");
+	
+	String title = "";
+	
+	switch(a.getStatus()) {
+	case "all" : 
+		title = "전체 활동";
+		break;
+	case "inq_q" : 
+		title = "문의등록";
+		break;
+	case "inq_a" : 
+		title = "문의답변";
+		break;
+	case "sell_r" : 
+		title = "판매등록";
+		break;
+	case "buy" :
+		title = "구매활동";
+		break;
+	case "sell_e" : 
+		title = "판매완료";
+		break;
+	case "sell_a" : 
+		title = "판매승인";
+		break;
+	case "sell" :
+		title = "판매활동";
+		break;
+	case "review" : 
+		title = "리뷰작성";
+		break;
+	}; 
+	
+	
+	// 페이징바 처리 변수 선언
+	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+		
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	
+	
+	
+	// 반복문 변수 선언
 	
 	int maxNum = 0;
 	int viewNum = 0;
@@ -57,7 +106,7 @@ hr {
 
 		<!-- Main -->
 		<section id="main" class="container"> <header>
-		<h2>MyPage</h2>
+		<h2><%= title %></h2>
 		
 
 		</header>
@@ -66,17 +115,19 @@ hr {
 				<section>
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
-						<div class="col-12" style="text-align: center" >
-						<span class="image fit" onclick="location.href='<%= contextPath %>/Activity.me?status=all&page=1&group=15&period=&date='"><img src="<%= contextPath %>/resources/images/pic04.jpg">개인정보수정</span>
+						<div class="col-12" style="text-align: center" onclick="location.herf=<%= contextPath %>/Activity.me?status=all&page=1&group=15&period=&date=">
+						<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>개인정보수정
+						</div>
+
+						
+						<div class="col-3">
+						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>활동조회  -->
 						</div>
 						<div class="col-3">
-						<span class="image fit" onclick="location.href='<%= contextPath %>/Activity.me?status=all&page=1&group=15&period=&date='"><img src="<%= contextPath %>/resources/images/pic04.jpg">활동조회</span>
+						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>판매조회 -->
 						</div>
 						<div class="col-3">
-						<span class="image fit" onclick="location.href='<%= contextPath %>/Activity.me?status=sell&page=1&group=15&period=&date='"><img src="<%= contextPath %>/resources/images/pic04.jpg">판매조회</span>
-						</div>
-						<div class="col-3">
-						<span class="image fit" onclick="location.href='<%= contextPath %>/Activity.me?status=buy&page=1&group=15&period=&date='"><img src="<%= contextPath %>/resources/images/pic04.jpg">구매조회</span>
+						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>구매조회 -->
 						</div>
 						<div class="col-3">
 						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
@@ -110,13 +161,16 @@ hr {
 										case "INQUIRY_A" : 
 											status = "문의답변";
 											break;
-										case "PRODUCT_R" : 
+										case "SELL_R" : 
 											status = "판매등록";
 											break;
-										case "PRODUCT_E" : 
+										case "SELL_E" : 
 											status = "판매완료";
 											break;
-										case "PRODUCT_A" : 
+										case "BUY" :
+											status = "구매완료";
+											break;
+										case "SELL_A" : 
 											status = "판매승인";
 											break;
 										case "REVIEW" : 
@@ -133,6 +187,7 @@ hr {
 								<% if(aList.get(i).getChangeName() != null ) {%>
 									<img src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName() %>" width="200px" height="150px"> 
 					
+							
 								<% } %>
 									</div>
 									<div class="titleDiv">		
@@ -150,6 +205,44 @@ hr {
 					
 							
 					<%} %>
+					
+							<!-- 페이징바 만들기 -->
+		<div class="pagingArea" align="center">
+		
+			<!-- 맨처음으로 (<<) -->
+			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=1'"> &lt;&lt; </button>
+			
+			<!-- 이전페이지로(<) -->
+			<%if(currentPage == 1){ %>
+			<button disabled> &lt; </button>
+			<%}else{ %>
+			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= currentPage-1 %>'"> &lt; </button>
+			<%} %>
+			
+			
+			<!-- 10개의 페이지 목록 -->
+			<%for(int p=startPage; p<=endPage; p++){ %>
+				
+				<%if(p == currentPage){ %>
+				<button disabled> <%= p %> </button>
+				<%}else{ %>
+				<button onclick="location.href='<%=contextPath %>/list.no?currentPage=<%= p %>'"> <%= p %> </button>
+				<%} %>
+				
+			<%} %>
+			
+			
+			<!-- 다음페이지로(>) -->
+			<%if(currentPage == maxPage){ %>
+			<button disabled> &gt; </button>
+			<%}else { %>
+			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= currentPage+1 %>'"> &gt; </button>
+			<%} %>
+			
+			<!-- 맨끝으로(>>) -->
+			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
+			
+		</div>
 					
 					</form>
 				</section>

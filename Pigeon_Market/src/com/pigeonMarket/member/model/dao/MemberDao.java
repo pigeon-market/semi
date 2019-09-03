@@ -10,11 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
-import com.pigeonMarket.member.model.vo.Activity;
 import com.pigeonMarket.member.model.vo.Member;
 
 public class MemberDao {
@@ -39,76 +36,7 @@ public class MemberDao {
 	}
 	
 
-	
-	public ArrayList<Activity> activityList(Connection conn , Activity a) {
-		
-		ArrayList<Activity> list = new ArrayList<>();
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("activityList");
-		
-		ResultSet rset = null;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, a.getPeriod());
-			pstmt.setString(2, a.getUserId());
-			pstmt.setInt(3, a.getLimitCount());
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Activity(rset.getString("ID"), rset.getString("DATE"), rset.getString("DO"), rset.getInt("NO"), rset.getString("title"), rset.getString("TNAME")));
-			}
-			
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
-	
-	public ArrayList<String> rangeList(ArrayList<Activity> aList) {
-		
-		ArrayList<String> list = new ArrayList<>();
-		
-		int groupNum = 0;
-		
-		int num = 0;
-		
-		
-		
-		while(num<aList.size()) {
-		
-			for(num = groupNum ; num < aList.size() ; num++) {
-				
-				if(!((aList.get(num).getaDate()).equals(aList.get(groupNum).getaDate()))) {
-					
-					
-					String listAdd = String.valueOf(num);
-					
-					list.add(listAdd);
-					groupNum=num;
-					break;
-				}
-			
-			}
 
-		}
-		
-		if(list.isEmpty()) {
-			list.add(String.valueOf(aList.size()));
-		}
-
-		
-		return list;
-		
-	}
 	
 
 	

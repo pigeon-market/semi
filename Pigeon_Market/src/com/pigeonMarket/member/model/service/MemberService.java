@@ -6,30 +6,13 @@ import static com.pigeonMarket.common.JDBCTemplate.getConnection;
 import static com.pigeonMarket.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 
 import com.pigeonMarket.member.model.dao.MemberDao;
-import com.pigeonMarket.member.model.vo.Activity;
 import com.pigeonMarket.member.model.vo.Member;
 
 public class MemberService {
 	
-	/**
-	 * 1. 활동 리스트 조회해주는 서비스
-	 * @param userId
-	 * @return
-	 */
-	public ArrayList<Activity> activityList(Activity a) {
-		
-		Connection conn = getConnection();
-		
-		ArrayList<Activity> aList = new MemberDao().activityList(conn, a);
-		
-		close(conn);
-		
-		return aList;
-		
-	}
+
 //	
 //	
 //	public ArrayList detailActivityList(ArrayList<Activity> aList) {

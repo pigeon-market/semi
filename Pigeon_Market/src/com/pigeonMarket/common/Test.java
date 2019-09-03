@@ -12,16 +12,12 @@ public class Test {
 	public static void main(String[] args) {
 
 		
-		int limitCount = 30;
-		
-		int perious = 90;
-		
-		Activity a = new Activity("user10", perious, limitCount);
-		
-		ArrayList<Activity> aList = new MemberService().activityList(a);
-		
-		ArrayList<String> range = new MemberDao().rangeList(aList);
+		String s = "20190902";
 
+		String s2 = "20180702";
+		
+
+		
 		
 	}
 

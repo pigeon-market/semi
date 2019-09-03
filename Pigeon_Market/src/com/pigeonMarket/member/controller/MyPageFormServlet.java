@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.member.model.dao.MemberDao;
-import com.pigeonMarket.member.model.service.MemberService;
-import com.pigeonMarket.member.model.vo.Activity;
+import com.pigeonMarket.dealInfo.model.dao.DealDao;
+import com.pigeonMarket.dealInfo.model.service.DealService;
+import com.pigeonMarket.dealInfo.model.vo.Activity;
 import com.pigeonMarket.member.model.vo.Member;
 
 /**
@@ -42,9 +42,9 @@ public class MyPageFormServlet extends HttpServlet {
 		
 		Activity a = new Activity(userId, perious, limitCount);
 		
-		ArrayList<Activity> aList = new MemberService().activityList(a);
+		ArrayList<Activity> aList = new DealService().activityList(a);
 		
-		ArrayList<String> range = new MemberDao().rangeList(aList);
+		ArrayList<String> range = new DealDao().rangeList(aList);
 		
 		request.setAttribute("range", range);
 		request.setAttribute("aList", aList);
