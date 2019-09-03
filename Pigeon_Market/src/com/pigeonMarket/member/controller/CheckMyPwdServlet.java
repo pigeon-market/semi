@@ -30,7 +30,7 @@ public class CheckMyPwdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½ //
+		// Å×½ºÆ®¸¦ ÇØºÁ¾ßÇÔ //
 		
 		request.setCharacterEncoding("UTF-8");
 		
@@ -41,7 +41,7 @@ public class CheckMyPwdServlet extends HttpServlet {
 		if(checkPwd.equals(sessionPwd)) {
 			request.getRequestDispatcher("views/myPage/myInfoPage.jsp").forward(request, response);
 		}else {
-			request.getSession().setAttribute("msg", "ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ Æ²ï¿½È½ï¿½ï¿½Ï´ï¿½.");
+			request.getSession().setAttribute("msg", "ºñ¹Ð¹øÈ£°¡ Æ²·È½À´Ï´Ù.");
 			request.getRequestDispatcher("views/myPage/myMainPage.jsp").forward(request, response);
 		}
 		

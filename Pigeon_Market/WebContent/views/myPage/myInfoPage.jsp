@@ -13,19 +13,19 @@
 	
 	
 	<div class="btns">
-					<input type="submit" value="ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½" onclick="location.href='<%= contextPath %>/updateMyInfoForm.me"> 
-					<input type="button" value="ï¿½ï¿½ï¿½ï¿½Ï±ï¿½" onclick="goMyPage();">
-					<input type="button" value="Å»ï¿½ï¿½ï¿½Ï±ï¿½" onclick="goDelete();">
+					<input type="submit" value="¼öÁ¤ÇÏ±â" onclick="location.href='<%= contextPath %>/updateMyInfoForm.me"> 
+					<input type="button" value="Ãë¼ÒÇÏ±â" onclick="goMyPage();">
+					<input type="button" value="Å»ÅðÇÏ±â" onclick="goDelete();">
 	</div>
 	<script>
 	function goDelete() {
-		var bool = confirm("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?")
+		var bool = confirm("Á¤¸»·Î Å»ÅðÇÏ½Ã°Ú½À´Ï±î?")
 		
 		if(bool) {
 			$("#updateForm").attr("action", "<%= contextPath %>/deleteInfo.me");
 			$("#updateForm").submit();
 		} else {
-			alert("È¸ï¿½ï¿½Å»ï¿½ï¿½ ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+			alert("È¸¿øÅ»Åð°¡ Ãë¼ÒµÇ¾ú½À´Ï´Ù.");
 		}
 	}
 	

@@ -35,7 +35,7 @@ public class MemberService {
 		if(result > 0) {
 			commit(conn);
 			
-		} else {  
+		} else {
 			rollback(conn);
 		}
 		

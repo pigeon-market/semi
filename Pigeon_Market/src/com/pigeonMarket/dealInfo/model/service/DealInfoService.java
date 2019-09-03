@@ -12,11 +12,16 @@ import com.pigeonMarket.dealInfo.model.vo.Deal;
 
 public class DealInfoService {
 	
-	public int getListCount() {
+	
+	/** 1. 구매리시트 전체 조회하는 서비스
+	 * @param userId
+	 * @return
+	 */
+	public int buyListCount(String userId) {
 		
 		Connection conn = getConnection();
 		
-		int listCount = new DealInfoDao().getListCount(conn);
+		int listCount = new DealInfoDao().buyListCount(conn, userId);
 		
 		close(conn);
 		
@@ -27,6 +32,11 @@ public class DealInfoService {
 	
 	
 	
+	/** 2. 페이지처리된 리스트 조회하는 서비스
+	 * @param pi
+	 * @param userId
+	 * @return
+	 */
 	public ArrayList<Deal> selectBuyList(PageInfo pi, String userId) {
 		Connection conn = getConnection();
 		
@@ -37,5 +47,19 @@ public class DealInfoService {
 		return dealList;
 		
 	}
+	
+/*	public Deal selectDeal(int no) {
+		
+		Connection conn = getConnection();
+		
+		Deal d = new DealInfoDao().selectDeal(conn, no);
+		
+		close(conn);
+		
+		return d;
+		
+	}*/
+	
+
 
 }
