@@ -10,9 +10,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.member.model.vo.Member;
+import com.pigeonMarket.notice.model.vo.Notice;
 
 public class MemberDao {
 	
@@ -21,7 +25,6 @@ public class MemberDao {
 	public MemberDao() {
 		
 		String fileName = MemberDao.class.getResource("/com/pigeonMarket/sql/member/member-query.properties").getPath();
-
 		
 		try {
 			prop.load(new FileReader(fileName));

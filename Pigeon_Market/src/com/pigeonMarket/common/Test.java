@@ -9,14 +9,8 @@ import com.pigeonMarket.member.model.vo.Member;
 
 public class Test {
 	
-	public static void main(String[] args) {
-
+	public static void main(String[] args ) {
 		
-		String s = "20190902";
-
-		String s2 = "20180702";
-		
-
 		
 		
 	}

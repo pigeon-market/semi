@@ -48,7 +48,7 @@ public class NoticeInsertServlet extends HttpServlet {
 			
 			
 		}else {
-			request.setAttribute("msg", "공지사항 등록 실패!");
+		
 			
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
 		}

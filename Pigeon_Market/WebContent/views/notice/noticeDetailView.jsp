@@ -12,9 +12,8 @@
 <style>
 	.outer{
 		width:800px;
-		height:500px;
-		background:black;
-		color:white;
+		height:600px;
+		color:black;
 		margin-left:auto;
 		margin-right:auto;
 		margin-top:50px;
@@ -23,8 +22,8 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:800px;
-		height:350px;
+		width:600px;
+		height:550px;
 		margin-left:auto;
 		margin-right:auto;
 	}
@@ -36,7 +35,9 @@
 <body>
 
 <%@ include file="../common/menubar.jsp" %>
-	
+		
+
+		
 	<div class="outer">
 		<br>
 		
@@ -65,21 +66,20 @@
 			</table>
 			
 			<div align="center">
-				<button type="button" onclick="history.go(-1);">이전으로</button>
+				<button type="button" onclick="location.href='<%= contextPath %>/list.no'">이전으로</button>
 				<button type="button" onclick="updateForm();">수정하기</button>
 				<button type="button" onclick="deleteBoard();">삭제하기</button>
 				
 			</div>
 		</div>
 	</div>
-	
-	<form action="<%=request.getContextPath() %>/detail.no" id="detailForm" method="post">
-		<input type="hidden" name="noticeNo" value="<%= n.getNoticeNo() %>">
+	<form action="" id="detailForm" method="post">
+		<input type="hidden" name="nno" value="<%= n.getNoticeNo() %>">
 	</form>
-	
+	<%@ include file="../common/foot.jsp" %>
 	<script>
 		function updateForm(){
-			//location.href="<%=contextPath%>/updateForm.no?noticeNo=" + <%= n.getNoticeNo() %>;
+			//location.href="<%=contextPath%>/updateForm.no" + <%= n.getNoticeNo() %>;
 			// 위의 방식대로 하면 url에 그대로 노출.. --> 직접 url창에 타고 들어갈수있다!!!
 			
 			$("#detailForm").attr("action", "<%=contextPath%>/updateForm.no");
@@ -87,6 +87,7 @@
 			
 		}
 		function deleteBoard(){
+			console.log(<%= n.getNoticeNo() %>);
 			$("#detailForm").attr("action", "<%=contextPath%>/delete.no");
 			$("#detailForm").submit();
 		}
