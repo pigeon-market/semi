@@ -2,9 +2,12 @@ package com.pigeonMarket.member.model.vo;
 
 import java.sql.Date;
 
-public class Member {
+public class Member implements java.io.Serializable{
 	
-	private int rnum;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8680435445361411221L;
 	private String userId;
 	private String userPwd;
 	private String userName;
