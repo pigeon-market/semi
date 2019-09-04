@@ -101,8 +101,13 @@
 			</tr>
 			<tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<td colspan="2" class="diaArea"><a href="<%= contextPath%>/insert.sm?pNo=<%= pr.getProductOkNo()%>"><div id = "basket">장바구니</div></a></td>
 				<td colspan="2" class="diaArea"><a  href="<%= contextPath%>/insertForm.pc?pNo=<%= pr.getProductOkNo()%>"><div id = "purchase">구매</div></a></td>			
+=======
+				<td colspan="2" ><a><div id = "basket">장바구니</div></a></td>
+				<td colspan="2"><a><div id = "purchase">구매</div></a></td>			
+>>>>>>> parent of e149df0... 1999
 =======
 				<td colspan="2" ><a><div id = "basket">장바구니</div></a></td>
 				<td colspan="2"><a><div id = "purchase">구매</div></a></td>			
