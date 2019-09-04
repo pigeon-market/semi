@@ -25,20 +25,12 @@
 		resize: none;
 		font-size: 0.7em;
 	}
-	#basket, #purchase{
+	#basket, #purchase, #black{
 		 height: 50px;
 		 text-align:center;
 		 font-size: 1.5em;				 
 		 padding: 10px 0px;
 		 color: white;
-	 }
-	 #black{
-	  	height: 40px;
-		text-align:center;
-		font-size: 1.5em;				 
-		padding: 10px 0px;
-		color: white;
-		
 	 }
 	#basket{	 
 		background: burlywood;
@@ -69,13 +61,6 @@
 	#basket:hover, #purchase:hover, #black:hover,#inFormation:hover,#question:hover	{
 		cursor:pointer;
 	}
-	#blackRrea{
-		padding: 0 0 0 0 ;
-	}
-	.diaArea{
-		padding-top: 0;
-		padding-bottom: 0;
-	}
 
 </style>
 </head>
@@ -102,7 +87,7 @@
 			<tr>
 				<th>판매자ID</th>	
 				<th colspan="2"><%= pr.getpId() %></th>
-				<th id="diaArea"><div id ="black" onclick="blackUSer();">신고하기</div></th>					
+				<th><a><div id ="black">신고하기</div></a></th>					
 			</tr>
 			<tr>
 				<th>판매가격</th>	
@@ -115,8 +100,13 @@
 				<th></th>							
 			</tr>
 			<tr>
+<<<<<<< HEAD
 				<td colspan="2" class="diaArea"><a href="<%= contextPath%>/insert.sm?pNo=<%= pr.getProductOkNo()%>"><div id = "basket">장바구니</div></a></td>
 				<td colspan="2" class="diaArea"><a  href="<%= contextPath%>/insertForm.pc?pNo=<%= pr.getProductOkNo()%>"><div id = "purchase">구매</div></a></td>			
+=======
+				<td colspan="2" ><a><div id = "basket">장바구니</div></a></td>
+				<td colspan="2"><a><div id = "purchase">구매</div></a></td>			
+>>>>>>> parent of e149df0... 1999
 			</tr>
 			<tr>
 				<td colspan="1" id="inFormation"><div>상품정보</div></td>
@@ -154,14 +144,6 @@
 			</tr>
 		</table>						
 	</div>
-	<script>
-		function blackUser(){
-			var reason = window.prompt("신고사유를 적어주세요");
-			var pId = <%= pr.getpId() %>;
-			
-			location.href="<%= contextPath %>/Insert.bl?reason=" + reason + "&pId="+pId;
-		}
-	</script>
 	
 		<%@ include file="../common/foot.jsp"%>
 
