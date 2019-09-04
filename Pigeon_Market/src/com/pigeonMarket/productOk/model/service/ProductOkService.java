@@ -1,6 +1,6 @@
 package com.pigeonMarket.productOk.model.service;
 
-import static com.pigeonMarket.common.JDBCTemplate.*;
+import static com.pigeonMarket.common.JDBCTemplate.close;
 import static com.pigeonMarket.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -40,28 +40,5 @@ public class ProductOkService {
 		return list;
 	}
 	
-	/**
-	 * 상품 승인 상세 페이지
-	 * @param bId
-	 * @return
-	 */
-	public ProductOk selectProductOkDetail(int productOkNo) {
-		
-		Connection conn = getConnection();
-		
-		int result = new ProductOkDao().selectProductOkDetail(conn, productOkNo);
-		ProductOk p = null;
-
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return p;
-		
-	}
 
 }
