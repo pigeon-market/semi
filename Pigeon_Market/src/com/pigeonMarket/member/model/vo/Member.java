@@ -8,6 +8,7 @@ public class Member implements java.io.Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -8680435445361411221L;
+	private int rNum;
 	private String userId;
 	private String userPwd;
 	private String userName;
@@ -31,6 +32,23 @@ public class Member implements java.io.Serializable{
 		this.address = address;
 		this.email = email;
 	}
+	
+	
+
+	public Member(String userId, String userName, String birthDate, String gender, String email, String phone,
+			String address, Date joinDate, String withdrawal, String blackCode) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.joinDate = joinDate;
+		this.withdrawal = withdrawal;
+		this.blackCode = blackCode;
+	}
 
 	public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
 			String phone, String address, Date joinDate, String withdrawal, String blackCode) {
@@ -51,10 +69,10 @@ public class Member implements java.io.Serializable{
 	
 	
 
-	public Member(int rnum, String userId, String userPwd, String userName, String birthDate, String gender,
+	public Member(int rNum, String userId, String userPwd, String userName, String birthDate, String gender,
 			String email, String phone, String address, Date joinDate, String withdrawal, String blackCode) {
 		super();
-		this.rnum = rnum;
+		this.rNum = rNum;
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;
@@ -70,12 +88,12 @@ public class Member implements java.io.Serializable{
 	
 	
 
-	public int getRnum() {
-		return rnum;
+	public int getrNum() {
+		return rNum;
 	}
 
-	public void setRnum(int rnum) {
-		this.rnum = rnum;
+	public void setrNum(int rNum) {
+		this.rNum = rNum;
 	}
 
 	public String getUserId() {
@@ -170,7 +188,7 @@ public class Member implements java.io.Serializable{
 	
 	@Override
 	public String toString() {
-		return "Member [rnum=" + rnum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
+		return "Member [rnum=" + rNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", birthDate=" + birthDate + ", gender=" + gender + ", email=" + email + ", phone=" + phone
 				+ ", address=" + address + ", joinDate=" + joinDate + ", withdrawal=" + withdrawal + ", blackCode="
 				+ blackCode + "]";

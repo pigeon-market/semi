@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.pigeonMarket.ShoppingBasket.model.vo.ShoppingBasket;
+import com.pigeonMarket.dealInfo.model.vo.Deal;
 
 public class ShoppingBasketDao {
 	
@@ -88,6 +90,37 @@ public class ShoppingBasketDao {
 		
 		
 		return result;
+	}
+	
+	public ArrayList<Deal> searchBasketList(Connection conn, String userId) {
+		
+		ArrayList<Deal> list = new ArrayList<Deal>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchBasketList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Deal(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
 	}
 
 	

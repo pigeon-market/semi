@@ -58,7 +58,17 @@ public class MemberService {
 //		return list;
 //		
 //	}
-	
+	public Member checkMyInfo(Member m) {
+		
+		Connection conn = getConnection();
+		
+		Member mem = new MemberDao().checkMyInfo(conn, m);
+		
+		close(conn);
+		
+		return mem;
+		
+	}
 	
 	
 	public int updateMyInfo(Member m) {

@@ -1,11 +1,16 @@
 package com.pigeonMarket.ShoppingBasket.model.service;
 
-import static  com.pigeonMarket.common.JDBCTemplate.*;
+import static com.pigeonMarket.common.JDBCTemplate.close;
+import static com.pigeonMarket.common.JDBCTemplate.commit;
+import static com.pigeonMarket.common.JDBCTemplate.getConnection;
+import static com.pigeonMarket.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.pigeonMarket.ShoppingBasket.model.dao.ShoppingBasketDao;
-import com.pigeonMarket.ShoppingBasket.model.vo.ShoppingBasket;;
+import com.pigeonMarket.ShoppingBasket.model.vo.ShoppingBasket;
+import com.pigeonMarket.dealInfo.model.vo.Deal;;
 
 public class ShoppingBasketService {
 
@@ -31,6 +36,18 @@ public class ShoppingBasketService {
 		close(conn);
 		
 		return result1;
+	}
+	
+	public ArrayList<Deal> searchBasketList(String userId) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Deal> list = new ShoppingBasketDao().searchBasketList(conn, userId);
+		
+		close(conn);
+		
+		return list;
+		
 	}
 
 	

@@ -10,8 +10,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.member.model.vo.Member;
 
 public class MemberDao {
@@ -32,6 +35,44 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public Member checkMyInfo(Connection conn, Member m) {
+		
+		Member mem = new Member();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("checkMyInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mem = new Member(rset.getString(1), rset.getString(3), rset.getString(4),
+						rset.getString(5), rset.getString(6), rset.getString(7), rset.getString(8), rset.getDate(9),
+						rset.getString(10), rset.getString(11));
+
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mem;
+		
+		
 	}
 
 	public int updateMyInfo(Connection conn, Member m) {
@@ -120,5 +161,143 @@ public class MemberDao {
 		return loginUser;
 
 	}
+	
+	
+
+public int getListCount(Connection conn) {
+	int listCount = 0;
+	
+	Statement stmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("getListCount");
+	
+	try {
+		stmt = conn.createStatement();
+		
+		rset = stmt.executeQuery(sql);
+		
+		if(rset.next()) {
+			listCount = rset.getInt(1);
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(stmt);
+	}
+	
+	return listCount;
+}
+
+public ArrayList<Member> selectList(Connection conn, PageInfo page) {
+	ArrayList<Member> list = new ArrayList<>();
+	
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectList");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		
+		// currentPage = 1		--> startRow : 1 ~ endRow : 10
+		// currentPage = 2		--> startRow : 11~ endRow : 20
+		
+		int startRow = (page.getCurrentPage() - 1) * page.getBoardLimit()+ 1;
+		int endRow = startRow + page.getBoardLimit() - 1;
+		
+		pstmt.setInt(1, startRow);
+		pstmt.setInt(2, endRow);
+		
+		rset = pstmt.executeQuery();
+		
+		while(rset.next()) {
+			list.add(new Member(rset.getInt("RNUM"),
+							   rset.getString("USER_ID"),
+							   rset.getString("USER_PWD"),
+							   rset.getString("USER_NAME"),
+							   rset.getString("BIRTH_DATE"),
+							   rset.getString("GENDER"),
+							   rset.getString("EMAIL"),
+							   rset.getString("PHONE"),
+							   rset.getString("ADDRESS"),
+							   rset.getDate("JOIN_DATE"),
+							   rset.getString("WITHDRAWAL"),
+							   rset.getString("BLACK_CODE")));
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return list;
+}
+
+public Member selectMember(Connection conn, int memberNo) {
+	Member m = null;
+	
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String sql = prop.getProperty("selectMember");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, memberNo);
+		
+		rset = pstmt.executeQuery();
+		
+		if(rset.next()) {
+			m = new Member(rset.getInt("RNUM"),
+					   rset.getString("USER_ID"),
+					   rset.getString("USER_PWD"),
+					   rset.getString("USER_NAME"),
+					   rset.getString("BIRTH_DATE"),
+					   rset.getString("GENDER"),
+					   rset.getString("EMAIL"),
+					   rset.getString("PHONE"),
+					   rset.getString("ADDRESS"),
+					   rset.getDate("JOIN_DATE"),
+					   rset.getString("WITHDRAWAL"),
+					   rset.getString("BLACK_CODE"));
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+	
+	return m;
+}
+
+public int deleteMember(Connection conn, String memberNo) {
+	PreparedStatement pstmt = null;
+	int result = 0;
+	
+	String query = prop.getProperty("deleteMember");
+	
+	try {
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, memberNo);
+		
+		result = pstmt.executeUpdate();
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}
+	
+	return result;
+}
+
+
+	
 
 }

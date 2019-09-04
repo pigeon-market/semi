@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.dealInfo.model.vo.Activity" %>
+	pageEncoding="UTF-8"%>
+<%@ page
+	import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.dealInfo.model.vo.Activity"%>
 <%
 	Member m = (Member)session.getAttribute("loginUser");
 
@@ -46,8 +47,8 @@ hr {
 	text-align: center;
 }
 
-#infoImg{
-	height:50px;
+#infoImg {
+	height: 50px;
 }
 </style>
 
@@ -72,8 +73,10 @@ hr {
 					<div class="row gtr-50 gtr-uniform">
 						<div class="col-12" id="info">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
-								<img id="infoImg" src="<%=contextPath%>/resources/images/pic04.jpg">개인정보수정</span>
+								onclick="location.href='<%=contextPath%>/goMyInfo.me'">
+								<img id="infoImg"
+								src="<%=contextPath%>/resources/images/pic04.jpg">개인정보수정
+							</span>
 						</div>
 						<div class="col-3">
 							<span class="image fit"
@@ -91,7 +94,9 @@ hr {
 								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
 						</div>
 						<div class="col-3">
-								<span class="image fit" onclick="location.href='<%= contextPath %>/insert.sm'"><img src="images/pic04.jpg">거래조회</span>
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/myShoppingBacket.me'"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">배송조회</span>
 						</div>
 
 					</div>
@@ -103,16 +108,16 @@ hr {
 				<section class="box">
 				<form>
 					<h2>최근 활동 기록</h2>
-					
-					
+
+
 					<% while(maxNum < aList.size()) { %>
-					
-							<h3><%= aList.get(maxNum).getaDate() %></h3>
-							
-							<% for(int i = maxNum ; i< Integer.parseInt(range.get(viewNum)) ; i++) { %>
+
+					<h3><%= aList.get(maxNum).getaDate() %></h3>
+
+					<% for(int i = maxNum ; i< Integer.parseInt(range.get(viewNum)) ; i++) { %>
 
 
-								<% switch(aList.get(i).getStatus()) { 
+					<% switch(aList.get(i).getStatus()) { 
 								case "signin" : 
 									status = "회원가입";
 									break;
@@ -140,36 +145,38 @@ hr {
 
 								}%>
 
-								<div class="listTable">
-									<input type="hidden" value="<%= aList.get(i).getStatus()%>">
-									<input type="hidden" value="<%= aList.get(i).getrNo()%>">
-									
-									<div class="statusDiv">
-										<%= status %> 
-									</div>
-									<div class="imgDiv">
-								<% if(aList.get(i).getChangeName() != null ) {%>
-									<img src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName() %>" width="200px" height="150px"> 
-					
-								<% } %>
-									</div>
-									<div class="titleDiv">		
-								<%= aList.get(i).getTitle() %>
-									</div>
-										<hr>
-								</div>
-							
-									
-											<br>
-									
-								<%} %>
-								<hr>
-					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; %>
-					
-							
+					<div class="listTable">
+						<input type="hidden" value="<%= aList.get(i).getStatus()%>">
+						<input type="hidden" value="<%= aList.get(i).getrNo()%>">
+
+						<div class="statusDiv">
+							<%= status %>
+						</div>
+						<div class="imgDiv">
+							<% if(aList.get(i).getChangeName() != null ) {%>
+							<img
+								src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName() %>"
+								width="200px" height="150px">
+
+							<% } %>
+						</div>
+						<div class="titleDiv">
+							<%= aList.get(i).getTitle() %>
+						</div>
+						<hr>
+					</div>
+
+
+					<br>
+
 					<%} %>
-					
-					</form>
+					<hr>
+					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; %>
+
+
+					<%} %>
+
+				</form>
 				</section>
 
 			</div>
@@ -181,9 +188,9 @@ hr {
 
 	</div>
 
-<%@ include file="../common/foot.jsp"%>
+	<%@ include file="../common/foot.jsp"%>
 
-<script>
+	<script>
 	$(function() {
 		$(".listTable div").mouseenter(function() {
 			$(this).parent().css({"cursor": "pointer"});
