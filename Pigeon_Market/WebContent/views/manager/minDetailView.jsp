@@ -58,28 +58,24 @@
 					<tr>
 					<td>회원 아이디</td>
 					<td colspan="2"><%= m.getUserId() %></td>
-					<td>회원 비밀번호</td>
-					<td colspan="2"><input type="password" value="<%= m.getUserPwd() %>" readonly></td>
+					<td>회원 생년월일</td>
+					<td colspan="2"><%= m.getBirthDate() %></td>			
 				</tr>
 				<tr>
-					<td>회원 생년월일</td>
-					<td colspan="2"><%= m.getBirthDate() %></td>
 					<td>회원 성별</td>
 					<td colspan="2"><%= m.getGender() %></td>
-				</tr>
-				<tr>
-					<td>회원 전화번호</td>
-					<td colspan="2"><%= m.getPhone() %></td>
 					<td>회원 가입날</td>
 					<td colspan="2"><%= m.getJoinDate() %></td>
 				</tr>
 				<tr>
-					<td>회원 주소</td>
-					<td colspan="5"><%= m.getAddress() %></td>
+					<td>회원 전화번호</td>
+					<td colspan="2"><%= m.getPhone() %></td>
+					<td>회원 이메일</td>
+					<td colspan="2"><%= m.getEmail() %></td>
 				</tr>
 				<tr>
-					<td>회원 이메일</td>
-					<td colspan="5"><%= m.getEmail() %></td>
+					<td>회원 주소</td>
+					<td colspan="5"><%= m.getAddress() %></td>
 				</tr>
 				<tr>
 					<td colspan="2">회원 탈퇴 여부</td>
@@ -91,8 +87,11 @@
 			
 			<div align="center">
 				<button type="button" onclick="location.href='<%= contextPath %>/member.mim'">이전으로</button>
+				<%if(m.getWithdrawal().equals("N")){ %>
 				<button type="button" onclick="deleteBoard();">삭제하기</button>
-				
+				<%}else{ %>
+				<button type="button" disabled>삭제하기</button>
+				<%} %>
 			</div>
 		</div>
 	</div>

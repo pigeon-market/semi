@@ -4,70 +4,94 @@ import java.sql.Date;
 
 public class Reply {
 	
-	private int reportNo;
-	private String blackId;
-	private String reporterId;
-	private Date reproterDate;
-	private String reporterReason;
+	private int rId;
+	private String rContent;
+	private int inquiryNo;
+	private String userId;
+	private Date createDate;
+	private Date modifyDate;
+	private String status;
 	
 	public Reply() {
 		
 	}
 
-	public Reply(int reportNo, String blackId, String reporterId, Date reproterDate, String reporterReason) {
+	public Reply(int rId, String rContent, int inquiryNo, String userId, Date createDate, Date modifyDate,
+			String status) {
 		super();
-		this.reportNo = reportNo;
-		this.blackId = blackId;
-		this.reporterId = reporterId;
-		this.reproterDate = reproterDate;
-		this.reporterReason = reporterReason;
+		this.rId = rId;
+		this.rContent = rContent;
+		this.inquiryNo = inquiryNo;
+		this.userId = userId;
+		this.createDate = createDate;
+		this.modifyDate = modifyDate;
+		this.status = status;
 	}
 
-	public int getReportNo() {
-		return reportNo;
+	public int getrId() {
+		return rId;
 	}
 
-	public void setReportNo(int reportNo) {
-		this.reportNo = reportNo;
+	public void setrId(int rId) {
+		this.rId = rId;
 	}
 
-	public String getBlackId() {
-		return blackId;
+	public String getrContent() {
+		return rContent;
 	}
 
-	public void setBlackId(String blackId) {
-		this.blackId = blackId;
+	public void setrContent(String rContent) {
+		this.rContent = rContent;
 	}
 
-	public String getReporterId() {
-		return reporterId;
+	public int getInquiryNo() {
+		return inquiryNo;
 	}
 
-	public void setReporterId(String reporterId) {
-		this.reporterId = reporterId;
+	public void setInquiryNo(int inquiryNo) {
+		this.inquiryNo = inquiryNo;
 	}
 
-	public Date getReproterDate() {
-		return reproterDate;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setReproterDate(Date reproterDate) {
-		this.reproterDate = reproterDate;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public String getReporterReason() {
-		return reporterReason;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setReporterReason(String reporterReason) {
-		this.reporterReason = reporterReason;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "Reply [reportNo=" + reportNo + ", blackId=" + blackId + ", reporterId=" + reporterId + ", reproterDate="
-				+ reproterDate + ", reporterReason=" + reporterReason + "]";
+		return "Reply [rId=" + rId + ", rContent=" + rContent + ", inquiryNo=" + inquiryNo + ", userId=" + userId
+				+ ", createDate=" + createDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
+	
+	
+	
 	
 	
 

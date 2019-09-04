@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.pigeonMarket.inquiry.model.vo.Inquiry" %>
+<%@ page import="com.pigeonMarket.inquiry.model.vo.Inquiry, com.pigeonMarket.member.model.vo.Member" %>
 <%
 	Inquiry i = (Inquiry)request.getAttribute("i");
+
+	String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -105,7 +108,7 @@
 		var nno = <%= i.getInquiryNo() %>;
 		
 		$.ajax({
-			url:"rlist.bo",
+			url:"rlist.in",
 			data:{nno:nno},
 			type:"get",
 			success:function(list){
@@ -117,7 +120,7 @@
 				$.each(list, function(index, value){
 					
 					var $tr = $("<tr>");
-					var $writerTd = $("<td>").text(value.rWriter).css("width", "100px");
+					var $writerTd = $("<td>").text(value.userId).css("width", "100px");
 					var $contentTd = $("<td>").text(value.rContent).css("width", "400px");
 					var $dateTd = $("<td>").text(value.createDate).css("width", "200px");
 					
@@ -142,24 +145,30 @@
 	$(function(){
 		selectRlist();
 		
+	
 		
 		$("#addReply").click(function(){
-			
+
 			var content = $("#replyContent").val();
 			var nno = <%= i.getInquiryNo() %>;
-			var writer = <%= loginUser.getUserId() %>;
+			var writer = "<%= loginUser.getUserId() %>";
+			
+			console.log(writer);
 			
 			$.ajax({
 				url:"rinsert.in",
 				type:"post",
 				data:{content:content, nno:nno, writer:writer},
 				success:function(){
-					//selectRlist();
+					selectRlist();
 					
-					//$("#replyContent").val("");
+					$("#replyContent").val("");
+					
+					console.log("성공");	
 				},
 				error:function(){
-					console.log("실패");
+					console.log("실패1");
+
 				}
 			});
 			

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.pigeonMarket.inquiry.model.vo.Inquiry;
+import com.pigeonMarket.inquiry.model.vo.Reply;
 import com.pigeonMarket.notice.model.vo.Notice;
 import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.event.model.vo.Event;
@@ -166,6 +167,86 @@ public class InquiryDao {
 		}
 		
 		return i;
+	}
+
+	public int insertReply(Connection conn, Reply r) {
+		int result = 0;
+		
+		
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getrContent());
+			pstmt.setInt(2, r.getInquiryNo());
+			pstmt.setString(3, r.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Reply> selectRlist(Connection conn, int nno) {
+		ArrayList<Reply> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRlist");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, nno);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("RID"),
+								   rset.getString("RCONTENT"),
+								   rset.getInt("INQUIRY_NO"),
+								   rset.getString("USER_ID"),
+								   rset.getDate("CREATE_DATE"),
+								   rset.getDate("MODIFY_DATE"),
+								   rset.getString("STATUS")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int status(Connection conn, int nno) {
+		PreparedStatement pstmt = null;
+		int result1 = 0;
+		
+		String query = prop.getProperty("statusReply");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, nno);
+			
+			result1 = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result1;
 	}
 
 

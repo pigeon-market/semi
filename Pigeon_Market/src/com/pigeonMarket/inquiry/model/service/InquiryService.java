@@ -13,6 +13,7 @@ import com.pigeonMarket.event.model.dao.EventDao;
 import com.pigeonMarket.event.model.vo.Event;
 import com.pigeonMarket.inquiry.model.dao.InquiryDao;
 import com.pigeonMarket.inquiry.model.vo.Inquiry;
+import com.pigeonMarket.inquiry.model.vo.Reply;
 import com.pigeonMarket.notice.model.dao.NoticeDao;
 import com.pigeonMarket.notice.model.vo.Notice;
 
@@ -71,6 +72,48 @@ public class InquiryService {
 		close(conn);
 		
 		return i;
+	}
+
+	public int insertReply(Reply r) {
+		Connection conn = getConnection();
+		
+		int result = new InquiryDao().insertReply(conn, r);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<Reply> selectRlist(int nno) {
+		Connection conn = getConnection();
+		
+		ArrayList<Reply> list = new InquiryDao().selectRlist(conn, nno);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	public int status(int nno) {
+		Connection conn = getConnection();
+		
+		int result1 = new InquiryDao().status(conn, nno);
+		
+		if(result1 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1;
 	}
 
 
