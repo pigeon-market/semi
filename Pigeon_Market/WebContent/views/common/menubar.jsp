@@ -73,7 +73,7 @@
                                     <li><a href="<%= request.getContextPath() %>/inquiry.in">문의사항</a></li>
                                     <li><a href="<%= request.getContextPath() %>/inquirylist.in">관리자 문의사항</a></li>
                                     <li><a href="<%= request.getContextPath() %>/review.re">리뷰</a></li>
-                                    <li><a href="<%= request.getContextPath() %>/myPage.me">mypage</a></li>
+                                    <li><a href="mypage.html">mypage</a></li>
                                     <li>
                                         <a href="#">관리자메뉴</a>
                                         <ul>
