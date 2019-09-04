@@ -6,8 +6,8 @@
 
 	Member m = (Member)session.getAttribute("loginUser");
 	ArrayList<Deal> myList = (ArrayList<Deal>)request.getAttribute("myList");
-
-
+	
+	int total = 0;
 %>
 <!DOCTYPE html>
 <html>
@@ -15,21 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-input[id="check"]+label {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	border: 2px solid #bcbcbc;
-	cursor: pointer;
-}
 
-input[id="check"]:checked+label {
-	background-color: #666666;
-}
-
-input[name="check"] {
-	display: none;
-}
 
 table th {
 	padding: 0.3em 0.3em;
@@ -124,19 +110,22 @@ p {
 					</section>
 
 					<section class="box">
-						<form>
+
 							<table class="listTable">
 								<tr>
 									<th width="10%">상품체크</th>
+									<th width="10%">No</th>
 									<th width="25%">상품사진</th>
 									<th width="25%">상품제목</th>
-									<th width="20%">판매자아이디</th>
-									<th width="20%">상품가격</th>
+									<th width="15%">판매자아이디</th>
+									<th width="15%">상품가격</th>
 								</tr>
 								<% for(int i = 0 ; i < myList.size() ; i++) { %>
 								<tr>
-									<th class="info"><input type="checkbox" name="check" id="check"
-										value="no1"> <label for="check"></label></th>
+									<% String chId = "check"+i;%>
+									
+									<th class="info"><input type="checkbox" class="check" id="<%= chId %>" value="<%= myList.get(i).getProductNo()%>"> <label for="<%= chId %>"></label></th>
+									<th class="info"><%= i %></th>
 									<th class="info"><img
 										src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=myList.get(i).getName() %>"
 										width="100%" height="100%" class="titleimg"></th>
@@ -146,18 +135,23 @@ p {
 								</tr>
 								<% } %>
 								<tr>
-									<th colspne="2"></th>
+									<th colspan="4"></th>
 									<th>총 금액</th>
-									<th>total</th>
+									<th><input type="number" id="total" value="0" readonly></th>
 								</tr>
 								<tr>
-									<th colspan="2"><div id="delete">선택 삭제</div></th>
-									<th colspan="3"><div id="purchase">구입</div></th>
+									<th colspan="3"><div id="delete" onclick="deleteList();">선택 삭제</div></th>
+									<th colspan="3"><div id="purchase" onclick="buyList();">구입</div></th>
 								</tr>
 
 							</table>
+							
+							<form action="" id="postList" method="post">
+								<input type="hidden" name="list" value="" id="list">
+								<input type="hidden" name="price" value="" id="price">
+							</form>
 
-						</form>
+
 
 					</section>
 				</div>
@@ -167,11 +161,74 @@ p {
 	<script>
 		
 		$(function() {
-			$(".listTable .classInfo").click(function() {
-				$('input:checkbox[id="check"]').attr("checked", true);
+			$(".listTable .info").click(function() {
+				var num = $(this).parent().children().eq(1).text();
+				var numing = "check"+num
 
+
+				if($('input:checkbox[id='+numing+']').is(":checked")) {
+					console.log("1");
+					$('input:checkbox[id='+numing+']').attr("checked", false);
+					var price = $(this).parent().children().eq(5).text();
+					var intPrice = parseInt(price);
+					var total = $('#total').val();
+					var intTotal = parseInt(total);
+					$('#total').val(intTotal-intPrice);
+				}else{
+					console.log("2");
+					$('input:checkbox[id='+numing+']').attr("checked", true);
+					var price = $(this).parent().children().eq(5).text();
+					var intPrice = parseInt(price);
+					var total = $('#total').val();
+					var intTotal = parseInt(total);
+					$('#total').val(intTotal+intPrice);
+				}
+
+			}).mouseenter(function() {
+				$(this).parent().css({"cursor": "pointer"});
+				$(this).parent().children().css({"background":"yellow"});
+			}).mouseout(function() {
+				$(this).parent().children().css({"background":"white"});
 			});
+			
+			
 		});
+		
+		function buyList() {
+			var productNo = "";
+			
+			$(".check").each(function() {
+				if($(this).is(":checked")) {
+					productNo += $(this).val() + ",";
+				}	
+			
+			});
+			
+			if(productNo != "") {
+			$("#list").val(productNo);
+			// $("#list").attr("action", "<%= contextPath%>"/);
+					console.log("실행");
+			};
+		}
+		
+		function deleteList() {
+			var productNo = "";
+			
+			$(".check").each(function() {
+				if($(this).is(":checked")) {
+					productNo += $(this).val() + ",";
+				}	
+				
+			});
+			
+			if(productNo != "") {
+				$("#list").val(productNo);
+				// $("#list").attr("action", "<%= contextPath%>"/);
+						console.log("실행");
+				};
+			
+			
+		}
 				
 	</script>
 

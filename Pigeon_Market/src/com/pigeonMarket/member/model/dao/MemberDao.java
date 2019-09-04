@@ -39,7 +39,7 @@ public class MemberDao {
 	
 	public Member checkMyInfo(Connection conn, Member m) {
 		
-		Member mem = new Member();
+		Member mem = null;
 		
 		PreparedStatement pstmt = null;
 		
@@ -69,6 +69,8 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
+		
+
 		
 		return mem;
 		

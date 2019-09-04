@@ -31,9 +31,11 @@ public class UpdateMyInfo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pwd = (String)request.getAttribute("pwd");
+		String pwd = request.getParameter("pwd");
 		
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+		
+		System.out.println(pwd);
 		
 		Member m = new Member();
 		

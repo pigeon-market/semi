@@ -45,25 +45,26 @@ body{
 	<div class="row">
 			<div class="col-12">
 				<section class="box">
-				
+				<form action="<%= contextPath %>/myInfo.me" method="post">
 				<div class="box alt">
 				
 					<div class="row gtr-50 gtr-uniform">
-						<form method="post" action="<%= contextPath %>/myInfo.me">
+						
+						<div class="col-12">
+	
+
+							<input type="password"  name="pwd">
+						</div>
+	
 						<div class="col-12">
 
-							<input type="password" name="pwd" placeholder="비밀번호입력해주세요.">
+							<button type="submit">확인하기</button>
 
 						</div>
-						<div class="col-12">
-
-							<input type="submit" value="접속하기">
-
-						</div>
-						</form>
+						
 					</div>
 				</div>
-
+</form>
 				</section>
 
 	
