@@ -91,7 +91,7 @@ hr {
 								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
 						</div>
 						<div class="col-3">
-							<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
+								<span class="image fit" onclick="location.href='<%= contextPath %>/insert.sm'"><img src="images/pic04.jpg">거래조회</span>
 						</div>
 
 					</div>
