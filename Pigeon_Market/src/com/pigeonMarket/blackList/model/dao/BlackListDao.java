@@ -137,4 +137,26 @@ private Properties prop = new Properties();
 		return bl;
 	}
 
+	public int insertBlackList(Connection conn, BlackList b) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertBlackList");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBlackId());
+			pstmt.setString(2, b.getReporterId());
+			pstmt.setString(3, b.getReporterReason());
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
 }

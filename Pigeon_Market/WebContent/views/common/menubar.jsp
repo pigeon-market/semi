@@ -11,8 +11,6 @@
 %>
 
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +27,17 @@
 <script language="javascript">
   		function showPopup() { window.open("login.html", "a", "width=350, height=450, left=600, top=50"); }
  </script>
+<script>
+	var msg = "<%= msg %>";	
+	$(function(){
+		if(msg != "null"){
+			alert(msg);
+			
+			//세션에 담긴 메세지 한번만 출력하고 삭제하기
+			<% session.removeAttribute("msg"); %>
+		}
+	})
+</script>
 
 </head>
 <body>
@@ -64,10 +73,13 @@
 				</header>
 				
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				
 				
 >>>>>>> origin/seungeun
+=======
+>>>>>>> master
 	
 		<!-- Scripts -->
 			<script src="<%= request.getContextPath()%>/resources/assets/js/jquery.min.js"></script>
