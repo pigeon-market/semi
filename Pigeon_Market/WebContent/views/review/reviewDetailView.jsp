@@ -15,7 +15,6 @@
 <style>
 	.outer{
 		width:800px;
-		height:600px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -25,13 +24,12 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:600px;
-		height:550px;
+
 		margin-left:auto;
 		margin-right:auto;
 	}
 	#content{
-		height:230px;
+
 	}
 </style>
 </head>
@@ -56,26 +54,30 @@
 					<td><%= r.getReviewTitle() %></td>
 					<td>조회수</td>
 					<td><%= r.getReviewReadcount() %></td>
-					<td>작성일</td>
-					<td><%= r.getReviewDate() %></td>
 				</tr>
 				<tr>
-					<td colspan="4">내용</td>
+					<td>작성일</td>
+					<td><%= r.getReviewDate() %></td>
 					<td>작성자</td>
 					<td><%= r.getUserId() %></td>
 				</tr>
 				<tr>
-					<td colspan="6">
+						<td>내용</td>
+					<td colspan="3">
 						<p id="content"><%= r.getReviewContent() %></p>
 					</td>
 				</tr>
 			</table>
 			
 			<div align="center">
-				<button type="button" onclick="location.href='<%= contextPath %>/review.re'">이전으로</button>
-				<button type="button" onclick="updateForm();">수정하기</button>
-				<button type="button" onclick="deleteBoard();">삭제하기</button>
-				
+			<form action="<%= contextPath %>/review.re" method="post">
+				<input type="submit" value="이전으로">
+					<!-- 관리자만 볼 수 있는 작성하기 버튼 -->
+	 <%if(loginUser != null && loginUser.getUserId().equals("user10")){ %>
+				<input type="button" onclick="updateForm();" value="수정하기">
+				<input type="button" onclick="deleteBoard();" value="삭제하기">
+					<%} %>	
+			</form>
 			</div>
 		</div>
 	</div>

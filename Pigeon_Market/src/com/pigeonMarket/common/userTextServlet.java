@@ -35,7 +35,8 @@ public class userTextServlet extends HttpServlet {
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
-      String userId = "user10";
+      String userId = "admin";
+      //String userId = "user10";
        
        Member loginUser = new MemberService().loginUser(userId);
        

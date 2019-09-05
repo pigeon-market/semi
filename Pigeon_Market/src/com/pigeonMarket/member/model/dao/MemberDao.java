@@ -216,7 +216,7 @@ public ArrayList<Member> selectList(Connection conn, PageInfo page) {
 		rset = pstmt.executeQuery();
 		
 		while(rset.next()) {
-			list.add(new Member(rset.getInt("RNUM"),
+			list.add(new Member(rset.getInt("PNUM"),
 							   rset.getString("USER_ID"),
 							   rset.getString("USER_PWD"),
 							   rset.getString("USER_NAME"),
@@ -255,7 +255,7 @@ public Member selectMember(Connection conn, int memberNo) {
 		rset = pstmt.executeQuery();
 		
 		if(rset.next()) {
-			m = new Member(rset.getInt("RNUM"),
+			m = new Member(rset.getInt("PNUM"),
 					   rset.getString("USER_ID"),
 					   rset.getString("USER_PWD"),
 					   rset.getString("USER_NAME"),

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.review.model.service.ReviewService;
 import com.pigeonMarket.review.model.vo.Review;
 
@@ -32,10 +33,13 @@ public class ReviewInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String title = request.getParameter("reviewtitle");
-		String userId = request.getParameter("userId");
 		String content = request.getParameter("reviewContent");
+		String userId = request.getParameter("userId");
 		
-		Review r = new Review(title, userId, content);
+		System.out.println(userId);
+		
+		
+		Review r = new Review(title, content, userId);
 		
 		int result = new ReviewService().insertReview(r);
 		

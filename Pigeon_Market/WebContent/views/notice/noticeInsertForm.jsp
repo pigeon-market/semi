@@ -18,7 +18,6 @@
 <style>
 	.outer{
 		width:800px;
-		height:750px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -28,10 +27,9 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:450px;
-		height:350px;
 		margin-left:auto;
 		margin-right:auto;
+		text-align:center;
 	}
 </style>
 </head>
@@ -55,18 +53,16 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-					</tr>
-					<tr>
-						<td colspan="4">
-							<textarea name="noticeContent" cols="60" rows="15" style="resize:none;"></textarea>
+						<td colspan="3">
+							<textarea name="noticeContent" cols="60" rows="3" style="resize:none;"></textarea>
 						</td>
 					</tr>
 				</table>
 				<br>
 				
 				<div align="center">
-					<button type="button" onclick="javascript:history.back();">취소</button>
-					<button type="submit">등록</button>
+					<input type="button" onclick="javascript:history.back();" value="취소">
+					<input type="submit" value="등록">
 				</div>
 			</form>
 		</div>

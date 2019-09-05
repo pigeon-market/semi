@@ -188,7 +188,7 @@ public class Member implements java.io.Serializable{
 	
 	@Override
 	public String toString() {
-		return "Member [rnum=" + rNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
+		return "Member [rNum=" + rNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", birthDate=" + birthDate + ", gender=" + gender + ", email=" + email + ", phone=" + phone
 				+ ", address=" + address + ", joinDate=" + joinDate + ", withdrawal=" + withdrawal + ", blackCode="
 				+ blackCode + "]";
