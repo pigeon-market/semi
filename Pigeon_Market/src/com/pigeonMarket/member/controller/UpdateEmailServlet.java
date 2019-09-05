@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.pigeonMarket.member.model.service.MemberService;
 import com.pigeonMarket.member.model.vo.Member;
 
 /**
- * Servlet implementation class UpdateMyInfo
+ * Servlet implementation class UpdateEmailServlet
  */
-@WebServlet("/myInfo.me")
-public class UpdateMyInfo extends HttpServlet {
+@WebServlet("/updateEmail.me")
+public class UpdateEmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateMyInfo() {
+    public UpdateEmailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +32,27 @@ public class UpdateMyInfo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pwd = request.getParameter("pwd");
-		
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		Member m = new Member();
+		String email1 = request.getParameter("email1");
+		String email2 = request.getParameter("email2");
 		
-		m.setUserId(userId);
-		m.setUserPwd(pwd);
+		String email = email1+"@"+email2;
 		
-		Member mem = new MemberService().checkMyInfo(m);
-
-		if(mem != null) {
-			request.setAttribute("me", mem);
-			request.getRequestDispatcher("views/myPage/updateMyInfo.jsp").forward(request, response);
-		} else {
-
-			request.getSession().setAttribute("msg", "비밀번호를 틀렸습니다. 메인으로 돌아갑니다.");
+		int result = new MemberService().updateEamil(email, userId);
+		
+		if(result > 0) {
+			
+			
+			response.setContentType("application/json; charset=utf-8");
+		      
+		      Gson gson = new Gson();
+		      
+		      gson.toJson(email, response.getWriter()); 
+			
+			
+		}else {
+			request.getSession().setAttribute("msg", "이메일업데이트에 오류가 발생했습니다.");
 			response.sendRedirect(request.getContextPath());
 		}
 		

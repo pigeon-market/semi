@@ -1,4 +1,4 @@
-package com.pigeonMarket.member.controller;
+package com.pigeonMarket.ShoppingBasket.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.member.model.service.MemberService;
+import com.pigeonMarket.ShoppingBasket.model.service.ShoppingBasketService;
 import com.pigeonMarket.member.model.vo.Member;
 
 /**
- * Servlet implementation class UpdateMyInfo
+ * Servlet implementation class ShoppingDeleteServlet
  */
-@WebServlet("/myInfo.me")
-public class UpdateMyInfo extends HttpServlet {
+@WebServlet("/deleteForm.pc")
+public class ShoppingDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateMyInfo() {
+    public ShoppingDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +30,22 @@ public class UpdateMyInfo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String pwd = request.getParameter("pwd");
-		
+		String list = request.getParameter("list");
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		Member m = new Member();
+		int result = new ShoppingBasketService().deleteList(list, userId);
 		
-		m.setUserId(userId);
-		m.setUserPwd(pwd);
+		String[] arr = list.split(",");
 		
-		Member mem = new MemberService().checkMyInfo(m);
-
-		if(mem != null) {
-			request.setAttribute("me", mem);
-			request.getRequestDispatcher("views/myPage/updateMyInfo.jsp").forward(request, response);
-		} else {
-
-			request.getSession().setAttribute("msg", "비밀번호를 틀렸습니다. 메인으로 돌아갑니다.");
-			response.sendRedirect(request.getContextPath());
+		System.out.println(arr.length);
+		
+		if(arr.length == result) {
+			request.getSession().setAttribute("msg", "장바구니에서 삭제되었습니다.");
+		}else {
+			request.getSession().setAttribute("msg", "장바구니에서 삭제를 실패했습니다. 다시 시도해주세요.");
+			
 		}
-		
+		response.sendRedirect("myShoppingBacket.me");
 		
 	}
 

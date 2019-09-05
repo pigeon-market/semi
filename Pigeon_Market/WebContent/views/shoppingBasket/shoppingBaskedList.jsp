@@ -226,7 +226,7 @@ p {
 			
 			if(productNo != "") {
 				$("#list").val(productNo);
-				$("#postList").attr("action", "<%= contextPath%>/insertForm.pc");
+				$("#postList").attr("action", "<%= contextPath%>/deleteForm.pc");
 				$("#postList").submit();
 
 				};

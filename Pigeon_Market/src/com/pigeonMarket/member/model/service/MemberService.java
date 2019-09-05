@@ -164,6 +164,24 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public int updateEamil(String email, String userId) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateEmail(conn, email, userId);
+		
+		if(result > 0 ) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
 
 
 }

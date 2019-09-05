@@ -122,9 +122,32 @@ public class ShoppingBasketDao {
 		return list;
 		
 	}
-
 	
+	public int deleteList(Connection conn, String pNo, String userId) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
 
-	
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, Integer.parseInt(pNo));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
 
 }
