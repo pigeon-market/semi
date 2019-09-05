@@ -56,9 +56,9 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				mem = new Member(rset.getString(1), rset.getString(3), rset.getString(4),
-						rset.getString(5), rset.getString(6), rset.getString(7), rset.getString(8), rset.getDate(9),
-						rset.getString(10), rset.getString(11));
+				mem = new Member(rset.getString(2), rset.getString(4), rset.getString(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getDate(10),
+						rset.getString(11), rset.getString(12));
 
 			}
 			
@@ -148,9 +148,9 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				loginUser = new Member(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4),
-						rset.getString(5), rset.getString(6), rset.getString(7), rset.getString(8), rset.getDate(9),
-						rset.getString(10), rset.getString(11));
+				loginUser = new Member(rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getDate(10),
+						rset.getString(11), rset.getString(12));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

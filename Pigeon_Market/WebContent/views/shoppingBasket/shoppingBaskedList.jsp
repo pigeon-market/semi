@@ -7,7 +7,6 @@
 	Member m = (Member)session.getAttribute("loginUser");
 	ArrayList<Deal> myList = (ArrayList<Deal>)request.getAttribute("myList");
 	
-	int total = 0;
 %>
 <!DOCTYPE html>
 <html>
@@ -125,7 +124,7 @@ p {
 									<% String chId = "check"+i;%>
 									
 									<th class="info"><input type="checkbox" class="check" id="<%= chId %>" value="<%= myList.get(i).getProductNo()%>"> <label for="<%= chId %>"></label></th>
-									<th class="info"><%= i %></th>
+									<th class="info"><%= i+1 %></th>
 									<th class="info"><img
 										src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=myList.get(i).getName() %>"
 										width="100%" height="100%" class="titleimg"></th>
@@ -163,7 +162,8 @@ p {
 		$(function() {
 			$(".listTable .info").click(function() {
 				var num = $(this).parent().children().eq(1).text();
-				var numing = "check"+num
+				var num1 = num-1
+				var numing = "check"+num1
 
 
 				if($('input:checkbox[id='+numing+']').is(":checked")) {
@@ -206,7 +206,10 @@ p {
 			
 			if(productNo != "") {
 			$("#list").val(productNo);
-			// $("#list").attr("action", "<%= contextPath%>"/);
+			var total =$("#total").val();
+			$("#price").val(total);
+			$("#postList").attr("action", "<%=contextPath%>/insertForm.pc");
+			$("#postList").submit();
 					console.log("실행");
 			};
 		}
@@ -223,8 +226,9 @@ p {
 			
 			if(productNo != "") {
 				$("#list").val(productNo);
-				// $("#list").attr("action", "<%= contextPath%>"/);
-						console.log("실행");
+				$("#postList").attr("action", "<%= contextPath%>/insertForm.pc");
+				$("#postList").submit();
+
 				};
 			
 			
