@@ -34,21 +34,22 @@ public class PurchaseInsertFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String list = request.getParameter("list");
-		String price = request.getParameter("price");
 		
-		System.out.println(list);
-		System.out.println(price);
+		String[] arr = list.split(",");
 		
-//		ProductSale p = new ProductService().selectProduct(pNo);
-//		
-//		ArrayList<Attachment> fileList  = new ProductService().selectAttachment(pNo);
-//		
-//		if(p != null) {
-//			request.setAttribute("p", p);
-//			request.setAttribute("fileList", fileList);
-//			request.getRequestDispatcher("views/purchase/purchaseInsertForm.jsp").forward(request, response);
-//			
-//		}
+		ArrayList<ProductSale> prList = new ProductService().selectProduct(arr);
+		
+		
+		
+		ArrayList<Attachment> fileList  = new ProductService().selectAttachment(arr);
+		
+		if(prList != null) {
+			request.setAttribute("prList", prList);
+			request.setAttribute("fileList", fileList);
+			request.getRequestDispatcher("views/purchase/purchaseInsertForm.jsp").forward(request, response);
+		}
+		
+		
 		
 	}
 

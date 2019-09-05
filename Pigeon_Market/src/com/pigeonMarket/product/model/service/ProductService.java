@@ -10,6 +10,10 @@ import com.pigeonMarket.product.model.vo.ProductSale;
 
 import static  com.pigeonMarket.common.JDBCTemplate.*;
 
+/**
+ * @author 병현
+ *
+ */
 public class ProductService {
 
 	/**
@@ -110,6 +114,45 @@ public class ProductService {
 		close(conn);
 		return prList;
 
+	}
+
+	
+	/**
+	 * 구입할 제품 상품리스트
+	 * @param arr
+	 * @return
+	 */
+	public ArrayList<ProductSale> selectProduct(String[] arr) {
+		
+		Connection conn = getConnection();
+		ArrayList<ProductSale> prList = new ArrayList<>();
+		for(int i=0; i<arr.length; i++) {
+			
+			int pNo = Integer.parseInt(arr[i]);
+
+			ProductSale p  = new ProductDao().selectProduct(conn,pNo);
+			prList.add(p);
+		}
+		close(conn);
+		return prList;
+	}
+
+
+	public ArrayList<Attachment> selectAttachment(String[] arr) {
+
+		Connection conn = getConnection();
+		
+		ArrayList<Attachment> atList = new ArrayList<>();
+		for(int i=0; i<arr.length; i++) {
+			
+			int pNo = Integer.parseInt(arr[i]);
+
+		Attachment at = new ProductDao().selectAt(conn,pNo);
+		 atList.add(at);
+		}
+		
+		close(conn);
+		return atList;
 	}
 
 

@@ -5,6 +5,8 @@
 	ProductSale pr = (ProductSale)request.getAttribute("p");
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
 	Attachment titleImg = fileList.get(0);
+	
+	String pNo = Integer.toString((pr.getProductOkNo()));
 %>    
 <!DOCTYPE html>
 <html>
@@ -116,7 +118,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="diaArea"><a href="<%= contextPath%>/insert.sm?pNo=<%= pr.getProductOkNo()%>"><div id = "basket">장바구니</div></a></td>
-				<td colspan="2" class="diaArea"><a  href="<%= contextPath%>/insertForm.pc?pNo=<%= pr.getProductOkNo()%>"><div id = "purchase">구매</div></a></td>			
+				<td colspan="2" class="diaArea"><a  href="<%= contextPath%>/insertForm.pc?list=<%= pNo%>"><div id = "purchase">구매</div></a></td>			
 			</tr>
 			<tr>
 				<td colspan="1" id="inFormation"><div>상품정보</div></td>

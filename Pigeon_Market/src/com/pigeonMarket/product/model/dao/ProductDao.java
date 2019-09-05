@@ -295,6 +295,42 @@ public class ProductDao {
 		return prList;
 	}
 
+	/**
+	 * 구입하는 상품 사진1번 가져오기
+	 * @param conn
+	 * @param pNo
+	 * @return
+	 */
+	public Attachment selectAt(Connection conn, int pNo) {
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAt");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				at = new Attachment(rset.getInt("F_ID"),
+						  rset.getInt("PRODUCT_OK_NO"),
+						  rset.getString("ORIGIN_NAME"),
+						  rset.getString("CHANGE_NAME"),
+						  rset.getString("FILE_PATH"),
+						  rset.getInt("FILE_LEVEL"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return at;
+	}
+
+
+
 	
 
 }
