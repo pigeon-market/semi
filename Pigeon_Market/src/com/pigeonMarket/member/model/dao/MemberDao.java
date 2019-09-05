@@ -1,3 +1,4 @@
+
 package com.pigeonMarket.member.model.dao;
 
 import static com.pigeonMarket.common.JDBCTemplate.close;
@@ -15,17 +16,15 @@ import java.util.Properties;
 
 import com.pigeonMarket.common.model.vo.PageInfo;
 import com.pigeonMarket.member.model.vo.Member;
-import com.pigeonMarket.notice.model.vo.Notice;
 
 public class MemberDao {
-	
+
 	private Properties prop = new Properties();
-	
+
 	public MemberDao() {
-		
+
 		String fileName = MemberDao.class.getResource("/com/pigeonMarket/sql/member/member-query.properties").getPath();
-		// ��ġ���� ����
-		
+
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (FileNotFoundException e) {
@@ -35,86 +34,34 @@ public class MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 	
-	public int updateMyInfo(Connection conn, Member m) {
+	public Member checkMyInfo(Connection conn, Member m) {
 		
-		int result = 0;
+		Member mem = null;
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("updateMyInfo");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, m.getUserPwd());
-			pstmt.setString(2, m.getAddress());
-			pstmt.setString(3, m.getAddress());
-			pstmt.setString(4, m.getUserId());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-		
-	}
-	
-	public int deleteMyInfo(Connection conn, String userId) {
-		
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("updateMyInfo");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, userId);
-
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-		
-		
-	}
-	
-
-public Member loginUser(Connection conn, String userId) {
-		
-		Member loginUser = null;
-		
-		PreparedStatement pstmt = null;
-		
-
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("loginUser");
+		String sql = prop.getProperty("checkMyInfo");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, userId);
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
 			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
-				loginUser=new Member(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5), rset.getString(6), rset.getString(7), rset.getString(8), rset.getDate(9), rset.getString(10), rset.getString(11));
+			if(rset.next()) {
+				mem = new Member(rset.getString(2), rset.getString(4), rset.getString(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getDate(10),
+						rset.getString(11), rset.getString(12));
+
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -123,10 +70,101 @@ public Member loginUser(Connection conn, String userId) {
 			close(pstmt);
 		}
 		
-		return loginUser;
+
+		
+		return mem;
 		
 		
 	}
+
+	public int updateMyInfo(Connection conn, Member m) {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updateMyInfo");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, m.getUserPwd());
+			pstmt.setString(2, m.getAddress());
+			pstmt.setString(3, m.getAddress());
+			pstmt.setString(4, m.getUserId());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+
+	}
+
+	public int deleteMyInfo(Connection conn, String userId) {
+
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updateMyInfo");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+
+	}
+
+	public Member loginUser(Connection conn, String userId) {
+
+		Member loginUser = null;
+
+		PreparedStatement pstmt = null;
+
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("loginUser");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				loginUser = new Member(rset.getString(2), rset.getString(3), rset.getString(4), rset.getString(5),
+						rset.getString(6), rset.getString(7), rset.getString(8), rset.getString(9), rset.getDate(10),
+						rset.getString(11), rset.getString(12));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return loginUser;
+
+	}
+	
+	
 
 public int getListCount(Connection conn) {
 	int listCount = 0;
@@ -260,5 +298,8 @@ public int deleteMember(Connection conn, String memberNo) {
 	
 	return result;
 }
+
+
+	
 
 }

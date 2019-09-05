@@ -15,6 +15,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.pigeonMarket.common.MyFileRenamePolicy;
+import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.product.model.service.ProductService;
 import com.pigeonMarket.product.model.vo.Attachment;
 import com.pigeonMarket.product.model.vo.Product;

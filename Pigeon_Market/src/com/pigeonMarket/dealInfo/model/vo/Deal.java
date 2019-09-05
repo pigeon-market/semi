@@ -1,64 +1,58 @@
+
 package com.pigeonMarket.dealInfo.model.vo;
 
 import java.sql.Date;
 
 public class Deal {
 	
-	private String productOkNo;			// 등록 제품 넘버
-	private String productNo;			// 판매자 등록 넘버
-	private int price;					// 가격
-	private String pId;					// 판매자 아이디
-	private String bId;					// 구매자 아이디
-	private String categoryName;		// 카테고리 이름
-	private String title;				// 게시글 제목
-	private Date regDate; 				// 등록 날짜
-	private Date approvalDate;			// 승인 날짜
-	private Date dealDate;				// 구매 날짜
-	private String state;				// 판매 상태
+	private int productNo;				// ��ǰ��ȣ
+	private int price;					// ����
+	private String pId;					// �Ǹ��� ���̵�
+	private String bId;					// ������ ���̵�
+	private String name;		// ī���ڸ� �̸�
+	private String title;				// �Խù� ����
+	private Date regDate; 				// ��ϳ�¥
+	private Date approvalDate;			// ���γ�¥
+	private Date dealDate;				// �Ǹų�¥
+	private String state;				// �ǸſϷ� ����
 	
 	public Deal() {
 		
 	}
+	
+	
 
-	public Deal(String productOkNo, String bId, Date dealDate) {
+	public Deal(int productNo, String name, String title, String pId, int price) {
 		super();
-		this.productOkNo = productOkNo;
-
-		this.bId = bId;
-		this.dealDate = dealDate;
+		this.productNo = productNo;
+		this.price = price;
+		this.pId = pId;
+		this.name = name;
+		this.title = title;
 	}
 
 
 
-	public Deal(String productOkNo, String productNo, int price, String pId, String bId, String categoryName,
-			String title, Date regDate, Date approvalDate, Date dealDate, String state) {
+	public Deal(int productNo, int price, String pId, String bId, String name, String title, Date regDate,
+			Date approvalDate, Date dealDate, String state) {
 		super();
-		this.productOkNo = productOkNo;
 		this.productNo = productNo;
 		this.price = price;
 		this.pId = pId;
 		this.bId = bId;
-		this.categoryName = categoryName;
+		this.name = name;
 		this.title = title;
 		this.regDate = regDate;
 		this.approvalDate = approvalDate;
 		this.dealDate = dealDate;
 		this.state = state;
 	}
-	
-	public String getProductOkNo() {
-		return productOkNo;
-	}
 
-	public void setProductOkNo(String productOkNo) {
-		this.productOkNo = productOkNo;
-	}
-
-	public String getProductNo() {
+	public int getProductNo() {
 		return productNo;
 	}
 
-	public void setProductNo(String productNo) {
+	public void setProductNo(int productNo) {
 		this.productNo = productNo;
 	}
 
@@ -86,12 +80,12 @@ public class Deal {
 		this.bId = bId;
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setCategoryName(String name) {
+		this.name = name;
 	}
 
 	public String getTitle() {
@@ -136,11 +130,11 @@ public class Deal {
 
 	@Override
 	public String toString() {
-		return "Deal [productOkNo=" + productOkNo + ", productNo=" + productNo + ", price=" + price + ", pId=" + pId
-				+ ", bId=" + bId + ", categoryName=" + categoryName + ", title=" + title + ", regDate=" + regDate
-				+ ", approvalDate=" + approvalDate + ", dealDate=" + dealDate + ", state=" + state + "]";
+		return "Deal [productNo=" + productNo + ", price=" + price + ", pId=" + pId + ", bId=" + bId + ", categoryName="
+				+ name + ", title=" + title + ", regDate=" + regDate + ", approvalDate=" + approvalDate
+				+ ", dealDate=" + dealDate + ", state=" + state + "]";
 	}
-	
-	
+
 	
 }
+
