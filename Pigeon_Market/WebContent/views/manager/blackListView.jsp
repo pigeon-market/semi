@@ -21,7 +21,6 @@
 <style>
 	.outer{
 		width:900px;
-		height:800px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -31,13 +30,23 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:700px;
-		height:550px;
 		margin-left:auto;
 		margin-right:auto;
 	}
 	#content{
-		height:230px;
+	}
+	th{
+	text-align:center !importarnt;
+	}
+	#listArea{
+		border:1px solid white;
+		text-align:center;
+	}
+		.searchArea{
+		width:900px;
+		height:100px;
+		margin-left:auto;
+		margin-right:auto;	
 	}
 </style>
 
@@ -56,10 +65,10 @@
 			<table id="listArea">
 				<tr>
 					<th>신고번호</th>
-					<th width="300">신고사유</th>
-					<th width="100">블랙자</th>
-					<th width="100">신고자</th>
-					<th width="100">신고일자</th>
+					<th>신고사유</th>
+					<th>블랙자</th>
+					<th>신고자</th>
+					<th>신고일자</th>
 				</tr>
 				<%if(list.isEmpty()){ %>
 					<tr>
@@ -121,13 +130,6 @@
 		
 		
 		<div class="searchArea" align="center">
-			<select id="searchCondition" name="searchCondition">
-				<option>-----</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="search" name="search">
-			<button type="submit">검색하기</button>
 		</div>
 		
 		

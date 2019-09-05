@@ -22,15 +22,12 @@
 <style>
 	.outer{
 		width:800px;
-		height:800px;
 		color: #646464;
 		margin-left:auto;
 		margin-right:auto;
 		margin-top:50px;
 	}
 	.tableArea{
-		width:650px;
-		height:600px;
 		margin-left:auto;
 		margin-right:auto;
 		text-align:center;
@@ -38,10 +35,6 @@
 	#listArea{
 		border:1px solid white;
 		text-align:center;
-		border-top-left-radius: 30px;
-		border-top-right-radius: 30px;
-		border-bottom-left-radius: 30px;
-		border-bottom-right-radius: 30px;
 	}
 	.searchArea{
 		width:650px;
@@ -51,7 +44,7 @@
 		
 	}
 	th{
-	align:center;
+	align:center !importarnt;
 	}
 </style>
 </head>
@@ -68,10 +61,10 @@
 			
 			<table id="listArea">
 				<tr>
-					<th >글번호</th>
-					<th width="100">제목</th>
-					<th width="300">내용</th>
-					<th width="100">작성일</th>
+					<th>글번호</th>
+					<th>제목</th>
+					<th>내용</th>
+					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
 				<%if(list.isEmpty()){ %>
@@ -131,24 +124,19 @@
 			<button onclick="location.href='<%= contextPath %>/event.eo?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
 			
 		</div>
+		<br>
 		
 		
 		<div class="searchArea" align="center">
-			<select id="searchCondition" name="searchCondition">
-				<option>-----</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="search" name="search">
-			<button type="submit">검색하기</button>
-			<button onclick="location.href='<%= contextPath %>/insertForm.eo';">작성하기</button>
-		</div>
 		
 		<!-- 관리자만 볼 수 있는 작성하기 버튼 -->
-	<!--  <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
-		<button onclick="location.href='<%= contextPath %>/insertForm.no';">작성하기</button>
+	 <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+		<form action="<%= contextPath %>/insertForm.eo" method="post">
+			<input type="submit" value="작성하기">
+		 </form>
 		<%} %>
-		-->
+	
+			</div>
 		
 	</div>
 	

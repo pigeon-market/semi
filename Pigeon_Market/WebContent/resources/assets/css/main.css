@@ -27,7 +27,6 @@
 		border: 0;
 		font-size: 100%;
 		font: inherit;
-		vertical-align: baseline;
 	}
 
 	article, aside, details, figcaption, figure,
@@ -2700,7 +2699,7 @@
 			font-size: 0.9em;
 			font-weight: 300;
 			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+		
 		}
 
 		table thead {

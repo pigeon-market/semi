@@ -15,7 +15,6 @@
 <style>
 	.outer{
 		width:800px;
-		height:800px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -25,16 +24,18 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:600px;
-		height:500px;
 		margin-left:auto;
 		margin-right:auto;
 	}
 	#content{
-		height:230px;
 	}
 	.replyArea{
-		width:600px;
+		width:800px;
+		color:black;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.replySelectArea{
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -50,7 +51,7 @@
 	<div class="outer">
 		<br>
 		
-		<h2 align="center">게시판 상세보기</h2>
+		<h2 align="center">문의사항 상세보기</h2>
 		
 		<div class="tableArea">
 			
@@ -69,10 +70,8 @@
 					<td colspan="2"><%= i.getInquiryDate() %></td>
 				</tr>
 				<tr>
-					<td colspan="6">내용</td>
-				</tr>
-				<tr>
-					<td colspan="6">
+					<td>내용</td>
+					<td colspan="5">
 						<p id="content"><%= i.getInquiryContent() %></p>
 					</td>
 				</tr>
@@ -85,7 +84,7 @@
 				<tr>
 					<td>댓글작성</td>
 					<td><textarea rows="3" cols="40" id="replyContent" style="resize:none;"></textarea></td>
-					<td><button id="addReply">댓글등록</button></td>
+					<td><input type="button" id="addReply" value="댓글등록"></td>
 				</tr>
 			</table>
 		</div>
@@ -181,8 +180,9 @@
 		
 			
 			<div align="center">
-				<button type="button" onclick="location.href='<%= contextPath %>/inquirylist.in'">이전으로</button>
-				
+				<form action="<%= contextPath %>/inquirylist.in" method="post">
+				<input type="submit" value="이전으로">
+					</form>
 			</div>
 		</div>
 	</div>

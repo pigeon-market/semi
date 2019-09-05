@@ -13,7 +13,6 @@
 <style>
 	.outer{
 		width:800px;
-		height:600px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -23,13 +22,10 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:600px;
-		height:550px;
 		margin-left:auto;
 		margin-right:auto;
 	}
 	#content{
-		height:230px;
 	}
 </style>
 </head>
@@ -43,7 +39,7 @@
 	<div class="outer">
 		<br>
 		
-		<h2 align="center">게시판 상세보기</h2>
+		<h2 align="center">블랙리스트 상세보기</h2>
 		
 		<div class="tableArea">
 			
@@ -69,8 +65,9 @@
 			</table>
 			
 			<div align="center">
-				<button type="button" onclick="location.href='<%= contextPath %>/black.bl'">이전으로</button>
-				
+				<form action="<%= contextPath %>/black.bl" method="post">
+					<input type="submit" value="이전으로">	
+				</form>
 			</div>
 		</div>
 	</div>

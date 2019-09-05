@@ -34,7 +34,9 @@
 							<tr>
 								<div class="col-6 col-12-mobilep">
 									<td>아이디</td>
-									<td colspan="3"><input type="text" style="background-color:white" name="userId" id="userId" value="<%= loginUser.getUserId() %>" placeholder="아이디" readonly /></td>
+									<td><input type="text" style="background-color:white" name="userId" id="userId" value="<%= loginUser.getUserId() %>" placeholder="아이디" readonly /></td>
+									<td>   작성일</td>
+									<td><%= today %></td>
 								</div>
 							</tr>
 							<tr>
@@ -44,17 +46,8 @@
 								</div>
 							</tr>
 							<tr>
-								
 									<td>내용</td>
-									<td>&nbsp;</td>
-									<td>   작성일</td>
-									<td><%= today %></td>
-							
-							</tr>
-							<tr>
-								
-									<td colspan="4"><textarea name="inquiryContent" style="background-color:white; resize: none;" id="inquiryContent" placeholder="내용" rows="6"></textarea></td>
-								
+									<td colspan="3"><textarea name="inquiryContent" style="background-color:white; resize: none;" id="inquiryContent" placeholder="내용" rows="6"></textarea></td>
 							</tr>
 								</div>
 							</table>
