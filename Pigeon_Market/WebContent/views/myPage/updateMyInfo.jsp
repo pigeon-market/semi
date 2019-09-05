@@ -98,7 +98,7 @@ position:relative;
 							<input type="text" class="email" name="eamil2" value="<%= email2 %>" readonly>
 							</div>
 							<div class="col-3">
-							<button onclick=""><input type="text" value="수정하기"></button>
+							<button onclick=""></button>
 							</div>
 							
 					
