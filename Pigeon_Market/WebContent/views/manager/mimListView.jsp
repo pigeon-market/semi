@@ -80,7 +80,7 @@
 				<%}else{ %>
 					<%for(Member m : list){ %>
 						<tr>
-							<td><%= m.getRnum() %></td>
+							<td><%= m.getrNum() %></td>
 							<td><%= m.getUserName() %></td>
 							<td><%= m.getUserId() %></td>
 							<td><%= m.getJoinDate() %></td>
