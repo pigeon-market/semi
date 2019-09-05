@@ -69,6 +69,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 
 		return mem;
 
@@ -102,18 +103,20 @@ public class MemberDao {
 
 	}
 
-	public int deleteMyInfo(Connection conn, String userId) {
+	public int deleteMyInfo(Connection conn, Member m) {
 
 		int result = 0;
 
 		PreparedStatement pstmt = null;
 
-		String sql = prop.getProperty("updateMyInfo");
+		String sql = prop.getProperty("deleteMyInfo");
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, userId);
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserId());
+
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -288,6 +291,53 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, email);
+			pstmt.setString(2, userId);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+		
+	}
+	
+	public int updatePwd(Connection conn, Member m) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updatePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getUserId());
+			pstmt.setString(3, m.getUserPwd());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+		
+	}
+	
+	public int updatePhone(Connection conn, String phone, String userId) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updatePhone");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, phone);
 			pstmt.setString(2, userId);
 
 			result = pstmt.executeUpdate();

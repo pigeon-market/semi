@@ -44,7 +44,7 @@ body {
 		<div class="row">
 			<div class="col-12">
 				<section class="box">
-				<form action="<%=contextPath%>/updatePwd.me" method="post">
+				<form action="<%= contextPath %>/deleteMyInfo.me" method="post">
 					<div class="box alt">
 
 						<div class="row gtr-50 gtr-uniform">
@@ -53,12 +53,12 @@ body {
 								<div class="col-3">
 
 
-									<p>현재비밀번호</p>
+									<p>아이디</p>
 								</div>
 								<div class="col-3">
 
 
-									<input type="password" name="pwd">
+									<input type="text" name="id" id="id">
 								</div>
 
 							</div>
@@ -69,38 +69,14 @@ body {
 								<div class="col-3">
 
 
-									<p>새로운 비밀번호</p>
+									<p>비밀번호</p>
 								</div>
 								<div class="col-3">
 
 
-									<input type="password" name="nPwd" id="nPwd">
+									<input type="password" name="pwd" id="pwd">
 								</div>
 
-							</div>
-
-
-
-							<div class="block">
-								<div class="col-3">
-
-
-									<p>새로운 비밀번호 확인</p>
-								</div>
-								<div class="col-3">
-
-
-									<input type="password" name="nPwd2" id="nPwd2">
-								</div>
-
-
-							</div>
-
-							<div class="block">
-								<div class="col-3">
-									<p id="equal"></p>
-								</div>
-								
 							</div>
 
 							<div class="col-12">
@@ -123,17 +99,19 @@ body {
 
 	<script>
 		$(function () {
-			$('#nPwd2').on("change paste keyup", function() {
-				var cPwd = $('#nPwd').val();
-				var cPwd2 = $('#nPwd2').val();
+			
+			var loginUser = <%= m.getUserId()%>;
+			
+			
+			$('#id').on("change paste keyup", function() {
+				var checkId = $('#id').val();
+				var checkPwd = $('#pwd').val();
 				
-				if(cPwd != cPwd2 || cPwd2=="") {
-					$('#equal').text("비밀번호가 다릅니다.");
-				} else {
-					$('#equal').text("비밀번호가 일치합니다.");
-					$('#check').removeAttr('disabled');
+				if( loginUser.equal(checkId) & checkPwd=="") {
+					$('check').removeAttr('disabled');			
 				}
 			})
+			
 		});
 	
 	

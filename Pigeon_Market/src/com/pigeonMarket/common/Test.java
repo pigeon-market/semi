@@ -4,11 +4,11 @@ public class Test {
 	
 	public static void main(String[] args ) {
 		
-		String s = "123";
+		String s = "010-1111-1111";
 		
-		String[] arr = s.split(",");
+		int i = s.lastIndexOf("-");
 		
-		System.out.println(arr[1]);
+		System.out.println(i);
 		
 		
 	}

@@ -51,7 +51,7 @@
 				
 				<tr>
 					<td>글 번호</td>
-					<td colspan="2"><%= m.getRnum() %></td>
+					<td colspan="2"><%= m.getrNum() %></td>
 					<td>회원 이름</td>
 					<td colspan="2"><%= m.getUserName() %></td>					
 				</tr>
@@ -103,7 +103,7 @@
 	<script>
 		
 		function deleteBoard(){
-			console.log(<%= m.getRnum() %>);
+			console.log(<%= m.getrNum() %>);
 			$("#detailForm").attr("action", "<%=contextPath%>/delete.mim");
 			$("#detailForm").submit();
 		}

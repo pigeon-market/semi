@@ -17,47 +17,6 @@ import com.pigeonMarket.notice.model.vo.Notice;
 public class MemberService {
 	
 
-//	
-//	
-//	public ArrayList detailActivityList(ArrayList<Activity> aList) {
-//		
-//		Connection conn = getConnection();
-//		
-//		ArrayList list = new ArrayList();
-//		
-//		String status = "";
-//		
-//		String num = "";
-//		
-//		for(int i = 0 ; i < aList.size(); i++) {
-//			
-//			status = aList.get(i).getStatus();
-//			
-//			num = status.indexOf("_");
-//			
-//			if(num != -1) {
-//				status = status.substring(0, num);
-//			}
-//			
-//			switch(status) {
-//			case "SIGNIN" :
-//				ArrayList<String> signIn = new ArrayList<>();
-//				signIn.add(aList.get(i).getStatus());
-//				signIn.add("회원가입이 되셨습니다.");
-//				break;
-//			case "REVIEW" :
-//				
-//			}
-//			
-//			
-//		}
-//		
-//		
-//		close(conn);
-//		
-//		return list;
-//		
-//	}
 	public Member checkMyInfo(Member m) {
 		
 		Connection conn = getConnection();
@@ -88,11 +47,11 @@ public class MemberService {
 		return result;
 	}
 	
-	public int deleteMyInfo(String userId) {
+	public int deleteMyInfo(Member m) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MemberDao().deleteMyInfo(conn, userId);
+		int result = new MemberDao().deleteMyInfo(conn, m);
 		
 		if(result > 0) {
 			commit(conn);
@@ -170,6 +129,43 @@ public class MemberService {
 		Connection conn = getConnection();
 		
 		int result = new MemberDao().updateEmail(conn, email, userId);
+		
+		if(result > 0 ) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int updatePwd(Member m) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updatePwd(conn, m);
+		
+		if(result > 0 ) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+		
+	}
+	
+	public int updatePhone(String phone, String userId) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updatePhone(conn, phone, userId);
 		
 		if(result > 0 ) {
 			commit(conn);
