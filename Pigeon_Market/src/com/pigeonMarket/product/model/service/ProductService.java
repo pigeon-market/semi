@@ -7,6 +7,8 @@ import com.pigeonMarket.product.model.dao.ProductDao;
 import com.pigeonMarket.product.model.vo.Attachment;
 import com.pigeonMarket.product.model.vo.Product;
 import com.pigeonMarket.product.model.vo.ProductSale;
+import com.pigeonMarket.product.model.vo.Reply;
+
 
 import static  com.pigeonMarket.common.JDBCTemplate.*;
 
@@ -153,6 +155,35 @@ public class ProductService {
 		
 		close(conn);
 		return atList;
+	}
+
+
+	public int insertReply(Reply r) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ProductDao().insertReview(conn, r);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+	public ArrayList<Reply> selectRlist(int pNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Reply> list = new ProductDao().selectRlist(conn,pNo);
+		
+		commit(conn);
+		return list;
 	}
 
 
