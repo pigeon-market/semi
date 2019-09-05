@@ -1,5 +1,10 @@
 package com.pigeonMarket.member.model.service;
 
+import static com.pigeonMarket.common.JDBCTemplate.close;
+import static com.pigeonMarket.common.JDBCTemplate.commit;
+import static com.pigeonMarket.common.JDBCTemplate.getConnection;
+import static com.pigeonMarket.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -9,9 +14,62 @@ import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.notice.model.dao.NoticeDao;
 import com.pigeonMarket.notice.model.vo.Notice;
 
-import static com.pigeonMarket.common.JDBCTemplate.*;
-
 public class MemberService {
+	
+
+//	
+//	
+//	public ArrayList detailActivityList(ArrayList<Activity> aList) {
+//		
+//		Connection conn = getConnection();
+//		
+//		ArrayList list = new ArrayList();
+//		
+//		String status = "";
+//		
+//		String num = "";
+//		
+//		for(int i = 0 ; i < aList.size(); i++) {
+//			
+//			status = aList.get(i).getStatus();
+//			
+//			num = status.indexOf("_");
+//			
+//			if(num != -1) {
+//				status = status.substring(0, num);
+//			}
+//			
+//			switch(status) {
+//			case "SIGNIN" :
+//				ArrayList<String> signIn = new ArrayList<>();
+//				signIn.add(aList.get(i).getStatus());
+//				signIn.add("회원가입이 되셨습니다.");
+//				break;
+//			case "REVIEW" :
+//				
+//			}
+//			
+//			
+//		}
+//		
+//		
+//		close(conn);
+//		
+//		return list;
+//		
+//	}
+	public Member checkMyInfo(Member m) {
+		
+		Connection conn = getConnection();
+		
+		Member mem = new MemberDao().checkMyInfo(conn, m);
+		
+		close(conn);
+		
+		return mem;
+		
+	}
+	
 	
 	public int updateMyInfo(Member m) {
 		
