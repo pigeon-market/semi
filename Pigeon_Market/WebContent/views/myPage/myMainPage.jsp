@@ -106,7 +106,7 @@ hr {
 
 				<!-- Text -->
 				<section class="box">
-				<form>
+				<form method="post">
 					<h2>최근 활동 기록</h2>
 
 
@@ -146,8 +146,8 @@ hr {
 								}%>
 
 					<div class="listTable">
-						<input type="hidden" value="<%= aList.get(i).getStatus()%>">
-						<input type="hidden" value="<%= aList.get(i).getrNo()%>">
+						<input type="text" id="st" value="<%= aList.get(i).getStatus()%>">
+						<input type="text" id="no" value="<%= aList.get(i).getrNo()%>">
 
 						<div class="statusDiv">
 							<%= status %>
@@ -196,9 +196,21 @@ hr {
 			$(this).parent().css({"cursor": "pointer"});
 			$(this).parent().children().css({"background":"yellow"});
 		}).click(function() {
-			var st = $(this).parent().children().eq(0).val();
-			var no = $(this).parent().children().eq(1).val();
-		
+			var st = $(this).parent().$("input:text[id='#id']").val();
+			var no = $(this).parent().children().eq(1).text();
+			
+			$('#detailNo').val(no);
+			$('#detailSt').val(st);
+			
+			Console.log(st);
+			Console.log(no);
+			
+			var no1= $('#detailNo').val();
+			var st1 = $('#detailSt').val();
+			
+			Console.log(st1);
+			Console.log(no1);
+			
 			location.href="<%= contextPath %>/detailView.deal"
 			
 		}).mouseout(function() {

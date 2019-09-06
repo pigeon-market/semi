@@ -40,6 +40,8 @@ public class UpdateMyInfo extends HttpServlet {
 		m.setUserId(userId);
 		m.setUserPwd(pwd);
 		
+		System.out.println(pwd);
+		
 		Member mem = new MemberService().checkMyInfo(m);
 
 		if(mem != null) {
