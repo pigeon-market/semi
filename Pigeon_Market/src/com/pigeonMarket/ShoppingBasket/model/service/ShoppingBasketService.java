@@ -49,6 +49,29 @@ public class ShoppingBasketService {
 		return list;
 		
 	}
+	
+	public int deleteList(String list, String userId) {
+		
+		Connection conn = getConnection();
+		
+		int result = 0;
+		
+		String[] arr = list.split(",");
+		
+		for(int i = 0 ; i < arr.length ; i++) {
+			
+			int sc = new ShoppingBasketDao().deleteList(conn ,arr[i], userId);
+			
+			result += sc;
+			
+		}
+		
+		close(conn);
+		
+		
+		return result;
+		
+	}
 
 	
 

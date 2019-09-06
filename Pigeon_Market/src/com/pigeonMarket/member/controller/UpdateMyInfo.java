@@ -35,8 +35,6 @@ public class UpdateMyInfo extends HttpServlet {
 		
 		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		System.out.println(pwd);
-		
 		Member m = new Member();
 		
 		m.setUserId(userId);
@@ -48,7 +46,7 @@ public class UpdateMyInfo extends HttpServlet {
 			request.setAttribute("me", mem);
 			request.getRequestDispatcher("views/myPage/updateMyInfo.jsp").forward(request, response);
 		} else {
-			System.out.println("fail");
+
 			request.getSession().setAttribute("msg", "비밀번호를 틀렸습니다. 메인으로 돌아갑니다.");
 			response.sendRedirect(request.getContextPath());
 		}

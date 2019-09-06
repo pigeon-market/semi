@@ -147,7 +147,7 @@ hr {
 
 				<!-- Text -->
 				<section class="box">
-				<form>
+				<form method="post">
 					<h2>최근 활동 기록</h2>
 
 
@@ -193,6 +193,8 @@ hr {
 					%>
 
 					<div class="listTable">
+						<input type="hidden" value="<%= aList.get(i).getStatus()%>">
+						<input type="hidden" value="<%= aList.get(i).getrNo()%>">
 						<div class="statusDiv">
 							<%=status%>
 						</div>
@@ -304,7 +306,9 @@ hr {
 							&gt;&gt;</button>
 
 					</div>
-
+					<input type="hidden" name="no" id="detailNo" value="">
+					<input type="hidden" name="st" id="detailSt" value="">
+						
 				</form>
 				</section>
 
@@ -329,7 +333,18 @@ hr {
 					"background" : "yellow"
 				});
 			}).click(function() {
-
+				var st = $(this).parent().children().eq(0).val();
+				var no = $(this).parent().children().eq(1).val();
+				
+				$('#detailNo').val(no);
+				$('#detailSt').val(st);
+				
+				Console.log(st)
+				
+				
+				location.href="<%= contextPath %>/detailView.deal"
+				
+				
 			}).mouseout(function() {
 				$(this).parent().children().css({
 					"background" : "white"

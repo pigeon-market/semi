@@ -1,26 +1,28 @@
 package com.pigeonMarket.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.pigeonMarket.member.model.service.MemberService;
 import com.pigeonMarket.member.model.vo.Member;
 
 /**
- * Servlet implementation class DeleteMyInfoServlet
+ * Servlet implementation class UpdateEmailServlet
  */
-@WebServlet("/deleteMyInfo.me")
-public class DeleteMyInfoServlet extends HttpServlet {
+@WebServlet("/updateEmail.me")
+public class UpdateEmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteMyInfoServlet() {
+    public UpdateEmailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +32,30 @@ public class DeleteMyInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
+		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		Member m = new Member();
+		String email1 = request.getParameter("email1");
+		String email2 = request.getParameter("email2");
 		
-		m.setUserId(userId);
-		m.setUserPwd(pwd);
+		String email = email1+"@"+email2;
 		
-		int result = new MemberService().deleteMyInfo(m);
+		int result = new MemberService().updateEamil(email, userId);
 		
-		if(result > 0 ) { 
-			request.getSession().removeAttribute("loginUser");
-			request.getSession().setAttribute("msg", "회원탈퇴가 되었습니다.");
-			response.sendRedirect(request.getContextPath());
-		} else {
-			request.setAttribute("msg", "회원 탈퇴에 실패했습니다.");
+		if(result > 0) {
+			
+			
+			response.setContentType("application/json; charset=utf-8");
+		      
+		      Gson gson = new Gson();
+		      
+		      gson.toJson(email, response.getWriter()); 
+			
+			
+		}else {
+			request.getSession().setAttribute("msg", "이메일업데이트에 오류가 발생했습니다.");
 			response.sendRedirect(request.getContextPath());
 		}
+		
 		
 	}
 

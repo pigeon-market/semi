@@ -199,7 +199,7 @@ hr {
 			var st = $(this).parent().children().eq(0).val();
 			var no = $(this).parent().children().eq(1).val();
 		
-			location.href="<%= contextPath %>/detail.deal?status="+st+"&no="+no;
+			location.href="<%= contextPath %>/detailView.deal"
 			
 		}).mouseout(function() {
 			$(this).parent().children().css({"background":"white"});
