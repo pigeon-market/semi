@@ -212,6 +212,10 @@ public class MemberService {
 		} else {
 			rollback(conn);
 		}
+		close(conn);
+		return result;
+	}
+		
 
 		public int idCheck(String userId) {
 			Connection conn = getConnection();
@@ -222,3 +226,4 @@ public class MemberService {
 		return result;
 
 	}
+}
