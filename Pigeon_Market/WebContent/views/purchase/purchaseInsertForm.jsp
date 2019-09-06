@@ -162,6 +162,7 @@
       		var email = "<%= loginUser.getEmail() %>";
       		var strprice = "<%= strprice%>";
       		var msg = "";
+      		var href="";
     		IMP.request_pay({
     		    pg : "inicis",
     		    pay_method : pm,
@@ -186,13 +187,15 @@
     			
     		    });
 					msg = '결제가 완료 되었습니다.';
+					href="<%= request.getContextPath() %>/myPage.me"
     		    } else {
     		        msg = '결제에 실패하였습니다.';
     		        msg += '에러내용 : ' + rsp.error_msg;
+    		        href="#";
     		    }
 
     		    alert(msg);
-    		    location.href="<%= request.getContextPath() %>/myPage.me";
+    		    location.href= href;
     		    
     		});
     }
