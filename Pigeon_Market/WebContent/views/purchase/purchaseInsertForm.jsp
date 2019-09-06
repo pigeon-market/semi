@@ -2,9 +2,25 @@
 	pageEncoding="UTF-8" import="java.util.ArrayList, 
 	com.pigeonMarket.product.model.vo.*, com.pigeonMarket.category.model.vo.*"%>
 <% 
-	ProductSale pr = (ProductSale)request.getAttribute("p");
+	ArrayList<ProductSale> prList = (ArrayList<ProductSale>)request.getAttribute("prList");
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
-	Attachment titleImg = fileList.get(0);
+	
+	int sum = 0;
+	String strpNo = "";
+	String strprice = "";
+	
+	for(int i = 0; i<prList.size(); i++){
+		sum = sum + prList.get(i).getPrice();
+		if(i == prList.size()-1){
+			strpNo += prList.get(i).getProductOkNo();
+			strprice += prList.get(i).getPrice();
+		}else{
+			strpNo += prList.get(i).getProductOkNo() + ",";
+			strprice += prList.get(i).getPrice() + ",";
+		}
+		
+	}
+	
 %>  
 <!DOCTYPE html>
 <html>
@@ -58,22 +74,33 @@
 		<header>
 			<h2>주문/결제</h2>
 		</header>
-		<form action="">
 		<table class="textAtea">
 			<tr>
-				<th width="25%" height="60px">판매자</th>
-				<th width="25%">상품사진</th>
+				<th width="25%" height="60px">제품사진</th>
+				<th width="25%">판매자</th>
 				<th width="25%">상품제목</th>
 				<th width="25%">상품가격</th>
 			</tr>
+			<% for (ProductSale pr : prList){ %>
 			<tr>
-				<th><%= pr.getpId() %></th>
-				<th>
-					<img id="titleImg" src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%= titleImg.getChangeName()%>" >
-				</th>
-				<th><%= pr.getProductTitle() %></th>
-				<th><%= pr.getPrice() %>원</th>
+				<%for(Attachment at : fileList){%>	<!-- 사진리스트 불러오기  -->
+						<%if(at.getProductNo() == pr.getProductOkNo()){ %> <!-- 사진상품번호 와 상품번호가 같을 경우 -->
+							<th>
+								<img id="titleImg" src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%= at.getChangeName()%>" >
+							</th>
+							<th><%= pr.getpId() %></th>
+							<th><%= pr.getProductTitle() %></th>
+							<th><%= pr.getPrice() %>원</th>
+						<%} %>
+				<%} %>
 			</tr>
+			
+			<%} %>
+			<tr>
+				<th colspan='3' height="60px" style="font-size:1.5em"> 총 결제 금액</th>
+				<th style="font-size:1.5em" ><%= sum %>원</th>
+			</tr>
+			
 		</table>
 		<table class="textAtea">
 			<tr>
@@ -108,17 +135,16 @@
 				</th>
 			</tr>
 			<tr>
-				<th height="60px" style="font-size:1.5em">총금액</th>
-				<th style="font-size:1.5em"><%= pr.getPrice() %>원</th>
+				<th height="60px" style="font-size:1.5em">총결재금액</th>
+				<th style="font-size:1.5em"><%= sum %>원</th>
 			</tr>
 			<tr>
-				<th><div id="cancel">취소하기</div></th>
+				<th><div id="cancel"  onclick="history.go(-1);">취소하기</div></th>
 				<th><div id="payment" onclick=" requestPay();">결제하기</div></th>
 				</tr>
 		</table>
-	</form>	
 	</section>
-	 <script>
+	<script>
 	 
 		 var IMP = window.IMP; // 생략해도 괜찮습니다.
 		IMP.init("imp23410003"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
@@ -127,14 +153,14 @@
       		// IMP.request_pay(param, callback) 호출
       		
       		var pm = $("#pay_method").val(); 
-      		var price = <%= pr.getPrice()%>;
+      		var price = <%= sum%>;
       		var userName = "<%= loginUser.getUserName()%>";
       		var phone = <%= loginUser.getPhone()%>;
       		var address = "<%= loginUser.getAddress()%>";
       		var bId = "<%= loginUser.getUserId()%>";
-      		var pNo = <%= pr.getProductOkNo() %>;
+      		var strpNo = "<%= strpNo%>";
       		var email = "<%= loginUser.getEmail() %>";
-      		var priceList = <%= pr.getPrice()%>;
+      		var strprice = "<%= strprice%>";
       		var msg = "";
     		IMP.request_pay({
     		    pg : "inicis",
@@ -150,7 +176,7 @@
     		    if ( rsp.success ) {
 					$.ajax({
     	      			url:"insert.pc", 
-    	      			data : {impUid: rsp.imp_uid, bId:bId, pNo:pNo, amount:rsp.paid_amount },
+    	      			data : {impUid: rsp.imp_uid, bId:bId, strpNo:strpNo, strprice:strprice},
     	      			type : "post",
     	      		success : function(result){
     				},
@@ -166,6 +192,8 @@
     		    }
 
     		    alert(msg);
+    		    location.href="<%= request.getContextPath() %>/myPage.me";
+    		    
     		});
     }
   </script>
