@@ -196,7 +196,7 @@ hr {
 						<input type="hidden" value="<%= aList.get(i).getStatus()%>">
 						<input type="hidden" value="<%= aList.get(i).getrNo()%>">
 						<div class="statusDiv">
-							<%=status%>
+							<p><%=status%></p>
 						</div>
 						<div class="imgDiv">
 							<%
@@ -333,13 +333,21 @@ hr {
 					"background" : "yellow"
 				});
 			}).click(function() {
-				var st = $(this).parent().children().eq(0).val();
+				var st = $(this).parent().children().eq(0).text();
 				var no = $(this).parent().children().eq(1).val();
 				
 				$('#detailNo').val(no);
 				$('#detailSt').val(st);
 				
-				Console.log(st)
+				Console.log(st);
+				Console.log(no);
+				
+				var no1= $('#detailNo').val();
+				var st1 = $('#detailSt').val();
+				
+				Console.log(st1);
+				Console.log(no1);
+				
 				
 				
 				location.href="<%= contextPath %>/detailView.deal"
