@@ -192,6 +192,8 @@
     		    }
 
     		    alert(msg);
+    		    location.href="<%= request.getContextPath() %>/myPage.me";
+    		    
     		});
     }
   </script>

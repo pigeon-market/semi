@@ -51,7 +51,7 @@
 	#black{
 		background:tomato;
 	}
-	#inquiry{
+	#addReply{
 		height: 100%;
 		text-align:center;
 		font-size: 1.5em;				 
@@ -68,7 +68,7 @@
 		text-align:center;
 	}
 		 
-	#basket:hover, #purchase:hover, #black:hover,#inFormation:hover,#question:hover	{
+	#basket:hover, #purchase:hover, #black:hover,#inFormation:hover,#question:hover, #addReply:hover	{
 		cursor:pointer;
 	}
 	#blackRrea{
@@ -104,7 +104,7 @@
 			<tr>
 				<th>판매자ID</th>	
 				<th colspan="2"><%= pr.getpId() %></th>
-				<th id="diaArea"><div id ="black" onclick="blackUSer();">신고하기</div></th>					
+				<th id="diaArea"><div id ="black" onclick="blackUser();">신고하기</div></th>					
 			</tr>
 			<tr>
 				<th>판매가격</th>	
@@ -149,20 +149,92 @@
 			<tr>
 				<th colspan="3">
 					<div class = "textsize">
-						<textarea rows="3"  id="qnaTextarea" ></textarea>
+						<textarea rows="3"  id="replyContent" ></textarea>
 					</div>
 				</th>
-				<td colspan="2"><div id="inquiry">문의하기</div></td>
+				<td colspan="2"><div id="addReply">문의하기</div></td>
 			</tr>
+		</table>
+		
+		<table id="replySelectTable" border="1" align="center">
+			
 		</table>						
 	</div>
+	
 	<script>
 		function blackUser(){
 			var reason = window.prompt("신고사유를 적어주세요");
-			var pId = <%= pr.getpId() %>;
+			var pId = "<%= pr.getpId() %>";
 			
-			location.href="<%= contextPath %>/Insert.bl?reason=" + reason + "&pId="+pId;
+			location.href="<%= request.getContextPath() %>/insert.bl?reason=" + reason + "&pId="+pId ;
 		}
+		
+		function selectRlist(){
+			
+			// 전달하고자 하는 게시글 번호
+			var pNo = <%= pr.getProductOkNo() %>;
+			
+			$.ajax({
+				url:"productReviewlist.pr",
+				data:{pNo:pNo},
+				type:"get",
+				success:function(list){
+					
+					var $replyTable = $("#replySelectTable"); // <table></table>
+					
+					$replyTable.html(""); // 기존 테이블 정보 초기화
+					
+					$.each(list, function(index, value){	
+						
+						var $tr = $("<tr>");
+						var $writerTd = $("<td>").text(value.writer);
+						var $contentTd = $("<td>").text(value.content);
+						var $dateTd = $("<td>").text(value.createDate);
+						
+						$tr.append($writerTd);
+						$tr.append($contentTd);
+						$tr.append($dateTd);
+						
+						$replyTable.append($tr);
+						
+					});
+					
+					
+				},
+				error:function(){
+					console.log("통신 실패");
+				}
+			});
+			
+			
+		}
+		
+		$(function(){
+			selectRlist();
+			
+		
+			
+			$("#addReply").click(function(){
+
+				var content = $("#replyContent").val();
+				var pNo = <%= pr.getProductOkNo() %>;
+				var writer = "<%= loginUser.getUserId() %>";
+				
+				$.ajax({
+					url:"productReviewinsert.pr",
+					type:"post",
+					data:{content:content, pNo:pNo, writer:writer},
+					success:function(){
+						selectRlist();
+						
+						$("#replyContent").val("");
+						
+					}
+				});
+				
+			});
+			
+		});
 	</script>
 	
 		<%@ include file="../common/foot.jsp"%>

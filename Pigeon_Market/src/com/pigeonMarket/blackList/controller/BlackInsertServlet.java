@@ -15,7 +15,7 @@ import com.pigeonMarket.member.model.vo.Member;
 /**
  * Servlet implementation class BlackInsertServlet
  */
-@WebServlet("/Insert.bl")
+@WebServlet("/insert.bl")
 public class BlackInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,6 +36,11 @@ public class BlackInsertServlet extends HttpServlet {
 		String pId = request.getParameter("pId");
 		String userId= ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
+		System.out.println(reason);
+		System.out.println(pId);
+		
+		
+		
 		BlackList b = new BlackList();
 		b.setBlackId(pId);
 		b.setReporterId(userId);
@@ -51,7 +56,8 @@ public class BlackInsertServlet extends HttpServlet {
 			request.getSession().setAttribute("msg", "블랙리스트 추가에 실패하였습니다.");
 		}
 			
-			request.getRequestDispatcher("/views/manager/blackListView.jsp").forward(request, response);
+			response.sendRedirect("list.pr");
+			
 		
 		
 	}

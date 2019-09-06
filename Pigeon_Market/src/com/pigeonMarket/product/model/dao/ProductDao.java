@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.pigeonMarket.product.model.vo.Attachment;
 import com.pigeonMarket.product.model.vo.Product;
 import com.pigeonMarket.product.model.vo.ProductSale;
+import com.pigeonMarket.product.model.vo.Reply;
 
 
 public class ProductDao {
@@ -327,6 +328,62 @@ public class ProductDao {
 			close(pstmt);
 		}
 		return at;
+	}
+
+	public int insertReview(Connection conn, Reply r) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertReply");
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, r.getpNo());
+			pstmt.setString(2, r.getContent());
+			pstmt.setString(3, r.getWriter());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<Reply> selectRlist(Connection conn, int pNo) {
+		
+		ArrayList<Reply> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRlist");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("RID"),
+								   rset.getInt("PNO"),
+								   rset.getString("RCONTENT"),
+								   rset.getString("WRITER"),
+								   rset.getDate("CREATE_DATE")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 
