@@ -104,7 +104,7 @@
 			<tr>
 				<th>판매자ID</th>	
 				<th colspan="2"><%= pr.getpId() %></th>
-				<th id="diaArea"><div id ="black" onclick="blackUSer();">신고하기</div></th>					
+				<th id="diaArea"><div id ="black" onclick="blackUser();">신고하기</div></th>					
 			</tr>
 			<tr>
 				<th>판매가격</th>	
@@ -164,9 +164,9 @@
 	<script>
 		function blackUser(){
 			var reason = window.prompt("신고사유를 적어주세요");
-			var pId = <%= pr.getpId() %>;
+			var pId = "<%= pr.getpId() %>";
 			
-			location.href="<%= contextPath %>/Insert.bl?reason=" + reason + "&pId="+pId;
+			location.href="<%= request.getContextPath() %>/insert.bl?reason=" + reason + "&pId="+pId ;
 		}
 		
 		function selectRlist(){

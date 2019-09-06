@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.pigeonMarket.event.model.vo.Event, java.util.*"%>
- <% 
+ <%
 	Event event = (Event)request.getAttribute("event");
  %>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
 </head>
 <body>
 <%@ include file="../common/menubar.jsp" %>
-	
+
 	<div class="outer">
 		<br>
 		<h2 align="center">이벤트  수정</h2>
@@ -43,7 +43,7 @@
 			<form action="<%= request.getContextPath() %>/update.eo" method="post">
 			<input type="hidden" name="nno" value="<%= event.getNoticeNo() %>">
 				<table>
-					
+
 					<tr>
 						<th>제목</th>
 						<td colspan="3"><input type="text" size="58" name="noticetitle" value="<%= event.getNoticetitle() %>"></td>

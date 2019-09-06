@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.pigeonMarket.review.model.vo.Review, java.util.*"%>
-<% 
+<%
 	Review review = (Review)request.getAttribute("review");
 %>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
 </head>
 <body>
 <%@ include file="../common/menubar.jsp" %>
-	
+
 	<div class="outer">
 		<br>
 		<h2 align="center">리뷰 수정</h2>
@@ -43,7 +43,7 @@
 			<form action="<%= request.getContextPath() %>/update.re" method="post">
 			<input type="hidden" name="nno" value="<%= review.getReviewNo() %>">
 				<table>
-					
+
 					<tr>
 						<th>제목</th>
 						<td><input type="text" size="10" name="noticetitle" value="<%= review.getReviewTitle() %>"></td>

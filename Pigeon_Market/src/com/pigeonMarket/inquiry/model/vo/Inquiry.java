@@ -3,7 +3,7 @@ package com.pigeonMarket.inquiry.model.vo;
 import java.sql.Date;
 
 public class Inquiry {
-	
+
 	private int inquiryNo;
 	private String inquiryTitle;
 	private String inquiryContent;
@@ -11,11 +11,11 @@ public class Inquiry {
 	private String userId;
 	private String answerState;
 	private String status;
-	
+
 	public Inquiry() {
-		
+
 	}
-	
+
 	public Inquiry( String userId, String inquiryTitle, String inquiryContent) {
 		super();
 		this.userId = userId;
@@ -96,7 +96,7 @@ public class Inquiry {
 		return "Inquiry [inquiryNo=" + inquiryNo + ", inquiryTitle=" + inquiryTitle + ", inquiryContent="
 				+ inquiryContent + ", inquiryDate=" + inquiryDate + ", userId=" + userId + ", answerState=" + answerState + ", status=" + status + "]";
 	}
-	
-	
+
+
 
 }

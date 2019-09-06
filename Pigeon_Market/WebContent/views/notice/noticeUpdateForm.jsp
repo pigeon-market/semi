@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.pigeonMarket.notice.model.vo.Notice, java.util.*"%>
- <% 
+ <%
 	Notice notice = (Notice)request.getAttribute("notice");
  %>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
 </head>
 <body>
 <%@ include file="../common/menubar.jsp" %>
-	
+
 	<div class="outer">
 		<br>
 		<h2 align="center">공지사항 수정</h2>
@@ -43,7 +43,7 @@
 			<form action="<%= request.getContextPath() %>/update.no" method="post">
 			<input type="hidden" name="nno" value="<%= notice.getNoticeNo() %>">
 				<table>
-					
+
 					<tr>
 						<td>제목</td>
 						<td colspan="3"><input type="text" size="58" name="noticetitle" value="<%= notice.getNoticetitle() %>"></td>

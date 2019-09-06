@@ -21,36 +21,36 @@ public class InquiryService {
 
 	public int insertInquiry(Inquiry i) {
 		Connection conn = getConnection();
-		
+
 		int result = new InquiryDao().insertInquiry(conn, i);
-		
+
 		if(result > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
-		
+
 		close(conn);
-		
+
 		return result;
 	}
 
 	public int getListCount() {
 		Connection conn = getConnection();
-		
+
 		int listCount = new InquiryDao().getListCount(conn);
-		
+
 		close(conn);
-		
+
 		return listCount;
 	}
 
 	public ArrayList<Inquiry> selectList(PageInfo page) {
 		Connection conn = getConnection();
 		ArrayList<Inquiry> list = new InquiryDao().selectList(conn, page);
-		
+
 		close(conn);
-		
+
 		return list;
 	}
 
@@ -62,49 +62,49 @@ public class InquiryService {
 		
 		
 		close(conn);
-		
+
 		return i;
 	}
 
 	public int insertReply(Reply r) {
 		Connection conn = getConnection();
-		
+
 		int result = new InquiryDao().insertReply(conn, r);
-		
+
 		if(result > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
-		
+
 		close(conn);
-		
+
 		return result;
 	}
 
 	public ArrayList<Reply> selectRlist(int nno) {
 		Connection conn = getConnection();
-		
+
 		ArrayList<Reply> list = new InquiryDao().selectRlist(conn, nno);
-		
+
 		close(conn);
-		
+
 		return list;
 	}
 
 	public int status(int nno) {
 		Connection conn = getConnection();
-		
+
 		int result1 = new InquiryDao().status(conn, nno);
-		
+
 		if(result1 > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
-		
+
 		close(conn);
-		
+
 		return result1;
 	}
 

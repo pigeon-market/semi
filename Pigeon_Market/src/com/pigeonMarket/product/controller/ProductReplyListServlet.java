@@ -1,6 +1,7 @@
 package com.pigeonMarket.product.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -37,6 +38,7 @@ public class ProductReplyListServlet extends HttpServlet {
 		
 		ArrayList<Reply> list = new ProductService().selectRlist(pNo);
 		
+		System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(list.get(0).getCreateDate()));
 		
 		response.setContentType("application/json; charset=utf-8");
 		

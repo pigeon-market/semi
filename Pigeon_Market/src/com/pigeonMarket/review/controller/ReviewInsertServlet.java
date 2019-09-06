@@ -17,7 +17,7 @@ import com.pigeonMarket.review.model.vo.Review;
 @WebServlet("/insert.re")
 public class ReviewInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,29 +31,27 @@ public class ReviewInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+
 		String title = request.getParameter("reviewtitle");
 		String content = request.getParameter("reviewContent");
 		String userId = request.getParameter("userId");
-		
-		System.out.println(userId);
-		
-		
+
+
 		Review r = new Review(title, content, userId);
-		
+
 		int result = new ReviewService().insertReview(r);
-		
+
 		if(result > 0) {
-			
+
 			// 바로 페이지로 포워딩 하면 NullPointerException 발생할 것
 			//request.getRequestDispatcher("views/notice/noticeListView.jsp").forward(request, response);
-			
+
 			response.sendRedirect("review.re"); // 공지사항 리스트 출력하는 서블릿 호출
-			
-			
+
+
 		}else {
-		
-			
+
+
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
 		}
 	}

@@ -31,18 +31,18 @@
 <body>
 
 <%@ include file="../common/menubar.jsp" %>
-		
 
-		
+
+
 	<div class="outer">
 		<br>
-		
+
 		<h2 align="center">이벤트 상세보기</h2>
-		
+
 		<div class="tableArea">
-			
+
 			<table align="center" width="800px">
-				
+
 				<tr>
 					<td>제목</td>
 					<td><%= e.getNoticetitle() %></td>
@@ -58,7 +58,7 @@
 					</td>
 				</tr>
 			</table>
-			
+
 			<div align="center">
 			<form action="<%= contextPath %>/event.eo" method="post">
 				<input type="submit" value="이전으로">
@@ -66,7 +66,7 @@
 		 <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
 				<input type="button" onclick="updateForm();" value="수정하기">
 				<input type="button" onclick="deleteBoard();" value="삭제하기">
-					<%} %>	
+					<%} %>
 			</form>
 			</div>
 		</div>
@@ -79,10 +79,10 @@
 		function updateForm(){
 			//location.href="<%=contextPath%>/updateForm.eo" + <%= e.getNoticeNo() %>;
 			// 위의 방식대로 하면 url에 그대로 노출.. --> 직접 url창에 타고 들어갈수있다!!!
-			
+
 			$("#detailForm").attr("action", "<%=contextPath%>/updateForm.eo");
 			$("#detailForm").submit();
-			
+
 		}
 		function deleteBoard(){
 			console.log(<%= e.getNoticeNo() %>);
