@@ -145,10 +145,11 @@
 			<table>
 				<tr>
 		
-				<label for="name"></label>
+                <label for="name"></label>
                 <input type="text" id="name" name="userId" placeholder="* 아이디" onblur="ck_name()" required >
-                <span id="MsgName" class="none"></span>
-               
+                <span id="MsgName" class="none"></span>               
+                                             
+			        
 				<div id="idCheck"> 중복확인</div>
 		
 				</tr>
@@ -166,12 +167,13 @@
 				</tr>
 				<tr>
 				<label for="name"></label>
-				<input type="text" id="name"  maxlength="5" name="userName" placeholder="*이름" onblur="ck_name()" required>
+				<input type="text" id="name"  maxlength="5" name="userName" placeholder="*이름" required>
                 <span id="MsgName" class="none"></span>
-				</tr>
+                
+                </tr>
 				<tr>
 				<label for="birthDate"></label> 
-				<input type="text" id="name" maxlength="8" name="birthDate" placeholder="* 주민등록번호(19951105)" onblur="ck_name()" required>
+				<input type="text" id="name" maxlength="8" name="birthDate" placeholder="* 주민등록번호(19951105)" required>
                 <span id="MsgName" class="none"></span>
                
 				</tr>
