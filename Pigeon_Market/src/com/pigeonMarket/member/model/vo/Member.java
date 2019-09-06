@@ -45,7 +45,18 @@ public class Member {
 		this.blackCode = blackCode;
 	}
 
-
+	public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
+			String phone, String address) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
 
 
 	public Member(int rnum, String userId, String userPwd, String userName, String birthDate, String gender,

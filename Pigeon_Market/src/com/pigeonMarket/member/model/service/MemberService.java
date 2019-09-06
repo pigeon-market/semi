@@ -12,6 +12,46 @@ import com.pigeonMarket.notice.model.vo.Notice;
 import static com.pigeonMarket.common.JDBCTemplate.*;
 
 public class MemberService {
+
+	/**
+	 * 1. 로그인용 서비스
+	 * @param id
+	 * @param pwd
+	 * @return 로그인한 회원 객체
+	 */
+	public Member loginMember(String id, String pwd) {
+		
+		Connection conn = getConnection();
+		
+		Member loginUser = new MemberDao().loginMember(conn, id, pwd);
+		
+		close(conn);
+		
+		return loginUser;
+	}
+	
+	/**
+	 * 2. 회원가입 서비스
+	 * @param mem
+	 * @return
+	 */
+	public int insertMember(Member mem) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().insertMember(conn, mem);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
 	
 	public int updateMyInfo(Member m) {
 		
@@ -106,6 +146,27 @@ public class MemberService {
 		
 		return result;
 	}
-
-
+	
+	
+	
+	/**
+	 * 6. 아이디 중복체크용 서비스
+	 * @param userId
+	 * @return
+	 */
+	public int idCheck(String userId) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().idCheck(conn, userId);
+		
+		close(conn);
+		
+		return result;
+	}
+	
 }
+
+
+
+
+
