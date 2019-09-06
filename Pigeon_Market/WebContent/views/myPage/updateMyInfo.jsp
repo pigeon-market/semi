@@ -27,12 +27,12 @@
 <style>
 #test{
 	padding:0 0 2em 0;
-	border:1px solid blue;
+	
 }
 
 
 .box{
-	border:1px solid red;
+
 
 }
 .col-3 {
