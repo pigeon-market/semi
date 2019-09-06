@@ -7,7 +7,7 @@
 	Date date = new Date();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 	String today = sdf.format(date); // 2019-08-14
 %>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@
 <div class="outer">
 		<br>
 		<h2 align="center">이벤트 작성</h2>
-		
+
 		<div class="tableArea">
 			<form action="<%= contextPath %>/insert.eo" method="post">
 				<table>
@@ -59,7 +59,7 @@
 					</tr>
 				</table>
 				<br>
-				
+
 				<div align="center">
 					<input type="button" onclick="javascript:history.back();" value="취소">
 					<input type="submit" value="등록">
@@ -67,8 +67,8 @@
 			</form>
 		</div>
 	</div>
-	
-	
+
+
 	<%@ include file="../common/foot.jsp" %>
 </body>
 </html>

@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
 <%@ page import="java.util.ArrayList, com.pigeonMarket.review.model.vo.Review, com.pigeonMarket.common.model.vo.PageInfo" %>
-    
+
     <%
 	Date date = new Date();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 	String today = sdf.format(date); // 2019-08-14
 %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +41,7 @@
 <div class="outer">
 		<br>
 		<h2 align="center">리뷰 작성</h2>
-		
+
 		<div class="tableArea">
 			<form action="<%= contextPath %>/insert.re" method="post">
 				<table>
@@ -63,7 +63,7 @@
 					</tr>
 				</table>
 				<br>
-				
+
 				<div align="center">
 					<input type="button" onclick="javascript:history.back();" value="취소">
 					<input type="submit" value="등록">
@@ -71,8 +71,8 @@
 			</form>
 		</div>
 	</div>
-	
-	
+
+
 	<%@ include file="../common/foot.jsp" %>
 
 

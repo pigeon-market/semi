@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,11 +70,60 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+
 
 		return mem;
 
 	}
+
+	public Member loginMember(Connection conn, String id, String pwd) {
+
+		// 결과를 받아줄 변수
+		Member loginUser = null;
+		// sql구문을 실행할 객체 선언
+		PreparedStatement pstmt = null;
+		// sql구문 실행 후 조회된 결과를 담아줄 객체 선언
+		ResultSet rset = null;
+
+		// 실행할 sql구문
+		String sql = prop.getProperty("loginMember");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+//				public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
+//						String phone, String address, Date joinDate, String withdrawal, String blackCode)
+
+				loginUser = new Member(
+									   rset.getString("user_id"),
+									   rset.getString("user_pwd"),
+									   rset.getString("user_name"),
+									   rset.getString("birth_date"),
+									   rset.getString("gender"),
+									   rset.getString("email"),
+									   rset.getString("phone"),
+									   rset.getString("address"),
+									   rset.getDate("join_date"),
+									   rset.getString("Withdrawal"),
+									   rset.getString("black_code"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return loginUser;
+	}
+
 
 	public int updateMyInfo(Connection conn, Member m) {
 
@@ -280,14 +330,14 @@ public class MemberDao {
 
 		return result;
 	}
-	
+
 	public int updateEmail(Connection conn, String email, String userId) {
-		
+
 		PreparedStatement pstmt = null;
 		int result = 0;
 
 		String query = prop.getProperty("updateEmail");
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, email);
@@ -301,16 +351,16 @@ public class MemberDao {
 		}
 
 		return result;
-		
+
 	}
-	
+
 	public int updatePwd(Connection conn, Member m) {
-		
+
 		PreparedStatement pstmt = null;
 		int result = 0;
 
 		String query = prop.getProperty("updatePwd");
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, m.getUserName());
@@ -325,16 +375,16 @@ public class MemberDao {
 		}
 
 		return result;
-		
+
 	}
-	
+
 	public int updatePhone(Connection conn, String phone, String userId) {
-		
+
 		PreparedStatement pstmt = null;
 		int result = 0;
 
 		String query = prop.getProperty("updatePhone");
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, phone);
@@ -348,7 +398,72 @@ public class MemberDao {
 		}
 
 		return result;
-		
+
 	}
+
+public int insertMember(Connection conn, Member mem) {
+	int result = 0;
+	PreparedStatement pstmt =null;
+
+	String sql = prop.getProperty("insertMember");
+
+	try {
+		pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, mem.getUserId());
+		pstmt.setString(2, mem.getUserPwd());
+		pstmt.setString(3, mem.getUserName());
+		pstmt.setString(4, mem.getBirthDate());
+		pstmt.setString(5, mem.getGender());
+		pstmt.setString(6, mem.getEmail());
+		pstmt.setString(7, mem.getPhone());
+		pstmt.setString(8, mem.getAddress());
+
+
+
+		result = pstmt.executeUpdate();
+
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
+	}
+
+	return result;
+}
+
+
+
+
+public int idCheck(Connection conn, String userId) {
+	int result = 0;
+
+	PreparedStatement pstmt =null;
+	ResultSet rset =null;
+
+	String sql = prop.getProperty("idCheck");
+
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, userId);
+
+		rset = pstmt.executeQuery();
+
+		if(rset.next()) {
+			result = rset.getInt(1);
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		close(rset);
+		close(pstmt);
+	}
+
+	return result;
+
+
+}
 
 }

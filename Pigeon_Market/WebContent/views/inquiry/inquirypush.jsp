@@ -10,7 +10,7 @@
 	Date date = new Date();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 	String today = sdf.format(date); // 2019-08-14
 %>
 <!DOCTYPE html>
@@ -74,6 +74,6 @@
 				$("#detailForm").submit();
 			}
 			</script>
-	
+
 </body>
 </html>

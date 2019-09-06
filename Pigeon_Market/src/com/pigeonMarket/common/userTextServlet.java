@@ -18,36 +18,36 @@ import com.pigeonMarket.member.model.vo.Member;
 @WebServlet("/test.us")
 public class userTextServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public userTextServlet() {
-       
 
-       
-       
-       
+
+
+
+
     }
 
    /**
     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
+
       String userId = "admin";
       //String userId = "user10";
-       
+
        Member loginUser = new MemberService().loginUser(userId);
-       
+
        System.out.println(loginUser.getUserId());
-       
+
        HttpSession session = request.getSession();
-       
+
        session.setAttribute("loginUser", loginUser);
-       
+
        response.sendRedirect(request.getContextPath());
-       
+
    }
 
    /**
