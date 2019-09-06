@@ -145,10 +145,11 @@ hr {
 
 								}%>
 
-					<div class="listTable">
-						<input type="text" id="st" value="<%= aList.get(i).getStatus()%>">
-						<input type="text" id="no" value="<%= aList.get(i).getrNo()%>">
-
+					<div class="listTable" >
+						
+						<input type="text" name="st" id="st<%=i %>" value="<%= aList.get(i).getStatus()%>">
+						<input type="text" name="no" id="no" value="<%= aList.get(i).getrNo()%>">
+						
 						<div class="statusDiv">
 							<%= status %>
 						</div>
@@ -167,14 +168,16 @@ hr {
 					</div>
 
 
-					<br>
 
 					<%} %>
 					<hr>
 					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; %>
 
-
+					
 					<%} %>
+					
+		
+						
 
 				</form>
 				</section>
@@ -193,28 +196,13 @@ hr {
 	<script>
 	$(function() {
 		$(".listTable div").mouseenter(function() {
-			$(this).parent().css({"cursor": "pointer"});
-			$(this).parent().children().css({"background":"yellow"});
+			$(this).parent().css({"cursor": "pointer", "background":"yellow"});
 		}).click(function() {
-			var st = $(this).parent().$("input:text[id='#id']").val();
-			var no = $(this).parent().children().eq(1).text();
-			
-			$('#detailNo').val(no);
-			$('#detailSt').val(st);
-			
-			Console.log(st);
-			Console.log(no);
-			
-			var no1= $('#detailNo').val();
-			var st1 = $('#detailSt').val();
-			
-			Console.log(st1);
-			Console.log(no1);
 			
 			location.href="<%= contextPath %>/detailView.deal"
 			
 		}).mouseout(function() {
-			$(this).parent().children().css({"background":"white"});
+			$(this).parent().css({"background":"white", });
 		});
 		
 	});

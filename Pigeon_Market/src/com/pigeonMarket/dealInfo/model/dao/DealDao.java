@@ -50,13 +50,20 @@ public class DealDao {
 		int groupNum = 0;
 
 		int num = 0;
+		
+		
 
 		while (num < aList.size()) {
 
 			for (num = groupNum; num < aList.size(); num++) {
+				
+				System.out.println((aList.get(num).getaDate()));
+				System.out.println(aList.get(groupNum).getaDate());
 
 				if (!((aList.get(num).getaDate()).equals(aList.get(groupNum).getaDate()))) {
-
+					
+					System.out.println("1");
+					
 					String listAdd = String.valueOf(num);
 
 					list.add(listAdd);
@@ -68,9 +75,8 @@ public class DealDao {
 
 		}
 
-		if (list.isEmpty()) {
-			list.add(String.valueOf(aList.size()));
-		}
+		list.add(String.valueOf(aList.size()));
+
 
 		return list;
 
