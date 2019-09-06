@@ -148,6 +148,9 @@ private Properties prop = new Properties();
 			pstmt.setString(1, b.getBlackId());
 			pstmt.setString(2, b.getReporterId());
 			pstmt.setString(3, b.getReporterReason());
+			
+			result =pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
