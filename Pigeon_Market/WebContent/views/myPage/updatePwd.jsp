@@ -19,7 +19,6 @@ body {
 
 .col-12 {
 	vertical-align: middle;
-	border: 1px solid red;
 }
 
 .col-3 {
@@ -57,8 +56,8 @@ body {
 								</div>
 								<div class="col-3">
 
-
 									<input type="password" name="pwd">
+
 								</div>
 
 							</div>
@@ -105,7 +104,8 @@ body {
 
 							<div class="col-12">
 
-								<button type="submit" id="check" disabled>확인하기</button>
+
+								<input type="submit" value="확인하기">
 
 							</div>
 

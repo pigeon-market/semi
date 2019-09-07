@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 <style>
 	.outer{
-		width:800px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;

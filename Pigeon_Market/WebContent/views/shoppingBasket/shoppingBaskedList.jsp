@@ -75,32 +75,31 @@ p {
 					<section>
 						<div class="box alt">
 							<div class="row gtr-50 gtr-uniform">
-								<div class="col-12" id="info">
+								<div id="info">
 									<span class="image fit"
 										onclick="location.href='<%=contextPath%>/goMyInfo.me'">
-										<img id="infoImg"
-										src="<%=contextPath%>/resources/images/pic04.jpg">개인정보수정
+										<input type="button" value="개인정보수정">
 									</span>
 								</div>
-								<div class="col-3">
+								<div>
 									<span class="image fit"
-										onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='"><img
-										src="<%=contextPath%>/resources/images/pic04.jpg">활동조회</span>
+										onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+										<input type="button" value="활동조회"></span>
 								</div>
-								<div class="col-3">
+								<div>
 									<span class="image fit"
-										onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='"><img
-										src="<%=contextPath%>/resources/images/pic04.jpg">판매조회</span>
+										onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
+										<input type="button" value="판매조회"></span>
 								</div>
-								<div class="col-3">
+								<div>
 									<span class="image fit"
-										onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='"><img
-										src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
+										onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
+										<input type="button" value="구매조회"></span>
 								</div>
-								<div class="col-3">
+								<div>
 									<span class="image fit"
-										onclick="location.href='<%=contextPath%>/myShoppingBacket.me'"><img
-										src="<%=contextPath%>/resources/images/pic04.jpg">배송조회</span>
+										onclick="location.href='<%=contextPath%>/myShoppingBacket.me'">
+										<input type="button" value="배송조회"></span>
 								</div>
 
 							</div>
