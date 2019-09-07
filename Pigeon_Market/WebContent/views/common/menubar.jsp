@@ -96,23 +96,24 @@
 							<li><a href="index.html">Home</a></li>
 							<li><a href="#" class="icon solid fa-angle-down">메뉴</a>
 								<ul>
-									<li><a href="generic.html">소개</a></li>
 									<li><a href="<%=request.getContextPath()%>/list.no">공지사항</a></li>
 									<li><a href="<%=request.getContextPath()%>/event.eo">이벤트</a></li>
 									<li><a href="<%=request.getContextPath()%>/inquiry.in">문의사항</a></li>
-									<li><a href="<%=request.getContextPath()%>/inquirylist.in">관리자
-											문의사항</a></li>
 									<li><a href="<%=request.getContextPath()%>/review.re">리뷰</a></li>
-									<li><a href="mypage.html">mypage</a></li>
+									<li><a href="<%=request.getContextPath()%>/myPage.me">마이페이지</a></li>
+								 <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+	
 									<li><a href="#">관리자메뉴</a>
 										<ul>
 											<li><a href="<%=request.getContextPath()%>/member.mim">회원
 													정보 관리</a></li>
 											<li><a href="<%=request.getContextPath()%>/black.bl">블랙리스트
 													관리</a></li>
-											<li><a href="#">Option Three</a></li>
-											<li><a href="#">Option Four</a></li>
+											<li><a href="<%=request.getContextPath()%>/inquirylist.in">문의사항
+											 관리</a></li>
+											
 										</ul></li>
+											<%} %>
 								</ul>
 							</li>
 						</ul>
