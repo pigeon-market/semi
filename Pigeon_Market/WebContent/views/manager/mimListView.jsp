@@ -21,7 +21,6 @@
 <style>
 	.outer{
 		width:900px;
-		height:800px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -31,13 +30,24 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:700px;
-		height:550px;
 		margin-left:auto;
 		margin-right:auto;
+		text-align:center;
 	}
 	#content{
-		height:230px;
+	}
+		th{
+	text-align:center !importarnt;
+	}
+	#listArea{
+		border:1px solid white;
+		text-align:center;
+	}
+		.searchArea{
+		width:900px;
+		height:100px;
+		margin-left:auto;
+		margin-right:auto;	
 	}
 </style>
 
@@ -48,18 +58,19 @@
 	<div class="outer">
 		
 		<br>
-		<h2 align="center">이벤트</h2>
+		<h2 align="center">회원 정보 관리 게시판</h2>
+		<br>
 		
 		<div class="tableArea">
 			
 			<table id="listArea">
 				<tr>
 					<th>글번호</th>
-					<th width="200">회원이름</th>
-					<th width="100">회원아이디</th>
-					<th width="100">가입일</th>
-					<th width="100">탈퇴여부</th>
-					<th width="100">블랙자여부</th>
+					<th>회원이름</th>
+					<th>회원아이디</th>
+					<th>가입일</th>
+					<th>탈퇴여부</th>
+					<th>블랙자여부</th>
 				</tr>
 				<%if(list.isEmpty()){ %>
 					<tr>
@@ -122,13 +133,6 @@
 		
 		
 		<div class="searchArea" align="center">
-			<select id="searchCondition" name="searchCondition">
-				<option>-----</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="search" name="search">
-			<button type="submit">검색하기</button>
 		</div>
 		
 		

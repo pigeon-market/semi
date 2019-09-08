@@ -12,7 +12,6 @@
 <style>
 	.outer{
 		width:800px;
-		height:600px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -22,31 +21,28 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:600px;
-		height:550px;
 		margin-left:auto;
 		margin-right:auto;
 	}
 	#content{
-		height:230px;
 	}
 </style>
 </head>
 <body>
 
 <%@ include file="../common/menubar.jsp" %>
-		
 
-		
+
+
 	<div class="outer">
 		<br>
-		
-		<h2 align="center">게시판 상세보기</h2>
-		
+
+		<h2 align="center">이벤트 상세보기</h2>
+
 		<div class="tableArea">
-			
+
 			<table align="center" width="800px">
-				
+
 				<tr>
 					<td>제목</td>
 					<td><%= e.getNoticetitle() %></td>
@@ -56,20 +52,22 @@
 					<td><%= e.getNoticeDate() %></td>
 				</tr>
 				<tr>
-					<td colspan="6">내용</td>
-				</tr>
-				<tr>
-					<td colspan="6">
+					<td>내용</td>
+					<td colspan="5">
 						<p id="content"><%= e.getNoticeContent() %></p>
 					</td>
 				</tr>
 			</table>
-			
+
 			<div align="center">
-				<button type="button" onclick="location.href='<%= contextPath %>/event.eo'">이전으로</button>
-				<button type="button" onclick="updateForm();">수정하기</button>
-				<button type="button" onclick="deleteBoard();">삭제하기</button>
-				
+			<form action="<%= contextPath %>/event.eo" method="post">
+				<input type="submit" value="이전으로">
+				<!-- 관리자만 볼 수 있는 작성하기 버튼 -->
+		 <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+				<input type="button" onclick="updateForm();" value="수정하기">
+				<input type="button" onclick="deleteBoard();" value="삭제하기">
+					<%} %>
+			</form>
 			</div>
 		</div>
 	</div>
@@ -81,10 +79,10 @@
 		function updateForm(){
 			//location.href="<%=contextPath%>/updateForm.eo" + <%= e.getNoticeNo() %>;
 			// 위의 방식대로 하면 url에 그대로 노출.. --> 직접 url창에 타고 들어갈수있다!!!
-			
+
 			$("#detailForm").attr("action", "<%=contextPath%>/updateForm.eo");
 			$("#detailForm").submit();
-			
+
 		}
 		function deleteBoard(){
 			console.log(<%= e.getNoticeNo() %>);

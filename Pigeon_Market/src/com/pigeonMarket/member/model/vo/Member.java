@@ -3,9 +3,9 @@ package com.pigeonMarket.member.model.vo;
 import java.sql.Date;
 
 public class Member implements java.io.Serializable{
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8680435445361411221L;
 	private int rNum;
@@ -20,11 +20,11 @@ public class Member implements java.io.Serializable{
 	private Date joinDate;
 	private String withdrawal;
 	private String blackCode;
-	
+
 	public Member() {
-		
+
 	}
-	
+
 	public Member(String userId, String userPwd, String address, String email) {
 		super();
 		this.userId = userId;
@@ -32,7 +32,7 @@ public class Member implements java.io.Serializable{
 		this.address = address;
 		this.email = email;
 	}
-	
+
 	
 
 	public Member(String userId, String userName, String birthDate, String gender, String email, String phone,
@@ -65,9 +65,20 @@ public class Member implements java.io.Serializable{
 		this.withdrawal = withdrawal;
 		this.blackCode = blackCode;
 	}
-	
-	
-	
+
+	public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
+			String phone, String address) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
+
 
 	public Member(int rNum, String userId, String userPwd, String userName, String birthDate, String gender,
 			String email, String phone, String address, Date joinDate, String withdrawal, String blackCode) {
@@ -85,8 +96,8 @@ public class Member implements java.io.Serializable{
 		this.withdrawal = withdrawal;
 		this.blackCode = blackCode;
 	}
-	
-	
+
+
 
 	public int getrNum() {
 		return rNum;
@@ -184,11 +195,11 @@ public class Member implements java.io.Serializable{
 		this.blackCode = blackCode;
 	}
 
-	
-	
+
+
 	@Override
 	public String toString() {
-		return "Member [rnum=" + rNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
+		return "Member [rNum=" + rNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", birthDate=" + birthDate + ", gender=" + gender + ", email=" + email + ", phone=" + phone
 				+ ", address=" + address + ", joinDate=" + joinDate + ", withdrawal=" + withdrawal + ", blackCode="
 				+ blackCode + "]";

@@ -11,18 +11,18 @@ public class Review {
 	private int reviewReadcount;
 	private String userId;
 	private String status;
-	
+
 	public Review() {
-		
+
 	}
-	
-	public Review(String reviewTitle, String userId, String reviewContent) {
+
+	public Review(String reviewTitle, String reviewContent, String userId) {
 		super();
 		this.reviewTitle = reviewTitle;
 		this.userId = userId;
 		this.reviewContent = reviewContent;
 	}
-	
+
 	public Review(String noticetitle, String noticeContent) {
 		super();
 		this.reviewTitle = noticetitle;
@@ -107,7 +107,7 @@ public class Review {
 				+ ", reviewDate=" + reviewDate + ", reviewReadcount=" + reviewReadcount + ", userId=" + userId
 				+ ", status=" + status + "]";
 	}
-	
-	
-	
+
+
+
 }

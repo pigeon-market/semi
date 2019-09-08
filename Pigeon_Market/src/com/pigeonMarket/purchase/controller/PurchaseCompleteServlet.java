@@ -2,6 +2,7 @@ package com.pigeonMarket.purchase.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,17 +35,24 @@ public class PurchaseCompleteServlet extends HttpServlet {
 		
 		String impUid = request.getParameter("impUid");
 		String bId = request.getParameter("bId");
-		int pNo = Integer.parseInt(request.getParameter("pNo"));
-		int amount = Integer.parseInt(request.getParameter("amount"));
+		String strpNo = request.getParameter("strpNo");
+		String strprice = request.getParameter("strprice");
 		
-		Purchase  p = new Purchase();
-		p.setPayMentNo(impUid);
-		p.setbId(bId);
-		p.setpNo(pNo);
-		p.setPrice(amount);
+		String[] pNoList = strpNo.split(",");
+		String[] priceList = strprice.split(",");
 		
+		ArrayList<Purchase> pList = new ArrayList<>();
 		
-		int result = new PurchaseService().insertPurchase(p);
+		for(int i=0; i<pNoList.length; i++) {
+			Purchase  p = new Purchase();
+			p.setPayMentNo(impUid);
+			p.setbId(bId);
+			p.setpNo(Integer.parseInt(pNoList[i]));
+			p.setPrice(Integer.parseInt(priceList[i]));
+			pList.add(p);
+		}
+		
+		int result = new PurchaseService().insertPurchase(pList);
 		
 		if(result >0) {
 			PrintWriter out = response.getWriter();

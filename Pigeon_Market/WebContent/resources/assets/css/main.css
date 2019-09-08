@@ -27,12 +27,11 @@
 		border: 0;
 		font-size: 100%;
 		font: inherit;
-		
 	}
 
 	article, aside, details, figcaption, figure,
 	footer, header, hgroup, menu, nav, section {
-		display: block;	
+		display: block;
 	}
 
 	body {
@@ -2019,7 +2018,7 @@
 
 	header p {
 		color: #999;
-		position: relative;
+		position: absolute;
 		margin: 0 0 1.5em 0;
 		font-style: italic;
 	}
@@ -2089,7 +2088,7 @@
 		border-radius: 6px;
 		border: solid 1px #e5e5e5;
 		color: inherit;
-		display: block;
+		/*display: block;*/
 		outline: 0;
 		padding: 0 1em;
 		text-decoration: none;
@@ -2252,7 +2251,7 @@
 	.box {
 		background: #fff;
 		border-radius: 6px;
-		box-shadow: 0 2px 0 0 #e5e5e5;
+		/*box-shadow: 0 2px 0 0 #e5e5e5;*/
 		margin: 0 0 2em 0;
 		padding: 3em;
 	}
@@ -2680,6 +2679,7 @@
 			border: solid 1px #e5e5e5;
 			border-left: 0;
 			border-right: 0;
+
 		}
 
 			table tbody tr:nth-child(2n + 1) {
@@ -2695,7 +2695,7 @@
 			font-size: 0.9em;
 			font-weight: 300;
 			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			
 		}
 
 		table thead {
@@ -2967,6 +2967,7 @@
 			right: 0.75em;
 			top: 0;
 			vertical-align: middle;
+			display: inline-block;
 		}
 
 			#header nav > ul {
