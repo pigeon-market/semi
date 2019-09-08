@@ -65,14 +65,19 @@ public class AllDealActivityServlet extends HttpServlet {
 		
 		PageInfo pi = pagingBar(listCount,limitCount);
 		
-		if (request.getParameter("currentPage") != null)
-			 { pi.setCurrentPage(Integer.parseInt(request.getParameter("page"))); }
+		if (request.getParameter("page") != "")
+			 { pi.setCurrentPage(Integer.parseInt(request.getParameter("page"))); 
+
+			 }else {
+				 pi.setCurrentPage(1);
+			 }
 		
 		PageInfo page = new PageInfo(pi.getCurrentPage(), pi.getBoardLimit());
 		
 		ArrayList<Activity> aList = new DealService().activityList(a, page);
 		
 		ArrayList<String> range = new DealDao().rangeList(aList);
+
 		
 		request.setAttribute("a", a);
 		request.setAttribute("range", range);

@@ -80,17 +80,17 @@ hr {
 						</div>
 						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='"><img
+								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=&group=15&period=&date='"><img
 								src="<%=contextPath%>/resources/images/pic04.jpg">활동조회</span>
 						</div>
 						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='"><img
+								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=&group=15&period=&date='"><img
 								src="<%=contextPath%>/resources/images/pic04.jpg">판매조회</span>
 						</div>
 						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='"><img
+								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=&group=15&period=&date='"><img
 								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
 						</div>
 						<div class="col-3">

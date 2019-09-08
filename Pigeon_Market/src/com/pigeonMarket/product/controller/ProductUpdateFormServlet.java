@@ -33,20 +33,23 @@ public class ProductUpdateFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int pNo = 25;
+		System.out.println("실행");
 		
-		ProductSale p = new ProductService().selectProduct(pNo);
+		int no = Integer.parseInt(request.getParameter("no"));
+				
+		ProductSale p = new ProductService().selectProduct(no);
 		
-		ArrayList<Attachment> fileList  = new ProductService().selectAttachment(pNo);
+		ArrayList<Attachment> fileList  = new ProductService().selectAttachment(no);
+		
+		
+		
 		
 		if(p != null) {
-			
 			System.out.println("실행");
-			
 			request.setAttribute("p", p);
 			request.setAttribute("fileList", fileList);
 			request.getRequestDispatcher("views/product/updateDetailView.jsp").forward(request, response);
-			
+		
 		}
 		
 		

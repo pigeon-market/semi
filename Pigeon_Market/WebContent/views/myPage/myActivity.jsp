@@ -152,28 +152,30 @@ hr {
 
 				<!-- Text -->
 				<section class="box">
-				<form method="post">
+				<form method="post" id="form" action="">
 					<div id="filterForm">
 						<table>
 							<tr>
-								<td>페이지당 갯수</td>
-								<td><input type="radio" name="group" value="15"></td>
-								<td><input type="radio" name="group" value="20"></td>
-								<td><input type="radio" name="group" value="30"></td>
+								<td>갯수</td>
+								<td><input type="radio" name="group" value="15" id="group15"><label for="group15">15</label></td>
+								<td><input type="radio" name="group" value="20" id="group20"><label for="group20">20</label></td>
+								<td><input type="radio" name="group" value="30" id="group30"><label for="group30">30</label></td>
+								<td colspan="2"></td>
 							</tr>
 							<tr>
 								<td>기간</td>
-								<td><input type="radio" name="period" value="90"></td>
-								<td><input type="radio" name="period" value="180"></td>
-								<td><input type="radio" name="period" value="365"></td>
-								<td><input type="radio" name="period" value="all"></td>
+								<td><input type="radio" name="period" value="90" id="period90"><label for="period90">90</label></td>
+								<td><input type="radio" name="period" value="180" id="period180"><label for="period180">180</label></td>
+								<td><input type="radio" name="period" value="365" id="period365"><label for="period365">365</label></td>
+								<td><input type="radio" name="period" value="all" id="periodAll"><label for="periodAll">all</label></td>
 								<td><input type="number" name="period" value="" disabled></td>
 							</tr>
 							<tr>
-								<td>특정날짜 검색</td>
+								<td>특정날짜</td>
 								<td><input type="date" id="date1" name="date1" value=<%= today %> min="2018-01-01" max=<%= today %> disabled></td>
 								<td><input type="date" id="date2" name="date2" value=<%= today %> min="2018-01-01" max=<%= today %> disabled></td>
-								<td><button id="dateAbled" onclick="dateAbled();">해제하기</button>
+								<td onclick="dateAbled();" ><input type="button" id="dateAbled" value="해제하기"></td>
+								<td colspan="3"></td>
 							</tr>
 							
 							<tr>
@@ -183,98 +185,77 @@ hr {
 						</table>
 					 </div>
 					<h2>최근 활동 기록</h2>
-					
 
 
-					<%
-						while (maxNum < aList.size()) {
-					%>
+					<% while(maxNum < aList.size()) { %>
+					<h3><%= aList.get(maxNum).getaDate() %></h3>
 
-					<h3><%=aList.get(maxNum).getaDate()%></h3>
-
-					<%
-						for (int i = maxNum; i < Integer.parseInt(range.get(viewNum)); i++) {
-					%>
+					<% for(int i = maxNum ; i< Integer.parseInt(range.get(viewNum)) ; i++) { %>
 
 
-					<%
-						switch (aList.get(i).getStatus()) {
-									case "signin" :
-										status = "회원가입";
-										break;
-									case "inq_q" :
-										status = "문의등록";
-										break;
-									case "inq_a" :
-										status = "문의답변";
-										break;
-									case "sell_r" :
-										status = "판매등록";
-										break;
-									case "sell_e" :
-										status = "판매완료";
-										break;
-									case "buy" :
-										status = "구매완료";
-										break;
-									case "sell_a" :
-										status = "판매승인";
-										break;
-									case "review" :
-										status = "리뷰작성";
-										break;
+					<% switch(aList.get(i).getStatus()) { 
+								case "signin" : 
+									status = "회원가입";
+									break;
+								case "inq_q" : 
+									status = "문의등록";
+									break;
+								case "inq_a" : 
+									status = "문의답변";
+									break;
+								case "sell_r" : 
+									status = "판매등록";
+									break;
+								case "sell_e" : 
+									status = "판매완료";
+									break;
+								case "buy" :
+									status = "구매완료";
+									break;
+								case "sell_a" : 
+									status = "판매승인";
+									break;
+								case "review" : 
+									status = "리뷰작성";
+									break;
 
-								}
-					%>
+								}%>
 
-					<div class="listTable">
+					<div class="listTable" >
+						<input type="hidden" value="<%= aList.get(i).getbNo()%>">
 						<input type="hidden" value="<%= aList.get(i).getStatus()%>">
-						<input type="hidden" value="<%= aList.get(i).getrNo()%>">
 						<div class="statusDiv">
-							<p><%=status%></p>
+							<%= status %>
 						</div>
 						<div class="imgDiv">
-							<%
-								if (aList.get(i).getChangeName() != null) {
-							%>
+							<% if(aList.get(i).getChangeName() != null ) {%>
 							<img
-								src="<%=contextPath%>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName()%>"
+								src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName() %>"
 								width="200px" height="150px">
 
-
-							<%
-								}
-							%>
+							<% } %>
 						</div>
 						<div class="titleDiv">
-							<%=aList.get(i).getTitle()%>
+							<%= aList.get(i).getTitle() %>
 						</div>
 						<hr>
 					</div>
 
 
-					<br>
 
-					<%
-						}
-					%>
+					<%} %>
 					<hr>
-					<%
-						maxNum = Integer.parseInt(range.get(viewNum));
-							viewNum = viewNum + 1;
-					%>
+					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; %>
 
-
-					<%
-						}
-					%>
+					
+					<%} %>
 
 					<!-- 페이징바 만들기 -->
 					<div class="pagingArea" align="center">
 
 						<!-- 맨처음으로 (<<) -->
 						<button
-							onclick="location.href='<%=contextPath%>/Activity.me?status=<%= %>&page=1&group=<%= %>&period=<%= %>&date=<%=%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=1&group=<%=a.getLimitCount()%>&period=<%=a.getPeriod() %>&date='">
 							&lt;&lt;</button>
 
 						<!-- 이전페이지로(<) -->
@@ -286,7 +267,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage - 1%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%=currentPage-1 %>&group=<%=a.getLimitCount()%>&period=<%=a.getPeriod() %>&date='">
 							&lt;</button>
 						<%
 							}
@@ -308,7 +289,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=p%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= p %>&group=<%=a.getLimitCount()%>&period=<%=a.getPeriod() %>&date='">
 							<%=p%>
 						</button>
 						<%
@@ -329,7 +310,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage + 1%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%=currentPage+1%>&group=<%=a.getLimitCount()%>&period=<%=a.getPeriod() %>&date='">
 							&gt;</button>
 						<%
 							}
@@ -337,12 +318,12 @@ hr {
 
 						<!-- 맨끝으로(>>) -->
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=maxPage%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= maxPage %>&group=<%=a.getLimitCount()%>&period=<%=a.getPeriod() %>&date='">
 							&gt;&gt;</button>
 
 					</div>
-					<input type="hidden" name="no" id="detailNo" value="">
-					<input type="hidden" name="st" id="detailSt" value="">
+					<input type="hidden" name="no" id="no" value="">
+					<input type="hidden" name="st" id="st" value="">
 						
 				</form>
 				</section>
@@ -359,66 +340,60 @@ hr {
 	<%@ include file="../common/foot.jsp"%>
 
 	<script>
-		$(function() {
-			$(".listTable div").mouseenter(function() {
-				$(this).parent().css({
-					"cursor" : "pointer"
-				});
-				$(this).parent().children().css({
-					"background" : "yellow"
-				});
-			}).click(function() {
-				var st = $(this).parent().children().eq(0).text();
-				var no = $(this).parent().children().eq(1).val();
-				
-				$('#detailNo').val(no);
-				$('#detailSt').val(st);
-				
-				Console.log(st);
-				Console.log(no);
-				
-				var no1= $('#detailNo').val();
-				var st1 = $('#detailSt').val();
-				
-				Console.log(st1);
-				Console.log(no1);
-				
-				
-				
-				location.href="<%= contextPath %>/detailView.deal"
-				
-				
-			}).mouseout(function() {
-				$(this).parent().children().css({
-					"background" : "white"
-				});
-			});
+	$(function() {
+		$(".listTable div").mouseenter(function() {
+			$(this).parent().css({"cursor": "pointer", "background":"yellow"});
+		}).click(function() {
+			
+			var no = $(this).parent().children().eq(0).val();
+			var st = $(this).parent().children().eq(1).val();
+			
+			var checkSt = st.indexOf("_");
+			var st = st.substring(0, checkSt);;
+			
+			if(st == "sell" || st == "buy") {
 
+				$('#no').val(no);
+				$('#st').val(st);
+				
+				$('#form').attr("action", "<%= contextPath %>/detailView.deal");
+				$('#form').submit();
+				
+			}
+			
+		}).mouseout(function() {
+			$(this).parent().css({"background":"white", });
 		});
+		
+	});
 		
 		
 		function dateAbled() {
 			
-			var dateSt = $('#dateAbled').text();
+			var dateSt = $('#dateAbled').val();
 			
-			if(dateSt == '잠그기') {
-			$('#date1').removeAttr(disabled);
-			$('#date2').removeAttr(disabled);
-			$('#dateAbled').text("해제하기");
-			}else{
-				$('#date1').attr(abled);
-				$('#date2').attr(abled);
-				$('#dateAbled').text("잠그기");
-						
-			}
+			console.log(dateSt);
+			
+			if($('#dateAbled').val() == '해제하기') {
+				$('#date1').removeAttr("disabled");
+				$('#date2').removeAttr("disabled");
+				$('#dateAbled').val('잠그기');
+				}else{
+					$('#date1').attr("disabled", 'disabled');
+					$('#date2').attr("disabled", 'disabled');
+					$('#dateAbled').val("해제하기");
+							
+				}
+
 		}
 		
 		function filtButton() {
 			
 			var dateSt = $('#dateAbled').text();
 			if(dateSt == '잠그기') {
-				Date date1 = $('#date1').val();
-				Date date2 = $('#date1').val();
+				
+				var date1 = $('#date1').val();
+				var date2 = $('#date1').val();
 				
 				var dateSub = date2-date1;
 				console.log(dateSub);
