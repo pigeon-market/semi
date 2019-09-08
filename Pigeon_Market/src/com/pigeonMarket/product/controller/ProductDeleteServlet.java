@@ -1,7 +1,6 @@
-package com.pigeonMarket.dealInfo.controller;
+package com.pigeonMarket.product.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,23 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pigeonMarket.dealInfo.model.service.DealService;
-import com.pigeonMarket.dealInfo.model.vo.Activity;
-import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.product.model.service.ProductService;
-import com.pigeonMarket.product.model.vo.Attachment;
 
 /**
- * Servlet implementation class DetailInfoServlet
+ * Servlet implementation class ProductDeleteServlet
  */
-@WebServlet("/detailView.deal")
-public class DetailInfoServlet extends HttpServlet {
+@WebServlet("/delete.pr")
+public class ProductDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailInfoServlet() {
+    public ProductDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,19 +29,19 @@ public class DetailInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		int no = Integer.parseInt(request.getParameter("no"));
-		String st = request.getParameter("st");	
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		ArrayList<String> list = new DealService().selectDetailInfo(no, st, userId);
+		int result = new ProductService().deleteProduct(no);
+		
+		if(result>0) {
 			
-		ArrayList<Attachment> file = new ProductService().selectAttachment(Integer.parseInt(list.get(0)));
+			request.getSession().setAttribute("msg", "게시물이 삭제되었습니다.");
+			response.sendRedirect("list.pr");
+		}
 		
-		request.setAttribute("list", list);
-		request.setAttribute("file", file);
 		
-		request.getRequestDispatcher("views/myPage/myDetailView.jsp").forward(request, response);
+		
 		
 	}
 

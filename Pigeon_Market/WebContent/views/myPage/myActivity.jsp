@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page
-	import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.dealInfo.model.vo.Activity, com.pigeonMarket.common.model.vo.PageInfo"%>
+	import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.dealInfo.model.vo.Activity, com.pigeonMarket.common.model.vo.PageInfo, java.util.Date, java.text.SimpleDateFormat "%>
 <%
 	Member m = (Member) session.getAttribute("loginUser");
 
@@ -59,6 +59,11 @@
 	int maxNum = 0;
 	int viewNum = 0;
 	String status = "";
+	
+	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	Date currentTime = new Date();
+	String today = mSimpleDateFormat.format(currentTime );
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -148,7 +153,37 @@ hr {
 				<!-- Text -->
 				<section class="box">
 				<form method="post">
+					<div id="filterForm">
+						<table>
+							<tr>
+								<td>페이지당 갯수</td>
+								<td><input type="radio" name="group" value="15"></td>
+								<td><input type="radio" name="group" value="20"></td>
+								<td><input type="radio" name="group" value="30"></td>
+							</tr>
+							<tr>
+								<td>기간</td>
+								<td><input type="radio" name="period" value="90"></td>
+								<td><input type="radio" name="period" value="180"></td>
+								<td><input type="radio" name="period" value="365"></td>
+								<td><input type="radio" name="period" value="all"></td>
+								<td><input type="number" name="period" value="" disabled></td>
+							</tr>
+							<tr>
+								<td>특정날짜 검색</td>
+								<td><input type="date" id="date1" name="date1" value=<%= today %> min="2018-01-01" max=<%= today %> disabled></td>
+								<td><input type="date" id="date2" name="date2" value=<%= today %> min="2018-01-01" max=<%= today %> disabled></td>
+								<td><button id="dateAbled" onclick="dateAbled();">해제하기</button>
+							</tr>
+							
+							<tr>
+								<td><button onclick="filtButton();">검색하기</button>
+							</tr>
+					
+						</table>
+					 </div>
 					<h2>최근 활동 기록</h2>
+					
 
 
 					<%
@@ -239,7 +274,7 @@ hr {
 
 						<!-- 맨처음으로 (<<) -->
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=1'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%= %>&page=1&group=<%= %>&period=<%= %>&date=<%=%>'">
 							&lt;&lt;</button>
 
 						<!-- 이전페이지로(<) -->
@@ -360,6 +395,38 @@ hr {
 			});
 
 		});
+		
+		
+		function dateAbled() {
+			
+			var dateSt = $('#dateAbled').text();
+			
+			if(dateSt == '잠그기') {
+			$('#date1').removeAttr(disabled);
+			$('#date2').removeAttr(disabled);
+			$('#dateAbled').text("해제하기");
+			}else{
+				$('#date1').attr(abled);
+				$('#date2').attr(abled);
+				$('#dateAbled').text("잠그기");
+						
+			}
+		}
+		
+		function filtButton() {
+			
+			var dateSt = $('#dateAbled').text();
+			if(dateSt == '잠그기') {
+				Date date1 = $('#date1').val();
+				Date date2 = $('#date1').val();
+				
+				var dateSub = date2-date1;
+				console.log(dateSub);
+				
+				
+			}
+		}
+		
 	</script>
 
 

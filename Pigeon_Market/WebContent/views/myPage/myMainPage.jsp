@@ -106,12 +106,11 @@ hr {
 
 				<!-- Text -->
 				<section class="box">
-				<form method="post">
+				<form method="post" id="form" action="">
 					<h2>최근 활동 기록</h2>
 
 
 					<% while(maxNum < aList.size()) { %>
-
 					<h3><%= aList.get(maxNum).getaDate() %></h3>
 
 					<% for(int i = maxNum ; i< Integer.parseInt(range.get(viewNum)) ; i++) { %>
@@ -146,10 +145,8 @@ hr {
 								}%>
 
 					<div class="listTable" >
-						
-						<input type="text" name="st" id="st<%=i %>" value="<%= aList.get(i).getStatus()%>">
-						<input type="text" name="no" id="no" value="<%= aList.get(i).getrNo()%>">
-						
+						<input type="hidden" value="<%= aList.get(i).getbNo()%>">
+						<input type="hidden" value="<%= aList.get(i).getStatus()%>">
 						<div class="statusDiv">
 							<%= status %>
 						</div>
@@ -175,9 +172,9 @@ hr {
 
 					
 					<%} %>
-					
-		
-						
+
+					<input type="hidden" name="no" id="no" value="">
+					<input type="hidden" name="st" id="st" value="">
 
 				</form>
 				</section>
@@ -199,7 +196,21 @@ hr {
 			$(this).parent().css({"cursor": "pointer", "background":"yellow"});
 		}).click(function() {
 			
-			location.href="<%= contextPath %>/detailView.deal"
+			var no = $(this).parent().children().eq(0).val();
+			var st = $(this).parent().children().eq(1).val();
+			
+			var checkSt = st.indexOf("_");
+			var st = st.substring(0, checkSt);;
+			
+			if(st == "sell" || st == "buy") {
+
+				$('#no').val(no);
+				$('#st').val(st);
+				
+				$('#form').attr("action", "<%= contextPath %>/detailView.deal");
+				$('#form').submit();
+				
+			}
 			
 		}).mouseout(function() {
 			$(this).parent().css({"background":"white", });

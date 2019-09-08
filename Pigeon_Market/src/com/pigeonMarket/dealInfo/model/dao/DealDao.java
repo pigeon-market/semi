@@ -56,9 +56,6 @@ public class DealDao {
 		while (num < aList.size()) {
 
 			for (num = groupNum; num < aList.size(); num++) {
-				
-				System.out.println((aList.get(num).getaDate()));
-				System.out.println(aList.get(groupNum).getaDate());
 
 				if (!((aList.get(num).getaDate()).equals(aList.get(groupNum).getaDate()))) {
 					
@@ -207,5 +204,62 @@ public class DealDao {
 
 		return list;
 	}
+	
+	public ArrayList<String> selectDetailInfo(Connection conn, int no, String st, String userId) {
+		
+		ArrayList<String> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "";
+		
+		if(st.equals("sell")) {
+			sql = prop.getProperty("sDetailInfo");
+
+		}else if(st.equals("but")){
+			sql = prop.getProperty("bDetailInfo");
+		}
+		
+		ResultSet rset = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			pstmt.setString(2, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				list.add(String.valueOf(rset.getString(1)));
+				list.add(String.valueOf(rset.getString(2)));
+				list.add(rset.getString(3));
+				list.add(rset.getString(4));
+				list.add(rset.getString(5));
+				list.add(rset.getString(6));
+				list.add(rset.getString(7));
+				list.add(rset.getString(8));
+				list.add(rset.getString(9));
+				list.add(rset.getString(10));
+				list.add(rset.getString(11));
+				list.add(rset.getString(12));
+				
+				
+			}
+			
+			System.out.println(list.get(0));
+			System.out.println(list.get(1));
+			System.out.println(list.get(2));
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+		
+	}
+
 
 }

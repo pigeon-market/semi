@@ -111,6 +111,23 @@ public class ProductService {
 		return prList;
 
 	}
+	
+	
+	public int deleteProduct(int no) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ProductDao().deleteProduct(conn, no);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+		
+	}
 
 
 	
