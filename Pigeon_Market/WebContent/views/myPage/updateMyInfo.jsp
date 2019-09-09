@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.pigeonMarket.member.model.vo.Member"%>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <%
 	Member m = (Member) request.getAttribute("me");
 
@@ -119,7 +120,7 @@ position:relative;
 							</div>
 							
 							<div class="col-3" onclick="emailBtn();">
-								<input type="button" value="변경하기" id="emailBtn" readonly>
+								<input type="button" value="해제하기" id="emailBtn" readonly>
 
 							</div>
 
@@ -134,16 +135,28 @@ position:relative;
 
 
 				<section class="box">
-				<form>
+			<form> 
 					<h2>주소지 변경</h2>
-					우편번호 : <input type="text" name="address" style="width:80px; height:26px;" />	&nbsp;&nbsp;
-					<button type="button" style="width:60px; height:32px;" onclick="openZipSearch()">검색</button><br>
-					주소 : <input type="text" name="addr1" style="width:300px; height:30px;" readonly /><br>
-					상세 : <input type="text" name="addr2" style="width:300px; height:30px;" />
+
+				우편번호 : <input type="text" name="addr1" style="width:80px; height:26px;" />	&nbsp;&nbsp;
+				<button type="button" style="width:60px; height:32px;" onclick="openZipSearch()">검색</button><br>
+				주소 : <input type="text" name="addr2" style="width:300px; height:30px;" readonly /><br>
+				상세 : <input type="text" name="addr3" style="width:300px; height:30px;" />
+				
+				
+				<div class="col-3" onclick="addrBtn();">
+								<input type="button" value="해제하기" id="addr" readonly>
+
+				</div>
+				
+			
+			
+			
+
+			
+			</form>
 
 
-
-				</form>
 				</section>
 
 				<section class="box">
@@ -171,7 +184,7 @@ position:relative;
 						<br>
 						
 						<div class="col-3" onclick="phoneBtn();">
-							<input type="button" value="변경하기" id="phoneBtn" readonly>
+							<input type="button" value="해제하기" id="phoneBtn" readonly>
 
 						</div>
 
@@ -314,10 +327,7 @@ position:relative;
 
 						var num1 = newPhone.indexOf("-");
 						var num2 = newPhone.lastIndexOf("-");
-						
-						console.log(num1);
-						console.log(num2);
-
+	
 						var pb = "";
 
 						for (var i = 0; i < num2 - num1-1 ; i++) {
@@ -362,7 +372,9 @@ position:relative;
 
 		}
 		
-		function openZipSearch() {
+
+		 function openZipSearch() {
+			 console.log("실행");
 			new daum.Postcode({
 				oncomplete: function(data) {
 					$('[name=address]').val(data.zonecode); // 우편번호 (5자리)
@@ -371,6 +383,85 @@ position:relative;
 				}
 			}).open();
 		}
+		 
+		 function addrBtn() {
+
+				if ($("#addrBtn").val() == "해제하기") {
+
+					$("#addrBtn").css({
+						'background-color' : 'rgba(232, 153, 128, 0.5)'
+					});
+					$("#addr1").val("").removeAttr('readonly').css({
+						'background-color' : 'rgb(250, 250, 250)',
+						'border' : '5px solid rgba(232, 153, 128, 0.5)'
+					}).focus();
+					$("#addr2").val("").removeAttr('readonly').css({
+						'background-color' : 'rgb(250, 250, 250)',
+						'border' : '5px solid rgba(232, 153, 128, 0.5)'
+					});
+					$("#addr3").val("").removeAttr('readonly').css({
+						'background-color' : 'rgb(250, 250, 250)',
+						'border' : '5px solid rgba(232, 153, 128, 0.5)'
+					});
+
+					$("#addrBtn").val("수정하기");
+				} else {
+
+					var addr1 = $("#addr1").val();
+					var addr2 = $("#addr2").val();
+					var addr3 = $("#addr3").val();
+
+					$.ajax({
+						url : "updateAddr.me",
+						data : {
+							addr1 : addr1,
+							addr2 : addr2,
+							addr3 : addr3
+						},
+						type : "post",
+						success : function(addr) {
+
+							var newAddr = addr;
+
+							var num1 = newAddr.indexOf(",");
+							var num2 = newAddr.lastIndexOf(",");
+							
+							var nAddr1 = newAddr.substring(0, num1);
+							var nAddr2 = newAddr.substring(num1 +1, num2)
+							var nAddr3 = newAddr.substring(num2 + 1);
+
+							$("#addr1").val(nAddr1);
+							$("#addr2").val(nAddr2);
+							$("#addr3").val(nAddr3);
+
+
+						},
+						error : function() {
+							console.log("통신 실패");
+						}
+					});
+
+					$("#AddrBtn").css({
+						'background-color' : 'rgb(102, 102, 102)'
+					});
+					$("#Addr1").css({
+						'background-color' : 'rgba(70, 70, 70, 0.4)',
+						'border' : '0px'
+					}).attr('readonly');
+					$("#Addr2").css({
+						'background-color' : 'rgba(70, 70, 70, 0.4)',
+						'border' : '0px'
+					}).attr('readonly');
+					$("#Addr3").css({
+						'background-color' : 'rgba(70, 70, 70, 0.4)',
+						'border' : '0px'
+					}).attr('readonly');
+					$("#AddrBtn").val("해제하기");
+
+				}
+
+			}
+		 
 	</script>
 
 	<%@ include file="../common/foot.jsp"%>

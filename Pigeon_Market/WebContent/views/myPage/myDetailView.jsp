@@ -178,7 +178,7 @@
 
 
 			<%
-				if (productOkNo == "") {
+				if (productOkNo != "") {
 			%>
 
 			<button onclick="location.href='<%=contextPath%>'">제품페이지

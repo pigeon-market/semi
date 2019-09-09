@@ -85,7 +85,7 @@
 						<%
 							}
 						%>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="<%=request.getContextPath() %>">Home</a></li>
 							<li><a href="#" class="icon solid fa-angle-down">메뉴</a>
 								<ul>
 

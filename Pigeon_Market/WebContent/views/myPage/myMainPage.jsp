@@ -95,7 +95,7 @@ hr {
 						<div class="col">
 							<span class="image fit"
 								onclick="location.href='<%=contextPath%>/myShoppingBacket.me'">
-								<input type="button" value="배송조회">
+								<input type="button" value="장바구니">
 							</span>
 						</div>
 

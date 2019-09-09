@@ -99,15 +99,15 @@ body {
 	<script>
 		$(function () {
 			
-			var loginUser = <%= m.getUserId()%>;
+			
 			
 			
 			$('#id').on("change paste keyup", function() {
+
 				var checkId = $('#id').val();
-				var checkPwd = $('#pwd').val();
 				
-				if( loginUser.equal(checkId) & checkPwd=="") {
-					$('check').removeAttr('disabled');			
+				if( "<%= m.getUserId()%>" == checkId) {
+					$('#check').removeAttr('disabled');			
 				}
 			})
 			

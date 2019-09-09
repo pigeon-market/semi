@@ -428,8 +428,8 @@ hr {
 			
 			var dateSt = $('#dateAbled').text();
 			if(dateSt == '잠그기') {
-				Date date1 = $('#date1').val();
-				Date date2 = $('#date1').val();
+				var date1 = $('#date1').val();
+				var date2 = $('#date1').val();
 				
 				var dateSub = date2-date1;
 				console.log(dateSub);

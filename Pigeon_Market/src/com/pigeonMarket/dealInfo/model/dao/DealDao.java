@@ -59,8 +59,6 @@ public class DealDao {
 
 				if (!((aList.get(num).getaDate()).equals(aList.get(groupNum).getaDate()))) {
 					
-					System.out.println("1");
-					
 					String listAdd = String.valueOf(num);
 
 					list.add(listAdd);
