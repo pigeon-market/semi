@@ -170,14 +170,14 @@
 
 
 		<form method="post">
-<<<<<<< HEAD
+			<input type="hidden" id="prNo" name="no" value="<%=productNo%>">
 			<div>
 			
-=======
-			<input type="hidden" id="prNo" name="no" value="25">
+
+			<input type="hidden" id="prNo" name="no" value="<%=productNo %>">
 
 			<input type="hidden" name="st" value="sell">
->>>>>>> parent of 66053ff... 0909_0621
+
 			<%
 				if (productOkNo == "") {
 			%>
@@ -203,12 +203,9 @@
 			<%
 				 }
 			%>
-<<<<<<< HEAD
+				
 			</div>
-<input type="hidden" id="prNo" name="no" value="<%=productNo %>">
-=======
-
->>>>>>> parent of 66053ff... 0909_0621
+				
 
 		</form>
 
@@ -303,9 +300,12 @@
 	<script>
 			function deleteProduct() {
 				
+				var prNo = $('#prNo').val();
+				
+				console.log(prNo);
 				
 				
-				//location.href="<%=contextPath%>/delete.pr";
+				location.href="<%=contextPath%>/delete.pr";
 			}
 			
 		

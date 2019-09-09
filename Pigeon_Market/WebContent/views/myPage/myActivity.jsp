@@ -123,33 +123,39 @@ hr {
 				<section>
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
-						<div id="info">
+						<div class="col">
+
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
-									<input type="button" value="개인정보수정"></span>
+								onclick="location.href='<%=contextPath%>/goMyInfo.me'"> <input
+								type="button" value="개인정보수정">
+							</span>
 						</div>
 						<div>
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
-									<input type="button" value="활동조회"></span>
+
+							<span class="image fit"	onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+								<input type="button" value="활동조회">
+							</span>
+
 						</div>
-					<div>
+						<div class="col">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
+								<input type="button" value="판매조회">
+															</span>
+						</div>
+						<div class="col">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
+								<input type="button" value="구매조회">
+															</span>
+						</div>
+						<div class="col">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
-									<input type="button" value="판매조회"></span>
-					</div>
-					<div>
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
-									<input type="button" value="구매조회"></span>
-					</div>
-						<div class="col-3">
-							<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
+								onclick="location.href='<%=contextPath%>/myShoppingBacket.me'">
+								<input type="button" value="배송조회">
+							</span>
 						</div>
 
 					</div>
 				</div>
-
 				</section>
 
 				<!-- Text -->
@@ -276,7 +282,7 @@ hr {
 
 						<!-- 맨처음으로 (<<) -->
 						<button
-							onclick="location.href='<%=contextPath%>/Activity.me?status=<%= %>&page=1&group=<%= %>&period=<%= %>&date=<%=%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=1&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							&lt;&lt;</button>
 
 						<!-- 이전페이지로(<) -->
@@ -288,7 +294,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage - 1%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= currentPage-1 %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							&lt;</button>
 						<%
 							}
@@ -310,7 +316,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=p%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= p %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							<%=p%>
 						</button>
 						<%
@@ -331,7 +337,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage + 1%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= currentPage+1 %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							&gt;</button>
 						<%
 							}
@@ -339,7 +345,7 @@ hr {
 
 						<!-- 맨끝으로(>>) -->
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=maxPage%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= maxPage %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							&gt;&gt;</button>
 
 					</div>

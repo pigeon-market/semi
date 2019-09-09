@@ -129,7 +129,6 @@ public class ProductInsertServlet extends HttpServlet {
 			String productTitle = multiRequest.getParameter("productTitle");
 			String productContents = multiRequest.getParameter("productContents");
 			
-			
 			Product p = new Product();
 			p.setpId(pId);
 			p.setPrice(price);

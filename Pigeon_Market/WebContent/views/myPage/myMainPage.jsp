@@ -77,28 +77,20 @@ hr {
 						</div>
 						<div>
 
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+							<span class="image fit"	onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
 								<input type="button" value="활동조회">
-							</span> ======= onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='"><img
-								src="<%=contextPath%>/resources/images/pic04.jpg">활동조회</span>
-							>>>>>>> parent of 66053ff... 0909_0621
+							</span>
+
 						</div>
 						<div class="col">
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
 								<input type="button" value="판매조회">
-							</span> ======= onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='"><img
-								src="<%=contextPath%>/resources/images/pic04.jpg">판매조회</span>
-							>>>>>>> parent of 66053ff... 0909_0621
+															</span>
 						</div>
 						<div class="col">
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
 								<input type="button" value="구매조회">
-							</span> ======= onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='"><img
-								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
-							>>>>>>> parent of 66053ff... 0909_0621
+															</span>
 						</div>
 						<div class="col">
 							<span class="image fit"
@@ -159,8 +151,8 @@ hr {
 					%>
 
 					<div class="listTable">
-						<input type="hidden" value="<%=aList.get(i).getbNo()%>">
-						<input type="hidden" value="<%=aList.get(i).getStatus()%>">
+						<input type="hidden" value="<%=aList.get(i).getbNo()%>"> <input
+							type="hidden" value="<%=aList.get(i).getStatus()%>">
 						<div class="statusDiv">
 							<%=status%>
 						</div>
@@ -232,8 +224,7 @@ hr {
 				$('#no').val(no);
 				$('#st').val(st);
 				
-				$('#form').attr("action", "<%=contextPath%>
-		/detailView.deal");
+				$('#form').attr("action", "<%=contextPath%>/detailView.deal");
 							$('#form').submit();
 
 						}

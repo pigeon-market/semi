@@ -136,7 +136,10 @@ position:relative;
 				<section class="box">
 				<form>
 					<h2>주소지 변경</h2>
-
+					우편번호 : <input type="text" name="address" style="width:80px; height:26px;" />	&nbsp;&nbsp;
+					<button type="button" style="width:60px; height:32px;" onclick="openZipSearch()">검색</button><br>
+					주소 : <input type="text" name="addr1" style="width:300px; height:30px;" readonly /><br>
+					상세 : <input type="text" name="addr2" style="width:300px; height:30px;" />
 
 
 
@@ -357,6 +360,16 @@ position:relative;
 
 			}
 
+		}
+		
+		function openZipSearch() {
+			new daum.Postcode({
+				oncomplete: function(data) {
+					$('[name=address]').val(data.zonecode); // 우편번호 (5자리)
+					$('[name=addr1]').val(data.address);
+					$('[name=addr2]').val(data.buildingName);
+				}
+			}).open();
 		}
 	</script>
 
