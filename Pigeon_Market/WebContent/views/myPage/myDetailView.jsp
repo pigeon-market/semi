@@ -170,8 +170,14 @@
 
 
 		<form method="post">
+<<<<<<< HEAD
 			<div>
 			
+=======
+			<input type="hidden" id="prNo" name="no" value="25">
+
+			<input type="hidden" name="st" value="sell">
+>>>>>>> parent of 66053ff... 0909_0621
 			<%
 				if (productOkNo == "") {
 			%>
@@ -183,7 +189,7 @@
 				} else {
 			%>
 
-			<button onclick="updateProduct();'">수정하기</button>
+			<button onclick="location.href='<%=contextPath%>/updateDetail.pr'">수정하기</button>
 
 			<%
 				}
@@ -197,8 +203,12 @@
 			<%
 				 }
 			%>
+<<<<<<< HEAD
 			</div>
 <input type="hidden" id="prNo" name="no" value="<%=productNo %>">
+=======
+
+>>>>>>> parent of 66053ff... 0909_0621
 
 		</form>
 
@@ -296,12 +306,6 @@
 				
 				
 				//location.href="<%=contextPath%>/delete.pr";
-			}
-			
-			function updateProduct() {
-				
-				location.href="<%=contextPath%>/updateDetail.pr";
-				
 			}
 			
 		

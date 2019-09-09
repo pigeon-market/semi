@@ -82,19 +82,34 @@ hr {
 							<div>
 					
 							<span class="image fit"
+<<<<<<< HEAD
 								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
 								<input type="button" value="활동조회">
 								</span>
+=======
+								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">활동조회</span>
+>>>>>>> parent of 66053ff... 0909_0621
 						</div>
 						<div class="col">
 							<span class="image fit"
+<<<<<<< HEAD
 								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
 								<input type="button" value="판매조회"></span>
+=======
+								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">판매조회</span>
+>>>>>>> parent of 66053ff... 0909_0621
 						</div>
 						<div class="col">
 							<span class="image fit"
+<<<<<<< HEAD
 								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
 								<input type="button" value="구매조회"></span>
+=======
+								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
+>>>>>>> parent of 66053ff... 0909_0621
 						</div>
 						<div class="col">
 							<span class="image fit"
