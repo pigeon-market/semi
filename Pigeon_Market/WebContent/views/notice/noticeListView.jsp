@@ -21,7 +21,7 @@
 <title>Insert title here</title>
 <style>
 	.outer{
-		width:800px;
+	/*	width:800px;*/
 		color: #646464;
 		margin-left:auto;
 		margin-right:auto;
@@ -35,6 +35,8 @@
 	#listArea{
 		border:1px solid white;
 		text-align:center;
+		margin-left:auto;
+		margin-right:auto;
 	}
 	.searchArea{
 		width:650px;
