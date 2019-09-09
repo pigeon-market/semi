@@ -101,14 +101,13 @@
 									<li><a href="<%=request.getContextPath()%>/inquiry.in">문의사항</a></li>
 									<li><a href="<%=request.getContextPath()%>/review.re">리뷰</a></li>
 									<li><a href="<%=request.getContextPath()%>/myPage.me">마이페이지</a></li>
+									<li><a href="<%=request.getContextPath()%>/black.bl">블랙리스트</a></li>
 								 <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
 	
 									<li><a href="#">관리자메뉴</a>
 										<ul>
 											<li><a href="<%=request.getContextPath()%>/member.mim">회원
 													정보 관리</a></li>
-											<li><a href="<%=request.getContextPath()%>/black.bl">블랙리스트
-													관리</a></li>
 											<li><a href="<%=request.getContextPath()%>/inquirylist.in">문의사항
 											 관리</a></li>
 											
