@@ -12,7 +12,7 @@
 %>
 
 
-            <!DOCTYPE html>
+            <%-- <!DOCTYPE html>
             <html>
 
             <head>
@@ -20,9 +20,8 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 <title>Insert title here</title>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <link rel="stylesheet" href="<%= request.getContextPath()%>/resources/assets/css/main.css" />
-                <link rel="shortcut icon" href="dulgi.ico">
-                <link rel="icon" href="dulgi.ico">
+                <link rel="stylesheet" href="<%= request.getContextPath()%>/resources/assets/css/main.css" /> --%>
+             
 
 <!DOCTYPE html>
 <html>
@@ -33,6 +32,9 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	
+<link rel="shortcut icon" href="resources/images/dulgi.ico">
+<link rel="icon" href="resources/images/dulgi.ico">
 </script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/assets/css/main.css" />
@@ -96,7 +98,7 @@
 							<li><a href="index.html">Home</a></li>
 							<li><a href="#" class="icon solid fa-angle-down">메뉴</a>
 								<ul>
-									<li><a href="generic.html">소개</a></li>
+								<!-- 	<li><a href="generic.html">소개</a></li> -->
 									<li><a href="<%=request.getContextPath()%>/list.no">공지사항</a></li>
 									<li><a href="<%=request.getContextPath()%>/event.eo">이벤트</a></li>
 									<li><a href="<%=request.getContextPath()%>/inquiry.in">문의사항</a></li>

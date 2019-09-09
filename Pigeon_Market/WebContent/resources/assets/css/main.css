@@ -1,6 +1,9 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
 
+
+
+
 /*
 	Alpha by HTML5 UP
 	html5up.net | @ajlkn
@@ -21,7 +24,7 @@
 	tfoot, thead, tr, th, td, article, aside,
 	canvas, details, embed, figure, figcaption,
 	footer, header, hgroup, menu, nav, output, ruby,
-	section, summary, time, mark, audio, video {
+	front, summary, time, mark, audio, video {
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -3162,10 +3165,12 @@
 
 /* Banner */
 
+
+
 	#banner {
 		background-attachment: scroll,							fixed;
 		background-color: #666;
-		background-image: url("images/overlay.png"), url("../../images/banner.jpg");
+	 	background-image: url("images/overlay.png"), url("notebook.png");
 		background-position: top left,						center center;
 		background-repeat: repeat,							no-repeat;
 		background-size: auto,							cover;
@@ -3180,6 +3185,7 @@
 
 		#banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
 			color: #fff;
+		  
 		}
 
 		#banner h2 {
@@ -3224,7 +3230,7 @@
 			#banner .button.primary {
 				background: #fff;
 				color: #666 !important;
-			}
+			} 
 
 /* Main */
 
