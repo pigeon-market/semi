@@ -349,8 +349,11 @@ hr {
 							&gt;&gt;</button>
 
 					</div>
-					<input type="hidden" name="no" id="detailNo" value="">
+					<div>
+						<input type="hidden" name="no" id="detailNo" value="">
 					<input type="hidden" name="st" id="detailSt" value="">
+					
+					</div>
 						
 				</form>
 				</section>

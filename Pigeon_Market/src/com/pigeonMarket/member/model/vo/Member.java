@@ -66,7 +66,7 @@ public class Member implements java.io.Serializable{
 		this.blackCode = blackCode;
 	}
 
-<<<<<<< Updated upstream
+
 	public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
 			String phone, String address) {
 		super();
@@ -81,8 +81,6 @@ public class Member implements java.io.Serializable{
 	}
 
 
-=======
->>>>>>> Stashed changes
 	public Member(int rNum, String userId, String userPwd, String userName, String birthDate, String gender,
 			String email, String phone, String address, Date joinDate, String withdrawal, String blackCode) {
 		super();
@@ -100,7 +98,6 @@ public class Member implements java.io.Serializable{
 		this.blackCode = blackCode;
 	}
 
-<<<<<<< Updated upstream
 
 
 	public int getrNum() {
@@ -109,14 +106,6 @@ public class Member implements java.io.Serializable{
 
 	public void setrNum(int rNum) {
 		this.rNum = rNum;
-=======
-	public int getRnum() {
-		return rNum;
-	}
-
-	public void setRnum(int rnum) {
-		this.rNum = rnum;
->>>>>>> Stashed changes
 	}
 
 	public String getUserId() {

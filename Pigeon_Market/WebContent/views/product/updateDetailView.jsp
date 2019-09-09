@@ -4,8 +4,7 @@
     import ="java.util.ArrayList, com.pigeonMarket.product.model.vo.*, com.pigeonMarket.category.model.vo.*"%>
 <% 
 	ProductSale pr = (ProductSale)request.getAttribute("p");
-	ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
-	Attachment titleImg = fileList.get(0);
+
 %> 
 <!DOCTYPE html>
 <html>
@@ -70,7 +69,7 @@
 				<table align="center">
 					<tr>
 						<td width="100px">제목</td>
-						<td colspan="3"><input type="text" size="45" name="title" value=<%=pr.getProductTitle()	 %>></td>
+						<td colspan="3"><input type="text" size="45" name="title" value="<%=pr.getProductTitle()%>"></td>
 					</tr>
 					<tr>
 						<td>대표이미지</td>

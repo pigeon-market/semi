@@ -10,6 +10,7 @@
 	Member m = (Member) request.getSession().getAttribute("loginUser");
 
 	String productNo = list.get(0);
+	System.out.println(productNo);
 	String productOkNo = list.get(1);
 	String paymentNo = list.get(2);
 	String pId = list.get(3);
@@ -64,16 +65,16 @@
 		}
 	}
 
-	String st = "";
+	String str = "";
 
 	if (dealDate == null) {
 		if (appr == null) {
-			st = "판매중";
+			str = "판매중";
 		} else {
-			st = "승인대기중";
+			str = "승인대기중";
 		}
 	} else {
-		st = "판매완료";
+		str = "판매완료";
 	}
 %>
 <!DOCTYPE html>
@@ -169,14 +170,12 @@
 
 
 
-		<form method="post">
-			<input type="hidden" id="prNo" name="no" value="<%=productNo%>">
+		
+
 			<div>
-			
+				
 
-			<input type="hidden" id="prNo" name="no" value="<%=productNo %>">
 
-			<input type="hidden" name="st" value="sell">
 
 			<%
 				if (productOkNo == "") {
@@ -189,7 +188,7 @@
 				} else {
 			%>
 
-			<button onclick="location.href='<%=contextPath%>/updateDetail.pr'">수정하기</button>
+			<button onclick="location.href='<%=contextPath%>/updateDetail.pr?prNo=<%= productNo %>'">수정하기</button>
 
 			<%
 				}
@@ -198,16 +197,17 @@
 				if(appr == "") {
 			%>
 
-			<button onclick="deleteProduct();">삭제하기</button>
+			<button onclick="location.href='<%=contextPath%>/delete.pr?prNo=<%= productNo %>'">삭제하기</button>
 
 			<%
 				 }
 			%>
+
 				
 			</div>
 				
 
-		</form>
+
 
 		<table class="detail">
 			<tr>
@@ -225,7 +225,7 @@
 				<th>판매가격</th>
 				<th><%=price%>원</th>
 				<th width=15%>제품상태</th>
-				<th><%=st%></th>
+				<th><%=str%></th>
 			</tr>
 			<tr>
 				<th>판매자ID</th>
@@ -293,24 +293,12 @@
 				</th>
 			</tr>
 
-		</table>
 
+		</table>
+	
 
 	</div>
-	<script>
-			function deleteProduct() {
-				
-				var prNo = $('#prNo').val();
-				
-				console.log(prNo);
-				
-				
-				location.href="<%=contextPath%>/delete.pr";
-			}
-			
-		
-		
-		</script>
+
 
 	<%@ include file="../common/foot.jsp"%>
 </body>
