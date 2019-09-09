@@ -247,10 +247,6 @@ public class DealDao {
 				
 			}
 			
-			System.out.println(list.get(0));
-			System.out.println(list.get(1));
-			System.out.println(list.get(2));
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

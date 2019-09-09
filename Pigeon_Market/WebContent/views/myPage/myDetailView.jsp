@@ -170,7 +170,7 @@
 
 
 		<form method="post">
-			
+			<div>
 			
 			<%
 				if (productOkNo == "") {
@@ -197,6 +197,7 @@
 			<%
 				 }
 			%>
+			</div>
 <input type="hidden" id="prNo" name="no" value="<%=productNo %>">
 
 		</form>
