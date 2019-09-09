@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 <style>
 	.outer{
-		width:800px;
+		width:70%;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -73,9 +73,13 @@
 			<form action="<%= contextPath %>/review.re" method="post">
 				<input type="submit" value="이전으로">
 					<!-- 관리자만 볼 수 있는 작성하기 버튼 -->
-	 <%if(loginUser != null && loginUser.getUserId().equals("user10")){ %>
+	 <%if(loginUser != null && loginUser.getUserId().equals(r.getUserId())){ %>
+	 
 				<input type="button" onclick="updateForm();" value="수정하기">
 				<input type="button" onclick="deleteBoard();" value="삭제하기">
+	 
+					<%}else{ %>
+					
 					<%} %>
 			</form>
 			</div>

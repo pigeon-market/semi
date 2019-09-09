@@ -20,7 +20,7 @@
 <title>Insert title here</title>
 <style>
 	.outer{
-		width:900px;
+		width:70%;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
