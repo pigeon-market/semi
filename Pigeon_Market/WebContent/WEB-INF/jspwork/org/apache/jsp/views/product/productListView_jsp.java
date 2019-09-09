@@ -206,8 +206,7 @@ public final class productListView_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("            <!DOCTYPE html>\r\n");
-      out.write("            <html>\r\n");
+      out.write("            ");
       out.write("\r\n");
       out.write("            <head>\r\n");
       out.write("                <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
@@ -383,6 +382,11 @@ public final class productListView_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("\t<script>\r\n");
       out.write("\t\t");
       out.write("\r\n");
+      out.write("\t\t\tfunction logout(){\r\n");
+      out.write("\t\t\t\tlocation.href='");
+      out.print(request.getContextPath());
+      out.write("/logout.me';\r\n");
+      out.write("\t\t\t}\r\n");
       out.write("\r\n");
       out.write("\t\t\tfunction logout(){\r\n");
       out.write("\t\t\t\tlocation.href='");

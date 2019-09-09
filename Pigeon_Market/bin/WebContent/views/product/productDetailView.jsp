@@ -5,6 +5,8 @@
 	ProductSale pr = (ProductSale)request.getAttribute("p");
 	ArrayList<Attachment> fileList = (ArrayList<Attachment>)request.getAttribute("fileList");
 	Attachment titleImg = fileList.get(0);
+	
+	String pNo = Integer.toString((pr.getProductOkNo()));
 %>    
 <!DOCTYPE html>
 <html>
@@ -25,12 +27,20 @@
 		resize: none;
 		font-size: 0.7em;
 	}
-	#basket, #purchase, #black{
+	#basket, #purchase{
 		 height: 50px;
 		 text-align:center;
 		 font-size: 1.5em;				 
 		 padding: 10px 0px;
 		 color: white;
+	 }
+	 #black{
+	  	height: 40px;
+		text-align:center;
+		font-size: 1.5em;				 
+		padding: 10px 0px;
+		color: white;
+		
 	 }
 	#basket{	 
 		background: burlywood;
@@ -41,7 +51,7 @@
 	#black{
 		background:tomato;
 	}
-	#inquiry{
+	#addReply{
 		height: 100%;
 		text-align:center;
 		font-size: 1.5em;				 
@@ -58,8 +68,15 @@
 		text-align:center;
 	}
 		 
-	#basket:hover, #purchase:hover, #black:hover,#inFormation:hover,#question:hover	{
+	#basket:hover, #purchase:hover, #black:hover,#inFormation:hover,#question:hover, #addReply:hover	{
 		cursor:pointer;
+	}
+	#blackRrea{
+		padding: 0 0 0 0 ;
+	}
+	.diaArea{
+		padding-top: 0;
+		padding-bottom: 0;
 	}
 
 </style>
@@ -87,7 +104,7 @@
 			<tr>
 				<th>판매자ID</th>	
 				<th colspan="2"><%= pr.getpId() %></th>
-				<th><a><div id ="black">신고하기</div></a></th>					
+				<th id="diaArea"><div id ="black" onclick="blackUser();">신고하기</div></th>					
 			</tr>
 			<tr>
 				<th>판매가격</th>	
@@ -100,18 +117,8 @@
 				<th></th>							
 			</tr>
 			<tr>
-<<<<<<< HEAD
-<<<<<<< HEAD
 				<td colspan="2" class="diaArea"><a href="<%= contextPath%>/insert.sm?pNo=<%= pr.getProductOkNo()%>"><div id = "basket">장바구니</div></a></td>
-				<td colspan="2" class="diaArea"><a  href="<%= contextPath%>/insertForm.pc?pNo=<%= pr.getProductOkNo()%>"><div id = "purchase">구매</div></a></td>			
-=======
-				<td colspan="2" ><a><div id = "basket">장바구니</div></a></td>
-				<td colspan="2"><a><div id = "purchase">구매</div></a></td>			
->>>>>>> parent of e149df0... 1999
-=======
-				<td colspan="2" ><a><div id = "basket">장바구니</div></a></td>
-				<td colspan="2"><a><div id = "purchase">구매</div></a></td>			
->>>>>>> parent of e149df0... 1999
+				<td colspan="2" class="diaArea"><a  href="<%= contextPath%>/insertForm.pc?list=<%= pNo%>"><div id = "purchase">구매</div></a></td>			
 			</tr>
 			<tr>
 				<td colspan="1" id="inFormation"><div>상품정보</div></td>
@@ -142,13 +149,93 @@
 			<tr>
 				<th colspan="3">
 					<div class = "textsize">
-						<textarea rows="3"  id="qnaTextarea" ></textarea>
+						<textarea rows="3"  id="replyContent" ></textarea>
 					</div>
 				</th>
-				<td colspan="2"><div id="inquiry">문의하기</div></td>
+				<td colspan="2"><div id="addReply">문의하기</div></td>
 			</tr>
+		</table>
+		
+		<table id="replySelectTable" border="1" align="center">
+			
 		</table>						
 	</div>
+	
+	<script>
+		function blackUser(){
+			var reason = window.prompt("신고사유를 적어주세요");
+			var pId = "<%= pr.getpId() %>";
+			
+			location.href="<%= request.getContextPath() %>/insert.bl?reason=" + reason + "&pId="+pId ;
+		}
+		
+		function selectRlist(){
+			
+			// 전달하고자 하는 게시글 번호
+			var pNo = <%= pr.getProductOkNo() %>;
+			
+			$.ajax({
+				url:"productReviewlist.pr",
+				data:{pNo:pNo},
+				type:"get",
+				success:function(list){
+					
+					var $replyTable = $("#replySelectTable"); // <table></table>
+					
+					$replyTable.html(""); // 기존 테이블 정보 초기화
+					
+					$.each(list, function(index, value){	
+						
+						var $tr = $("<tr>");
+						var $writerTd = $("<td>").text(value.writer);
+						var $contentTd = $("<td>").text(value.content);
+						var $dateTd = $("<td>").text(value.createDate);
+						
+						$tr.append($writerTd);
+						$tr.append($contentTd);
+						$tr.append($dateTd);
+						
+						$replyTable.append($tr);
+						
+					});
+					
+					
+				},
+				error:function(){
+					console.log("통신 실패");
+				}
+			});
+			
+			
+		}
+		
+		$(function(){
+			selectRlist();
+			
+		
+			
+			$("#addReply").click(function(){
+
+				var content = $("#replyContent").val();
+				var pNo = <%= pr.getProductOkNo() %>;
+				var writer = "<%= loginUser.getUserId() %>";
+				
+				$.ajax({
+					url:"productReviewinsert.pr",
+					type:"post",
+					data:{content:content, pNo:pNo, writer:writer},
+					success:function(){
+						selectRlist();
+						
+						$("#replyContent").val("");
+						
+					}
+				});
+				
+			});
+			
+		});
+	</script>
 	
 		<%@ include file="../common/foot.jsp"%>
 

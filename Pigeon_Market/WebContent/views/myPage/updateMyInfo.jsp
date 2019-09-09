@@ -259,11 +259,11 @@ position:relative;
 				$("#email1").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr("readonly", 'readonly');
 				$("#email2").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr("readonly", 'readonly');
 				$("#emailBtn").val("해제하기");
 
 			}
@@ -344,15 +344,15 @@ position:relative;
 				$("#phone1").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr("readonly", 'readonly');
 				$("#phone2").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr("readonly", 'readonly');
 				$("#phone3").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr("readonly", 'readonly');
 				$("#phoneBtn").val("해제하기");
 
 			}

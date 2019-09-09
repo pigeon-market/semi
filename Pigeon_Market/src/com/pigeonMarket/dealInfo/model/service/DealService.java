@@ -50,8 +50,21 @@ public class DealService {
 		return aList;
 	}
 	
-
+	public ArrayList<String> selectDetailInfo(int no, String st, String userId) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<String> list = null;
+		
+		
+		list = new DealDao().selectDetailInfo(conn, no, st, userId);
+		
+		
+		close(conn);
+		
+		return list;
+		
+	}
 	
-
 
 }

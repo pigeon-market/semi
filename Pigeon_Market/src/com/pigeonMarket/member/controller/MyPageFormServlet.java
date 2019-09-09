@@ -46,6 +46,9 @@ public class MyPageFormServlet extends HttpServlet {
 		
 		ArrayList<String> range = new DealDao().rangeList(aList);
 		
+		System.out.println(range.size());
+		
+		
 		request.setAttribute("range", range);
 		request.setAttribute("aList", aList);
 

@@ -109,12 +109,11 @@ hr {
 
 				<!-- Text -->
 				<section class="box">
-				<form method="post">
+				<form method="post" id="form" action="">
 					<h2>최근 활동 기록</h2>
 
 
 					<% while(maxNum < aList.size()) { %>
-
 					<h3><%= aList.get(maxNum).getaDate() %></h3>
 
 					<% for(int i = maxNum ; i< Integer.parseInt(range.get(viewNum)) ; i++) { %>
@@ -148,10 +147,9 @@ hr {
 
 								}%>
 
-					<div class="listTable">
-						<input type="text" id="st" value="<%= aList.get(i).getStatus()%>">
-						<input type="text" id="no" value="<%= aList.get(i).getrNo()%>">
-
+					<div class="listTable" >
+						<input type="hidden" value="<%= aList.get(i).getbNo()%>">
+						<input type="hidden" value="<%= aList.get(i).getStatus()%>">
 						<div class="statusDiv">
 							<%= status %>
 						</div>
@@ -170,14 +168,16 @@ hr {
 					</div>
 
 
-					<br>
 
 					<%} %>
 					<hr>
 					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; %>
 
-
+					
 					<%} %>
+
+					<input type="hidden" name="no" id="no" value="">
+					<input type="hidden" name="st" id="st" value="">
 
 				</form>
 				</section>
@@ -196,28 +196,27 @@ hr {
 	<script>
 	$(function() {
 		$(".listTable div").mouseenter(function() {
-			$(this).parent().css({"cursor": "pointer"});
-			$(this).parent().children().css({"background":"yellow"});
+			$(this).parent().css({"cursor": "pointer", "background":"yellow"});
 		}).click(function() {
-			var st = $(this).parent().$("input:text[id='#id']").val();
-			var no = $(this).parent().children().eq(1).text();
 			
-			$('#detailNo').val(no);
-			$('#detailSt').val(st);
+			var no = $(this).parent().children().eq(0).val();
+			var st = $(this).parent().children().eq(1).val();
 			
-			Console.log(st);
-			Console.log(no);
+			var checkSt = st.indexOf("_");
+			var st = st.substring(0, checkSt);;
 			
-			var no1= $('#detailNo').val();
-			var st1 = $('#detailSt').val();
-			
-			Console.log(st1);
-			Console.log(no1);
-			
-			location.href="<%= contextPath %>/detailView.deal"
+			if(st == "sell" || st == "buy") {
+
+				$('#no').val(no);
+				$('#st').val(st);
+				
+				$('#form').attr("action", "<%= contextPath %>/detailView.deal");
+				$('#form').submit();
+				
+			}
 			
 		}).mouseout(function() {
-			$(this).parent().children().css({"background":"white"});
+			$(this).parent().css({"background":"white", });
 		});
 		
 	});

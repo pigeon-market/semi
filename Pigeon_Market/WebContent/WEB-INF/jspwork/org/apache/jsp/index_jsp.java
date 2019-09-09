@@ -143,17 +143,24 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\r\n");
       out.write("\r\n");
+      out.write("             \r\n");
       out.write("\r\n");
-      out.write("            <!DOCTYPE html>\r\n");
-      out.write("            <html>\r\n");
-      out.write("\r\n");
-      out.write("            <head>\r\n");
-      out.write("                <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\" />\r\n");
-      out.write("                <title>Insert title here</title>\r\n");
-      out.write("                <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\r\n");
-      out.write("                <link rel=\"stylesheet\" href=\"");
-      out.print( request.getContextPath());
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("<head>\r\n");
+      out.write("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("<meta name=\"viewport\"\r\n");
+      out.write("\tcontent=\"width=device-width, initial-scale=1, user-scalable=no\" />\r\n");
+      out.write("<title>Insert title here</title>\r\n");
+      out.write("<script\r\n");
+      out.write("\tsrc=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\">\r\n");
+      out.write("\t\r\n");
+      out.write("<link rel=\"shortcut icon\" href=\"resources/images/dulgi.ico\">\r\n");
+      out.write("<link rel=\"icon\" href=\"resources/images/dulgi.ico\">\r\n");
+      out.write("</script>\r\n");
+      out.write("<link rel=\"stylesheet\"\r\n");
+      out.write("\thref=\"");
+      out.print(request.getContextPath());
       out.write("/resources/assets/css/main.css\" />\r\n");
       out.write("                <link rel=\"shortcut icon\" href=\"dulgi.ico\">\r\n");
       out.write("                <link rel=\"icon\" href=\"dulgi.ico\">\r\n");
@@ -192,7 +199,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
  session.removeAttribute("msg"); 
       out.write("\r\n");
       out.write("                        }\r\n");
-      out.write("                    })\r\n");
+      out.write("                    });\r\n");
       out.write("                </script>\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -461,8 +468,21 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\t\t\t\t</section>\r\n");
       out.write("\r\n");
+      out.write("\t\t\t\t\t<h2>이제는 복잡하게 거래하지마세요</h2>\r\n");
+      out.write("\t\t\t\t\t<p>인증하고, 상품을 올리고, 판매하고, 입금받고! 간편한 여러분의 중고마켓!</p>\r\n");
       out.write("\r\n");
+      out.write("\t\t\t\t\t<form>\r\n");
+      out.write("\t\t\t\t\t\t<!-- <div class=\"row gtr-50 gtr-uniform\"> -->\r\n");
+      out.write("\t\t\t\t\t\t\t<!-- <div class=\"col-8 col-12-mobilep\">\r\n");
+      out.write("\t\t\t\t\t\t\t\t<input type=\"email\" name=\"email\" id=\"email\" placeholder=\"Email Address\" />\r\n");
+      out.write("\t\t\t\t\t\t\t</div> -->\r\n");
+      out.write("\t\t\t\t\t\t\t<div class=\"col-4 col-12-mobilep\">\r\n");
+      out.write("\t\t\t\t\t\t\t\t<input type=\"submit\" value=\"위로\" class=\"fit\" />\r\n");
+      out.write("\t\t\t\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t\t\t<!-- </div> -->\r\n");
+      out.write("\t\t\t\t\t</form>\r\n");
       out.write("\r\n");
+      out.write("\t\t\t\t</section>\r\n");
       out.write("\r\n");
       out.write("\t");
       out.write("\r\n");
@@ -536,4 +556,4 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
   }
-}
+}ㄴ
