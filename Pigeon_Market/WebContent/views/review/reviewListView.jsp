@@ -21,7 +21,7 @@
 <title>Insert title here</title>
 <style>
 	.outer{
-		width:800px;
+		width:70%;
 		color: #646464;
 		margin-left:auto;
 		margin-right:auto;
@@ -131,7 +131,11 @@
 		<div class="searchArea" align="center">
 
 			<!-- 사용자만 볼 수 있는 작성하기 버튼 -->
-	 <%if(loginUser != null && loginUser.getUserId().equals("user10")){ %>
+	 <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+	
+	
+	<%}else{ %>
+	
 		 <form action="<%= contextPath %>/insertForm.re" method="post">
 			<input type="submit" value="작성하기">
 		 </form>

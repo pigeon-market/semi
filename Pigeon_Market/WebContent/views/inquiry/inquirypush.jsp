@@ -18,6 +18,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.test{
+		text-align : center !important;
+	}
+</style>
 </head>
 <body>
 <%@ include file="../common/menubar.jsp" %>
@@ -25,7 +30,7 @@
 <section id="main" class="container medium">
 					<header>
 						<h2>문의하세요</h2>
-						<p>육하 원칙에 의거하여 문의 주세요</p>
+						<br>
 					</header>
 					<div class="box">
 						<form action="<%= contextPath %>/insert.in" method="post">
