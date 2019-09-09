@@ -65,7 +65,7 @@
 							if (loginUser == null) {
 						%>
 							<li><input type="text" name="userId" class="text-field" placeholder="아이디"></li>
-							<li><input type="text" name="userPwd" class="text-field" placeholder="패스워드"></li>
+							<li><input type="password" name="userPwd" class="text-field" placeholder="패스워드"></li>
 							<li>
 								<div class="btns" align="center">
 									<div id="loginBtn">

@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <%@ page import="java.util.Date, java.text.SimpleDateFormat" %>
 <%@ page import="java.util.ArrayList, com.pigeonMarket.review.model.vo.Review, com.pigeonMarket.common.model.vo.PageInfo" %>
-    
+
     <%
 	Date date = new Date();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 	String today = sdf.format(date); // 2019-08-14
 %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,6 @@
 <style>
 	.outer{
 		width:800px;
-		height:750px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -30,10 +29,9 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:450px;
-		height:350px;
 		margin-left:auto;
 		margin-right:auto;
+		text-align:center;
 	}
 </style>
 </head>
@@ -43,7 +41,7 @@
 <div class="outer">
 		<br>
 		<h2 align="center">리뷰 작성</h2>
-		
+
 		<div class="tableArea">
 			<form action="<%= contextPath %>/insert.re" method="post">
 				<table>
@@ -53,30 +51,28 @@
 					</tr>
 					<tr>
 						<td>작성자</td>
-						<td><input type="text" size="10" name="userId"></td>
+						<td><input type="text" name="userId" id="userId" value="<%= loginUser.getUserId() %>"  readonly /></td>
 						<td>작성일</td>
 						<td><%= today %></td>
 					</tr>
 					<tr>
 						<td>내용</td>
-					</tr>
-					<tr>
-						<td colspan="4">
-							<textarea name="reviewContent" cols="60" rows="15" style="resize:none;"></textarea>
+						<td colspan="3">
+							<textarea name="reviewContent" cols="60" rows="3" style="resize:none;"></textarea>
 						</td>
 					</tr>
 				</table>
 				<br>
-				
+
 				<div align="center">
-					<button type="button" onclick="javascript:history.back();">취소</button>
-					<button type="submit">등록</button>
-				</div>
+					<input type="button" onclick="javascript:history.back();" value="취소">
+					<input type="submit" value="등록">
+					</div>
 			</form>
 		</div>
 	</div>
-	
-	
+
+
 	<%@ include file="../common/foot.jsp" %>
 
 
