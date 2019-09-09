@@ -1,6 +1,6 @@
 package com.pigeonMarket.ShoppingBasket.model.dao;
 
-import static com.pigeonMarket.common.JDBCTemplate.*;
+import static com.pigeonMarket.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
