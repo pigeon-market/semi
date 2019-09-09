@@ -14,7 +14,6 @@
 <style>
 	.outer{
 		width:800px;
-		height:600px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -24,13 +23,10 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:600px;
-		height:550px;
 		margin-left:auto;
 		margin-right:auto;
 	}
 	#content{
-		height:230px;
 	}
 </style>
 </head>
@@ -43,7 +39,7 @@
 	<div class="outer">
 		<br>
 		
-		<h2 align="center">게시판 상세보기</h2>
+		<h2 align="center">회원 정보 상세보기</h2>
 		
 		<div class="tableArea">
 			
@@ -51,35 +47,31 @@
 				
 				<tr>
 					<td>글 번호</td>
-					<td colspan="2"><%= m.getRnum() %></td>
+					<td colspan="2"><%= m.getrNum() %></td>
 					<td>회원 이름</td>
 					<td colspan="2"><%= m.getUserName() %></td>					
 				</tr>
 					<tr>
 					<td>회원 아이디</td>
 					<td colspan="2"><%= m.getUserId() %></td>
-					<td>회원 비밀번호</td>
-					<td colspan="2"><input type="password" value="<%= m.getUserPwd() %>" readonly></td>
+					<td>회원 생년월일</td>
+					<td colspan="2"><%= m.getBirthDate() %></td>			
 				</tr>
 				<tr>
-					<td>회원 생년월일</td>
-					<td colspan="2"><%= m.getBirthDate() %></td>
 					<td>회원 성별</td>
 					<td colspan="2"><%= m.getGender() %></td>
-				</tr>
-				<tr>
-					<td>회원 전화번호</td>
-					<td colspan="2"><%= m.getPhone() %></td>
 					<td>회원 가입날</td>
 					<td colspan="2"><%= m.getJoinDate() %></td>
 				</tr>
 				<tr>
-					<td>회원 주소</td>
-					<td colspan="5"><%= m.getAddress() %></td>
+					<td>회원 전화번호</td>
+					<td colspan="2"><%= m.getPhone() %></td>
+					<td>회원 이메일</td>
+					<td colspan="2"><%= m.getEmail() %></td>
 				</tr>
 				<tr>
-					<td>회원 이메일</td>
-					<td colspan="5"><%= m.getEmail() %></td>
+					<td>회원 주소</td>
+					<td colspan="5"><%= m.getAddress() %></td>
 				</tr>
 				<tr>
 					<td colspan="2">회원 탈퇴 여부</td>
@@ -90,9 +82,14 @@
 			</table>
 			
 			<div align="center">
-				<button type="button" onclick="location.href='<%= contextPath %>/member.mim'">이전으로</button>
-				<button type="button" onclick="deleteBoard();">삭제하기</button>
-				
+				<form action="<%= contextPath %>/member.mim" method="post">
+					<input type="submit" value="이전으로">
+					<%if(m.getWithdrawal().equals("N")){ %>
+					<input type="button" onclick="deleteBoard();" value="삭제하기">
+					<%}else{ %>
+					<input type="button" onclick="deleteBoard();" value="삭제하기" disabled>
+					<%} %>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -103,7 +100,7 @@
 	<script>
 		
 		function deleteBoard(){
-			console.log(<%= m.getRnum() %>);
+			console.log(<%= m.getrNum() %>);
 			$("#detailForm").attr("action", "<%=contextPath%>/delete.mim");
 			$("#detailForm").submit();
 		}

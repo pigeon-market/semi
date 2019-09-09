@@ -73,20 +73,24 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <style>
-.col-3 {
-	text-align: center;
+.row {
+	
+	margin:auto !important;
+	
 }
 
 hr {
 	border: 1px solid rgba(79, 106, 228, 0.685);
 }
 
-.listTable{
-
+.listTable {
 	width:100%;
 	padding-left:5%;
 	padding-right:5%;
 }
+
+	
+
 .imgDiv, .statusDiv, .titleDiv{
 	
 	display:inline-block;
@@ -115,20 +119,26 @@ hr {
 				<section>
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
-						<div class="col-12" style="text-align: center" onclick="location.herf=<%= contextPath %>/Activity.me?status=all&page=1&group=15&period=&date=">
-						<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>개인정보수정
+						<div id="info">
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+									<input type="button" value="개인정보수정"></span>
 						</div>
-
-						
-						<div class="col-3">
-						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>활동조회  -->
+						<div>
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+									<input type="button" value="활동조회"></span>
 						</div>
-						<div class="col-3">
-						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>판매조회 -->
-						</div>
-						<div class="col-3">
-						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>구매조회 -->
-						</div>
+					<div>
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
+									<input type="button" value="판매조회"></span>
+					</div>
+					<div>
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
+									<input type="button" value="구매조회"></span>
+					</div>
 						<div class="col-3">
 						<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
 						</div>
@@ -140,111 +150,169 @@ hr {
 
 				<!-- Text -->
 				<section class="box">
-				<form>
+				<form method="post">
 					<h2>최근 활동 기록</h2>
-					
-					
-					<% while(maxNum < aList.size()) { %>
-					
-							<h3><%= aList.get(maxNum).getaDate() %></h3>
-							
-							<% for(int i = maxNum ; i< Integer.parseInt(range.get(viewNum)) ; i++) { %>
 
 
-								<% switch(aList.get(i).getStatus()) { 
-										case "SIGNIN" : 
-											status = "회원가입";
-											break;
-										case "INQUIRY_Q" : 
-											status = "문의등록";
-											break;
-										case "INQUIRY_A" : 
-											status = "문의답변";
-											break;
-										case "SELL_R" : 
-											status = "판매등록";
-											break;
-										case "SELL_E" : 
-											status = "판매완료";
-											break;
-										case "BUY" :
-											status = "구매완료";
-											break;
-										case "SELL_A" : 
-											status = "판매승인";
-											break;
-										case "REVIEW" : 
-											status = "리뷰작성";
-											break;
+					<%
+						while (maxNum < aList.size()) {
+					%>
 
-								}%>
+					<h3><%=aList.get(maxNum).getaDate()%></h3>
 
-								<div class="listTable">
-									<div class="statusDiv">
-										<%= status %>     
-									</div>
-									<div class="imgDiv">
-								<% if(aList.get(i).getChangeName() != null ) {%>
-									<img src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName() %>" width="200px" height="150px"> 
-					
-							
-								<% } %>
-									</div>
-									<div class="titleDiv">		
-								<%= aList.get(i).getTitle() %>
-									</div>
-										<hr>
-								</div>
-							
-									
-											<br>
-									
-								<%} %>
-								<hr>
-					<% maxNum=Integer.parseInt(range.get(viewNum)); viewNum = viewNum+1; %>
-					
-							
-					<%} %>
-					
-							<!-- 페이징바 만들기 -->
-		<div class="pagingArea" align="center">
-		
-			<!-- 맨처음으로 (<<) -->
-			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=1'"> &lt;&lt; </button>
-			
-			<!-- 이전페이지로(<) -->
-			<%if(currentPage == 1){ %>
-			<button disabled> &lt; </button>
-			<%}else{ %>
-			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= currentPage-1 %>'"> &lt; </button>
-			<%} %>
-			
-			
-			<!-- 10개의 페이지 목록 -->
-			<%for(int p=startPage; p<=endPage; p++){ %>
-				
-				<%if(p == currentPage){ %>
-				<button disabled> <%= p %> </button>
-				<%}else{ %>
-				<button onclick="location.href='<%=contextPath %>/list.no?currentPage=<%= p %>'"> <%= p %> </button>
-				<%} %>
-				
-			<%} %>
-			
-			
-			<!-- 다음페이지로(>) -->
-			<%if(currentPage == maxPage){ %>
-			<button disabled> &gt; </button>
-			<%}else { %>
-			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= currentPage+1 %>'"> &gt; </button>
-			<%} %>
-			
-			<!-- 맨끝으로(>>) -->
-			<button onclick="location.href='<%= contextPath %>/list.no?currentPage=<%= maxPage %>'"> &gt;&gt; </button>
-			
-		</div>
-					
-					</form>
+					<%
+						for (int i = maxNum; i < Integer.parseInt(range.get(viewNum)); i++) {
+					%>
+
+
+					<%
+						switch (aList.get(i).getStatus()) {
+									case "signin" :
+										status = "회원가입";
+										break;
+									case "inq_q" :
+										status = "문의등록";
+										break;
+									case "inq_a" :
+										status = "문의답변";
+										break;
+									case "sell_r" :
+										status = "판매등록";
+										break;
+									case "sell_e" :
+										status = "판매완료";
+										break;
+									case "buy" :
+										status = "구매완료";
+										break;
+									case "sell_a" :
+										status = "판매승인";
+										break;
+									case "review" :
+										status = "리뷰작성";
+										break;
+
+								}
+					%>
+
+					<div class="listTable">
+						<input type="hidden" value="<%= aList.get(i).getStatus()%>">
+						<input type="hidden" value="<%= aList.get(i).getrNo()%>">
+						<div class="statusDiv">
+							<p><%=status%></p>
+						</div>
+						<div class="imgDiv">
+							<%
+								if (aList.get(i).getChangeName() != null) {
+							%>
+							<img
+								src="<%=contextPath%>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName()%>"
+								width="200px" height="150px">
+
+
+							<%
+								}
+							%>
+						</div>
+						<div class="titleDiv">
+							<%=aList.get(i).getTitle()%>
+						</div>
+						<hr>
+					</div>
+
+
+					<br>
+
+					<%
+						}
+					%>
+					<hr>
+					<%
+						maxNum = Integer.parseInt(range.get(viewNum));
+							viewNum = viewNum + 1;
+					%>
+
+
+					<%
+						}
+					%>
+
+					<!-- 페이징바 만들기 -->
+					<div class="pagingArea" align="center">
+
+						<!-- 맨처음으로 (<<) -->
+						<button
+							onclick="location.href='<%=contextPath%>/list.no?currentPage=1'">
+							&lt;&lt;</button>
+
+						<!-- 이전페이지로(<) -->
+						<%
+							if (currentPage == 1) {
+						%>
+						<button disabled>&lt;</button>
+						<%
+							} else {
+						%>
+						<button
+							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage - 1%>'">
+							&lt;</button>
+						<%
+							}
+						%>
+
+
+						<!-- 10개의 페이지 목록 -->
+						<%
+							for (int p = startPage; p <= endPage; p++) {
+						%>
+
+						<%
+							if (p == currentPage) {
+						%>
+						<button disabled>
+							<%=p%>
+						</button>
+						<%
+							} else {
+						%>
+						<button
+							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=p%>'">
+							<%=p%>
+						</button>
+						<%
+							}
+						%>
+
+						<%
+							}
+						%>
+
+
+						<!-- 다음페이지로(>) -->
+						<%
+							if (currentPage == maxPage) {
+						%>
+						<button disabled>&gt;</button>
+						<%
+							} else {
+						%>
+						<button
+							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage + 1%>'">
+							&gt;</button>
+						<%
+							}
+						%>
+
+						<!-- 맨끝으로(>>) -->
+						<button
+							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=maxPage%>'">
+							&gt;&gt;</button>
+
+					</div>
+					<input type="hidden" name="no" id="detailNo" value="">
+					<input type="hidden" name="st" id="detailSt" value="">
+						
+				</form>
 				</section>
 
 			</div>
@@ -256,7 +324,44 @@ hr {
 
 	</div>
 
-<%@ include file="../common/foot.jsp"%>
+	<%@ include file="../common/foot.jsp"%>
+
+	<script>
+		$(function() {
+			$(".listTable div").mouseenter(function() {
+				$(this).parent().css({
+					"cursor" : "pointer"
+				});
+				$(this).parent().children().css({
+					"background" : "yellow"
+				});
+			}).click(function() {
+				var st = $(this).parent().children().eq(0).text();
+				var no = $(this).parent().children().eq(1).val();
+				
+				$('#detailNo').val(no);
+				$('#detailSt').val(st);
+				
+				Console.log(st);
+				Console.log(no);
+				
+				var no1= $('#detailNo').val();
+				var st1 = $('#detailSt').val();
+				
+				Console.log(st1);
+				Console.log(no1);
+				
+				
+				
+				location.href="<%= contextPath %>/detailView.deal"
+				
+				
+			}).mouseout(function() {
+				$(this).parent().children().css({
+					"background" : "white"
+				});
+			});
+		</script>
 
 <script>
 	$(function() {

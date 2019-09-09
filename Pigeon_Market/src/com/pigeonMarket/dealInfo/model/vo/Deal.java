@@ -9,7 +9,7 @@ public class Deal {
 	private int price;					// ����
 	private String pId;					// �Ǹ��� ���̵�
 	private String bId;					// ������ ���̵�
-	private String categoryName;		// ī���ڸ� �̸�
+	private String name;		// ī���ڸ� �̸�
 	private String title;				// �Խù� ����
 	private Date regDate; 				// ��ϳ�¥
 	private Date approvalDate;			// ���γ�¥
@@ -19,15 +19,28 @@ public class Deal {
 	public Deal() {
 		
 	}
+	
+	
 
-	public Deal(int productNo, int price, String pId, String bId, String categoryName, String title, Date regDate,
+	public Deal(int productNo, String name, String title, String pId, int price) {
+		super();
+		this.productNo = productNo;
+		this.price = price;
+		this.pId = pId;
+		this.name = name;
+		this.title = title;
+	}
+
+
+
+	public Deal(int productNo, int price, String pId, String bId, String name, String title, Date regDate,
 			Date approvalDate, Date dealDate, String state) {
 		super();
 		this.productNo = productNo;
 		this.price = price;
 		this.pId = pId;
 		this.bId = bId;
-		this.categoryName = categoryName;
+		this.name = name;
 		this.title = title;
 		this.regDate = regDate;
 		this.approvalDate = approvalDate;
@@ -67,12 +80,12 @@ public class Deal {
 		this.bId = bId;
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setCategoryName(String name) {
+		this.name = name;
 	}
 
 	public String getTitle() {
@@ -118,7 +131,7 @@ public class Deal {
 	@Override
 	public String toString() {
 		return "Deal [productNo=" + productNo + ", price=" + price + ", pId=" + pId + ", bId=" + bId + ", categoryName="
-				+ categoryName + ", title=" + title + ", regDate=" + regDate + ", approvalDate=" + approvalDate
+				+ name + ", title=" + title + ", regDate=" + regDate + ", approvalDate=" + approvalDate
 				+ ", dealDate=" + dealDate + ", state=" + state + "]";
 	}
 

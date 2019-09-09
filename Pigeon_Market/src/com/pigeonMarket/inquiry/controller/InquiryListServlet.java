@@ -23,7 +23,7 @@ import com.pigeonMarket.inquiry.model.vo.Inquiry;
 @WebServlet("/inquirylist.in")
 public class InquiryListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,25 +36,25 @@ public class InquiryListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int listCount = new InquiryService().getListCount(); 	
-		
+		int listCount = new InquiryService().getListCount();
+
 		PageInfo pi = pagingBar(listCount,10);
-		
+
 		if (request.getParameter("currentPage") != null)
-			 { pi.setCurrentPage(Integer.parseInt(request.getParameter("currentPage"))); } 	
-		
+			 { pi.setCurrentPage(Integer.parseInt(request.getParameter("currentPage"))); }
+
 		 PageInfo page = new PageInfo(pi.getCurrentPage(), pi.getBoardLimit());
-		 
-		 ArrayList<Inquiry> list = new InquiryService().selectList(page); 	
+
+		 ArrayList<Inquiry> list = new InquiryService().selectList(page);
 
 		// request에 전달값 담기
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
-		
-	
-		
+
+
+
 		request.getRequestDispatcher("views/inquiry/inquiryListView.jsp").forward(request, response);
-		
+
 	
 	}
 

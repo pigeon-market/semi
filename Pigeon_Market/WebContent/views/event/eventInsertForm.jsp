@@ -7,7 +7,7 @@
 	Date date = new Date();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 	String today = sdf.format(date); // 2019-08-14
 %>
 <!DOCTYPE html>
@@ -18,7 +18,6 @@
 <style>
 	.outer{
 		width:800px;
-		height:750px;
 		color:black;
 		margin-left:auto;
 		margin-right:auto;
@@ -28,10 +27,9 @@
 		border:1px solid white;
 	}
 	.tableArea{
-		width:450px;
-		height:350px;
 		margin-left:auto;
 		margin-right:auto;
+		text-align:center;
 	}
 </style>
 </head>
@@ -40,8 +38,8 @@
 <%@ include file="../common/menubar.jsp" %>
 <div class="outer">
 		<br>
-		<h2 align="center">공지사항 작성</h2>
-		
+		<h2 align="center">이벤트 작성</h2>
+
 		<div class="tableArea">
 			<form action="<%= contextPath %>/insert.eo" method="post">
 				<table>
@@ -54,25 +52,23 @@
 						<td colspan="3"><%= today %></td>
 					</tr>
 					<tr>
-						<td>내용</td>
-					</tr>
-					<tr>
-						<td colspan="4">
-							<textarea name="noticeContent" cols="60" rows="15" style="resize:none;"></textarea>
+					<td>내용</td>
+						<td colspan="3">
+							<textarea name="noticeContent" cols="60" rows="3" style="resize:none;"></textarea>
 						</td>
 					</tr>
 				</table>
 				<br>
-				
+
 				<div align="center">
-					<button type="button" onclick="javascript:history.back();">취소</button>
-					<button type="submit">등록</button>
+					<input type="button" onclick="javascript:history.back();" value="취소">
+					<input type="submit" value="등록">
 				</div>
 			</form>
 		</div>
 	</div>
-	
-	
+
+
 	<%@ include file="../common/foot.jsp" %>
 </body>
 </html>

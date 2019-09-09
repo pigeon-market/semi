@@ -3,9 +3,9 @@ package com.pigeonMarket.member.model.vo;
 import java.sql.Date;
 
 public class Member implements java.io.Serializable{
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8680435445361411221L;
 	private int rNum;
@@ -20,17 +20,34 @@ public class Member implements java.io.Serializable{
 	private Date joinDate;
 	private String withdrawal;
 	private String blackCode;
-	
+
 	public Member() {
-		
+
 	}
-	
+
 	public Member(String userId, String userPwd, String address, String email) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.address = address;
 		this.email = email;
+	}
+
+	
+
+	public Member(String userId, String userName, String birthDate, String gender, String email, String phone,
+			String address, Date joinDate, String withdrawal, String blackCode) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.joinDate = joinDate;
+		this.withdrawal = withdrawal;
+		this.blackCode = blackCode;
 	}
 
 	public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
@@ -48,9 +65,19 @@ public class Member implements java.io.Serializable{
 		this.withdrawal = withdrawal;
 		this.blackCode = blackCode;
 	}
-	
-	
 
+	public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
+			String phone, String address) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
 
 
 	public Member(int rNum, String userId, String userPwd, String userName, String birthDate, String gender,
@@ -70,14 +97,18 @@ public class Member implements java.io.Serializable{
 		this.blackCode = blackCode;
 	}
 
-	
-	
+
+
 	public int getrNum() {
 		return rNum;
 	}
 
 	public void setrNum(int rNum) {
 		this.rNum = rNum;
+	}
+
+	public String getUserId() {
+		return userId;
 	}
 
 	public void setUserId(String userId) {
@@ -164,8 +195,8 @@ public class Member implements java.io.Serializable{
 		this.blackCode = blackCode;
 	}
 
-	
-	
+
+
 	@Override
 	public String toString() {
 		return "Member [rNum=" + rNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
