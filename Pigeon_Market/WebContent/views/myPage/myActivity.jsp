@@ -69,10 +69,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <style>
-.row {
-	
-	margin:auto !important;
-	
+.col-3 {
+	text-align: center;
 }
 
 hr {
@@ -81,8 +79,8 @@ hr {
 
 .listTable {
 	width: 100%;
-	padding-left: 2%;
-	padding-right: 2%;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 .imgDiv, .statusDiv, .titleDiv {
@@ -118,26 +116,26 @@ hr {
 				<section>
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
-						<div id="info">
+						<div class="col-12" id="info">
 							<span class="image fit"
 								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
-									<input type="button" value="개인정보수정"></span>
+								<img id="infoImg" src="<%=contextPath%>/resources/images/pic04.jpg">개인정보수정</span>
 						</div>
-						<div>
+						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
-									<input type="button" value="활동조회"></span>
+								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">활동조회</span>
 						</div>
-					<div>
+						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
-									<input type="button" value="판매조회"></span>
-					</div>
-					<div>
+								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">판매조회</span>
+						</div>
+						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
-									<input type="button" value="구매조회"></span>
-					</div>
+								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
+						</div>
 						<div class="col-3">
 							<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
 						</div>

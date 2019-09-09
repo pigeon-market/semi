@@ -42,9 +42,7 @@ public class InquiryDetailServlet extends HttpServlet {
 			
 			
 			request.getRequestDispatcher("views/common/menubar.jsp").forward(request, response);
-		}	
-		
-	}
+		}	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

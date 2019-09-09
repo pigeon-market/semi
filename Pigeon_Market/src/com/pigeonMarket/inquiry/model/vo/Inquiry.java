@@ -9,6 +9,8 @@ public class Inquiry {
 	private String inquiryContent;
 	private Date inquiryDate;
 	private String userId;
+	private String inquiryAnswer;
+	private Date answerDate;
 	private String answerState;
 	private String status;
 
@@ -24,13 +26,15 @@ public class Inquiry {
 	}
 
 	public Inquiry(int inquiryNo, String inquiryTitle, String inquiryContent, Date inquiryDate, String userId,
-			 String answerState, String status) {
+			String inquiryAnswer, Date answerDate, String answerState, String status) {
 		super();
 		this.inquiryNo = inquiryNo;
 		this.inquiryTitle = inquiryTitle;
 		this.inquiryContent = inquiryContent;
 		this.inquiryDate = inquiryDate;
 		this.userId = userId;
+		this.inquiryAnswer = inquiryAnswer;
+		this.answerDate = answerDate;
 		this.answerState = answerState;
 		this.status = status;
 	}
@@ -74,7 +78,23 @@ public class Inquiry {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
+
+	public String getInquiryAnswer() {
+		return inquiryAnswer;
+	}
+
+	public void setInquiryAnswer(String inquiryAnswer) {
+		this.inquiryAnswer = inquiryAnswer;
+	}
+
+	public Date getAnswerDate() {
+		return answerDate;
+	}
+
+	public void setAnswerDate(Date answerDate) {
+		this.answerDate = answerDate;
+	}
+
 	public String getAnswerState() {
 		return answerState;
 	}
@@ -94,7 +114,8 @@ public class Inquiry {
 	@Override
 	public String toString() {
 		return "Inquiry [inquiryNo=" + inquiryNo + ", inquiryTitle=" + inquiryTitle + ", inquiryContent="
-				+ inquiryContent + ", inquiryDate=" + inquiryDate + ", userId=" + userId + ", answerState=" + answerState + ", status=" + status + "]";
+				+ inquiryContent + ", inquiryDate=" + inquiryDate + ", userId=" + userId + ", inquiryAnswer="
+				+ inquiryAnswer + ", answerDate=" + answerDate + ", answerState=" + answerState + ", status=" + status + "]";
 	}
 
 

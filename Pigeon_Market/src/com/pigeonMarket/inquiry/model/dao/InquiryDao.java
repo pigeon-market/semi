@@ -115,6 +115,8 @@ public class InquiryDao {
 								   rset.getString("INQUIRY_CONTENT"),
 								   rset.getDate("INQUIRY_DATE"),
 								   rset.getString("USER_ID"),
+								   rset.getString("INQUIRY_ANSWER"),
+								   rset.getDate("ANSWER_DATE"),
 								   rset.getString("ANSWER_STATE"),
 								   rset.getString("STATUS")));
 			}
@@ -149,6 +151,8 @@ public class InquiryDao {
 							  rset.getString("INQUIRY_CONTENT"),
 							  rset.getDate("INQUIRY_DATE"),
 							  rset.getString("USER_ID"),
+							  rset.getString("INQUIRY_ANSWER"),
+							  rset.getDate("ANSWER_DATE"),
 							  rset.getString("ANSWER_STATE"),
 							  rset.getString("STATUS"));
 			}

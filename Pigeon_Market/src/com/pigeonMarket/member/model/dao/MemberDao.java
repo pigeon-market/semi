@@ -264,7 +264,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new Member(rset.getInt("PNUM"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
+				list.add(new Member(rset.getInt("RNUM"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
 						rset.getString("USER_NAME"), rset.getString("BIRTH_DATE"), rset.getString("GENDER"),
 						rset.getString("EMAIL"), rset.getString("PHONE"), rset.getString("ADDRESS"),
 						rset.getDate("JOIN_DATE"), rset.getString("WITHDRAWAL"), rset.getString("BLACK_CODE")));
@@ -295,7 +295,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				m = new Member(rset.getInt("PNUM"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
+				m = new Member(rset.getInt("RNUM"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
 						rset.getString("USER_NAME"), rset.getString("BIRTH_DATE"), rset.getString("GENDER"),
 						rset.getString("EMAIL"), rset.getString("PHONE"), rset.getString("ADDRESS"),
 						rset.getDate("JOIN_DATE"), rset.getString("WITHDRAWAL"), rset.getString("BLACK_CODE"));

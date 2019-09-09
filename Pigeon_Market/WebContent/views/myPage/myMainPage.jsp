@@ -24,19 +24,18 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <style>
-.row {
-	
-	margin:auto !important;
-	
+.col-3 {
+	text-align: center;
 }
+
 hr {
 	border: 1px solid rgba(79, 106, 228, 0.685);
 }
 
 .listTable {
 	width: 100%;
-	padding-left: 2%;
-	padding-right: 2%;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 .imgDiv, .statusDiv, .titleDiv {
@@ -68,38 +67,36 @@ hr {
 
 		</header>
 		<div class="row">
-			<div class="col-15">
+			<div class="col-12">
 				<section>
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
-						<div class="col">
-						
+						<div class="col-12" id="info">
 							<span class="image fit"
 								onclick="location.href='<%=contextPath%>/goMyInfo.me'">
-								<input type="button" value="개인정보수정">
+								<img id="infoImg"
+								src="<%=contextPath%>/resources/images/pic04.jpg">개인정보수정
 							</span>
-							</div>
-							<div>
-					
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
-								<input type="button" value="활동조회">
-								</span>
 						</div>
-						<div class="col">
+						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
-								<input type="button" value="판매조회"></span>
+								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">활동조회</span>
 						</div>
-						<div class="col">
+						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
-								<input type="button" value="구매조회"></span>
+								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">판매조회</span>
 						</div>
-						<div class="col">
+						<div class="col-3">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/myShoppingBacket.me'">
-								<input type="button" value="배송조회"></span>
+								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
+						</div>
+						<div class="col-3">
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/myShoppingBacket.me'"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg">배송조회</span>
 						</div>
 
 					</div>
@@ -159,7 +156,7 @@ hr {
 							<% if(aList.get(i).getChangeName() != null ) {%>
 							<img
 								src="<%= contextPath %>/resources/thumbnail_uploadFiles/<%=aList.get(i).getChangeName() %>"
-								width="250px" height="150px">
+								width="200px" height="150px">
 
 							<% } %>
 						</div>

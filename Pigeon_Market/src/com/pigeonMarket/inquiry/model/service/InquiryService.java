@@ -56,11 +56,19 @@ public class InquiryService {
 
 	public Inquiry selectInquiry(int inquiryNo) {
 		Connection conn = getConnection();
-		
 
-		Inquiry	i = new InquiryDao().selectInquiry(conn, inquiryNo);
-		
-		
+		// 1. 조회수 증가시키는 dao 호출
+		int result = new NoticeDao().increaseCount(conn, inquiryNo);
+
+		// 2. 1번의 결과에 따라 게시글 조회하는 dao 호출
+		Inquiry i = null;
+		if(result > 0) {
+			commit(conn);
+			i = new InquiryDao().selectInquiry(conn, inquiryNo);
+		}else {
+			rollback(conn);
+		}
+
 		close(conn);
 
 		return i;

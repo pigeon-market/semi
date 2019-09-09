@@ -44,36 +44,38 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <style>
-#test{
-	padding:0 0 2em 0;
-	
+#test {
+	padding: 0 0 2em 0;
+	border: 1px solid blue;
 }
 
-
-.box{
-
-
+.box {
+	border: 1px solid red;
 }
+
 .col-3 {
 	text-align: center;
-	display:inline-block;
+	display: inline-block;
 }
 
-
-.col-12{
-position:relative;
+.col-12 {
+	position: relative;
+	text-align: center;
 }
 
+#delUser, #changePwd {
+	height: 50px;
+}
 
-
-
-
-
+#email1, #email2 {
+	background-color: rgba(70, 70, 70, 0.4);
+}
 </style>
 
 </head>
 
 <body>
+
 	<%@ include file="../common/menubar.jsp"%>
 	<div id="page-wrapper">
 
@@ -90,7 +92,18 @@ position:relative;
 
 		<div class="row">
 			<div class="col-12">
-				
+				<div class="box alt">
+					<div class="row gtr-50 gtr-uniform">
+
+						<div class="col-12">
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/changePwd.me'"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg" id="changePwd">비밀번호변경</span>
+						</div>
+
+
+					</div>
+				</div>
 
 
 				<!-- Text -->
@@ -117,9 +130,8 @@ position:relative;
 								<input type="text" class="email" id="email2" name="email2"
 									value="<%=email2%>" readonly>
 							</div>
-							
 							<div class="col-3" onclick="emailBtn();">
-								<input type="button" value="변경하기" id="emailBtn" readonly>
+								<input type="button" value="해제하기" id="emailBtn" readonly>
 
 							</div>
 
@@ -164,11 +176,9 @@ position:relative;
 							<input type="text" class="phone" id="phone3" name="phone3"
 								value="<%=phone3%>" readonly>
 						</div>
-						<br>
-						<br>
-						
+
 						<div class="col-3" onclick="phoneBtn();">
-							<input type="button" value="변경하기" id="phoneBtn" readonly>
+							<input type="button" value="해제하기" id="phoneBtn" readonly>
 
 						</div>
 
@@ -177,19 +187,20 @@ position:relative;
 
 				</form>
 				</section>
+
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
 
 						<div class="col-12">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/changePwd.me'">
-								<input type="button" value="비밀번호 변경"></span>
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/delete.me'">
-								<input type="button" value="회원탈퇴"></span>
+								onclick="location.href='<%=contextPath%>/delete.me'"><img
+								src="<%=contextPath%>/resources/images/pic04.jpg" id="delUser">회원탈퇴</span>
 						</div>
+
+
 					</div>
 				</div>
+
 			</div>
 		</div>
 

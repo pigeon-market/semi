@@ -16,10 +16,21 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <style>
 body{
-	
-	margin:auto !important;
-	
+	vertical-align: middle;
 }
+
+.col-12{
+	vertical-align: middle;
+	border: 1px solid red;
+}
+
+.col-3 {
+	text-align: center;
+	display:inline-block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 
 </style>
 
@@ -39,16 +50,17 @@ body{
 				
 					<div class="row gtr-50 gtr-uniform">
 						
-							
-							<div class="col-6">
-							<input type="password"  name="pwd" style="text-align:center; width:50%;">
-							<br>
-							
-							<input type="submit" value="확인하기" style="text-align:center;">
-				
-							</div>
+						<div class="col-12">
+	
 
-					
+							<input type="password"  name="pwd">
+						</div>
+	
+						<div class="col-12">
+
+							<button type="submit">확인하기</button>
+
+						</div>
 						
 					</div>
 				</div>

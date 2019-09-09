@@ -19,6 +19,7 @@ body {
 
 .col-12 {
 	vertical-align: middle;
+	border: 1px solid red;
 }
 
 .col-3 {
