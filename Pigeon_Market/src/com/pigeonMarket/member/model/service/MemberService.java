@@ -212,10 +212,9 @@ public class MemberService {
 		} else {
 			rollback(conn);
 		}
-		close(conn);
-		return result;
+		 close(conn);
+		 return result;
 	}
-		
 
 		public int idCheck(String userId) {
 			Connection conn = getConnection();

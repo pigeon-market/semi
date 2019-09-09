@@ -115,17 +115,13 @@
 
 					<div class="row">
 						<div class="col-6 col-12-narrower">
-
 							<section class="box special">
 								<span class="image featured"><img src="resources/images/one.png" alt="구매" width="170" height="300" /></span>
 								<h3>구매</h3>
 								<p>구매 페이지로 바로 연결(로그인 한 사람만)</p>
 								<ul class="actions special">
-								<%if(loginUser != null){ %>
-									<li><a href="<%= contextPath%>/list.pr" class="button alt">구매 페이지 연결</a></li>
-								<%}else{ %>
-									<li><a class="button alt" onclick="alert('로그인해주세요');">구매 페이지 연결</a></li>
-								<%} %>
+									<li><a href="<%= contextPath%>/list.pr" class="button alt">구매
+									 페이지 연결</a></li>
 								</ul>
 							</section>
 
