@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page
-	import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.dealInfo.model.vo.Activity, com.pigeonMarket.common.model.vo.PageInfo"%>
+	import="com.pigeonMarket.member.model.vo.Member, java.util.ArrayList, com.pigeonMarket.dealInfo.model.vo.Activity, com.pigeonMarket.common.model.vo.PageInfo, java.util.Date, java.text.SimpleDateFormat "%>
 <%
 	Member m = (Member) session.getAttribute("loginUser");
 
@@ -59,6 +59,11 @@
 	int maxNum = 0;
 	int viewNum = 0;
 	String status = "";
+	
+	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	Date currentTime = new Date();
+	String today = mSimpleDateFormat.format(currentTime );
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -69,8 +74,10 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <style>
-.col-3 {
-	text-align: center;
+.row {
+	
+	margin:auto !important;
+	
 }
 
 hr {
@@ -79,8 +86,8 @@ hr {
 
 .listTable {
 	width: 100%;
-	padding-left: 5%;
-	padding-right: 5%;
+	padding-left: 2%;
+	padding-right: 2%;
 }
 
 .imgDiv, .statusDiv, .titleDiv {
@@ -116,39 +123,75 @@ hr {
 				<section>
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
-						<div class="col-12" id="info">
+						<div class="col">
+
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
-								<img id="infoImg" src="<%=contextPath%>/resources/images/pic04.jpg">개인정보수정</span>
+								onclick="location.href='<%=contextPath%>/goMyInfo.me'"> <input
+								type="button" value="개인정보수정">
+							</span>
 						</div>
-						<div class="col-3">
+						<div>
+
+							<span class="image fit"	onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+								<input type="button" value="활동조회">
+							</span>
+
+						</div>
+						<div class="col">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
+								<input type="button" value="판매조회">
+															</span>
+						</div>
+						<div class="col">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
+								<input type="button" value="구매조회">
+															</span>
+						</div>
+						<div class="col">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='"><img
-								src="<%=contextPath%>/resources/images/pic04.jpg">활동조회</span>
-						</div>
-						<div class="col-3">
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='"><img
-								src="<%=contextPath%>/resources/images/pic04.jpg">판매조회</span>
-						</div>
-						<div class="col-3">
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='"><img
-								src="<%=contextPath%>/resources/images/pic04.jpg">구매조회</span>
-						</div>
-						<div class="col-3">
-							<!--	<span class="image fit"><img src="images/pic04.jpg" alt="" /></span>거래조회 -->
+								onclick="location.href='<%=contextPath%>/myShoppingBacket.me'">
+								<input type="button" value="배송조회">
+							</span>
 						</div>
 
 					</div>
 				</div>
-
 				</section>
 
 				<!-- Text -->
 				<section class="box">
 				<form method="post">
+					<div id="filterForm">
+						<table>
+							<tr>
+								<td>페이지당 갯수</td>
+								<td><input type="radio" name="group" value="15"></td>
+								<td><input type="radio" name="group" value="20"></td>
+								<td><input type="radio" name="group" value="30"></td>
+							</tr>
+							<tr>
+								<td>기간</td>
+								<td><input type="radio" name="period" value="90"></td>
+								<td><input type="radio" name="period" value="180"></td>
+								<td><input type="radio" name="period" value="365"></td>
+								<td><input type="radio" name="period" value="all"></td>
+								<td><input type="number" name="period" value="" disabled></td>
+							</tr>
+							<tr>
+								<td>특정날짜 검색</td>
+								<td><input type="date" id="date1" name="date1" value=<%= today %> min="2018-01-01" max=<%= today %> disabled></td>
+								<td><input type="date" id="date2" name="date2" value=<%= today %> min="2018-01-01" max=<%= today %> disabled></td>
+								<td><button id="dateAbled" onclick="dateAbled();">해제하기</button>
+							</tr>
+							
+							<tr>
+								<td><button onclick="filtButton();">검색하기</button>
+							</tr>
+					
+						</table>
+					 </div>
 					<h2>최근 활동 기록</h2>
+					
 
 
 					<%
@@ -239,7 +282,7 @@ hr {
 
 						<!-- 맨처음으로 (<<) -->
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=1'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=1&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							&lt;&lt;</button>
 
 						<!-- 이전페이지로(<) -->
@@ -251,7 +294,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage - 1%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= currentPage-1 %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							&lt;</button>
 						<%
 							}
@@ -273,7 +316,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=p%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= p %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							<%=p%>
 						</button>
 						<%
@@ -294,7 +337,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage + 1%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= currentPage+1 %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							&gt;</button>
 						<%
 							}
@@ -302,12 +345,15 @@ hr {
 
 						<!-- 맨끝으로(>>) -->
 						<button
-							onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=maxPage%>'">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= maxPage %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
 							&gt;&gt;</button>
 
 					</div>
-					<input type="hidden" name="no" id="detailNo" value="">
+					<div>
+						<input type="hidden" name="no" id="detailNo" value="">
 					<input type="hidden" name="st" id="detailSt" value="">
+					
+					</div>
 						
 				</form>
 				</section>
@@ -360,6 +406,38 @@ hr {
 			});
 
 		});
+		
+		
+		function dateAbled() {
+			
+			var dateSt = $('#dateAbled').text();
+			
+			if(dateSt == '잠그기') {
+			$('#date1').removeAttr(disabled);
+			$('#date2').removeAttr(disabled);
+			$('#dateAbled').text("해제하기");
+			}else{
+				$('#date1').attr(abled);
+				$('#date2').attr(abled);
+				$('#dateAbled').text("잠그기");
+						
+			}
+		}
+		
+		function filtButton() {
+			
+			var dateSt = $('#dateAbled').text();
+			if(dateSt == '잠그기') {
+				var date1 = $('#date1').val();
+				var date2 = $('#date1').val();
+				
+				var dateSub = date2-date1;
+				console.log(dateSub);
+				
+				
+			}
+		}
+		
 	</script>
 
 

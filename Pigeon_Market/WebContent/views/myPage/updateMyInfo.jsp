@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.pigeonMarket.member.model.vo.Member"%>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <%
 	Member m = (Member) request.getAttribute("me");
 
@@ -44,38 +45,36 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <style>
-#test {
-	padding: 0 0 2em 0;
-	border: 1px solid blue;
+#test{
+	padding:0 0 2em 0;
+	
 }
 
-.box {
-	border: 1px solid red;
-}
 
+.box{
+
+
+}
 .col-3 {
 	text-align: center;
-	display: inline-block;
+	display:inline-block;
 }
 
-.col-12 {
-	position: relative;
-	text-align: center;
+
+.col-12{
+position:relative;
 }
 
-#delUser, #changePwd {
-	height: 50px;
-}
 
-#email1, #email2 {
-	background-color: rgba(70, 70, 70, 0.4);
-}
+
+
+
+
 </style>
 
 </head>
 
 <body>
-
 	<%@ include file="../common/menubar.jsp"%>
 	<div id="page-wrapper">
 
@@ -92,18 +91,7 @@
 
 		<div class="row">
 			<div class="col-12">
-				<div class="box alt">
-					<div class="row gtr-50 gtr-uniform">
-
-						<div class="col-12">
-							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/changePwd.me'"><img
-								src="<%=contextPath%>/resources/images/pic04.jpg" id="changePwd">비밀번호변경</span>
-						</div>
-
-
-					</div>
-				</div>
+				
 
 
 				<!-- Text -->
@@ -130,6 +118,7 @@
 								<input type="text" class="email" id="email2" name="email2"
 									value="<%=email2%>" readonly>
 							</div>
+							
 							<div class="col-3" onclick="emailBtn();">
 								<input type="button" value="해제하기" id="emailBtn" readonly>
 
@@ -146,13 +135,28 @@
 
 
 				<section class="box">
-				<form>
+			<form> 
 					<h2>주소지 변경</h2>
 
+				우편번호 : <input type="text" name="addr1" style="width:80px; height:26px;" />	&nbsp;&nbsp;
+				<button type="button" style="width:60px; height:32px;" onclick="openZipSearch()">검색</button><br>
+				주소 : <input type="text" name="addr2" style="width:300px; height:30px;" readonly /><br>
+				상세 : <input type="text" name="addr3" style="width:300px; height:30px;" />
+				
+				
+				<div class="col-3" onclick="addrBtn();">
+								<input type="button" value="해제하기" id="addr" readonly>
+
+				</div>
+				
+			
+			
+			
+
+			
+			</form>
 
 
-
-				</form>
 				</section>
 
 				<section class="box">
@@ -176,7 +180,9 @@
 							<input type="text" class="phone" id="phone3" name="phone3"
 								value="<%=phone3%>" readonly>
 						</div>
-
+						<br>
+						<br>
+						
 						<div class="col-3" onclick="phoneBtn();">
 							<input type="button" value="해제하기" id="phoneBtn" readonly>
 
@@ -187,20 +193,19 @@
 
 				</form>
 				</section>
-
 				<div class="box alt">
 					<div class="row gtr-50 gtr-uniform">
 
 						<div class="col-12">
 							<span class="image fit"
-								onclick="location.href='<%=contextPath%>/delete.me'"><img
-								src="<%=contextPath%>/resources/images/pic04.jpg" id="delUser">회원탈퇴</span>
+								onclick="location.href='<%=contextPath%>/changePwd.me'">
+								<input type="button" value="비밀번호 변경"></span>
+							<span class="image fit"
+								onclick="location.href='<%=contextPath%>/delete.me'">
+								<input type="button" value="회원탈퇴"></span>
 						</div>
-
-
 					</div>
 				</div>
-
 			</div>
 		</div>
 
@@ -322,10 +327,7 @@
 
 						var num1 = newPhone.indexOf("-");
 						var num2 = newPhone.lastIndexOf("-");
-						
-						console.log(num1);
-						console.log(num2);
-
+	
 						var pb = "";
 
 						for (var i = 0; i < num2 - num1-1 ; i++) {
@@ -369,6 +371,97 @@
 			}
 
 		}
+		
+
+		 function openZipSearch() {
+			 console.log("실행");
+			new daum.Postcode({
+				oncomplete: function(data) {
+					$('[name=address]').val(data.zonecode); // 우편번호 (5자리)
+					$('[name=addr1]').val(data.address);
+					$('[name=addr2]').val(data.buildingName);
+				}
+			}).open();
+		}
+		 
+		 function addrBtn() {
+
+				if ($("#addrBtn").val() == "해제하기") {
+
+					$("#addrBtn").css({
+						'background-color' : 'rgba(232, 153, 128, 0.5)'
+					});
+					$("#addr1").val("").removeAttr('readonly').css({
+						'background-color' : 'rgb(250, 250, 250)',
+						'border' : '5px solid rgba(232, 153, 128, 0.5)'
+					}).focus();
+					$("#addr2").val("").removeAttr('readonly').css({
+						'background-color' : 'rgb(250, 250, 250)',
+						'border' : '5px solid rgba(232, 153, 128, 0.5)'
+					});
+					$("#addr3").val("").removeAttr('readonly').css({
+						'background-color' : 'rgb(250, 250, 250)',
+						'border' : '5px solid rgba(232, 153, 128, 0.5)'
+					});
+
+					$("#addrBtn").val("수정하기");
+				} else {
+
+					var addr1 = $("#addr1").val();
+					var addr2 = $("#addr2").val();
+					var addr3 = $("#addr3").val();
+
+					$.ajax({
+						url : "updateAddr.me",
+						data : {
+							addr1 : addr1,
+							addr2 : addr2,
+							addr3 : addr3
+						},
+						type : "post",
+						success : function(addr) {
+
+							var newAddr = addr;
+
+							var num1 = newAddr.indexOf(",");
+							var num2 = newAddr.lastIndexOf(",");
+							
+							var nAddr1 = newAddr.substring(0, num1);
+							var nAddr2 = newAddr.substring(num1 +1, num2)
+							var nAddr3 = newAddr.substring(num2 + 1);
+
+							$("#addr1").val(nAddr1);
+							$("#addr2").val(nAddr2);
+							$("#addr3").val(nAddr3);
+
+
+						},
+						error : function() {
+							console.log("통신 실패");
+						}
+					});
+
+					$("#AddrBtn").css({
+						'background-color' : 'rgb(102, 102, 102)'
+					});
+					$("#Addr1").css({
+						'background-color' : 'rgba(70, 70, 70, 0.4)',
+						'border' : '0px'
+					}).attr('readonly');
+					$("#Addr2").css({
+						'background-color' : 'rgba(70, 70, 70, 0.4)',
+						'border' : '0px'
+					}).attr('readonly');
+					$("#Addr3").css({
+						'background-color' : 'rgba(70, 70, 70, 0.4)',
+						'border' : '0px'
+					}).attr('readonly');
+					$("#AddrBtn").val("해제하기");
+
+				}
+
+			}
+		 
 	</script>
 
 	<%@ include file="../common/foot.jsp"%>

@@ -66,6 +66,7 @@ public class Member implements java.io.Serializable{
 		this.blackCode = blackCode;
 	}
 
+
 	public Member(String userId, String userPwd, String userName, String birthDate, String gender, String email,
 			String phone, String address) {
 		super();
