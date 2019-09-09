@@ -77,18 +77,18 @@ hr {
 						</div>
 						<div>
 
-							<span class="image fit"	onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+							<span class="image fit"	onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=&group=15&period='">
 								<input type="button" value="활동조회">
 							</span>
 
 						</div>
 						<div class="col">
-							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=&group=15&period='">
 								<input type="button" value="판매조회">
 															</span>
 						</div>
 						<div class="col">
-							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=&group=15&period=&'">
 								<input type="button" value="구매조회">
 															</span>
 						</div>

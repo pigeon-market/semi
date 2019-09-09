@@ -400,6 +400,29 @@ public class MemberDao {
 		return result;
 
 	}
+	
+	public int updateAddr(Connection conn, String addr, String userId) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateAddr");
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, addr);
+			pstmt.setString(2, userId);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+
+	}
 
 public int insertMember(Connection conn, Member mem) {
 	int result = 0;

@@ -35,7 +35,24 @@
 	String phone1 = phone.substring(0, phoneDiv1);
 	String phone2 = pb;
 	String phone3 = phone.substring(phoneDiv2 + 1);
+	
+	String addr = m.getAddress();
+
+	int addrDiv1 = addr.indexOf(",");
+
+	int addrDiv2 = addr.lastIndexOf(",");
+
+	String addr1 = addr.substring(0, addrDiv1);
+	String addr2 = addr.substring(addrDiv1+1, addrDiv2);
+	String addr3 = addr.substring(addrDiv2 + 1);
+	
+	
+	
+	
+	
 %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -138,14 +155,14 @@ position:relative;
 			<form> 
 					<h2>주소지 변경</h2>
 
-				우편번호 : <input type="text" name="addr1" style="width:80px; height:26px;" />	&nbsp;&nbsp;
-				<button type="button" style="width:60px; height:32px;" onclick="openZipSearch()">검색</button><br>
-				주소 : <input type="text" name="addr2" style="width:300px; height:30px;" readonly /><br>
-				상세 : <input type="text" name="addr3" style="width:300px; height:30px;" />
+				우편번호 : <input type="text" id="addr1" name="addr1" style="width:80px; height:26px;" value="<%=addr1 %>" readonly/>	&nbsp;&nbsp;
+				<button type="button" id="addrBtn2" style="width:60px; height:32px;" onclick="openZipSearch()" disabled>검색</button><br>
+				주소 : <input type="text" id="addr2" name="addr2" value="<%=addr2 %>" style="width:300px; height:30px;" readonly /><br>
+				상세 : <input type="text" id="addr3" name="addr3" value="<%=addr3 %>" style="width:300px; height:30px;" readonly/>
 				
 				
 				<div class="col-3" onclick="addrBtn();">
-								<input type="button" value="해제하기" id="addr" readonly>
+								<input type="button" value="해제하기" id="addrBtn" readonly>
 
 				</div>
 				
@@ -275,11 +292,11 @@ position:relative;
 				$("#email1").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr('readonly', 'readonly');
 				$("#email2").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr('readonly', 'readonly');
 				$("#emailBtn").val("해제하기");
 
 			}
@@ -357,15 +374,15 @@ position:relative;
 				$("#phone1").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr('readonly', 'readonly');
 				$("#phone2").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr('readonly', 'readonly');
 				$("#phone3").css({
 					'background-color' : 'rgba(70, 70, 70, 0.4)',
 					'border' : '0px'
-				}).attr('readonly');
+				}).attr('readonly', 'readonly');
 				$("#phoneBtn").val("해제하기");
 
 			}
@@ -388,20 +405,23 @@ position:relative;
 
 				if ($("#addrBtn").val() == "해제하기") {
 
-					$("#addrBtn").css({
+					$("#addrBtn2").css({
 						'background-color' : 'rgba(232, 153, 128, 0.5)'
-					});
-					$("#addr1").val("").removeAttr('readonly').css({
+					}).removeAttr('disabled');
+					$("#addr1").val("").css({
 						'background-color' : 'rgb(250, 250, 250)',
 						'border' : '5px solid rgba(232, 153, 128, 0.5)'
 					}).focus();
-					$("#addr2").val("").removeAttr('readonly').css({
+					$("#addr2").val("").css({
 						'background-color' : 'rgb(250, 250, 250)',
 						'border' : '5px solid rgba(232, 153, 128, 0.5)'
 					});
-					$("#addr3").val("").removeAttr('readonly').css({
+					$("#addr3").val("").css({
 						'background-color' : 'rgb(250, 250, 250)',
 						'border' : '5px solid rgba(232, 153, 128, 0.5)'
+					}).removeAttr('readonly');
+					$("#addrBtn").css({
+						'background-color' : 'rgba(232, 153, 128, 0.5)'
 					});
 
 					$("#addrBtn").val("수정하기");
@@ -441,22 +461,26 @@ position:relative;
 						}
 					});
 
-					$("#AddrBtn").css({
+					$("#addrBtn").css({
 						'background-color' : 'rgb(102, 102, 102)'
 					});
-					$("#Addr1").css({
+					$("#addr1").css({
 						'background-color' : 'rgba(70, 70, 70, 0.4)',
 						'border' : '0px'
-					}).attr('readonly');
-					$("#Addr2").css({
+					}).attr('readonly', 'readonly');
+					$("#addr2").css({
 						'background-color' : 'rgba(70, 70, 70, 0.4)',
 						'border' : '0px'
-					}).attr('readonly');
-					$("#Addr3").css({
+					}).attr('readonly', 'readonly');
+					$("#addr3").css({
 						'background-color' : 'rgba(70, 70, 70, 0.4)',
 						'border' : '0px'
-					}).attr('readonly');
-					$("#AddrBtn").val("해제하기");
+					}).attr('readonly', 'readonly');
+					$("#addrBtn2").css({
+						'background-color' : 'rgba(70, 70, 70, 0.4)',
+						'border' : '0px'
+					}).attr('disabled', 'disabled');
+					$("#addrBtn").val("해제하기");
 
 				}
 

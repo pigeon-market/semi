@@ -74,14 +74,14 @@ public class AllDealActivityServlet extends HttpServlet {
 		
 		ArrayList<String> range = new DealDao().rangeList(aList);
 		
+		System.out.println(pi.getBoardLimit());
+		
 		request.setAttribute("a", a); 
 		request.setAttribute("range", range);
 		request.setAttribute("aList", aList);
 		request.setAttribute("pi", pi);
 		
 		request.getRequestDispatcher("views/myPage/myActivity.jsp").forward(request, response);
-		
-		
 		
 	}
 

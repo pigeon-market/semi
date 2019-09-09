@@ -63,6 +63,9 @@
 	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	Date currentTime = new Date();
 	String today = mSimpleDateFormat.format(currentTime );
+	
+	
+
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -132,18 +135,18 @@ hr {
 						</div>
 						<div>
 
-							<span class="image fit"	onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=1&group=15&period=&date='">
+							<span class="image fit"	onclick="location.href='<%=contextPath%>/Activity.me?status=all&page=&group=&period=&date='">
 								<input type="button" value="활동조회">
 							</span>
 
 						</div>
 						<div class="col">
-							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=1&group=15&period=&date='">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=sell&page=&group=&period=&date='">
 								<input type="button" value="판매조회">
 															</span>
 						</div>
 						<div class="col">
-							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=1&group=15&period=&date='">
+							<span class="image fit" onclick="location.href='<%=contextPath%>/Activity.me?status=buy&page=&group=&period=&date='">
 								<input type="button" value="구매조회">
 															</span>
 						</div>
@@ -160,28 +163,24 @@ hr {
 
 				<!-- Text -->
 				<section class="box">
-				<form method="post">
+				
 					<div id="filterForm">
 						<table>
 							<tr>
 								<td>페이지당 갯수</td>
-								<td><input type="radio" name="group" value="15"></td>
-								<td><input type="radio" name="group" value="20"></td>
-								<td><input type="radio" name="group" value="30"></td>
+								<td><input type="radio" name="group" id="group1" value="10"><label for="group1">10</td>
+								<td><input type="radio" name="group" id="group2" value="15"><label for="group2">15</td>
+								<td><input type="radio" name="group" id="group3" value="20"><label for="group3">20</td>
+								<td><input type="radio" name="group" id="group4" value="30"><label for="group4">30</td>
+								<td><input type="number" min="5" max="50" id="group" value="" placeholder="5~50"></td>
 							</tr>
 							<tr>
 								<td>기간</td>
-								<td><input type="radio" name="period" value="90"></td>
-								<td><input type="radio" name="period" value="180"></td>
-								<td><input type="radio" name="period" value="365"></td>
-								<td><input type="radio" name="period" value="all"></td>
-								<td><input type="number" name="period" value="" disabled></td>
-							</tr>
-							<tr>
-								<td>특정날짜 검색</td>
-								<td><input type="date" id="date1" name="date1" value=<%= today %> min="2018-01-01" max=<%= today %> disabled></td>
-								<td><input type="date" id="date2" name="date2" value=<%= today %> min="2018-01-01" max=<%= today %> disabled></td>
-								<td><button id="dateAbled" onclick="dateAbled();">해제하기</button>
+								<td><input type="radio" name="period" id="period1" value="90"><label for="period1">90일</td>
+								<td><input type="radio" name="period" id="period2" value="180"><label for="period2">180일</td>
+								<td><input type="radio" name="period" id="period3" value="365"><label for="period3">365일</td>
+								<td><input type="radio" name="period" id="period4" value="all"><label for="period4">모든일</td>
+								<td><input type="number" name="period" min="1" max="99999" id="period" value=""></td>
 							</tr>
 							
 							<tr>
@@ -282,7 +281,7 @@ hr {
 
 						<!-- 맨처음으로 (<<) -->
 						<button
-							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=1&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=1&group=<%=pi.getBoardLimit() %>&period=<%=a.getPeriod() %>'">
 							&lt;&lt;</button>
 
 						<!-- 이전페이지로(<) -->
@@ -294,7 +293,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= currentPage-1 %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= currentPage-1 %>&group=<%=pi.getBoardLimit() %>&period=<%=a.getPeriod() %>'">
 							&lt;</button>
 						<%
 							}
@@ -316,7 +315,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= p %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= p %>&group=<%=pi.getBoardLimit() %>&period=<%=a.getPeriod() %>'">
 							<%=p%>
 						</button>
 						<%
@@ -337,7 +336,7 @@ hr {
 							} else {
 						%>
 						<button
-							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= currentPage+1 %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= currentPage+1 %>&group=<%=pi.getBoardLimit() %>&period=<%=a.getPeriod() %>'">
 							&gt;</button>
 						<%
 							}
@@ -345,10 +344,11 @@ hr {
 
 						<!-- 맨끝으로(>>) -->
 						<button
-							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= maxPage %>&group=<%=a.getLimitCount() %>&period=<%=a.getPeriod() %>&date='">
+							onclick="location.href='<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=<%= maxPage %>&group=<%=pi.getBoardLimit() %>&period=<%=a.getPeriod() %>'">
 							&gt;&gt;</button>
 
 					</div>
+					<form method="post">
 					<div>
 						<input type="hidden" name="no" id="detailNo" value="">
 					<input type="hidden" name="st" id="detailSt" value="">
@@ -370,6 +370,10 @@ hr {
 	<%@ include file="../common/foot.jsp"%>
 
 	<script>
+	
+	var groupNum = <%= pi.getBoardLimit() %>;
+	var periodAdd = <%= a.getPeriod() %>;
+	
 		$(function() {
 			$(".listTable div").mouseenter(function() {
 				$(this).parent().css({
@@ -404,6 +408,18 @@ hr {
 					"background" : "white"
 				});
 			});
+			
+			
+			$('#group').on("change paste keyup", function() {
+				groupNum = $('#group').val();
+				$('#group').val(groupNum);
+			});
+			
+			$('#period').on("change paste keyup", function() {
+				periodAdd = $('#period').val();
+
+			});
+			
 
 		});
 		
@@ -425,18 +441,38 @@ hr {
 		}
 		
 		function filtButton() {
-			
-			var dateSt = $('#dateAbled').text();
-			if(dateSt == '잠그기') {
-				var date1 = $('#date1').val();
-				var date2 = $('#date1').val();
-				
-				var dateSub = date2-date1;
-				console.log(dateSub);
-				
-				
+						
+			if($('input[name="group"]:checked').val() != null) {
+				groupNum = $('input[name="group"]:checked').val();
+				$('#group').val(groupNum);
 			}
+			
+			
+			
+			if($('input[name="period"]:checked').val() != null) {
+				periodAdd = $('input[name="period"]:checked').val();
+				
+				if(periodAdd == "all") {
+					$('#period').val(99999);
+				}else{
+					$('#period').val(periodAdd);
+				}
+				periodAdd = $('#period').val();
+
+			}
+			
+			
+			
+			if(groupNum<5 || groupNum > 50) {
+				alert("갯수를 다시 입력해주세요");
+			}else{
+				location.href="<%=contextPath%>/Activity.me?status=<%=a.getStatus() %>&page=1&group="+groupNum+"&period="+periodAdd
+			}
+			
+					
 		}
+		
+				
 		
 	</script>
 

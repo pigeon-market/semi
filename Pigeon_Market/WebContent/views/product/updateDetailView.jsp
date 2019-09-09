@@ -12,14 +12,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-	.outer{
+.outer{
 		width:1000px;
-		height:650px;
-		background:black;
-		color: white;
+		height:1000px;
+		color: black;
 		margin-left:auto;
 		margin-right:auto;
 		margin-top:50px;
+
 	}
 	table{
 		border: 1px solid white;
@@ -29,11 +29,14 @@
 		height:450px;
 		margin-left:auto;
 		margin-right:auto;	
+
 	}
 	.btnArea{
 		width:150px;
-		margin-left:auto;
-		margin-right:auto;		
+		margin-left:40%;
+		margin-right:auto;
+		padding:50;
+
 	}
 	#titleImgArea{
 		width:350px;
@@ -52,6 +55,7 @@
 		cursor:pointer;
 	}
 
+
 </style>
 </head>
 <body>
@@ -63,7 +67,7 @@
 		<h2 align="center">사진 게시판 작성</h2>
 		
 		<!-- 파일 업로드를 위해 enctype을 지정해줘야된다. -->
-		<form action="<%= contextPath %>/insert.pr" method="post" enctype="multipart/form-data">
+		<form action="<%= contextPath %>/update.pr" method="post" enctype="multipart/form-data">
 			<div class="insertArea">
 				
 				<table align="center">
@@ -162,15 +166,16 @@
 						
 					}
 				
-				</script>			
+				</script>		
+				<div class="btnArea">
+					<button type="reset">취소하기</button>
+					<button type="submit">작성완료</button>
+				
+				</div>	
 			</div>
 			<br>
 			<!-- 버튼들이 위치할 div -->
-			<div class="btnArea">
-				<button type="reset">취소하기</button>
-				<button type="submit">작성완료</button>
-			
-			</div>
+
 		
 		</form>
 		

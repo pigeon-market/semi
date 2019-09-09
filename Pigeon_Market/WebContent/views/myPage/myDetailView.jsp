@@ -178,10 +178,10 @@
 
 
 			<%
-				if (productOkNo != "") {
+				if (productOkNo == "") {
 			%>
 
-			<button onclick="location.href='<%=contextPath%>'">제품페이지
+			<button onclick="location.href='<%=contextPath%>/detail.pr?pNo=<%= productNo %>'">제품페이지
 				바로가기</button>
 
 			<%
@@ -194,7 +194,7 @@
 				}
 			%>
 			<%
-				if(appr == "") {
+				if(appr != "") {
 			%>
 
 			<button onclick="location.href='<%=contextPath%>/delete.pr?prNo=<%= productNo %>'">삭제하기</button>
@@ -303,3 +303,6 @@
 	<%@ include file="../common/foot.jsp"%>
 </body>
 </html>
+
+
+
