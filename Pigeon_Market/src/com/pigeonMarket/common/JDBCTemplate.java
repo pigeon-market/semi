@@ -12,14 +12,14 @@ import java.util.Properties;
 
 public class JDBCTemplate {
 	
-	// DB와의 연결정보를 담고있는 Connection생성해서 반환해주는 메소드
+
 	public static Connection getConnection() {
 		
 		Connection conn = null;
 		Properties prop = new Properties();
 		
-		String fileName = JDBCTemplate.class.getResource("/sql/driver.properties").getPath();
-//		System.out.println(fileName);
+		String fileName = JDBCTemplate.class.getResource("/com/pigeonMarket/sql/driver.properties").getPath();
+
 		
 		try {
 			prop.load(new FileReader(fileName));
@@ -30,14 +30,13 @@ public class JDBCTemplate {
 			String password = prop.getProperty("password");
 			
 			
-			// 1) jdbc driver 등록처리
+
 			Class.forName(driver);
 			
-			// 2) DBMS와 연결 (Connection 객체 생성)
+
 			conn = DriverManager.getConnection(url, user, password);
 			
-			conn.setAutoCommit(false); // 트랜잭션 처리를 자바 application에서 하겠다.
-										// 제어권 가져옴.
+			conn.setAutoCommit(false); 
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -53,7 +52,7 @@ public class JDBCTemplate {
 		
 	}
 	
-	// 자원 반납 해주는 메소드-----------------------
+
 	public static void close(Connection conn) {
 		try {
 			if(conn != null && !conn.isClosed()) {
@@ -83,10 +82,7 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
-	//----------------------------------------
-	
-	
-	// 트랜잭션 처리해주는 메소드-------------------
+
 	public static void commit(Connection conn) {
 		try {
 			if(conn != null && !conn.isClosed()) {
@@ -106,7 +102,7 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 	}
-	//----------------------------------------
+
 
 }
 

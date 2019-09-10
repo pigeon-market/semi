@@ -1,161 +1,156 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import = "com.pigeonMarket.member.model.vo.Member" %>
+        <%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+
+	// 세션에 담겨있는 메세지 받기
+	String msg = (String) session.getAttribute("msg");
+
+	String contextPath = request.getContextPath();
+
+%>
+
+
+            <!DOCTYPE html>
+            <html>
+
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+                <title>Insert title here</title>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="<%= request.getContextPath()%>/resources/assets/css/main.css" />
+                <link rel="shortcut icon" href="dulgi.ico">
+                <link rel="icon" href="dulgi.ico">
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-
-	
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 </script>
-<style>
-	body{
-		background:url('<%= request.getContextPath() %>/resources/images/city1.PNG') no-repeat;
-		background-size:cover;
-	}
-	.loginArea > form, #userInfo{
-		float:right;
-	}
-	#memberJoinBtn{
-		background:yellowgreen;
-		border-radius:5px;
-	}
-	#loginBtn input{
-		background:orangered;
-		color:white;
-	}
-	#memberJoinBtn, #loginBtn, #myPage, #logoutBtn{
-		display:inline-block;
-		width:80px;
-		height:25px;
-		color:white;
-	}
-	#loginBtn input:hover, #memberJoinBtn:hover, #myPage:hover, #logoutBtn:hover{
-		cursor:pointer;
-	}
-	#myPage{
-		background:yellowgreen;
-		border-radius:5px;
-	}
-	#logoutBtn{
-		background:orangered;
-		border-radius:5px;
-	}
-	
-	
-	.wrap{
-		background:black;
-		width:100%;
-		height:50px;
-	}
-	.nav{
-		width:600px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.menu{
-		background:black;
-		color:white;
-		text-align:center;
-		vertical-align:middle;
-		width:150px;
-		height:50px;
-		display:table-cell;
-	}
-	.menu:hover{
-		background:darkgray;
-		color:orangered;
-		font-weight:bold;
-		cursor:pointer;
-	}
-</style>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/assets/css/main.css" />
+
+
+                <script>
+                    function showPopup() {
+                        window.open("login.html", "a", "width=350, height=450, left=600, top=50");
+                    }
+                </script>
+                <script>
+                    var msg = "<%= msg %>";
+                    $(function() {
+                        if (msg != "null") {
+                            alert(msg);
+
+                            //세션에 담긴 메세지 한번만 출력하고 삭제하기
+                            <% session.removeAttribute("msg"); %>
+                        }
+                    })
+                </script>
+
+
+
 </head>
 <body>
-	<h1 align="center">Welcome JSP World!!</h1>
-	
-	<!-- 로그인폼 만들기 -->
-	<div class="loginArea">
-	
-		
-		<form id="loginForm" action="<%= request.getContextPath() %>/login.me" method="post" onsubmit="return validate();">
-			<table>
-				<tr>
-					<td><label for="userId">ID : </label></td>
-					<td><input type="text" name="userId" id="userId"></td>
-				</tr>
-				<tr>
-					<td><label for="userPwd">PWD : </label></td>
-					<td><input type="password" name="userPwd" id="userPwd"></td>
-				</tr>
-			</table>
-			
-			<div class="btns" align="center">
-				<div id="memberJoinBtn" onclick="memberJoin();">회원가입</div>
-				<div id="loginBtn"><input type="submit" value="로그인"></div>
-			</div>
-		</form>
+	<form id="loginForm" action="<%=request.getContextPath()%>/login.me" method="post" onsubmit="return validate();">
 
-	</div>
+		<div class="loginArea">
+			<header id="header">
+				<h1>
+					<a href="<%=request.getContextPath()%>">처음으로</a>
+				</h1>
+				<nav id="nav">
+
+						<ul>
+						<%
+							if (loginUser == null) {
+						%>
+							<li><input type="text" name="userId" class="text-field" placeholder="아이디"></li>
+							<li><input type="text" name="userPwd" class="text-field" placeholder="패스워드"></li>
+							<li>
+								<div class="btns" align="center">
+									<div id="loginBtn">
+										<input type="submit" value="로그인">
+									</div>
+								</div>
+							</li>
+						<%
+							} else {
+						%>
+							<li><label><%=loginUser.getUserName()%>님의 방문을 환영합니다</label></li>
+							<li>
+								<div class="btns" align="center">
+									<div id="logoutBtn" onclick="logout();">로그아웃</div>
+								</div>
+							</li>
+						<%
+							}
+						%>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="#" class="icon solid fa-angle-down">메뉴</a>
+								<ul>
+									<li><a href="<%=request.getContextPath()%>/list.no">공지사항</a></li>
+									<li><a href="<%=request.getContextPath()%>/event.eo">이벤트</a></li>
+									<li><a href="<%=request.getContextPath()%>/inquiry.in">문의사항</a></li>
+									<li><a href="<%=request.getContextPath()%>/review.re">리뷰</a></li>
+									<li><a href="<%=request.getContextPath()%>/myPage.me">마이페이지</a></li>
+									<li><a href="<%=request.getContextPath()%>/black.bl">블랙리스트</a></li>
+								 <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
 	
-	<script>
-		function validate(){
-			if($("#userId").val().trim().length == 0){ // 아이디 입력 안했을 경우
-				alert("아이디를 입력해주세요.");
-				$("#userId").focus();
-				return false;
-			}
-			
-			if($("#userPwd").val().trim().length == 0){ // 비밀번호 입력 안했을 경우
-				alert("비밀번호를 입력해주세요.");
-				$("#userPwd").focus();
-				return false;
-			}
-			
-			return true;
-		}
-		
-		function logout(){
-			location.href='<%= request.getContextPath() %>/logout.me';
-		}
-		
-		function memberJoin(){
-			//location.href="<%= request.getContextPath() %>/views/member/memberJoinForm.jsp";
-			
-			// 단순한 페이지 이동도 WAS 거쳐서 보여지게끔 작업하자!! 
-			// 왜냐면 url에 우리 디렉토리 구조가 다 노출 되기 때문에
-			
-			location.href="<%=request.getContextPath()%>/joinForm.me";
-			
-			
-		}
-		
-	</script>
-	
-	
-	<br clear="both">
-	
-	<div class="wrap">
-		<div class="nav">
-			<div class="menu">HOME</div>
-			<div class="menu" onclick="goNotice();">공지사항</div>
-			<div class="menu">게시판</div>
-			<div class="menu">사진게시판</div>
+									<li><a href="#">관리자메뉴</a>
+										<ul>
+											<li><a href="<%=request.getContextPath()%>/member.mim">회원
+													정보 관리</a></li>
+											<li><a href="<%=request.getContextPath()%>/inquirylist.in">문의사항
+											 관리</a></li>
+											
+										</ul></li>
+											<%} %>
+								</ul>
+							</li>
+						</ul>
+
+				</nav>
+			</header>
 		</div>
-	</div>
-	
+	</form>
+
+	<!-- Scripts -->
+	<script
+		src="<%=request.getContextPath()%>/resources/assets/js/jquery.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/assets/js/jquery.dropotron.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/assets/js/jquery.scrollex.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/assets/js/browser.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/assets/js/breakpoints.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/assets/js/util.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/assets/js/main.js"></script>
+
 	<script>
-		function goNotice(){
-			location.href="<%= request.getContextPath() %>/list.no";
-		}
-	</script>
-	
-	
-	
+		<%-- 	function login(){
+			location.href="<%= request.getContextPath() %>/views/member/login.jsp";
+			//location.href="<%=request.getContextPath()%>/joinForm.me";
+			}
+			 --%>
+
+			function logout(){
+				location.href='<%=request.getContextPath()%>/logout.me';
+			}
+
+
+
+			</script>
 </body>
 </html>
-
-
-
-
