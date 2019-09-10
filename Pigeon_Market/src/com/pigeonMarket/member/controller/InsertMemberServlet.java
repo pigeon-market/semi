@@ -34,7 +34,6 @@ public class InsertMemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("test");
 		// 1. 한글이 있을 경우 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		

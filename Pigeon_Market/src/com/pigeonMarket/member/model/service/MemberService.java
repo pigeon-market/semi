@@ -215,6 +215,22 @@ public class MemberService {
 		 close(conn);
 		 return result;
 	}
+	
+	public int updateAddr(String addr, String userId) {
+
+		Connection conn = getConnection();
+
+		int result = new MemberDao().updateAddr(conn, addr, userId);
+
+		if(result > 0 ) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		 close(conn);
+		 return result;
+	}
+	
 
 		public int idCheck(String userId) {
 			Connection conn = getConnection();

@@ -65,7 +65,7 @@ public class AllDealActivityServlet extends HttpServlet {
 		
 		PageInfo pi = pagingBar(listCount,limitCount);
 		
-		if (request.getParameter("currentPage") != null)
+		if (request.getParameter("page") != "")
 			 { pi.setCurrentPage(Integer.parseInt(request.getParameter("page"))); }
 		
 		PageInfo page = new PageInfo(pi.getCurrentPage(), pi.getBoardLimit());
@@ -74,14 +74,14 @@ public class AllDealActivityServlet extends HttpServlet {
 		
 		ArrayList<String> range = new DealDao().rangeList(aList);
 		
-		request.setAttribute("a", a);
+		System.out.println(pi.getBoardLimit());
+		
+		request.setAttribute("a", a); 
 		request.setAttribute("range", range);
 		request.setAttribute("aList", aList);
 		request.setAttribute("pi", pi);
 		
 		request.getRequestDispatcher("views/myPage/myActivity.jsp").forward(request, response);
-		
-		
 		
 	}
 

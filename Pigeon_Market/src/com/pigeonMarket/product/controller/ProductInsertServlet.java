@@ -19,8 +19,6 @@ import com.pigeonMarket.member.model.vo.Member;
 import com.pigeonMarket.product.model.service.ProductService;
 import com.pigeonMarket.product.model.vo.Attachment;
 import com.pigeonMarket.product.model.vo.Product;
-import com.pigeonMarket.member.model.*;
-import com.pigeonMarket.member.model.vo.Member;
 
 /**
  * Servlet implementation class ProductInsertServlet
@@ -46,89 +44,88 @@ public class ProductInsertServlet extends HttpServlet {
 		
 		// String title = request.getParameter("title");
 		
-		// 폼 전송을 multipart/form-data 로 전송하는 경우 다른 방식으로 값 추출
-		// 파일 업로드를 위한 라이브러리 : cos.jar (com.orelilly.servlet의 약자)
+		// �뤌 �쟾�넚�쓣 multipart/form-data 濡� �쟾�넚�븯�뒗 寃쎌슦 �떎瑜� 諛⑹떇�쑝濡� 媛� 異붿텧
+		// �뙆�씪 �뾽濡쒕뱶瑜� �쐞�븳 �씪�씠釉뚮윭由� : cos.jar (com.orelilly.servlet�쓽 �빟�옄)
 		// http://www.servlets.com
 		
-		// enctype이 multipart/form-data로 전송되었는지 확인!
+		// enctype�씠 multipart/form-data濡� �쟾�넚�릺�뿀�뒗吏� �솗�씤!
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
-			// 1. 전송된 파일들을 가지고 작업할 내용( 전송파일 용량 제산, 저장될 경로)
-			// 1_1.  전송파일 용량 제한 : 10Mbyre로 제한 한 경우
+			// 1. �쟾�넚�맂 �뙆�씪�뱾�쓣 媛�吏�怨� �옉�뾽�븷 �궡�슜( �쟾�넚�뙆�씪 �슜�웾 �젣�궛, ���옣�맆 寃쎈줈)
+			// 1_1.  �쟾�넚�뙆�씪 �슜�웾 �젣�븳 : 10Mbyre濡� �젣�븳 �븳 寃쎌슦
 			
 			int maxSize = 1024*1024*10;
 			
-			// 1_2. 웹 서버 컨테이너 경로(WebContent)/resources 경로 추출
+			// 1_2. �쎒 �꽌踰� 而⑦뀒�씠�꼫 寃쎈줈(WebContent)/resources 寃쎈줈 異붿텧
 			String resources = request.getSession().getServletContext().getRealPath("/resources");
 			
-			// 한 폴더에는 총 65000개까지의 파일만 저장 가능하다.
-			// 폴더별로 구분을 해 놓는게 좋음
+			// �븳 �뤃�뜑�뿉�뒗 珥� 65000媛쒓퉴吏��쓽 �뙆�씪留� ���옣 媛��뒫�븯�떎.
+			// �뤃�뜑蹂꾨줈 援щ텇�쓣 �빐 �넃�뒗寃� 醫뗭쓬
 			
-			// 1_3. 파일이 실제로 저장될 경로(resources/ThumbnailuploadFiles/)
+			// 1_3. �뙆�씪�씠 �떎�젣濡� ���옣�맆 寃쎈줈(resources/ThumbnailuploadFiles/)
 			String savePath = resources + "/product_uploadFiles/";
 			
 			
 			/*
-			 * 2. 파일명 수정 및 저장 작업
+			 * 2. �뙆�씪紐� �닔�젙 諛� ���옣 �옉�뾽
 			 * 
-			 * HttpServletRequest --> MultipartRequest로 변경
+			 * HttpServletRequest --> MultipartRequest濡� 蹂�寃�
 			 * 
 			 * MultipartRequest MultiRequest 
 			 *  = new MultipartRequest(request, savePath, maxSize,"UTF-8", new DefaultFileRenamePolicy());
 			 *  
 			 *  
-			 *  위의 MultipartRequest 객체 생성과 동시에 업로드한 파일들이 서버로 업로드 된다.
-			 *  --> 즉, 문제가 있든 없든 간에 우선 서버에 업로드 된다.
-			 *  --> 만약에 문제가 있을 경우 업로드된 파일을 삭제시켜야된다.
+			 *  �쐞�쓽 MultipartRequest 媛앹껜 �깮�꽦怨� �룞�떆�뿉 �뾽濡쒕뱶�븳 �뙆�씪�뱾�씠 �꽌踰꾨줈 �뾽濡쒕뱶 �맂�떎.
+			 *  --> 利�, 臾몄젣媛� �엳�뱺 �뾾�뱺 媛꾩뿉 �슦�꽑 �꽌踰꾩뿉 �뾽濡쒕뱶 �맂�떎.
+			 *  --> 留뚯빟�뿉 臾몄젣媛� �엳�쓣 寃쎌슦 �뾽濡쒕뱶�맂 �뙆�씪�쓣 �궘�젣�떆耳쒖빞�맂�떎.
 			 *  
-			 *  사용자가 올린 파일명 그대로 저장하지 않는게 일반적!!!
-			 *  - 같은 파일명이 있을 경우 덮어씌워질 수도 있다.
-			 *  - 한글로 된 파일명, 특수기호나 띄어쓰기 등은 서버에 따라 문제가 생길수도 있다.
+			 *  �궗�슜�옄媛� �삱由� �뙆�씪紐� 洹몃�濡� ���옣�븯吏� �븡�뒗寃� �씪諛섏쟻!!!
+			 *  - 媛숈� �뙆�씪紐낆씠 �엳�쓣 寃쎌슦 �뜮�뼱�뵆�썙吏� �닔�룄 �엳�떎.
+			 *  - �븳湲�濡� �맂 �뙆�씪紐�, �듅�닔湲고샇�굹 �쓣�뼱�벐湲� �벑�� �꽌踰꾩뿉 �뵲�씪 臾몄젣媛� �깮湲몄닔�룄 �엳�떎.
 			 *  
 			 *  
-			 *  DefaultFileRenamePolicy 는 cos.jar안에 존재하는 클래스
-			 *  위에 multiRequest 객체 생성시 DefaultFileRenamePolicy 클래스의 rename 메소드가 실행되면서 파일명 수정됨
+			 *  DefaultFileRenamePolicy �뒗 cos.jar�븞�뿉 議댁옱�븯�뒗 �겢�옒�뒪
+			 *  �쐞�뿉 multiRequest 媛앹껜 �깮�꽦�떆 DefaultFileRenamePolicy �겢�옒�뒪�쓽 rename 硫붿냼�뱶媛� �떎�뻾�릺硫댁꽌 �뙆�씪紐� �닔�젙�맖
 			 *  ex) aaa.zip, aaa1.zip. aaa2.zip
 			 *  
-			 *  우리는 직접 rename 할거임
-			 *  --> common 패키지에 MyFileRenamePolicy 클래스 만들자!!  
+			 *  �슦由щ뒗 吏곸젒 rename �븷嫄곗엫
+			 *  --> common �뙣�궎吏��뿉 MyFileRenamePolicy �겢�옒�뒪 留뚮뱾�옄!!  
 			 */
 			
-			// 2_1. multiRequest 객체 생성하기
+			// 2_1. multiRequest 媛앹껜 �깮�꽦�븯湲�
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
-			// --> 이순간 서버에 파일 업로드됨
+			// --> �씠�닚媛� �꽌踰꾩뿉 �뙆�씪 �뾽濡쒕뱶�맖
 			
-			//2_2. DB에 저장하기 위해 change_name과 origin_name 각각의 ArrayList 만들어줄꺼임--> 다중파일이기 때문
+			//2_2. DB�뿉 ���옣�븯湲� �쐞�빐 change_name怨� origin_name 媛곴컖�쓽 ArrayList 留뚮뱾�뼱以꾧볼�엫--> �떎以묓뙆�씪�씠湲� �븣臾�
 			
 			
-			// 실제로 저장된 파일의 이름(수정명)을 저장할 ArrayList
+			// �떎�젣濡� ���옣�맂 �뙆�씪�쓽 �씠由�(�닔�젙紐�)�쓣 ���옣�븷 ArrayList
 			ArrayList<String> changeFiles = new ArrayList<>();
-			//원폰 파일의 이름을 저장할 ArrayList
+			//�썝�룿 �뙆�씪�쓽 �씠由꾩쓣 ���옣�븷 ArrayList
 			ArrayList<String> originFiles = new ArrayList<>();
 			
-			Enumeration<String> files = multiRequest.getFileNames(); // 전송된 역순으로 담겨있다.
+			Enumeration<String> files = multiRequest.getFileNames(); // �쟾�넚�맂 �뿭�닚�쑝濡� �떞寃⑥엳�떎.
 			while(files.hasMoreElements()) {
 				
-				String name = files.nextElement(); //files에 담겨있는 파일 하나씩 뽑아내기
+				String name = files.nextElement(); //files�뿉 �떞寃⑥엳�뒗 �뙆�씪 �븯�굹�뵫 戮묒븘�궡湲�
 				
-				if(multiRequest.getFilesystemName(name) != null) { //파일이 null이 아닐경우
+				if(multiRequest.getFilesystemName(name) != null) { //�뙆�씪�씠 null�씠 �븘�땺寃쎌슦
 					
-					//수정명
+					//�닔�젙紐�
 					String changeName= multiRequest.getFilesystemName(name);
-					//원본명
+					//�썝蹂몃챸
 					String originName = multiRequest.getOriginalFileName(name);
 					changeFiles.add(changeName);
 					originFiles.add(originName);
 				}			
 			}
 			
-			// 3_1. 파일 외에 게시판 제목, 내용, 작성자 회원번호 받아오기 --> Board 객체 생성
+			// 3_1. �뙆�씪 �쇅�뿉 寃뚯떆�뙋 �젣紐�, �궡�슜, �옉�꽦�옄 �쉶�썝踰덊샇 諛쏆븘�삤湲� --> Board 媛앹껜 �깮�꽦
 			String pId = String.valueOf(((Member)request.getSession().getAttribute("loginUser")).getUserId());
 			int price = Integer.parseInt(multiRequest.getParameter("price"));
 			String categoryCode = multiRequest.getParameter("categoryCode");
 			String productTitle = multiRequest.getParameter("productTitle");
 			String productContents = multiRequest.getParameter("productContents");
-			
 			
 			Product p = new Product();
 			p.setpId(pId);
@@ -137,10 +134,10 @@ public class ProductInsertServlet extends HttpServlet {
 			p.setProductTitle(productTitle);
 			p.setProductContents(productContents);
 			
-			// 3_2. Attachment 테이블에 값 삽입할 것들 작업하기 --> Attachment 객체들을 담을 리스트
+			// 3_2. Attachment �뀒�씠釉붿뿉 媛� �궫�엯�븷 寃껊뱾 �옉�뾽�븯湲� --> Attachment 媛앹껜�뱾�쓣 �떞�쓣 由ъ뒪�듃
 			ArrayList<Attachment> fileList = new ArrayList<>();
 			
-			// 전송순서 역순으로 담겨 있기 때문에 마지막 인덱스부터 접근하게 끔
+			// �쟾�넚�닚�꽌 �뿭�닚�쑝濡� �떞寃� �엳湲� �븣臾몄뿉 留덉�留� �씤�뜳�뒪遺��꽣 �젒洹쇳븯寃� �걫
 			for(int i=originFiles.size()-1; i>=0; i--) {
 				
 				Attachment at = new Attachment();
@@ -148,7 +145,7 @@ public class ProductInsertServlet extends HttpServlet {
 				at.setOriginName(originFiles.get(i));
 				at.setChangeName(changeFiles.get(i));
 				
-				//타이틀 이미지일 경우 fileLevel 0으로, 내용 이미지일 경우 fileLevel 1로
+				//���씠�� �씠誘몄��씪 寃쎌슦 fileLevel 0�쑝濡�, �궡�슜 �씠誘몄��씪 寃쎌슦 fileLevel 1濡�
 				if(i ==originFiles.size()-1) {
 					at.setFileLevel(0);
 				}else {
@@ -158,24 +155,24 @@ public class ProductInsertServlet extends HttpServlet {
 				fileList.add(at);
 			}
 			
-			// 4. 사진 게시판 작성용 서비스 요청(board 객체, 첨부파일 리스트 전달
+			// 4. �궗吏� 寃뚯떆�뙋 �옉�꽦�슜 �꽌鍮꾩뒪 �슂泥�(board 媛앹껜, 泥⑤��뙆�씪 由ъ뒪�듃 �쟾�떖
 			
 			int result = new ProductService().insertProduct(p,fileList);
 			
 			if(result >0) {
-				response.sendRedirect("list.pr"); // 마이페이지 판매상품리시트로 이동???
+				response.sendRedirect("list.pr"); // 留덉씠�럹�씠吏� �뙋留ㅼ긽�뭹由ъ떆�듃濡� �씠�룞???
 			}else {
 				
-				// 저장된 사진 삭제
+				// ���옣�맂 �궗吏� �궘�젣
 				for(int i=0; i<changeFiles.size(); i++) {
 					
-					// 삭제할 파일 객체 생성
+					// �궘�젣�븷 �뙆�씪 媛앹껜 �깮�꽦
 					File failedFile = new File(savePath + changeFiles.get(i));
 					failedFile.delete();
 				}
 				
 				
-				request.setAttribute("msg", "제품등록 등록 실패!!");
+				request.setAttribute("msg", "�젣�뭹�벑濡� �벑濡� �떎�뙣!!");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 				
 			}

@@ -3,9 +3,79 @@
 	import="java.util.ArrayList, 
 	com.pigeonMarket.product.model.vo.*, com.pigeonMarket.category.model.vo.*"%>
 <%
-	ProductSale pr = (ProductSale) request.getAttribute("p");
-	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("fileList");
+	ArrayList<String> list = (ArrayList<String>) request.getAttribute("list");
+	ArrayList<Attachment> fileList = (ArrayList<Attachment>) request.getAttribute("file");
 	Attachment titleImg = fileList.get(0);
+
+	Member m = (Member) request.getSession().getAttribute("loginUser");
+
+	String productNo = list.get(0);
+	System.out.println(productNo);
+	String productOkNo = list.get(1);
+	String paymentNo = list.get(2);
+	String pId = list.get(3);
+	String bId = list.get(4);
+	String cName = list.get(5);
+	String title = list.get(6);
+	String cont = list.get(7);
+	String price = list.get(8);
+	String reg = list.get(9);
+	String appr = list.get(10);
+	String dealDate = list.get(11);
+
+	for (int i = 0; i < list.size(); i++) {
+		if (list.get(i) == null) {
+			switch (i) {
+
+				case 1 :
+					productOkNo = "";
+					break;
+				case 2 :
+					paymentNo = "";
+					break;
+				case 3 :
+					pId = "";
+					break;
+				case 4 :
+					bId = "";
+					break;
+				case 5 :
+					cName = "";
+					break;
+				case 6 :
+					title = "";
+					break;
+				case 7 :
+					cont = "";
+					break;
+				case 8 :
+					price = "";
+					break;
+				case 9 :
+					reg = "";
+					break;
+				case 10 :
+					appr = "";
+					break;
+				case 11 :
+					dealDate = "";
+					break;
+
+			}
+		}
+	}
+
+	String str = "";
+
+	if (dealDate == null) {
+		if (appr == null) {
+			str = "판매중";
+		} else {
+			str = "승인대기중";
+		}
+	} else {
+		str = "판매완료";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +99,7 @@
 	font-size: 0.7em;
 }
 
-#basket, #purchase {
+#basket, #myPage {
 	height: 50px;
 	text-align: center;
 	font-size: 1.5em;
@@ -49,7 +119,7 @@
 	background: burlywood;
 }
 
-#purchase {
+#myPage {
 	background: cornflowerblue;
 }
 
@@ -68,15 +138,13 @@
 
 #inFormation {
 	text-align: center;
-	border-right: 2px solid rgba(241, 218, 7, 0.945);
 }
 
 #question {
 	text-align: center;
 }
 
-#basket:hover, #purchase:hover, #black:hover, #inFormation:hover,
-	#question:hover {
+#basket:hover, #myPage:hover, #black:hover, #question:hover {
 	cursor: pointer;
 }
 
@@ -97,101 +165,144 @@
 
 	<div id="main" class="container">
 		<header>
-			<h2>상품구매</h2>
+			<h2>상세정보</h2>
 		</header>
-		<div>
-			<table class="detail">
-				<tr>
-					<th rowspan="5" width="50%">
-						<div class="img0">
-							<img id="titleImg"
-								src="<%=contextPath%>/resources/thumbnail_uploadFiles/<%=titleImg.getChangeName()%>"
-								width="100%" height="100%">
-						</div>
-					</th>
-					<th width="12.5%">제목</th>
-					<th colspan="4"><%=pr.getProductTitle()%></th>
-				</tr>
-				<tr>
-					<th>판매가격</th>
-					<th><%=pr.getPrice()%>원</th>
-					<th>제품상태</th>
-					<th></th>
-				</tr>
-				<tr>
-					<th>판매자ID</th>
-					<th><%=pr.getpId()%></th>
-					<th>구매자ID</th>
-					<th><%=pr.getpId() %></th>
-					
-				</tr>
-				<tr>
-					<th>제품승인날짜</th>
-					<th><%=pr.getApprovalDate()%></th>
-					<th>제품구매잘짜</th>
-					<th><%=pr.getApprovalDate()%></th>
-				</tr>
+
+
+
+		
+
+			<div>
 				
+
+
+
+			<%
+				if (productOkNo == "") {
+			%>
+
+			<button onclick="location.href='<%=contextPath%>/detail.pr?pNo=<%= productNo %>'">제품페이지
+				바로가기</button>
+
+			<%
+				} else {
+			%>
+
+			<button onclick="location.href='<%=contextPath%>/updateDetail.pr?prNo=<%= productNo %>'">수정하기</button>
+
+			<%
+				}
+			%>
+			<%
+				if(appr != "") {
+			%>
+
+			<button onclick="location.href='<%=contextPath%>/delete.pr?prNo=<%= productNo %>'">삭제하기</button>
+
+			<%
+				 }
+			%>
+
 				
+			</div>
 				
-				<tr>
-					<td colspan="2" class="diaArea"><a href="<%=contextPath%>/insert.sm?pNo=<%=pr.getProductOkNo()%>"><div id="basket">구매페이지로</div></a></td>
-					<td colspan="3" class="diaArea"><a href="<%=contextPath%>/insertForm.pc?pNo=<%=pr.getProductOkNo()%>"><div id="purchase">뒤로가기</div></a></td>
-				</tr>
-				<tr>
-					<td colspan="1" id="inFormation"><div>상품정보</div></td>
-					<td colspan="4" id="question"><div>상품문의</div></td>
-				</tr>
-				<tr>
-					<th colspan="5"
-						style="border-top: 2px solid rgba(241, 218, 7, 0.945)">상품정보</th>
-				</tr>
-				<tr>
-					<th colspan="5">
-						<div class="imgArea" alige="center">
-							<%
+
+
+
+		<table class="detail">
+			<tr>
+				<th rowspan="6" width="50%">
+					<div class="img0">
+						<img id="titleImg"
+							src="<%=contextPath%>/resources/thumbnail_uploadFiles/<%=titleImg.getChangeName()%>"
+							width="100%" height="100%">
+					</div>
+				</th>
+				<th width="12.5%">제목</th>
+				<th colspan="5"><%=title%></th>
+			</tr>
+			<tr>
+				<th>판매가격</th>
+				<th><%=price%>원</th>
+				<th width=15%>제품상태</th>
+				<th><%=str%></th>
+			</tr>
+			<tr>
+				<th>판매자ID</th>
+				<th><%=pId%></th>
+				<th>구매자ID</th>
+				<th><%=bId%></th>
+
+			</tr>
+			<tr>
+				<th>제품승인날짜</th>
+				<th><%=appr%></th>
+				<th>제품구매날짜</th>
+				<th><%=dealDate%></th>
+			</tr>
+
+
+			<tr>
+				<%
+						if ((m.getUserId()).equals(pId)) {
+					%>
+				<td colspan="1" id="inFormation"><div>등록번호</div></td>
+				<td colspan="1" id="inFormation"><div><%=productNo%></div></td>
+				<td colspan="1" id="inFormation"><div>판매번호</div></td>
+				<td colspan="1" id="inFormation"><div><%=productOkNo%></div></td>
+				<td colspan="1" id="inFormation"><div>구매번호</div></td>
+				<td colspan="1" id="inFormation"><div><%=paymentNo%></div></td>
+				<%
+						} else {
+					%>
+				<td colspan="1" id="inFormation"><div>판매번호</div></td>
+				<td colspan="2" id="inFormation"><div><%=productOkNo%></div></td>
+				<td colspan="1" id="inFormation"><div>구매번호</div></td>
+				<td colspan="2" id="inFormation"><div><%=paymentNo%></div></td>
+				<%
+						}
+					%>
+
+			</tr>
+			<tr>
+				<th colspan="6"
+					style="border-top: 2px solid rgba(241, 218, 7, 0.945)">상품정보</th>
+			</tr>
+			<tr>
+				<th colspan="6">
+					<div class="imgArea" aligeo;="center">
+						<%
 								for (int i = 1; i < fileList.size(); i++) {
 							%>
-							<div class="imgDiv" alige="center">
-								<img
-									src="<%=contextPath%>/resources/thumbnail_uploadFiles/<%=fileList.get(i).getChangeName()%>"
-									width="33%" height="33%">
-							</div>
-							<%
+						<div class="imgDiv" alige="center">
+							<img
+								src="<%=contextPath%>/resources/thumbnail_uploadFiles/<%=fileList.get(i).getChangeName()%>"
+								width="33%" height="33%">
+						</div>
+						<%
 								}
 							%>
-						</div>
-					</th>
-				</tr>
-				<tr>
-					<th colspan="5">
-						<div class="textsize">
-							<pre><%=pr.getProductContents()%></pre>
-						</div>
-					</th>
-				</tr>
-				<tr>
-					<th colspan="5">상품문의</th>
-				</tr>
-				<tr>
-					<th colspan="3">
-						<div class="textsize">
-							<textarea rows="3" id="qnaTextarea"></textarea>
-						</div>
-					</th>
-					<td colspan="2"><div id="inquiry">문의하기</div></td>
-				</tr>
-			</table>
-		</div>
-		<script>
-		function blackUser(){
-			var reason = window.prompt("신고사유를 적어주세요");
-			var pId = <%=pr.getpId()%>;
-			
-			location.href="<%=contextPath%>/Insert.bl?reason=" + reason + "&pId=" + pId;
-			}
-		</script>
+					</div>
+				</th>
+			</tr>
+			<tr>
+				<th colspan="6">
+					<div class="textsize">
+						<pre><%=cont%></pre>
+					</div>
+				</th>
+			</tr>
 
-		<%@ include file="../common/foot.jsp"%>
+
+		</table>
+	
+
+	</div>
+
+
+	<%@ include file="../common/foot.jsp"%>
 </body>
 </html>
+
+
+
